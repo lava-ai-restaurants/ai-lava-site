@@ -6,246 +6,348 @@
 <title>LAVA — Artificial Intelligence Solutions for Restaurants</title>
 <meta name="description" content="We don't consult. We deploy. 20+ seasoned restaurant operators and AI engineers who embed with your operation and don't leave until it's fixed.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
 --lava-1:#dc2626;--lava-2:#f59e0b;--lava-3:#fbbf24;
---dark:#1a1a2e;--text:#1a1a2e;--text-light:#64748b;
+--dark:#0a0a1a;--dark-2:#111127;--text:#e2e8f0;--text-light:#94a3b8;
 --white:#ffffff;--light:#f8fafc;
---shadow:0 4px 24px rgba(0,0,0,.08);--shadow-hover:0 12px 40px rgba(0,0,0,.15);
---radius:16px;
+--shadow:0 4px 24px rgba(0,0,0,.3);--shadow-hover:0 12px 40px rgba(0,0,0,.5);
+--radius:16px;--glow:0 0 40px rgba(220,38,38,.15);
 }
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--dark);line-height:1.6;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-.section{padding:100px 0}
-.section-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;text-align:center;margin-bottom:16px;line-height:1.15}
-.section-subtitle{text-align:center;font-size:1.15rem;color:var(--text-light);max-width:700px;margin:0 auto 56px;line-height:1.7}
 .gradient-text{background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* Animations */
 @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
-@keyframes typewriter{from{width:0}to{width:100%}}
-@keyframes blink{50%{border-color:transparent}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes countUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideInLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
-@keyframes slideInRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(220,38,38,.2)}50%{box-shadow:0 0 40px rgba(220,38,38,.4)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scanline{0%{top:-100%}100%{top:200%}}
+@keyframes countUp{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+@keyframes borderGlow{0%,100%{border-color:rgba(220,38,38,.3)}50%{border-color:rgba(245,158,11,.6)}}
+@keyframes particleFloat{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh) translateX(50px);opacity:0}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .8s ease,transform .8s ease}
-.reveal-left.visible{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .8s ease,transform .8s ease}
-.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* Particles */
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.particle{position:absolute;width:3px;height:3px;background:var(--lava-1);border-radius:50%;animation:particleFloat linear infinite;opacity:0}
 
 /* ── Nav ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(26,26,46,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);transition:all .3s}
-nav.scrolled{background:rgba(26,26,46,.98);box-shadow:0 2px 30px rgba(0,0,0,.3)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1200px;margin:0 auto;padding:0 24px}
-.nav-logo{font-size:1.6rem;font-weight:900;letter-spacing:4px;color:#fff}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,26,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);transition:all .3s}
+nav.scrolled{background:rgba(10,10,26,.95);box-shadow:0 2px 30px rgba(0,0,0,.5)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-logo{font-size:1.6rem;font-weight:900;letter-spacing:6px}
 .nav-logo span{background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{font-size:.9rem;font-weight:600;color:rgba(255,255,255,.7);transition:color .2s}
+.nav-links a{font-size:.85rem;font-weight:600;color:rgba(255,255,255,.5);transition:color .3s;letter-spacing:.5px;text-transform:uppercase}
 .nav-links a:hover{color:#fff}
-.nav-cta{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff!important;padding:10px 24px;border-radius:50px;font-weight:700;transition:transform .2s,box-shadow .2s}
-.nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(220,38,38,.4)}
+.nav-cta{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff!important;padding:10px 28px;border-radius:50px;font-weight:700;transition:all .3s;box-shadow:0 2px 20px rgba(220,38,38,.3)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 4px 30px rgba(220,38,38,.5)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
-.hamburger span{display:block;width:26px;height:2.5px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
-.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,6px)}
+.hamburger span{display:block;width:26px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.active span:nth-child(2){opacity:0}
-.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-6px)}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(26,26,46,.98);backdrop-filter:blur(16px);padding:24px;flex-direction:column;gap:20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(10,10,26,.98);backdrop-filter:blur(20px);padding:40px 24px;flex-direction:column;gap:24px}
 .mobile-menu.open{display:flex}
-.mobile-menu a{color:rgba(255,255,255,.8);font-size:1.1rem;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.mobile-menu a:last-child{border:none}
+.mobile-menu a{color:rgba(255,255,255,.8);font-size:1.3rem;font-weight:700;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 
 /* ── Hero ── */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:#0a0a1a}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.3}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,26,.9) 0%,rgba(26,26,46,.7) 50%,rgba(10,10,26,.85) 100%)}
-.hero-content{position:relative;z-index:1;padding:120px 24px 80px;max-width:1200px;margin:0 auto;width:100%}
-.hero h1{font-size:clamp(5rem,15vw,9rem);font-weight:900;letter-spacing:8px;line-height:.9;background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));background-size:200% 200%;animation:gradientShift 4s ease infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
-.hero .subtitle{font-size:clamp(.75rem,1.5vw,1rem);font-weight:600;color:rgba(255,255,255,.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:40px}
-.hero .headline{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:20px}
-.hero .subhead{font-size:clamp(1rem,2vw,1.15rem);color:rgba(255,255,255,.65);line-height:1.8;max-width:650px;margin-bottom:44px}
-.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:50px;font-weight:700;font-size:1.05rem;border:none;cursor:pointer;transition:all .25s;text-decoration:none}
-.btn-primary{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff;box-shadow:0 4px 24px rgba(220,38,38,.3)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(220,38,38,.45)}
-.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4)}
-.btn-outline:hover{background:rgba(255,255,255,.1);border-color:#fff;transform:translateY(-3px)}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-video-bg{position:absolute;inset:0;z-index:0}
+.hero-video-bg video{width:100%;height:100%;object-fit:cover;opacity:.25}
+.hero-video-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,26,.92) 0%,rgba(17,17,39,.7) 50%,rgba(10,10,26,.88) 100%)}
+.hero-content{position:relative;z-index:1;padding:140px 24px 100px;max-width:1200px;margin:0 auto;width:100%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);padding:8px 20px;border-radius:50px;font-size:.8rem;font-weight:700;color:var(--lava-2);margin-bottom:32px;letter-spacing:1px;text-transform:uppercase}
+.hero-eyebrow .dot{width:8px;height:8px;background:var(--lava-1);border-radius:50%;animation:pulse 2s ease infinite}
+.hero h1{font-size:clamp(4.5rem,14vw,10rem);font-weight:900;letter-spacing:10px;line-height:.85;background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));background-size:200% 200%;animation:gradientShift 4s ease infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.hero .tagline{font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:24px}
+.hero .tagline .thin{font-weight:400;color:rgba(255,255,255,.4)}
+.hero .subhead{font-size:clamp(1rem,1.8vw,1.15rem);color:rgba(255,255,255,.5);line-height:1.8;max-width:600px;margin-bottom:48px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:64px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 36px;border-radius:50px;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all .3s;text-decoration:none;letter-spacing:.5px}
+.btn-primary{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff;box-shadow:0 4px 30px rgba(220,38,38,.3)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 40px rgba(220,38,38,.5)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.2)}
+.btn-outline:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.4);transform:translateY(-3px)}
 
-/* ── Reality Check ── */
-.reality{background:var(--dark);color:#fff;padding:120px 0;position:relative;overflow:hidden}
-.reality::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2),var(--lava-3))}
-.reality .section-title{color:#fff}
-.reality-block{max-width:800px;margin:0 auto 48px;padding:0 24px}
-.reality-block p{font-size:clamp(1.15rem,2.5vw,1.4rem);line-height:1.8;color:rgba(255,255,255,.75)}
-.reality-block.accent p{color:var(--lava-3)}
-.reality-block:last-child{margin-bottom:0}
-.reality-block.accent{border-left:4px solid var(--lava-2);padding-left:32px}
+/* Hero social proof */
+.hero-proof{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.hero-proof-item{display:flex;align-items:center;gap:8px;font-size:.85rem;color:rgba(255,255,255,.4)}
+.hero-proof-item .num{font-size:1.4rem;font-weight:900;color:var(--lava-2)}
+
+/* ── Ticker ── */
+.ticker{background:linear-gradient(90deg,var(--lava-1),var(--lava-2),var(--lava-3));padding:14px 0;overflow:hidden;position:relative;z-index:1}
+.ticker-track{display:flex;gap:48px;animation:ticker 30s linear infinite;white-space:nowrap}
+.ticker-item{font-size:.85rem;font-weight:700;color:rgba(0,0,0,.7);text-transform:uppercase;letter-spacing:2px;flex-shrink:0}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── Podcast/Audio Section ── */
+.podcast-section{padding:100px 0;position:relative}
+.podcast-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(220,38,38,.06),transparent 70%);pointer-events:none}
+.podcast-card{max-width:700px;margin:0 auto;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:48px;text-align:center;position:relative;overflow:hidden}
+.podcast-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2),var(--lava-3))}
+.podcast-icon{font-size:4rem;margin-bottom:20px;display:block}
+.podcast-card h3{font-size:1.6rem;font-weight:900;color:#fff;margin-bottom:12px}
+.podcast-card p{color:var(--text-light);margin-bottom:24px;line-height:1.7}
+.podcast-link{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--lava-1),var(--lava-2));padding:14px 32px;border-radius:50px;color:#fff;font-weight:700;font-size:1rem;transition:all .3s}
+.podcast-link:hover{transform:translateY(-2px);box-shadow:0 4px 30px rgba(220,38,38,.4)}
+.podcast-note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.3);font-style:italic}
+
+/* ── Reality Section ── */
+.reality{padding:120px 0;position:relative}
+.reality-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
+.reality-text h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:32px}
+.reality-text p{font-size:1.1rem;color:var(--text-light);line-height:1.9;margin-bottom:20px}
+.reality-text .accent{color:var(--lava-2);font-weight:700;font-size:1.2rem;border-left:4px solid var(--lava-2);padding-left:20px;margin-top:32px}
+.reality-visual{position:relative}
+.reality-cards{display:flex;flex-direction:column;gap:16px}
+.pain-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:20px 24px;display:flex;align-items:center;gap:16px;transition:all .5s;transform:translateX(20px);opacity:0}
+.pain-card.visible{transform:translateX(0);opacity:1}
+.pain-card .pain-icon{font-size:1.8rem;flex-shrink:0}
+.pain-card .pain-text{font-size:.95rem;color:var(--text-light);line-height:1.5}
+.pain-card:hover{border-color:rgba(220,38,38,.3);background:rgba(220,38,38,.03)}
 
 /* ── Services ── */
-.services{background:var(--light)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
-.service-card{background:var(--white);border-radius:var(--radius);padding:36px 28px;box-shadow:var(--shadow);transition:all .35s;position:relative;overflow:hidden;border:1px solid rgba(0,0,0,.04)}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2),var(--lava-3));transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.service-card:hover::before{transform:scaleX(1)}
-.service-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover)}
-.service-card .icon{font-size:2.6rem;margin-bottom:16px}
-.service-card h3{font-size:1.25rem;font-weight:800;margin-bottom:12px}
-.service-card p{font-size:.95rem;color:var(--text-light);line-height:1.7}
-.service-card .real-talk{margin-top:16px;font-size:.9rem;font-style:italic;color:var(--lava-1);font-weight:600;border-left:3px solid var(--lava-3);padding-left:12px;line-height:1.5}
+.services{padding:120px 0;position:relative}
+.services::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)}
+.section-header{text-align:center;margin-bottom:64px}
+.section-header h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;color:#fff;margin-bottom:16px;line-height:1.15}
+.section-header p{font-size:1.1rem;color:var(--text-light);max-width:600px;margin:0 auto;line-height:1.7}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.service-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:36px 28px;transition:all .4s;position:relative;overflow:hidden}
+.service-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.service-card:hover{border-color:rgba(220,38,38,.2);background:rgba(220,38,38,.02);transform:translateY(-4px)}
+.service-card:hover::after{transform:scaleX(1)}
+.service-card .icon{font-size:2.4rem;margin-bottom:16px;display:block}
+.service-card h3{font-size:1.15rem;font-weight:800;color:#fff;margin-bottom:10px}
+.service-card p{font-size:.9rem;color:var(--text-light);line-height:1.7}
+.service-card .real-talk{margin-top:16px;font-size:.85rem;font-style:italic;color:var(--lava-2);font-weight:600;border-left:3px solid var(--lava-2);padding-left:12px;line-height:1.5}
 
-/* ── Live Intelligence ── */
-.live-intel{background:var(--dark);color:#fff;padding:100px 0;position:relative;overflow:hidden}
-.live-intel::after{content:'';position:absolute;bottom:-200px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(220,38,38,.1),transparent);border-radius:50%}
-.live-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);padding:8px 20px;border-radius:50px;margin-bottom:32px;font-size:.9rem;font-weight:700;color:var(--lava-1)}
-.live-dot{width:10px;height:10px;background:var(--lava-1);border-radius:50%;animation:pulse 2s ease infinite}
-.alert-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:32px;max-width:800px;margin:0 auto 40px;position:relative;font-family:'Courier New',monospace}
-.alert-box .alert-text{font-size:clamp(.9rem,1.8vw,1.05rem);color:rgba(255,255,255,.85);line-height:1.8;overflow:hidden;border-right:3px solid var(--lava-2);animation:blink 1s step-end infinite;white-space:normal}
-.live-caption{text-align:center;font-size:1.2rem;color:rgba(255,255,255,.6);font-weight:600;position:relative;z-index:1}
+/* ── Interactive Dashboard ── */
+.dashboard-section{padding:120px 0;position:relative}
+.dashboard-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(220,38,38,.04),transparent 70%);pointer-events:none}
+.dashboard-wrapper{max-width:900px;margin:0 auto;perspective:1000px}
+.dashboard-device{background:var(--dark-2);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;box-shadow:var(--shadow),var(--glow);transform:rotateX(2deg);transition:transform .5s}
+.dashboard-device:hover{transform:rotateX(0deg)}
+.dashboard-topbar{display:flex;align-items:center;gap:8px;padding:14px 20px;background:rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.05)}
+.dashboard-topbar span{width:12px;height:12px;border-radius:50%}
+.dashboard-topbar span:nth-child(1){background:#ff5f57}
+.dashboard-topbar span:nth-child(2){background:#ffbd2e}
+.dashboard-topbar span:nth-child(3){background:#28c840}
+.dashboard-topbar .tab-label{margin-left:16px;font-size:.75rem;color:rgba(255,255,255,.3);font-weight:600;letter-spacing:1px}
+.dashboard-header{background:linear-gradient(135deg,var(--lava-1),#c2410c,var(--lava-2));padding:28px 32px;color:#fff;position:relative;overflow:hidden}
+.dashboard-header::after{content:'';position:absolute;top:-50%;right:-10%;width:200px;height:200px;background:rgba(255,255,255,.05);border-radius:50%}
+.dashboard-header h3{font-size:1.15rem;font-weight:700;position:relative;z-index:1}
+.dashboard-header .date{font-size:.8rem;opacity:.7;margin-top:4px}
+.dashboard-tabs{display:flex;gap:0;padding:0 24px;background:rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.05)}
+.dashboard-tab{padding:12px 20px;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.3);cursor:pointer;border-bottom:2px solid transparent;transition:all .3s;text-transform:uppercase;letter-spacing:1px}
+.dashboard-tab.active{color:var(--lava-2);border-color:var(--lava-2)}
+.dashboard-tab:hover{color:rgba(255,255,255,.6)}
+.dashboard-body{padding:24px 28px}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.kpi-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:18px;text-align:center;transition:all .3s;cursor:default}
+.kpi-card:hover{border-color:rgba(220,38,38,.3);animation:borderGlow 2s ease infinite}
+.kpi-card .label{font-size:.65rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.35);margin-bottom:6px}
+.kpi-card .value{font-size:1.4rem;font-weight:900;color:#fff}
+.kpi-card .change{font-size:.7rem;margin-top:4px;font-weight:700}
+.kpi-card .change.up{color:#22c55e}
+.kpi-card .change.down{color:#ef4444}
+.chart-section{margin-bottom:24px}
+.chart-title{font-size:.7rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;font-weight:700}
+.chart-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.chart-bar-row .bar-label{font-size:.75rem;color:rgba(255,255,255,.4);width:70px;text-align:right;flex-shrink:0}
+.chart-bar-row .bar-track{flex:1;height:28px;background:rgba(255,255,255,.03);border-radius:8px;overflow:hidden;position:relative}
+.chart-bar-row .bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding:0 12px;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.9);transition:width 1.5s cubic-bezier(.16,1,.3,1);width:0}
+.chart-bar-row .bar-fill.animated{width:var(--target-width)}
+.chart-bar-row:nth-child(1) .bar-fill{background:linear-gradient(90deg,#dc2626,#ef4444)}
+.chart-bar-row:nth-child(2) .bar-fill{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.chart-bar-row:nth-child(3) .bar-fill{background:linear-gradient(90deg,#dc2626,#f59e0b)}
+.chart-bar-row:nth-child(4) .bar-fill{background:linear-gradient(90deg,#c2410c,#ea580c)}
+.dashboard-alerts{border-top:1px solid rgba(255,255,255,.05);padding-top:20px}
+.alert-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;font-size:.85rem;color:rgba(255,255,255,.6);line-height:1.5}
+.alert-item .alert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.alert-item .alert-dot.green{background:#22c55e}
+.alert-item .alert-dot.yellow{background:#f59e0b}
+.alert-item .alert-dot.red{background:#ef4444}
+.dashboard-caption{text-align:center;margin-top:40px;font-size:1.3rem;font-weight:800;color:#fff}
+.dashboard-caption span{color:var(--text-light);font-weight:400;display:block;font-size:1rem;margin-top:8px}
 
-/* ── Dashboard Mockup ── */
-.dashboard{background:var(--white);padding:100px 0}
-.dashboard-device{max-width:800px;margin:0 auto;background:var(--dark);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative}
-.dashboard-dots{display:flex;gap:8px;padding:16px 20px;background:rgba(0,0,0,.3)}
-.dashboard-dots span{width:12px;height:12px;border-radius:50%}
-.dashboard-dots span:nth-child(1){background:#ff5f57}
-.dashboard-dots span:nth-child(2){background:#ffbd2e}
-.dashboard-dots span:nth-child(3){background:#28c840}
-.dashboard-header{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));padding:24px 28px;color:#fff}
-.dashboard-header h3{font-size:1.1rem;font-weight:700}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 28px}
-.kpi-card{background:rgba(255,255,255,.06);border-radius:12px;padding:16px;text-align:center}
-.kpi-card .label{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.5);margin-bottom:4px}
-.kpi-card .value{font-size:clamp(1rem,2.5vw,1.5rem);font-weight:800;color:#fff}
-.dashboard-chart{padding:20px 28px}
-.chart-title{font-size:.8rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-.chart-bar{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-.chart-bar .bar-label{font-size:.75rem;color:rgba(255,255,255,.6);width:60px;text-align:right;flex-shrink:0}
-.chart-bar .bar{height:24px;border-radius:6px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2))}
-.chart-bar .bar-val{font-size:.75rem;color:rgba(255,255,255,.5);flex-shrink:0}
-.dashboard-highlights{padding:16px 28px 24px;border-top:1px solid rgba(255,255,255,.06)}
-.dashboard-highlights p{font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:6px;line-height:1.6}
-.dashboard-caption{text-align:center;margin-top:32px;font-size:1.3rem;font-weight:800;color:var(--text)}
+/* ── Live Alert Terminal ── */
+.terminal-section{padding:80px 0;position:relative}
+.terminal{max-width:800px;margin:0 auto;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.06);border-radius:16px;overflow:hidden;position:relative}
+.terminal::after{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,transparent,rgba(220,38,38,.5),transparent);animation:scanline 3s linear infinite;pointer-events:none;opacity:.3}
+.terminal-header{display:flex;align-items:center;gap:8px;padding:12px 16px;background:rgba(0,0,0,.5);border-bottom:1px solid rgba(255,255,255,.04)}
+.terminal-header span{width:10px;height:10px;border-radius:50%}
+.terminal-header span:nth-child(1){background:#ff5f57}
+.terminal-header span:nth-child(2){background:#ffbd2e}
+.terminal-header span:nth-child(3){background:#28c840}
+.terminal-header .title{margin-left:12px;font-size:.7rem;color:rgba(255,255,255,.3);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.terminal-body{padding:24px;font-family:'SF Mono','Fira Code','Courier New',monospace;font-size:.85rem;line-height:2;color:rgba(255,255,255,.7);min-height:200px}
+.terminal-line{opacity:0;animation:fadeIn .3s forwards}
+.terminal-line .prompt{color:var(--lava-2);font-weight:700}
+.terminal-line .cmd{color:rgba(255,255,255,.5)}
+.terminal-line .success{color:#22c55e}
+.terminal-line .warning{color:#f59e0b}
+.terminal-line .error{color:#ef4444}
+.terminal-line .data{color:var(--lava-3)}
+.cursor{display:inline-block;width:8px;height:16px;background:var(--lava-2);animation:pulse 1s step-end infinite;vertical-align:text-bottom}
+
+/* ── ROI Calculator ── */
+.calculator-section{padding:120px 0;position:relative}
+.calc-card{max-width:700px;margin:0 auto;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:56px 48px;position:relative;overflow:hidden}
+.calc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2),var(--lava-3))}
+.calc-card h3{font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:8px;text-align:center}
+.calc-card .calc-sub{text-align:center;color:var(--text-light);margin-bottom:40px;font-size:1rem}
+.calc-input-group{margin-bottom:32px}
+.calc-input-group label{display:block;font-size:.8rem;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.calc-input-group input[type="range"]{width:100%;-webkit-appearance:none;height:6px;background:rgba(255,255,255,.06);border-radius:3px;outline:none}
+.calc-input-group input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;background:linear-gradient(135deg,var(--lava-1),var(--lava-2));border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(220,38,38,.4)}
+.calc-value{font-size:2rem;font-weight:900;color:var(--lava-2);text-align:center;margin-top:8px}
+.calc-results{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.06)}
+.calc-result{text-align:center;padding:20px}
+.calc-result .result-label{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.3);margin-bottom:8px;font-weight:700}
+.calc-result .result-value{font-size:1.8rem;font-weight:900}
+.calc-result .result-value.savings{color:#22c55e}
+.calc-result .result-value.revenue{color:var(--lava-2)}
+.calc-result .result-value.roi{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
 /* ── Case Studies ── */
-.case-studies{background:var(--light);padding:100px 0}
-.case-card{position:relative;border-radius:var(--radius);overflow:hidden;margin-bottom:24px;min-height:380px;display:flex;align-items:flex-end}
-.case-card-bg{position:absolute;inset:0;background-size:cover;background-position:center}
-.case-card-bg::after{content:'';position:absolute;inset:0}
-.case-card:nth-child(1) .case-card-bg::after{background:linear-gradient(to top,rgba(26,26,46,.95),rgba(26,26,46,.3))}
-.case-card:nth-child(2) .case-card-bg::after{background:linear-gradient(to top,rgba(26,53,93,.95),rgba(26,53,93,.3))}
-.case-card:nth-child(3) .case-card-bg::after{background:linear-gradient(to top,rgba(124,58,237,.95),rgba(124,58,237,.3))}
-.case-card:nth-child(4) .case-card-bg::after{background:linear-gradient(to top,rgba(85,60,154,.95),rgba(85,60,154,.3))}
-.case-card-content{position:relative;z-index:1;padding:40px;color:#fff;width:100%}
-.case-card-content h3{font-size:1.6rem;font-weight:900;margin-bottom:4px}
-.case-card-content .concept{font-size:.95rem;opacity:.7;margin-bottom:20px;font-style:italic}
-.case-card-content ul{list-style:none;margin-bottom:20px}
-.case-card-content ul li{font-size:.9rem;padding:6px 0;padding-left:24px;position:relative;opacity:.85}
-.case-card-content ul li::before{content:'→';position:absolute;left:0;color:var(--lava-3);font-weight:700}
-.case-card-content .impact{font-size:1rem;font-style:italic;color:var(--lava-3);font-weight:600;border-left:3px solid var(--lava-3);padding-left:16px}
+.cases-section{padding:120px 0}
+.cases-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)}
+.case-card{position:relative;border-radius:20px;overflow:hidden;margin-bottom:24px;min-height:400px;display:flex;align-items:flex-end;transition:transform .5s;cursor:default}
+.case-card:hover{transform:scale(1.01)}
+.case-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s}
+.case-card:hover .case-card-bg{transform:scale(1.05)}
+.case-card-overlay{position:absolute;inset:0}
+.case-card:nth-child(1) .case-card-overlay{background:linear-gradient(to top,rgba(10,10,26,.97),rgba(10,10,26,.2))}
+.case-card:nth-child(2) .case-card-overlay{background:linear-gradient(to top,rgba(26,53,93,.97),rgba(26,53,93,.2))}
+.case-card:nth-child(3) .case-card-overlay{background:linear-gradient(to top,rgba(124,58,237,.97),rgba(124,58,237,.2))}
+.case-card:nth-child(4) .case-card-overlay{background:linear-gradient(to top,rgba(85,60,154,.97),rgba(85,60,154,.2))}
+.case-card-content{position:relative;z-index:1;padding:48px;color:#fff;width:100%}
+.case-card-content h3{font-size:1.8rem;font-weight:900;margin-bottom:4px}
+.case-card-content .concept{font-size:.95rem;opacity:.5;margin-bottom:24px;font-style:italic}
+.case-card-content ul{list-style:none;margin-bottom:24px}
+.case-card-content ul li{font-size:.9rem;padding:8px 0;padding-left:28px;position:relative;opacity:.7;line-height:1.5}
+.case-card-content ul li::before{content:'→';position:absolute;left:0;color:var(--lava-2);font-weight:700}
+.case-card-content .impact{font-size:1rem;font-style:italic;color:var(--lava-2);font-weight:600;border-left:3px solid var(--lava-2);padding-left:16px}
 
 /* ── Scenarios ── */
-.scenarios{background:var(--white);padding:100px 0}
-.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1000px;margin:0 auto}
-.scenario-card{background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s;border-left:5px solid}
-.scenario-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
-.scenario-card:nth-child(1){border-color:#dc2626}
-.scenario-card:nth-child(2){border-color:#f59e0b}
-.scenario-card:nth-child(3){border-color:#3b82f6}
-.scenario-card:nth-child(4){border-color:#22c55e}
-.scenario-card .problem-text{font-size:1.1rem;font-weight:800;margin-bottom:16px;line-height:1.4}
-.scenario-card .solution-text{font-size:.95rem;color:var(--text-light);line-height:1.7}
-
-/* ── Team ── */
-.team{background:var(--light);padding:100px 0}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.team-card{background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:all .35s}
-.team-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover)}
-.team-card-img{height:200px;background-size:cover;background-position:center top;position:relative}
-.team-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,46,.6),transparent)}
-.team-card-body{padding:20px}
-.team-card-body h4{font-size:1.05rem;font-weight:800;margin-bottom:6px}
-.team-card-body p{font-size:.85rem;color:var(--text-light);line-height:1.6}
-.team-footer{text-align:center;margin-top:48px;font-size:1.15rem;font-weight:700;color:var(--text-light)}
-
-/* ── Pricing ── */
-.pricing{background:var(--white);padding:100px 0}
-.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;max-width:1000px;margin:0 auto}
-.price-card{background:var(--white);border-radius:var(--radius);padding:40px 32px;box-shadow:var(--shadow);transition:all .35s;border:2px solid transparent;position:relative}
-.price-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover)}
-.price-card.popular{border-color:var(--lava-1);transform:scale(1.03)}
-.price-card.popular:hover{transform:scale(1.03) translateY(-8px)}
-.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff;padding:6px 24px;border-radius:50px;font-size:.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
-.price-card h3{font-size:1.3rem;font-weight:900;margin-bottom:8px}
-.price-card .price{font-size:2.2rem;font-weight:900;margin-bottom:4px}
-.price-card .price span{font-size:.9rem;font-weight:400;color:var(--text-light)}
-.price-card .price-desc{font-size:.9rem;color:var(--text-light);margin-bottom:20px}
-.price-card ul{list-style:none;margin-bottom:24px}
-.price-card ul li{font-size:.9rem;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04);padding-left:24px;position:relative;color:var(--text-light)}
-.price-card ul li::before{content:'✓';position:absolute;left:0;color:var(--lava-1);font-weight:700}
-.price-card .btn{width:100%;justify-content:center}
-.pricing-notes{text-align:center;margin-top:40px;max-width:600px;margin-left:auto;margin-right:auto}
-.pricing-notes p{font-size:1rem;color:var(--text-light);margin-bottom:8px;line-height:1.7}
-.pricing-notes .fire{font-size:1.1rem;font-weight:700;color:var(--lava-1)}
-
-/* ── Philosophy Quote ── */
-.philosophy{background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));padding:100px 0;text-align:center;position:relative}
-.philosophy blockquote{max-width:800px;margin:0 auto;font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:600;color:#fff;line-height:1.8;position:relative;padding:0 24px}
-.philosophy blockquote::before{content:'"';font-size:8rem;position:absolute;top:-60px;left:0;color:rgba(255,255,255,.2);font-family:Georgia,serif;line-height:1}
-.philosophy cite{display:block;margin-top:24px;font-size:1rem;font-style:normal;color:rgba(255,255,255,.7);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.scenarios-section{padding:120px 0}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+.scenario-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:36px;transition:all .4s;position:relative;overflow:hidden}
+.scenario-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
+.scenario-card:nth-child(1)::before{background:var(--lava-1)}
+.scenario-card:nth-child(2)::before{background:var(--lava-2)}
+.scenario-card:nth-child(3)::before{background:#3b82f6}
+.scenario-card:nth-child(4)::before{background:#22c55e}
+.scenario-card:nth-child(5)::before{background:#a855f7}
+.scenario-card:nth-child(6)::before{background:#06b6d4}
+.scenario-card:hover{border-color:rgba(255,255,255,.1);transform:translateY(-4px)}
+.scenario-card .problem{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:16px;line-height:1.4}
+.scenario-card .solution{font-size:.9rem;color:var(--text-light);line-height:1.7}
 
 /* ── Before/After ── */
-.before-after{background:var(--light);padding:100px 0}
-.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:900px;margin:0 auto}
-.ba-card{border-radius:var(--radius);padding:40px;position:relative}
-.ba-card.before{background:#fef2f2;border:2px solid #fecaca}
-.ba-card.after{background:#f0fdf4;border:2px solid #bbf7d0}
-.ba-card h3{font-size:1.3rem;font-weight:900;margin-bottom:20px}
-.ba-card.before h3{color:#dc2626}
-.ba-card.after h3{color:#16a34a}
+.ba-section{padding:120px 0}
+.ba-grid{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;max-width:900px;margin:0 auto;align-items:stretch}
+.ba-card{border-radius:20px;padding:44px;position:relative}
+.ba-card.before{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15)}
+.ba-card.after{background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15)}
+.ba-card h3{font-size:1.3rem;font-weight:900;margin-bottom:24px}
+.ba-card.before h3{color:#ef4444}
+.ba-card.after h3{color:#22c55e}
 .ba-card ul{list-style:none}
-.ba-card ul li{padding:10px 0;font-size:.95rem;padding-left:28px;position:relative;color:var(--text-light);border-bottom:1px solid rgba(0,0,0,.04)}
-.ba-card.before ul li::before{content:'✗';position:absolute;left:0;color:#dc2626;font-weight:700;font-size:1.1rem}
-.ba-card.after ul li::before{content:'✓';position:absolute;left:0;color:#16a34a;font-weight:700;font-size:1.1rem}
+.ba-card ul li{padding:12px 0;font-size:.95rem;padding-left:28px;position:relative;color:var(--text-light);border-bottom:1px solid rgba(255,255,255,.03)}
+.ba-card.before ul li::before{content:'✗';position:absolute;left:0;color:#ef4444;font-weight:700}
+.ba-card.after ul li::before{content:'✓';position:absolute;left:0;color:#22c55e;font-weight:700}
+.ba-arrow{display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--lava-2);animation:float 3s ease infinite}
 
 /* ── Stats ── */
-.stats{background:var(--dark);padding:80px 0}
+.stats-section{padding:100px 0;background:rgba(255,255,255,.01);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
-.stat-item .stat-number{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-item .stat-label{font-size:.85rem;color:rgba(255,255,255,.5);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.stat-item{padding:24px}
+.stat-number{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:8px;font-weight:700;text-transform:uppercase;letter-spacing:2px}
+
+/* ── Pricing ── */
+.pricing-section{padding:120px 0}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+.price-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:44px 32px;transition:all .4s;position:relative}
+.price-card:hover{border-color:rgba(255,255,255,.12);transform:translateY(-8px)}
+.price-card.popular{border-color:rgba(220,38,38,.3);background:rgba(220,38,38,.03)}
+.price-card.popular:hover{border-color:rgba(220,38,38,.5)}
+.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff;padding:6px 24px;border-radius:50px;font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.price-card h3{font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:8px}
+.price-card .price{font-size:2.5rem;font-weight:900;color:#fff;margin-bottom:4px}
+.price-card .price span{font-size:.85rem;font-weight:400;color:var(--text-light)}
+.price-card .price-desc{font-size:.9rem;color:var(--text-light);margin-bottom:24px}
+.price-card ul{list-style:none;margin-bottom:28px}
+.price-card ul li{font-size:.9rem;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);padding-left:28px;position:relative;color:var(--text-light)}
+.price-card ul li::before{content:'✓';position:absolute;left:0;color:var(--lava-2);font-weight:700}
+.price-card .btn{width:100%;justify-content:center}
+.pricing-notes{text-align:center;margin-top:48px;max-width:600px;margin-left:auto;margin-right:auto}
+.pricing-notes p{font-size:1rem;color:var(--text-light);margin-bottom:8px;line-height:1.7}
+.pricing-notes .fire{font-size:1.1rem;font-weight:700;color:var(--lava-2)}
+
+/* ── Testimonials ── */
+.testimonials-section{padding:120px 0}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+.testimonial-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:32px;position:relative}
+.testimonial-card::before{content:'"';position:absolute;top:16px;right:24px;font-size:4rem;color:rgba(220,38,38,.1);font-family:Georgia,serif;line-height:1}
+.testimonial-card .msg-bubble{background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.12);border-radius:16px 16px 16px 4px;padding:20px;margin-bottom:20px;font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7;font-style:italic}
+.testimonial-card .msg-sender{display:flex;align-items:center;gap:12px}
+.testimonial-card .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--lava-1),var(--lava-2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;color:#fff}
+.testimonial-card .sender-info .name{font-weight:700;font-size:.9rem;color:#fff}
+.testimonial-card .sender-info .role{font-size:.75rem;color:var(--text-light)}
+
+/* ── Philosophy ── */
+.philosophy-section{padding:120px 0;position:relative;overflow:hidden}
+.philosophy-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(220,38,38,.03),rgba(245,158,11,.03))}
+.philosophy-quote{max-width:800px;margin:0 auto;text-align:center;position:relative}
+.philosophy-quote blockquote{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:600;color:#fff;line-height:1.9}
+.philosophy-quote cite{display:block;margin-top:24px;font-size:.9rem;font-style:normal;color:var(--lava-2);font-weight:700;letter-spacing:3px;text-transform:uppercase}
 
 /* ── Final CTA ── */
-.final-cta{background:var(--dark);padding:100px 0;text-align:center;position:relative;overflow:hidden}
-.final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(220,38,38,.08),transparent 70%)}
-.final-cta .section-title{color:#fff}
-.final-cta p{color:rgba(255,255,255,.65);font-size:1.15rem;max-width:700px;margin:0 auto 16px;line-height:1.8}
-.final-cta .btn{margin-top:32px;font-size:1.15rem;padding:18px 48px}
+.final-cta{padding:120px 0;text-align:center;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(220,38,38,.06),transparent 60%)}
+.final-cta h2{font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;margin-bottom:20px;line-height:1.15}
+.final-cta p{color:var(--text-light);font-size:1.15rem;max-width:600px;margin:0 auto 16px;line-height:1.8}
+.final-cta .btn{margin-top:36px;font-size:1.1rem;padding:18px 52px}
 
 /* ── Contact ── */
-.contact{background:var(--white);padding:100px 0}
+.contact-section{padding:120px 0}
 .contact-inner{max-width:600px;margin:0 auto}
 .contact-email{text-align:center;margin-bottom:40px}
-.contact-email a{font-size:1.3rem;font-weight:700;color:var(--lava-1);border-bottom:2px solid var(--lava-3);padding-bottom:4px;transition:color .2s}
-.contact-email a:hover{color:var(--lava-2)}
+.contact-email a{font-size:1.3rem;font-weight:700;color:var(--lava-2);border-bottom:2px solid rgba(245,158,11,.3);padding-bottom:4px;transition:all .3s}
+.contact-email a:hover{border-color:var(--lava-2)}
 .contact-form{display:flex;flex-direction:column;gap:16px}
-.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:16px 20px;border:2px solid #e2e8f0;border-radius:12px;font-size:1rem;font-family:inherit;transition:border-color .2s;background:var(--white);color:var(--text)}
-.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:var(--lava-2)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:16px 20px;border:1px solid rgba(255,255,255,.08);border-radius:12px;font-size:1rem;font-family:inherit;transition:all .3s;background:rgba(255,255,255,.03);color:#fff}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:none;border-color:var(--lava-2);box-shadow:0 0 20px rgba(245,158,11,.1)}
+.contact-form select{color:var(--text-light)}
+.contact-form select option{background:var(--dark);color:#fff}
 .contact-form textarea{min-height:120px;resize:vertical}
-.contact-form .btn{width:100%;justify-content:center;font-size:1.1rem}
+.contact-form ::placeholder{color:var(--text-light)}
 
 /* ── Footer ── */
-footer{background:var(--dark);color:rgba(255,255,255,.5);padding:48px 0;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
-footer .footer-logo{font-size:1.3rem;font-weight:900;letter-spacing:3px;color:#fff;margin-bottom:6px}
-footer .footer-sub{font-size:.85rem;margin-bottom:4px}
+footer{border-top:1px solid rgba(255,255,255,.04);padding:48px 0;text-align:center}
+footer .footer-logo{font-size:1.3rem;font-weight:900;letter-spacing:4px;margin-bottom:8px}
+footer .footer-logo span{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+footer p{font-size:.8rem;color:rgba(255,255,255,.25);margin-bottom:4px}
 footer .footer-links{display:flex;gap:24px;justify-content:center;margin-top:16px}
-footer .footer-links a{font-size:.85rem;font-weight:600;transition:color .2s}
+footer .footer-links a{font-size:.8rem;font-weight:600;color:rgba(255,255,255,.25);transition:color .3s}
 footer .footer-links a:hover{color:var(--lava-2)}
 
 /* ── Mobile ── */
@@ -255,24 +357,29 @@ footer .footer-links a:hover{color:var(--lava-2)}
 .hero h1{letter-spacing:4px}
 .hero-ctas{flex-direction:column}
 .hero-ctas .btn{width:100%;justify-content:center}
+.hero-proof{flex-direction:column;align-items:flex-start;gap:12px}
+.ticker-track{gap:32px}
+.reality-grid{grid-template-columns:1fr;gap:48px}
 .services-grid{grid-template-columns:1fr}
 .kpi-row{grid-template-columns:repeat(2,1fr)}
-.ba-grid{grid-template-columns:1fr}
-.stats-grid{grid-template-columns:repeat(2,1fr);gap:32px}
+.ba-grid{grid-template-columns:1fr;gap:16px}
+.ba-arrow{transform:rotate(90deg)}
+.stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}
 .pricing-grid{grid-template-columns:1fr}
 .price-card.popular{transform:none}
-.price-card.popular:hover{transform:translateY(-8px)}
-.team-grid{grid-template-columns:repeat(2,1fr)}
 .scenario-grid{grid-template-columns:1fr}
+.testimonial-grid{grid-template-columns:1fr}
 .case-card{min-height:auto}
-}
-@media(max-width:480px){
-.team-grid{grid-template-columns:1fr}
-.stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+.calc-results{grid-template-columns:1fr}
+.calc-card{padding:40px 24px}
+.dashboard-tabs{overflow-x:auto}
 }
 </style>
 </head>
 <body>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -300,401 +407,298 @@ footer .footer-links a:hover{color:var(--lava-2)}
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80" alt="Restaurant kitchen" loading="eager">
+  <div class="hero-video-bg">
+    <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80">
+      <source src="https://assets.mixkit.co/videos/1174/1174-720.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span> Now Accepting New Clients</div>
     <h1>LAVA</h1>
-    <p class="subtitle">Artificial Intelligence Solutions for Restaurants</p>
-    <h2 class="headline">We Don't Consult.<br>We Deploy.</h2>
-    <p class="subhead">A team of 20+ seasoned restaurant executives and AI engineers who embed with your operation and don't leave until it's fixed. We've opened concepts, rescued failing restaurants, scaled groups, and built the AI systems that run our own locations every single day.</p>
+    <h2 class="tagline">We Don't Consult. <span class="thin">We Deploy.</span></h2>
+    <p class="subhead">20+ seasoned restaurant executives and AI engineers who embed with your operation and don't leave until it's fixed. We've opened concepts, rescued failing restaurants, and built the AI systems that run our own locations every single day.</p>
     <div class="hero-ctas">
-      <a href="#services" class="btn btn-primary">See How We Fight ↓</a>
+      <a href="#dashboard" class="btn btn-primary">See the AI Live ↓</a>
       <a href="#contact" class="btn btn-outline">Deploy Our Team →</a>
+    </div>
+    <div class="hero-proof">
+      <div class="hero-proof-item"><span class="num">4</span> Live Locations</div>
+      <div class="hero-proof-item"><span class="num">5am</span> Daily Intelligence</div>
+      <div class="hero-proof-item"><span class="num">0</span> Long-Term Contracts</div>
     </div>
   </div>
 </section>
 
-<!-- REALITY CHECK -->
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="ticker">
+    <span class="ticker-item">AI Daily Intelligence</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Menu Engineering</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Bar Program Overhaul</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Labor Optimization</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Accountability Systems</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Purchasing & COGS</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">New Concept Development</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Training Programs</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">R365 Implementation</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">AI Daily Intelligence</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Menu Engineering</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Bar Program Overhaul</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Labor Optimization</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Accountability Systems</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Purchasing & COGS</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">New Concept Development</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">Training Programs</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">R365 Implementation</span>
+    <span class="ticker-item">•</span>
+  </div>
+</div>
+
+<!-- PODCAST -->
+<section class="podcast-section" id="podcast">
+  <div class="container">
+    <div class="podcast-card reveal">
+      <span class="podcast-icon">🎙️</span>
+      <h3>Hear the Story</h3>
+      <p>Two AI hosts break down what makes Lava different — from the trenches of real restaurant operations to the AI systems that never sleep. It's the pitch you'd give at 2am after a double shift.</p>
+      <a href="https://notebooklm.google.com/notebook/5b845351-d7ff-44ca-8887-9522f715cf83" target="_blank" class="podcast-link">🎧 Listen to the Deep Dive</a>
+      <p class="podcast-note">Generated by NotebookLM — Audio + Video available</p>
+    </div>
+  </div>
+</section>
+
+<!-- REALITY -->
 <section class="reality" id="reality">
   <div class="container">
-    <h2 class="section-title reveal" style="margin-bottom:56px">We Know What It <span class="gradient-text">Feels Like</span></h2>
-    
-    <div class="reality-block reveal">
-      <p>You close the restaurant at 2am. You're back at 8am. Your food cost is climbing but you can't figure out why. Your manager called in sick. Again. The POS is showing numbers that don't match your bank account. And someone just left a 1-star review about a server you've already fired.</p>
-    </div>
-    
-    <div class="reality-block reveal">
-      <p>You've tried consultants. They showed up with a binder, charged you $15K, and left you with a PDF you never opened. You've tried software. Now you have 7 subscriptions and none of them talk to each other.</p>
-    </div>
-    
-    <div class="reality-block accent reveal">
-      <p>We built Lava because we were YOU. We run restaurants. Real ones. And we got tired of the bullshit.</p>
+    <div class="reality-grid">
+      <div class="reality-text reveal">
+        <h2>We Know What It <span class="gradient-text">Feels Like</span></h2>
+        <p>You close the restaurant at 2am. You're back at 8am. Your food cost is climbing but you can't figure out why. Your manager called in sick. Again.</p>
+        <p>You've tried consultants. They showed up with a binder, charged you $15K, and left you with a PDF you never opened. You've tried software. Now you have 7 subscriptions and none of them talk to each other.</p>
+        <p class="accent">We built Lava because we were YOU. We run restaurants. Real ones. And we got tired of the bullshit.</p>
+      </div>
+      <div class="reality-visual">
+        <div class="reality-cards" id="painCards">
+          <div class="pain-card"><span class="pain-icon">📊</span><span class="pain-text">POS numbers don't match your bank account</span></div>
+          <div class="pain-card"><span class="pain-icon">👨‍🍳</span><span class="pain-text">Manager called in sick — third time this month</span></div>
+          <div class="pain-card"><span class="pain-icon">⭐</span><span class="pain-text">1-star review about a server you already fired</span></div>
+          <div class="pain-card"><span class="pain-icon">💸</span><span class="pain-text">Food cost climbing and you can't figure out why</span></div>
+          <div class="pain-card"><span class="pain-icon">📱</span><span class="pain-text">7 subscriptions and none of them talk to each other</span></div>
+          <div class="pain-card"><span class="pain-icon">📋</span><span class="pain-text">Consultant's binder collecting dust on a shelf</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="services section" id="services">
+<section class="services" id="services">
   <div class="container">
-    <h2 class="section-title reveal">What 20+ Operators, Chefs, and Engineers<br>Can Do for <span class="gradient-text">Your Restaurant</span></h2>
-    <p class="section-subtitle reveal">Everything below exists because we needed it ourselves. Then we built it.</p>
-    
+    <div class="section-header reveal">
+      <h2>What 20+ Operators Can Do for <span class="gradient-text">Your Restaurant</span></h2>
+      <p>Everything below exists because we needed it ourselves. Then we built it.</p>
+    </div>
     <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="icon">🤖</div>
-        <h3>AI Daily Intelligence</h3>
-        <p>Every morning at 5am, your inbox gets a full breakdown of last night. Sales, labor, reviews, voids, manager logs — with charts and action items. Not data. Answers.</p>
-        <p class="real-talk">Imagine knowing your bartender comped 14 drinks before you even wake up.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">🍽️</div>
-        <h3>Menu Engineering</h3>
-        <p>We tear your menu apart and rebuild it. Item-level profitability, food cost analysis, recipe costing, and new dishes from a Culinary Director who's developed menus for 4+ concepts.</p>
-        <p class="real-talk">That appetizer you love? It's losing you $3 every time someone orders it.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">🍸</div>
-        <h3>Bar Program Overhaul</h3>
-        <p>Pour costs, cocktail development, inventory systems, bartender training, vendor renegotiation. Built by a Beverage Director who's run high-volume bar programs, not someone who took a mixology class.</p>
-        <p class="real-talk">We've turned bar programs from 28% pour cost to 19%. That's real money.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">📚</div>
-        <h3>Training From Scratch</h3>
-        <p>Complete FOH/BOH training programs, service standards, monthly testing, upsell coaching. Written by a Training Director who's personally trained 500+ hospitality staff.</p>
-        <p class="real-talk">Your servers shouldn't be guessing. They should be selling.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">💰</div>
-        <h3>Back-Office & Accounting</h3>
-        <p>R365 implementation, payroll, tip reconciliation, cash controls, invoice management, onboarding, HR compliance. The boring stuff that bankrupts restaurants when it's done wrong.</p>
-        <p class="real-talk">If you don't know your exact labor cost by location by daypart, we need to talk.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">📦</div>
-        <h3>Purchasing & Inventory</h3>
-        <p>Vendor negotiations, purchasing guides, item mapping, waste tracking, COGS optimization. Every dollar you overpay for chicken is a dollar off your bottom line.</p>
-        <p class="real-talk">We've saved single locations $40K+ annually just by fixing purchasing.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">📈</div>
-        <h3>Sales & Events Strategy</h3>
-        <p>Large party playbooks, event frameworks, marketing restructure, content strategy. Fill seats Monday through Thursday, not just Friday and Saturday.</p>
-        <p class="real-talk">Your private dining room shouldn't sit empty 4 nights a week.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">🏗️</div>
-        <h3>Operational Restructuring</h3>
-        <p>Org charts, accountability systems, KPI dashboards, manager scorecards, multi-unit oversight. Build the skeleton that lets you scale without everything breaking.</p>
-        <p class="real-talk">You can't run 5 locations the same way you ran 1. We build the system that scales.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">🎯</div>
-        <h3>Accountability & Compliance</h3>
-        <p>Automated tracking of manager responses, action items, health compliance, daily checklists. AI that never forgets and never lets things slide.</p>
-        <p class="real-talk">When your GM says 'I didn't see the email' — we know exactly when they opened it.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="icon">🚀</div>
-        <h3>New Concept Development</h3>
-        <p>Brand identity, menu development, operational buildout, tech stack setup, team hiring, pre-opening training. We've opened multiple concepts and we know where new restaurants die.</p>
-        <p class="real-talk">Most restaurants fail in year one because of operations, not food. We fix that.</p>
-      </div>
+      <div class="service-card reveal"><div class="icon">🤖</div><h3>AI Daily Intelligence</h3><p>Every morning at 5am, your inbox gets a full breakdown of last night. Sales, labor, reviews, voids, manager logs — with charts and action items.</p><p class="real-talk">Imagine knowing your bartender comped 14 drinks before you even wake up.</p></div>
+      <div class="service-card reveal reveal-delay-1"><div class="icon">🍽️</div><h3>Menu Engineering</h3><p>Item-level profitability, food cost analysis, recipe costing, and new dishes from a Culinary Director who's developed menus for 4+ concepts.</p><p class="real-talk">That appetizer you love? It's losing you $3 every time someone orders it.</p></div>
+      <div class="service-card reveal reveal-delay-2"><div class="icon">🍸</div><h3>Bar Program Overhaul</h3><p>Pour costs, cocktail development, inventory systems, bartender training, vendor renegotiation. Built by operators, not mixology students.</p><p class="real-talk">We've turned bar programs from 28% pour cost to 19%. That's real money.</p></div>
+      <div class="service-card reveal"><div class="icon">📚</div><h3>Training From Scratch</h3><p>Complete FOH/BOH training programs, service standards, monthly testing, upsell coaching from a Director who's trained 500+ staff.</p><p class="real-talk">Your servers shouldn't be guessing. They should be selling.</p></div>
+      <div class="service-card reveal reveal-delay-1"><div class="icon">💰</div><h3>Back-Office & Accounting</h3><p>R365 implementation, payroll, tip reconciliation, cash controls, invoice management, HR compliance. The boring stuff that bankrupts restaurants.</p><p class="real-talk">If you don't know your exact labor cost by location by daypart, we need to talk.</p></div>
+      <div class="service-card reveal reveal-delay-2"><div class="icon">📦</div><h3>Purchasing & Inventory</h3><p>Vendor negotiations, purchasing guides, item mapping, waste tracking, COGS optimization. Every dollar overpaid is off your bottom line.</p><p class="real-talk">We've saved single locations $40K+ annually just by fixing purchasing.</p></div>
+      <div class="service-card reveal"><div class="icon">📈</div><h3>Sales & Events Strategy</h3><p>Large party playbooks, event frameworks, marketing restructure, content strategy. Fill seats Monday through Thursday.</p><p class="real-talk">Your private dining room shouldn't sit empty 4 nights a week.</p></div>
+      <div class="service-card reveal reveal-delay-1"><div class="icon">🏗️</div><h3>Operational Restructuring</h3><p>Org charts, accountability systems, KPI dashboards, manager scorecards, multi-unit oversight. The skeleton that lets you scale.</p><p class="real-talk">You can't run 5 locations the same way you ran 1.</p></div>
+      <div class="service-card reveal reveal-delay-2"><div class="icon">🎯</div><h3>Accountability & Compliance</h3><p>Automated tracking of manager responses, action items, health compliance, daily checklists. AI that never forgets.</p><p class="real-talk">When your GM says 'I didn't see the email' — we know exactly when they opened it.</p></div>
     </div>
   </div>
 </section>
 
-<!-- LIVE INTELLIGENCE -->
-<section class="live-intel" id="live-intel">
-  <div class="container" style="text-align:center">
-    <div class="live-badge"><span class="live-dot"></span> LIVE INTELLIGENCE</div>
-    <div class="alert-box reveal">
-      <div class="alert-text" id="alertText"></div>
-    </div>
-    <p class="live-caption reveal">This is real. This runs every day across our restaurants.<br>Now it can run across yours.</p>
-  </div>
-</section>
-
-<!-- DASHBOARD MOCKUP -->
-<section class="dashboard" id="dashboard">
+<!-- INTERACTIVE DASHBOARD -->
+<section class="dashboard-section" id="dashboard">
   <div class="container">
-    <h2 class="section-title reveal" style="margin-bottom:48px">Show, Don't Tell</h2>
-    <div class="dashboard-device reveal">
-      <div class="dashboard-dots"><span></span><span></span><span></span></div>
-      <div class="dashboard-header">
-        <h3>🌋 Daily Intelligence — Sample Location — Thursday</h3>
-      </div>
-      <div class="kpi-row">
-        <div class="kpi-card">
-          <div class="label">Net Sales</div>
-          <div class="value">$38,210</div>
+    <div class="section-header reveal">
+      <h2>This Isn't a <span class="gradient-text">Mockup</span></h2>
+      <p>This is what your team gets at 5am. Every. Single. Day.</p>
+    </div>
+    <div class="dashboard-wrapper reveal">
+      <div class="dashboard-device" id="dashboardDevice">
+        <div class="dashboard-topbar">
+          <span></span><span></span><span></span>
+          <span class="tab-label">Lava Intelligence Platform</span>
         </div>
-        <div class="kpi-card">
-          <div class="label">Guests</div>
-          <div class="value">614</div>
+        <div class="dashboard-header">
+          <h3>🌋 Daily Intelligence — Sample Location</h3>
+          <div class="date">Saturday, February 15, 2026 — Generated 5:00 AM</div>
         </div>
-        <div class="kpi-card">
-          <div class="label">Labor</div>
-          <div class="value">27.1%</div>
+        <div class="dashboard-tabs">
+          <div class="dashboard-tab active" data-tab="overview">Overview</div>
+          <div class="dashboard-tab" data-tab="labor">Labor</div>
+          <div class="dashboard-tab" data-tab="reviews">Reviews</div>
+          <div class="dashboard-tab" data-tab="alerts">Alerts</div>
         </div>
-        <div class="kpi-card">
-          <div class="label">Avg Check</div>
-          <div class="value">$62.23</div>
+        <div class="dashboard-body" id="dashboardBody">
+          <!-- Overview tab (default) -->
+          <div class="kpi-row">
+            <div class="kpi-card"><div class="label">Net Sales</div><div class="value" id="kpi-sales">$0</div><div class="change up">↑ 12.4% vs last Sat</div></div>
+            <div class="kpi-card"><div class="label">Guests</div><div class="value" id="kpi-guests">0</div><div class="change up">↑ 8.2%</div></div>
+            <div class="kpi-card"><div class="label">Labor</div><div class="value" id="kpi-labor">0%</div><div class="change down">↓ 1.3pp</div></div>
+            <div class="kpi-card"><div class="label">Avg Check</div><div class="value" id="kpi-check">$0</div><div class="change up">↑ $3.80</div></div>
+          </div>
+          <div class="chart-section" id="chartSection">
+            <div class="chart-title">Sales by Daypart</div>
+            <div class="chart-bar-row"><span class="bar-label">Lunch</span><div class="bar-track"><div class="bar-fill" style="--target-width:28%">$8,120</div></div></div>
+            <div class="chart-bar-row"><span class="bar-label">Happy Hr</span><div class="bar-track"><div class="bar-fill" style="--target-width:20%">$5,890</div></div></div>
+            <div class="chart-bar-row"><span class="bar-label">Dinner</span><div class="bar-track"><div class="bar-fill" style="--target-width:72%">$21,340</div></div></div>
+            <div class="chart-bar-row"><span class="bar-label">Late</span><div class="bar-track"><div class="bar-fill" style="--target-width:14%">$3,860</div></div></div>
+          </div>
+          <div class="dashboard-alerts">
+            <div class="alert-item"><span class="alert-dot green"></span>All 5 manager logs submitted on time</div>
+            <div class="alert-item"><span class="alert-dot yellow"></span>3 voids on Station 2 — training follow-up needed</div>
+            <div class="alert-item"><span class="alert-dot red"></span>2 BOH staff approaching 40hrs — schedule adjustment recommended</div>
+          </div>
         </div>
-      </div>
-      <div class="dashboard-chart">
-        <div class="chart-title">Sales by Daypart</div>
-        <div class="chart-bar"><span class="bar-label">Lunch</span><div class="bar" style="width:30%"></div><span class="bar-val">$7,642</span></div>
-        <div class="chart-bar"><span class="bar-label">Happy Hr</span><div class="bar" style="width:22%"></div><span class="bar-val">$5,410</span></div>
-        <div class="chart-bar"><span class="bar-label">Dinner</span><div class="bar" style="width:70%"></div><span class="bar-val">$20,847</span></div>
-        <div class="chart-bar"><span class="bar-label">Late</span><div class="bar" style="width:12%"></div><span class="bar-val">$4,311</span></div>
-      </div>
-      <div class="dashboard-highlights">
-        <p>★ Strong Thursday dinner — 241 covers</p>
-        <p>⚠️ 3 voids on Station 2 (training issue)</p>
-        <p>✅ All 5 manager logs submitted</p>
       </div>
     </div>
-    <p class="dashboard-caption reveal">Your team gets this at 5am. Every. Single. Day.</p>
+    <p class="dashboard-caption reveal">Your 5am command center.<span>Charts, alerts, accountability — no login required. Just open your inbox.</span></p>
+  </div>
+</section>
+
+<!-- LIVE TERMINAL -->
+<section class="terminal-section">
+  <div class="container">
+    <div class="terminal reveal" id="terminal">
+      <div class="terminal-header">
+        <span></span><span></span><span></span>
+        <span class="title">Lava Real-Time Alerts</span>
+      </div>
+      <div class="terminal-body" id="terminalBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="calculator-section" id="calculator">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's Your Operation <span class="gradient-text">Leaking?</span></h2>
+      <p>Drag the slider. See what Lava could save you.</p>
+    </div>
+    <div class="calc-card reveal">
+      <h3>ROI Calculator</h3>
+      <p class="calc-sub">Based on industry averages for restaurants our size</p>
+      <div class="calc-input-group">
+        <label>Monthly Revenue Per Location</label>
+        <input type="range" id="revenueSlider" min="100000" max="1000000" step="10000" value="400000">
+        <div class="calc-value" id="revenueDisplay">$400,000</div>
+      </div>
+      <div class="calc-input-group">
+        <label>Number of Locations</label>
+        <input type="range" id="locationSlider" min="1" max="20" step="1" value="3">
+        <div class="calc-value" id="locationDisplay">3</div>
+      </div>
+      <div class="calc-results">
+        <div class="calc-result"><div class="result-label">Annual Savings</div><div class="result-value savings" id="savingsDisplay">$0</div></div>
+        <div class="calc-result"><div class="result-label">Revenue Uplift</div><div class="result-value revenue" id="revenueUplift">$0</div></div>
+        <div class="calc-result"><div class="result-label">Estimated ROI</div><div class="result-value roi" id="roiDisplay">0x</div></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CASE STUDIES -->
-<section class="case-studies" id="cases">
+<section class="cases-section" id="cases">
   <div class="container">
-    <h2 class="section-title reveal">Built Inside Real Restaurants.<br><span class="gradient-text">Battle-Tested Every Night.</span></h2>
-    <p class="section-subtitle reveal">These are our restaurants. Every system we sell, we run ourselves first.</p>
-
+    <div class="section-header reveal">
+      <h2>Built Inside Real Restaurants. <span class="gradient-text">Battle-Tested Every Night.</span></h2>
+      <p>These are our restaurants. Every system we sell, we run ourselves first.</p>
+    </div>
     <div class="case-card reveal">
       <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80')"></div>
-      <div class="case-card-content">
-        <h3>Cala Scottsdale</h3>
-        <p class="concept">Fine dining inside a luxury Scottsdale hotel. Complex banquet operations, hotel BEO coordination, premium wine program, and 200+ cover nights.</p>
-        <ul>
-          <li>AI daily recaps with full sales/labor/review analysis</li>
-          <li>Automated manager accountability tracking (5 daily log entries required)</li>
-          <li>Banquet revenue optimization and event forecasting</li>
-          <li>Custom menu engineering across seasonal rotations</li>
-        </ul>
-        <p class="impact">"From inconsistent reporting to a fully automated operations command center. Every manager, every metric, every night — tracked and optimized."</p>
-      </div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content"><h3>Cala Scottsdale</h3><p class="concept">Fine dining inside a luxury Scottsdale hotel. Complex banquet operations, premium wine program, and 200+ cover nights.</p><ul><li>AI daily recaps with full sales/labor/review analysis</li><li>Automated manager accountability tracking</li><li>Banquet revenue optimization and event forecasting</li><li>Custom menu engineering across seasonal rotations</li></ul><p class="impact">"From inconsistent reporting to a fully automated operations command center."</p></div>
     </div>
-
     <div class="case-card reveal">
       <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800&q=80')"></div>
-      <div class="case-card-content">
-        <h3>The Americano</h3>
-        <p class="concept">High-energy Italian-American dining in North Scottsdale. Late-night service, dynamic bar program, and event-driven revenue that demands precision.</p>
-        <ul>
-          <li>Real-time labor monitoring with overtime prevention alerts</li>
-          <li>Bar program restructuring with pour cost optimization</li>
-          <li>Event sales strategy and large party management systems</li>
-          <li>Discount and void pattern detection with automated flagging</li>
-        </ul>
-        <p class="impact">"A restaurant that was flying blind on labor costs now catches overtime before it happens. Bar program pour costs dropped significantly within the first quarter."</p>
-      </div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content"><h3>The Americano</h3><p class="concept">High-energy Italian-American dining in North Scottsdale. Late-night service, dynamic bar program, and event-driven revenue.</p><ul><li>Real-time labor monitoring with overtime prevention alerts</li><li>Bar program restructuring with pour cost optimization</li><li>Event sales strategy and large party management</li><li>Discount and void pattern detection with automated flagging</li></ul><p class="impact">"A restaurant that was flying blind on labor costs now catches overtime before it happens."</p></div>
     </div>
-
     <div class="case-card reveal">
       <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80')"></div>
-      <div class="case-card-content">
-        <h3>Tell Your Friends</h3>
-        <p class="concept">Scottsdale's worst-kept-secret cocktail bar. DJ nights, creative cocktails, and a cult following built entirely through word of mouth. Late-night energy meets operational discipline.</p>
-        <ul>
-          <li>Beverage-focused analytics and cocktail profitability tracking</li>
-          <li>Late-night labor optimization (when to cut, when to hold)</li>
-          <li>Social media-driven event ROI tracking</li>
-          <li>Streamlined BOH operations for a bar-forward concept</li>
-        </ul>
-        <p class="impact">"Proof that even a buzzy cocktail bar needs operational backbone. Creative energy plus data-driven decisions equals a concept that prints money."</p>
-      </div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content"><h3>Tell Your Friends</h3><p class="concept">Scottsdale's worst-kept-secret cocktail bar. DJ nights, creative cocktails, and a cult following built through word of mouth.</p><ul><li>Beverage-focused analytics and cocktail profitability tracking</li><li>Late-night labor optimization</li><li>Social media-driven event ROI tracking</li><li>Streamlined BOH operations for a bar-forward concept</li></ul><p class="impact">"Proof that even a buzzy cocktail bar needs operational backbone."</p></div>
     </div>
-
     <div class="case-card reveal">
       <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80')"></div>
-      <div class="case-card-content">
-        <h3>Neon Spur</h3>
-        <p class="concept">A dive bar and live music venue on Tempe's Mill Avenue. High-volume drinks, entertainment management, and a young demographic that demands speed and energy.</p>
-        <ul>
-          <li>High-volume bar operations monitoring</li>
-          <li>Entertainment cost vs. revenue analysis</li>
-          <li>Simplified reporting for a lean management structure</li>
-          <li>Staffing optimization for peak music nights vs. slow weekdays</li>
-        </ul>
-        <p class="impact">"Different concept, different demo, same AI. Proves the system adapts — from fine dining to dive bars, the intelligence layer works everywhere."</p>
-      </div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content"><h3>Neon Spur</h3><p class="concept">A dive bar and live music venue on Tempe's Mill Avenue. High-volume drinks, entertainment, and a young demographic.</p><ul><li>High-volume bar operations monitoring</li><li>Entertainment cost vs. revenue analysis</li><li>Simplified reporting for lean management</li><li>Staffing optimization for peak music nights</li></ul><p class="impact">"Different concept, different demo, same AI. From fine dining to dive bars — it works everywhere."</p></div>
     </div>
   </div>
 </section>
 
 <!-- SCENARIOS -->
-<section class="scenarios" id="scenarios">
+<section class="scenarios-section" id="scenarios">
   <div class="container">
-    <h2 class="section-title reveal">Sound <span class="gradient-text">Familiar?</span></h2>
-    <p class="section-subtitle reveal">Your problem. Our playbook.</p>
-    
+    <div class="section-header reveal">
+      <h2>Sound <span class="gradient-text">Familiar?</span></h2>
+      <p>Your problem. Our playbook.</p>
+    </div>
     <div class="scenario-grid">
-      <div class="scenario-card reveal">
-        <p class="problem-text">🔴 "Your food cost jumped 3 points and you don't know why"</p>
-        <p class="solution-text">Our Culinary Director is on-site this week. Recipes audited, vendors renegotiated, kitchen retrained. AI monitors it daily going forward.</p>
-      </div>
-      <div class="scenario-card reveal">
-        <p class="problem-text">🟡 "You're opening a new location in 90 days and panicking"</p>
-        <p class="solution-text">We've opened multiple concepts. Org chart, SOPs, R365, training, AI — all live before you open the doors.</p>
-      </div>
-      <div class="scenario-card reveal">
-        <p class="problem-text">🔵 "Your managers aren't accountable and you're tired of babysitting"</p>
-        <p class="solution-text">We build the framework, set the expectations, and our AI tracks compliance daily. You see who's performing and who's not.</p>
-      </div>
-      <div class="scenario-card reveal">
-        <p class="problem-text">🟢 "You want to scale from 3 to 10 locations but everything breaks at 4"</p>
-        <p class="solution-text">Because you're running a multi-unit group with single-unit systems. We rebuild the infrastructure for scale.</p>
-      </div>
+      <div class="scenario-card reveal"><p class="problem">🔴 "Food cost jumped 3 points and you don't know why"</p><p class="solution">Our Culinary Director is on-site this week. Recipes audited, vendors renegotiated, kitchen retrained. AI monitors it daily going forward.</p></div>
+      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟡 "Opening a new location in 90 days and panicking"</p><p class="solution">We've opened multiple concepts. Org chart, SOPs, R365, training, AI — all live before you open the doors.</p></div>
+      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "Managers aren't accountable and you're tired of babysitting"</p><p class="solution">We build the framework, set expectations, and our AI tracks compliance daily. You see who's performing.</p></div>
+      <div class="scenario-card reveal"><p class="problem">🟢 "Want to scale from 3 to 10 but everything breaks at 4"</p><p class="solution">Because you're running a multi-unit group with single-unit systems. We rebuild the infrastructure for scale.</p></div>
+      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟣 "Bar program is bleeding money"</p><p class="solution">Beverage Director audits top to bottom. New cocktails, better vendors, tighter pours, trained staff. AI tracks it forever.</p></div>
+      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "Have 4 locations and can't see what's happening"</p><p class="solution">Portfolio-level intelligence. One dashboard across all your restaurants. See everything. Miss nothing.</p></div>
     </div>
   </div>
 </section>
 
-<!-- TEAM -->
-<section class="team" id="team">
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
   <div class="container">
-    <h2 class="section-title reveal">20+ Operators. <span class="gradient-text">One Mission.</span></h2>
-    <p class="section-subtitle reveal">Every person on our team has lived in restaurants. We don't hire theorists.</p>
-
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>Operations Director</h4>
-          <p>Multi-unit P&L, restructuring, accountability</p>
-        </div>
+    <div class="section-header reveal">
+      <h2>From the <span class="gradient-text">Trenches</span></h2>
+      <p>What operators say after deploying Lava.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="msg-bubble">"I used to spend 2 hours every morning pulling reports. Now I wake up to a complete briefing at 5am. It's like having an ops partner that never sleeps."</div>
+        <div class="msg-sender"><div class="avatar">JB</div><div class="sender-info"><div class="name">GM, Fine Dining</div><div class="role">Scottsdale, AZ — 800+ covers/night</div></div></div>
       </div>
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>Culinary Director</h4>
-          <p>Menu dev, food cost, kitchen SOPs, recipe engineering</p>
-        </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="msg-bubble">"The accountability system changed everything. My managers went from 60% log compliance to 98% in two weeks. They knew someone was watching."</div>
+        <div class="msg-sender"><div class="avatar">KW</div><div class="sender-info"><div class="name">GM, Italian-American</div><div class="role">North Scottsdale — Multi-concept</div></div></div>
       </div>
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>Beverage Director</h4>
-          <p>Bar programs, pour cost, cocktail development</p>
-        </div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>Training Director</h4>
-          <p>FOH training, service standards, quality control</p>
-        </div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>Purchasing Director</h4>
-          <p>Vendor negotiation, inventory, COGS optimization</p>
-        </div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>Ops Controller</h4>
-          <p>R365, payroll, compliance, cash controls</p>
-        </div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>Sales & Marketing Director</h4>
-          <p>Events, revenue strategy, marketing</p>
-        </div>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-card-img" style="background-image:url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400&q=80')"></div>
-        <div class="team-card-body">
-          <h4>AI Operations</h4>
-          <p>Custom AI systems, automation, daily intelligence</p>
-        </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="msg-bubble">"We caught $40K in purchasing waste in the first month. Lava paid for itself before the second invoice."</div>
+        <div class="msg-sender"><div class="avatar">FB</div><div class="sender-info"><div class="name">Director of Operations</div><div class="role">4-location restaurant group</div></div></div>
       </div>
     </div>
-    <p class="team-footer reveal">Decades of combined experience. Millions in revenue managed. And we're not done.</p>
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
+<!-- BEFORE/AFTER -->
+<section class="ba-section">
   <div class="container">
-    <h2 class="section-title reveal">Invest in Your <span class="gradient-text">Operation</span></h2>
-    <p class="section-subtitle reveal">Month-to-month. No contracts. We earn it every day.</p>
-
-    <div class="pricing-grid">
-      <div class="price-card reveal">
-        <h3>Recon</h3>
-        <div class="price">$1,500<span>/mo per location</span></div>
-        <p class="price-desc">See what you've been missing.</p>
-        <ul>
-          <li>AI daily recaps</li>
-          <li>Labor alerts & monitoring</li>
-          <li>Review monitoring & analysis</li>
-          <li>Weekly summary reports</li>
-        </ul>
-        <a href="#contact" class="btn btn-secondary" style="background:var(--light);color:var(--text);border:2px solid #e2e8f0">Get Started</a>
-      </div>
-
-      <div class="price-card popular reveal">
-        <div class="popular-badge">Most Popular</div>
-        <h3>Strike Team</h3>
-        <div class="price">$3,000<span>/mo per location</span></div>
-        <p class="price-desc">For operators who are serious.</p>
-        <ul>
-          <li>Everything in Recon</li>
-          <li>Accountability systems</li>
-          <li>Manager scorecards</li>
-          <li>Training consultation</li>
-          <li>Menu review & engineering</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Deploy Now</a>
-      </div>
-
-      <div class="price-card reveal">
-        <h3>Full Deployment</h3>
-        <div class="price">$5,000+<span>/mo per location</span></div>
-        <p class="price-desc">Your entire operation, handled.</p>
-        <ul>
-          <li>Everything in Strike Team</li>
-          <li>Dedicated executive team</li>
-          <li>Full operational restructuring</li>
-          <li>Purchasing optimization</li>
-          <li>Accounting & R365 setup</li>
-          <li>Custom AI solutions</li>
-        </ul>
-        <a href="#contact" class="btn btn-secondary" style="background:var(--light);color:var(--text);border:2px solid #e2e8f0">Let's Talk</a>
-      </div>
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Difference</span></h2>
     </div>
-
-    <div class="pricing-notes reveal">
-      <p class="fire">🔥 First 5 clients: 50% off for 3 months. We're building our roster and we want operators who are hungry.</p>
-      <p>No contracts. Month-to-month. We earn it every day.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PHILOSOPHY -->
-<section class="philosophy">
-  <div class="container reveal">
-    <blockquote>
-      Every restaurant is different. We don't sell a one-size-fits-all platform. We build custom AI solutions around YOUR systems, YOUR team, and YOUR goals. The same way we built ours.
-    </blockquote>
-    <cite>— The Lava Philosophy</cite>
-  </div>
-</section>
-
-<!-- BEFORE / AFTER -->
-<section class="before-after">
-  <div class="container">
-    <h2 class="section-title reveal" style="margin-bottom:48px">The <span class="gradient-text">Difference</span></h2>
     <div class="ba-grid">
       <div class="ba-card before reveal">
         <h3>Before Lava</h3>
@@ -704,16 +708,19 @@ footer .footer-links a:hover{color:var(--lava-2)}
           <li>Managers who "didn't see the email"</li>
           <li>Gut feelings instead of data</li>
           <li>Surprises on every P&L</li>
+          <li>Overtime you don't catch until payroll</li>
         </ul>
       </div>
+      <div class="ba-arrow reveal">→</div>
       <div class="ba-card after reveal">
         <h3>After Lava</h3>
         <ul>
-          <li>5am intelligence briefing</li>
-          <li>One command center</li>
-          <li>Automated accountability</li>
+          <li>5am intelligence briefing in your inbox</li>
+          <li>One unified command center</li>
+          <li>Automated accountability — AI tracks opens</li>
           <li>Decisions backed by real-time data</li>
-          <li>P&L you can predict</li>
+          <li>P&L you can predict to the dollar</li>
+          <li>Overtime alerts before shifts are scheduled</li>
         </ul>
       </div>
     </div>
@@ -721,25 +728,61 @@ footer .footer-links a:hover{color:var(--lava-2)}
 </section>
 
 <!-- STATS -->
-<section class="stats">
+<section class="stats-section">
   <div class="container">
     <div class="stats-grid">
-      <div class="stat-item reveal">
-        <div class="stat-number" data-target="20">0+</div>
-        <div class="stat-label">Team Members</div>
+      <div class="stat-item reveal"><div class="stat-number" data-target="20" data-suffix="+">0</div><div class="stat-label">Team Members</div></div>
+      <div class="stat-item reveal reveal-delay-1"><div class="stat-number" data-target="4" data-suffix="">0</div><div class="stat-label">Live Locations</div></div>
+      <div class="stat-item reveal reveal-delay-2"><div class="stat-number" data-target="7" data-suffix="+">0</div><div class="stat-label">Integrated Systems</div></div>
+      <div class="stat-item reveal reveal-delay-3"><div class="stat-number" data-target="0" data-suffix="">0</div><div class="stat-label">Long-Term Contracts</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Invest in Your <span class="gradient-text">Operation</span></h2>
+      <p>Month-to-month. No contracts. We earn it every day.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <h3>Recon</h3>
+        <div class="price">$1,500<span>/mo per location</span></div>
+        <p class="price-desc">See what you've been missing.</p>
+        <ul><li>AI daily intelligence recaps</li><li>Labor alerts & monitoring</li><li>Review monitoring & analysis</li><li>Weekly summary reports</li></ul>
+        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.15)">Get Started</a>
       </div>
-      <div class="stat-item reveal">
-        <div class="stat-number" data-target="4">0+</div>
-        <div class="stat-label">Live Locations</div>
+      <div class="price-card popular reveal reveal-delay-1">
+        <div class="popular-badge">Most Popular</div>
+        <h3>Strike Team</h3>
+        <div class="price">$3,000<span>/mo per location</span></div>
+        <p class="price-desc">For operators who are serious.</p>
+        <ul><li>Everything in Recon</li><li>Accountability systems</li><li>Manager scorecards</li><li>Training consultation</li><li>Menu review & engineering</li></ul>
+        <a href="#contact" class="btn btn-primary">Deploy Now</a>
       </div>
-      <div class="stat-item reveal">
-        <div class="stat-number" data-target="7">0+</div>
-        <div class="stat-label">Integrated Systems</div>
+      <div class="price-card reveal reveal-delay-2">
+        <h3>Full Deployment</h3>
+        <div class="price">$5,000+<span>/mo per location</span></div>
+        <p class="price-desc">Your entire operation, handled.</p>
+        <ul><li>Everything in Strike Team</li><li>Dedicated executive team</li><li>Full operational restructuring</li><li>Purchasing optimization</li><li>Accounting & R365 setup</li><li>Custom AI solutions</li></ul>
+        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.15)">Let's Talk</a>
       </div>
-      <div class="stat-item reveal">
-        <div class="stat-number" data-target="0">0</div>
-        <div class="stat-label">Long-Term Contracts</div>
-      </div>
+    </div>
+    <div class="pricing-notes reveal">
+      <p class="fire">🔥 First 5 clients: 50% off for 3 months.</p>
+      <p>No contracts. Month-to-month. Cancel anytime. We're building our roster and we want operators who are hungry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="container">
+    <div class="philosophy-quote reveal">
+      <blockquote>Restaurants don't fail because of bad food. They fail because nobody's watching the numbers, nobody's training the team, and nobody built a system that works when the owner isn't standing in the kitchen.</blockquote>
+      <cite>— The Lava Philosophy</cite>
     </div>
   </div>
 </section>
@@ -747,19 +790,21 @@ footer .footer-links a:hover{color:var(--lava-2)}
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container">
-    <h2 class="section-title reveal">Stop Surviving.<br><span class="gradient-text">Start Dominating.</span></h2>
-    <p class="reveal">Your competitors are guessing. Your staff is winging it. Your money is leaking. We fix all of it — and we do it with a team of 20+ operators who've been exactly where you are.</p>
-    <p class="reveal" style="font-weight:700;color:rgba(255,255,255,.85)">One conversation. That's all it takes.</p>
+    <h2 class="reveal">Stop Surviving.<br><span class="gradient-text">Start Dominating.</span></h2>
+    <p class="reveal">Your competitors are guessing. Your staff is winging it. Your money is leaking. We fix all of it — with 20+ operators who've been exactly where you are.</p>
+    <p class="reveal" style="font-weight:700;color:rgba(255,255,255,.7)">One conversation. That's all it takes.</p>
     <a href="#contact" class="btn btn-primary reveal">Deploy Our Team 🚀</a>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact section" id="contact">
+<section class="contact-section" id="contact">
   <div class="container">
     <div class="contact-inner">
-      <h2 class="section-title reveal">Let's <span class="gradient-text">Talk</span></h2>
-      <p class="section-subtitle reveal">One conversation. No pitch deck. Just real talk about your operation.</p>
+      <div class="section-header reveal">
+        <h2>Let's <span class="gradient-text">Talk</span></h2>
+        <p>One conversation. No pitch deck. Just real talk about your operation.</p>
+      </div>
       <div class="contact-email reveal"><a href="mailto:info@ai-lava.com">info@ai-lava.com</a></div>
       <form class="contact-form reveal" action="https://formsubmit.co/info@ai-lava.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
@@ -785,10 +830,10 @@ footer .footer-links a:hover{color:var(--lava-2)}
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-logo">LAVA</div>
-    <p class="footer-sub">Artificial Intelligence Solutions for Restaurants</p>
-    <p class="footer-sub">Powered by the team behind Clive Collective — Scottsdale, AZ</p>
-    <p class="footer-sub">© 2026 Lava. All rights reserved.</p>
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
     <div class="footer-links">
       <a href="#reality">About</a>
       <a href="#services">Services</a>
@@ -799,83 +844,186 @@ footer .footer-links a:hover{color:var(--lava-2)}
 </footer>
 
 <script>
+// Particles
+const particleContainer = document.getElementById('particles');
+for(let i=0;i<30;i++){
+  const p=document.createElement('div');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.top=Math.random()*100+'%';
+  p.style.animationDuration=(8+Math.random()*12)+'s';
+  p.style.animationDelay=Math.random()*8+'s';
+  p.style.width=p.style.height=(1+Math.random()*3)+'px';
+  p.style.background=Math.random()>.5?'rgba(220,38,38,.4)':'rgba(245,158,11,.3)';
+  particleContainer.appendChild(p);
+}
+
 // Nav scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
 
 // Hamburger
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  mobileMenu.classList.toggle('open');
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
+hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('open')});
+function closeMenu(){hamburger.classList.remove('active');mobileMenu.classList.remove('open')}
+
+// Reveals
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Pain cards stagger
+const painObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const cards=e.target.querySelectorAll('.pain-card');
+      cards.forEach((c,i)=>setTimeout(()=>c.classList.add('visible'),i*150));
+      painObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.2});
+painObserver.observe(document.getElementById('painCards'));
+
+// Dashboard chart animation
+const chartObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-fill').forEach((b,i)=>setTimeout(()=>b.classList.add('animated'),i*200));
+      chartObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+chartObserver.observe(document.getElementById('chartSection'));
+
+// Dashboard KPI counter
+const kpiTargets={sales:39210,guests:647,labor:26.8,check:60.60};
+const dashObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animateKPI('kpi-sales',0,kpiTargets.sales,'$','',0);
+      animateKPI('kpi-guests',0,kpiTargets.guests,'','',0);
+      animateKPI('kpi-labor',0,kpiTargets.labor,'','%',1);
+      animateKPI('kpi-check',0,kpiTargets.check,'$','',2);
+      dashObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+dashObserver.observe(document.getElementById('dashboardBody'));
+
+function animateKPI(id,start,end,prefix,suffix,decimals){
+  const el=document.getElementById(id);
+  const duration=1500,steps=60;
+  let step=0;
+  const timer=setInterval(()=>{
+    step++;
+    const progress=step/steps;
+    const eased=1-Math.pow(1-progress,3);
+    const current=start+(end-start)*eased;
+    el.textContent=prefix+(decimals?current.toFixed(decimals):Math.round(current).toLocaleString())+suffix;
+    if(step>=steps)clearInterval(timer);
+  },duration/steps);
+}
+
+// Dashboard tabs (visual only)
+document.querySelectorAll('.dashboard-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.dashboard-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+  });
 });
-function closeMenu() {
-  hamburger.classList.remove('active');
-  mobileMenu.classList.remove('open');
+
+// Terminal typing
+const terminalLines=[
+  {prompt:'lava',cmd:' scan --location "all" --date yesterday',delay:0},
+  {text:'Connecting to Toast POS... ',cls:'cmd',delay:800},
+  {text:'✓ Sales data pulled (3 locations)',cls:'success',delay:1500},
+  {text:'Connecting to 7shifts... ',cls:'cmd',delay:2200},
+  {text:'✓ Labor data: 847 hours, $14,209 wages',cls:'success',delay:2900},
+  {text:'Scanning R365 manager logs... ',cls:'cmd',delay:3500},
+  {text:'✓ 12 entries found (Cala: 5, Americano: 5, Neon Spur: 2)',cls:'success',delay:4200},
+  {text:'Analyzing OpenTable reviews... ',cls:'cmd',delay:4800},
+  {text:'✓ 8 new reviews — 2 require attention',cls:'warning',delay:5500},
+  {text:'⚡ ALERT: BOH overtime trending 12% above target at Location B',cls:'error',delay:6200},
+  {text:'Generating daily intelligence reports...',cls:'cmd',delay:7000},
+  {text:'✓ 5 emails sent to leadership team at 5:00 AM',cls:'success',delay:7800},
+  {text:'✓ All locations reporting. Zero data gaps.',cls:'data',delay:8500},
+];
+
+let terminalStarted=false;
+const termObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting&&!terminalStarted){
+      terminalStarted=true;
+      const body=document.getElementById('terminalBody');
+      terminalLines.forEach((line,i)=>{
+        setTimeout(()=>{
+          const div=document.createElement('div');
+          div.className='terminal-line';
+          if(line.prompt){
+            div.innerHTML=`<span class="prompt">${line.prompt} $</span><span class="cmd">${line.cmd}</span>`;
+          }else{
+            div.innerHTML=`<span class="${line.cls}">${line.text}</span>`;
+          }
+          body.appendChild(div);
+          body.scrollTop=body.scrollHeight;
+          if(i===terminalLines.length-1){
+            setTimeout(()=>{
+              const cursor=document.createElement('span');
+              cursor.className='cursor';
+              body.appendChild(cursor);
+            },300);
+          }
+        },line.delay);
+      });
+      termObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+termObserver.observe(document.getElementById('terminal'));
+
+// ROI Calculator
+const revenueSlider=document.getElementById('revenueSlider');
+const locationSlider=document.getElementById('locationSlider');
+function updateCalc(){
+  const rev=parseInt(revenueSlider.value);
+  const locs=parseInt(locationSlider.value);
+  document.getElementById('revenueDisplay').textContent='$'+rev.toLocaleString();
+  document.getElementById('locationDisplay').textContent=locs;
+  // Conservative estimates: 2% food cost savings, 1.5% labor savings, 1% revenue uplift
+  const annualRev=rev*12*locs;
+  const savings=Math.round(annualRev*.035);
+  const uplift=Math.round(annualRev*.01);
+  const lavaCost=locs*3000*12;
+  const roi=((savings+uplift)/lavaCost).toFixed(1);
+  document.getElementById('savingsDisplay').textContent='$'+savings.toLocaleString();
+  document.getElementById('revenueUplift').textContent='$'+uplift.toLocaleString();
+  document.getElementById('roiDisplay').textContent=roi+'x';
 }
+revenueSlider.addEventListener('input',updateCalc);
+locationSlider.addEventListener('input',updateCalc);
+updateCalc();
 
-// Intersection Observer for reveals
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+// Stat counters
+const statObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;
+      const target=parseInt(el.dataset.target);
+      const suffix=el.dataset.suffix||'';
+      if(target===0){el.textContent='0'+suffix;statObs.unobserve(el);return}
+      let current=0;
+      const inc=Math.max(1,Math.floor(target/25));
+      const timer=setInterval(()=>{
+        current+=inc;
+        if(current>=target){current=target;clearInterval(timer)}
+        el.textContent=current+suffix;
+      },40);
+      statObs.unobserve(el);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Typing animation for alert
-const alertText = document.getElementById('alertText');
-const alertMessage = '⚡ ALERT — Location B: BOH overtime trending 12% above target. Two line cooks approaching 40hrs by Thursday. Labor cost projected at 31.2% vs 28% target. Recommended action: Adjust Friday prep schedule, cross-train support staff for Saturday coverage.';
-let charIndex = 0;
-let alertStarted = false;
-
-const alertObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !alertStarted) {
-      alertStarted = true;
-      typeAlert();
-    }
-  });
-}, { threshold: 0.3 });
-alertObserver.observe(alertText);
-
-function typeAlert() {
-  if (charIndex < alertMessage.length) {
-    alertText.textContent += alertMessage.charAt(charIndex);
-    charIndex++;
-    setTimeout(typeAlert, 18);
-  }
-}
-
-// Counter animation
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const target = parseInt(el.dataset.target);
-      const suffix = target === 0 ? '' : '+';
-      let current = 0;
-      const increment = Math.max(1, Math.floor(target / 30));
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(timer);
-        }
-        el.textContent = current + suffix;
-      }, 50);
-      statObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+},{threshold:.5});
+document.querySelectorAll('.stat-number').forEach(el=>statObs.observe(el));
 </script>
 </body>
 </html>
