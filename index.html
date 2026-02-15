@@ -85,6 +85,18 @@ nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
 .service-card .icon{font-size:2.4rem;margin-bottom:14px}
 .service-card h3{font-size:1.2rem;font-weight:700;margin-bottom:10px}
 .service-card p{font-size:.95rem;color:var(--text-light);line-height:1.65}
+.service-example{margin-top:12px;font-size:.88rem!important;font-style:italic;color:var(--lava-1)!important;font-weight:600;border-left:3px solid var(--lava-3);padding-left:12px}
+
+/* ── Custom AI Callout ── */
+.custom-callout{background:linear-gradient(135deg,var(--dark),#2d2b55);border-radius:var(--radius);padding:48px;margin-top:56px;color:#fff;text-align:center;position:relative;overflow:hidden}
+.custom-callout::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:radial-gradient(circle,rgba(245,158,11,.15),transparent);border-radius:50%}
+.custom-callout h3{font-size:1.5rem;font-weight:800;margin-bottom:12px;position:relative}
+.custom-callout p{font-size:1.05rem;opacity:.85;max-width:700px;margin:0 auto;line-height:1.7;position:relative}
+
+/* ── Team Banner ── */
+.team-banner{background:var(--warm-2);border-radius:var(--radius);padding:40px;margin-top:56px;text-align:center}
+.team-banner h3{font-size:1.4rem;font-weight:800;margin-bottom:12px}
+.team-banner p{font-size:1.05rem;color:var(--text-light);max-width:750px;margin:0 auto;line-height:1.7}
 
 /* ── Case Studies ── */
 .cases{background:var(--warm-2)}
@@ -243,8 +255,18 @@ footer .copyright{font-size:.8rem;opacity:.4}
       <div class="service-card fade-in"><div class="icon">💰</div><h3>Accounting, Payroll & Compliance</h3><p>R365 implementation and optimization, payroll setup, tip reconciliation, cash controls, invoice management, onboarding systems, and HR compliance. The back-office stuff that makes or breaks you.</p></div>
       <div class="service-card fade-in"><div class="icon">📦</div><h3>Purchasing & Inventory</h3><p>Vendor negotiations, purchasing guides, R365 item mapping, inventory controls, and cost-of-goods tracking. Stop overpaying and start optimizing.</p></div>
       <div class="service-card fade-in"><div class="icon">📈</div><h3>Sales, Marketing & Events</h3><p>Large party strategies, event management frameworks, marketing restructure, content calendars, and revenue-driving campaigns. Fill seats and maximize spend.</p></div>
-      <div class="service-card fade-in"><div class="icon">🏗️</div><h3>Operational Restructuring</h3><p>Org chart design, accountability frameworks, manager scorecards, KPI dashboards, and multi-unit oversight systems. Build the structure that scales.</p></div>
-      <div class="service-card fade-in"><div class="icon">🎯</div><h3>Manager Accountability Systems</h3><p>Automated tracking of recap responses, action items, deadlines, and compliance. Escalation workflows that ensure nothing falls through the cracks.</p></div>
+      <div class="service-card fade-in"><div class="icon">🏗️</div><h3>Operational Restructuring</h3><p>Org chart design, accountability frameworks, manager scorecards, KPI dashboards, and multi-unit oversight systems. Build the structure that scales.</p><p class="service-example">Need to restructure your entire operation? We've done it across 4+ concepts. We'll design the playbook and execute it with you.</p></div>
+      <div class="service-card fade-in"><div class="icon">🎯</div><h3>Manager Accountability Systems</h3><p>Automated tracking of recap responses, action items, deadlines, and compliance. Escalation workflows that ensure nothing falls through the cracks.</p><p class="service-example">Managers not hitting KPIs? We'll build the accountability framework, train them on expectations, and our AI tracks compliance daily.</p></div>
+    </div>
+
+    <div class="custom-callout fade-in">
+      <h3>🔧 Custom AI Solutions — Built for YOUR Business</h3>
+      <p>Every restaurant is different. We don't sell a one-size-fits-all platform. We build custom AI solutions around YOUR systems, YOUR team, and YOUR goals. Same way we built ours.</p>
+    </div>
+
+    <div class="team-banner fade-in">
+      <h3>👔 Seasoned Executives, Ready to Jump In</h3>
+      <p>Our team isn't fresh out of school — they're long-time restaurant executives with decades of combined experience running high-volume, multi-concept operations. When you need hands-on help, they show up. In your kitchen, behind your bar, in your office — wherever the work needs to happen.</p>
     </div>
   </div>
 </section>
@@ -277,7 +299,7 @@ footer .copyright{font-size:.8rem;opacity:.4}
       <div class="step fade-in">
         <div class="step-num">2</div>
         <h3>Build</h3>
-        <p>We deploy our team and technology. AI systems go live, SOPs get written, training begins, and your back-office gets organized.</p>
+        <p>Our executives embed with your team. AI systems go live, SOPs get written, training begins, and your back-office gets organized. Real people, on-site, doing the work alongside you.</p>
       </div>
       <div class="step fade-in">
         <div class="step-num">3</div>
@@ -292,12 +314,12 @@ footer .copyright{font-size:.8rem;opacity:.4}
 <section class="section why" id="why">
   <div class="container">
     <h2 class="section-title fade-in">Why <span class="gradient-text">LAVA</span></h2>
-    <p class="why-quote fade-in">"We're not a tech company that read about restaurants. We're not consultants with a PowerPoint. We're operators who built AI into our own restaurants — and now we're bringing it to yours."</p>
+    <p class="why-quote fade-in">"We're not a tech company that read about restaurants. We're not consultants with a PowerPoint. We're operators who built AI into our own restaurants — and now we're bringing it to yours. When you hire Lava, you're not buying software. You're hiring a team."</p>
     <div class="why-grid">
-      <div class="why-card fade-in"><div class="icon">🏪</div><h3>Operator-Built</h3><p>Every tool, every SOP, every system was built inside a real restaurant group</p></div>
-      <div class="why-card fade-in"><div class="icon">👥</div><h3>Full-Stack Team</h3><p>Chefs, bartenders, trainers, accountants, and AI engineers — all in one</p></div>
-      <div class="why-card fade-in"><div class="icon">🧠</div><h3>AI + Human</h3><p>Technology handles the data. Humans handle the nuance. You get both.</p></div>
-      <div class="why-card fade-in"><div class="icon">🤝</div><h3>No Long-Term Contracts</h3><p>Month-to-month. We earn your business every day.</p></div>
+      <div class="why-card fade-in"><div class="icon">🏪</div><h3>Operator-Built</h3><p>Every tool, every SOP, every system was built inside a real restaurant group — not a Silicon Valley office</p></div>
+      <div class="why-card fade-in"><div class="icon">👥</div><h3>Full-Stack Executive Team</h3><p>Seasoned chefs, beverage directors, trainers, accountants, and AI engineers who embed with your operation — not just advise from afar</p></div>
+      <div class="why-card fade-in"><div class="icon">🧠</div><h3>AI + Humans On-Site</h3><p>Technology handles the data. Our executives handle the execution. You get the insights AND the people to act on them.</p></div>
+      <div class="why-card fade-in"><div class="icon">🤝</div><h3>No Long-Term Contracts</h3><p>Month-to-month. We earn your business every day. If we're not delivering, you walk.</p></div>
     </div>
   </div>
 </section>
@@ -371,8 +393,8 @@ footer .copyright{font-size:.8rem;opacity:.4}
   <div class="container">
     <div class="contact-inner">
       <h2 class="section-title fade-in">Ready to stop guessing<br>and <span class="gradient-text">start growing?</span></h2>
-      <div class="big-email fade-in"><a href="mailto:francesco@weareclive.com">francesco@weareclive.com</a></div>
-      <form class="contact-form fade-in" action="mailto:francesco@weareclive.com" method="POST" enctype="text/plain">
+      <div class="big-email fade-in"><a href="mailto:info@ai-lava.com">info@ai-lava.com</a></div>
+      <form class="contact-form fade-in" action="mailto:info@ai-lava.com" method="POST" enctype="text/plain">
         <input type="text" name="Name" placeholder="Your name" required>
         <input type="email" name="Email" placeholder="Your email" required>
         <select name="Locations">
