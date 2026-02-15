@@ -107,6 +107,40 @@ nav.scrolled{background:rgba(10,10,26,.95);box-shadow:0 2px 30px rgba(0,0,0,.5)}
 .podcast-link:hover{transform:translateY(-2px);box-shadow:0 4px 30px rgba(220,38,38,.4)}
 .podcast-note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.3);font-style:italic}
 
+/* ── Film Grain Overlay ── */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── Cursor Trail ── */
+.cursor-dot{position:fixed;width:8px;height:8px;background:var(--lava-2);border-radius:50%;pointer-events:none;z-index:9998;mix-blend-mode:screen;transition:transform .08s ease;opacity:0}
+.cursor-dot.active{opacity:1}
+.cursor-ring{position:fixed;width:40px;height:40px;border:2px solid rgba(220,38,38,.3);border-radius:50%;pointer-events:none;z-index:9997;transition:width .3s,height .3s,border-color .3s,transform .15s ease;transform:translate(-50%,-50%)}
+.cursor-ring.hover{width:60px;height:60px;border-color:rgba(245,158,11,.5)}
+
+/* ── Glitch Text ── */
+@keyframes glitch1{0%,100%{clip-path:inset(40% 0 61% 0)}20%{clip-path:inset(92% 0 1% 0)}40%{clip-path:inset(43% 0 1% 0)}60%{clip-path:inset(25% 0 58% 0)}80%{clip-path:inset(54% 0 7% 0)}}
+@keyframes glitch2{0%,100%{clip-path:inset(65% 0 4% 0)}20%{clip-path:inset(15% 0 66% 0)}40%{clip-path:inset(76% 0 14% 0)}60%{clip-path:inset(2% 0 88% 0)}80%{clip-path:inset(31% 0 30% 0)}}
+.glitch-wrapper{position:relative;display:inline-block}
+.glitch-text::before,.glitch-text::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;background:var(--dark)}
+.glitch-text::before{left:3px;text-shadow:-3px 0 var(--lava-1);animation:glitch1 3s infinite linear alternate-reverse;opacity:0}
+.glitch-text::after{left:-3px;text-shadow:3px 0 var(--lava-2);animation:glitch2 2s infinite linear alternate-reverse;opacity:0}
+.glitch-text:hover::before,.glitch-text:hover::after{opacity:.8}
+
+/* ── 3D Tilt Cards ── */
+.tilt-card{transform-style:preserve-3d;transform:perspective(1000px) rotateX(0) rotateY(0);transition:transform .1s ease}
+
+/* ── Section Dividers ── */
+.section-divider{width:100%;height:1px;position:relative;overflow:hidden;margin:0}
+.section-divider::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--lava-1),var(--lava-2),transparent);animation:shimmer 3s infinite}
+@keyframes shimmer{0%{left:-100%}100%{left:100%}}
+
+/* ── Stagger Reveals ── */
+.stagger-item{opacity:0;transform:translateY(30px) scale(.95);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.stagger-item.visible{opacity:1;transform:translateY(0) scale(1)}
+
+/* ── Text Highlight on Scroll ── */
+.highlight-text{background-size:0% 100%;background-image:linear-gradient(135deg,rgba(220,38,38,.15),rgba(245,158,11,.15));background-repeat:no-repeat;transition:background-size 1s cubic-bezier(.16,1,.3,1);padding:2px 0}
+.highlight-text.visible{background-size:100% 100%}
+
 /* ── Scroll Progress ── */
 .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2),var(--lava-3));z-index:10000;width:0%;transition:width .1s linear}
 
@@ -403,6 +437,13 @@ footer .footer-links a:hover{color:var(--lava-2)}
 </head>
 <body>
 
+<!-- FILM GRAIN -->
+<div class="grain"></div>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
 <!-- PARTICLES -->
 <div class="particles" id="particles"></div>
 
@@ -439,7 +480,7 @@ footer .footer-links a:hover{color:var(--lava-2)}
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="dot"></span> Now Accepting New Clients</div>
-    <h1>LAVA</h1>
+    <h1 class="glitch-wrapper"><span class="glitch-text" data-text="LAVA">LAVA</span></h1>
     <h2 class="tagline">We Don't Consult. <span class="thin">We Deploy.</span></h2>
     <p class="subhead">20+ seasoned restaurant executives and AI engineers who embed with your operation and don't leave until it's fixed. We've opened concepts, rescued failing restaurants, and built the AI systems that run our own locations every single day.</p>
     <div class="hero-ctas">
@@ -510,6 +551,8 @@ footer .footer-links a:hover{color:var(--lava-2)}
 </section>
 -->
 
+<div class="section-divider"></div>
+
 <!-- VIDEO SHOWCASE -->
 <section class="video-showcase" id="video">
   <div class="container">
@@ -558,6 +601,8 @@ footer .footer-links a:hover{color:var(--lava-2)}
   </div>
 </section>
 
+<div class="section-divider"></div>
+
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="container">
@@ -578,6 +623,8 @@ footer .footer-links a:hover{color:var(--lava-2)}
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- INTERACTIVE DASHBOARD -->
 <section class="dashboard-section" id="dashboard">
@@ -670,6 +717,8 @@ footer .footer-links a:hover{color:var(--lava-2)}
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- CASE STUDIES -->
 <section class="cases-section" id="cases">
@@ -1131,6 +1180,88 @@ window.addEventListener('scroll',()=>{
 // Ticker duplicate for seamless loop
 const ticker=document.getElementById('ticker');
 if(ticker){ticker.innerHTML+=ticker.innerHTML}
+
+// Custom cursor
+const cursorDot=document.getElementById('cursorDot');
+const cursorRing=document.getElementById('cursorRing');
+if(cursorDot&&cursorRing&&window.innerWidth>768){
+  cursorDot.classList.add('active');
+  document.addEventListener('mousemove',e=>{
+    cursorDot.style.left=e.clientX-4+'px';
+    cursorDot.style.top=e.clientY-4+'px';
+    cursorRing.style.left=e.clientX+'px';
+    cursorRing.style.top=e.clientY+'px';
+  });
+  document.querySelectorAll('a,.btn,button,.service-card,.price-card,.scenario-card,.case-card,.testimonial-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursorRing.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>cursorRing.classList.remove('hover'));
+  });
+}
+
+// 3D tilt on service cards
+document.querySelectorAll('.service-card,.price-card,.scenario-card,.testimonial-card').forEach(card=>{
+  card.classList.add('tilt-card');
+  card.addEventListener('mousemove',e=>{
+    const rect=card.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width-.5;
+    const y=(e.clientY-rect.top)/rect.height-.5;
+    card.style.transform=`perspective(1000px) rotateY(${x*8}deg) rotateX(${-y*8}deg) scale(1.02)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+  });
+});
+
+// Stagger animation for grids
+const staggerObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const items=e.target.querySelectorAll('.service-card,.scenario-card,.testimonial-card,.price-card');
+      items.forEach((item,i)=>{
+        item.classList.add('stagger-item');
+        setTimeout(()=>item.classList.add('visible'),i*100);
+      });
+      staggerObs.unobserve(e.target);
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.services-grid,.scenario-grid,.testimonial-grid,.pricing-grid').forEach(g=>staggerObs.observe(g));
+
+// Highlight text on scroll
+document.querySelectorAll('.reality-text .accent,.philosophy-quote blockquote,.impact').forEach(el=>{
+  el.classList.add('highlight-text');
+  const hlObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');hlObs.unobserve(e.target)}});
+  },{threshold:.5});
+  hlObs.observe(el);
+});
+
+// Smooth number counting on stats with easing
+document.querySelectorAll('.hero-proof-item .num').forEach(el=>{
+  const text=el.textContent;
+  const match=text.match(/(\d+)/);
+  if(match){
+    const target=parseInt(match[1]);
+    const suffix=text.replace(match[1],'');
+    el.textContent='0'+suffix;
+    const countObs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          let start=0;const dur=1200;const startTime=performance.now();
+          function step(now){
+            const progress=Math.min((now-startTime)/dur,1);
+            const eased=1-Math.pow(1-progress,4);
+            el.textContent=Math.round(target*eased)+suffix;
+            if(progress<1)requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          countObs.unobserve(e.target);
+        }
+      });
+    },{threshold:.5});
+    countObs.observe(el);
+  }
+});
 </script>
 </body>
 </html>
