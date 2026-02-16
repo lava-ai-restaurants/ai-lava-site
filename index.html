@@ -107,39 +107,72 @@ nav.scrolled{background:rgba(10,10,26,.95);box-shadow:0 2px 30px rgba(0,0,0,.5)}
 .podcast-link:hover{transform:translateY(-2px);box-shadow:0 4px 30px rgba(220,38,38,.4)}
 .podcast-note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.3);font-style:italic}
 
-/* ── Film Grain Overlay ── */
-.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* ── Lava Canvas ── */
+.lava-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 
-/* ── Cursor Trail ── */
-.cursor-dot{position:fixed;width:8px;height:8px;background:var(--lava-2);border-radius:50%;pointer-events:none;z-index:9998;mix-blend-mode:screen;transition:transform .08s ease;opacity:0}
+/* ── Film Grain Overlay ── */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── Custom Cursor ── */
+.cursor-dot{position:fixed;width:8px;height:8px;background:var(--lava-2);border-radius:50%;pointer-events:none;z-index:9998;mix-blend-mode:screen;opacity:0;will-change:transform}
 .cursor-dot.active{opacity:1}
-.cursor-ring{position:fixed;width:40px;height:40px;border:2px solid rgba(220,38,38,.3);border-radius:50%;pointer-events:none;z-index:9997;transition:width .3s,height .3s,border-color .3s,transform .15s ease;transform:translate(-50%,-50%)}
-.cursor-ring.hover{width:60px;height:60px;border-color:rgba(245,158,11,.5)}
+.cursor-ring{position:fixed;width:40px;height:40px;border:2px solid rgba(220,38,38,.3);border-radius:50%;pointer-events:none;z-index:9997;transition:width .3s,height .3s,border-color .3s;transform:translate(-50%,-50%);will-change:transform}
+.cursor-ring.hover{width:60px;height:60px;border-color:rgba(245,158,11,.6)}
 
 /* ── Glitch Text ── */
-@keyframes glitch1{0%,100%{clip-path:inset(40% 0 61% 0)}20%{clip-path:inset(92% 0 1% 0)}40%{clip-path:inset(43% 0 1% 0)}60%{clip-path:inset(25% 0 58% 0)}80%{clip-path:inset(54% 0 7% 0)}}
-@keyframes glitch2{0%,100%{clip-path:inset(65% 0 4% 0)}20%{clip-path:inset(15% 0 66% 0)}40%{clip-path:inset(76% 0 14% 0)}60%{clip-path:inset(2% 0 88% 0)}80%{clip-path:inset(31% 0 30% 0)}}
+@keyframes glitch1{0%,80%{clip-path:inset(0 0 100% 0);opacity:0}81%{clip-path:inset(40% 0 30% 0);opacity:.8}82%{clip-path:inset(10% 0 60% 0)}84%{clip-path:inset(70% 0 5% 0)}86%{clip-path:inset(20% 0 50% 0)}88%,100%{clip-path:inset(0 0 100% 0);opacity:0}}
+@keyframes glitch2{0%,85%{clip-path:inset(0 0 100% 0);opacity:0}86%{clip-path:inset(60% 0 10% 0);opacity:.8}87%{clip-path:inset(5% 0 80% 0)}89%{clip-path:inset(45% 0 20% 0)}91%,100%{clip-path:inset(0 0 100% 0);opacity:0}}
 .glitch-wrapper{position:relative;display:inline-block}
-.glitch-text::before,.glitch-text::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;background:var(--dark)}
-.glitch-text::before{left:3px;text-shadow:-3px 0 var(--lava-1);animation:glitch1 3s infinite linear alternate-reverse;opacity:0}
-.glitch-text::after{left:-3px;text-shadow:3px 0 var(--lava-2);animation:glitch2 2s infinite linear alternate-reverse;opacity:0}
-.glitch-text:hover::before,.glitch-text:hover::after{opacity:.8}
+.glitch-text::before,.glitch-text::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;background:transparent;-webkit-background-clip:unset;-webkit-text-fill-color:unset;background-clip:unset}
+.glitch-text::before{left:3px;text-shadow:-3px 0 var(--lava-1);animation:glitch1 5s infinite;color:var(--lava-1)}
+.glitch-text::after{left:-3px;text-shadow:3px 0 var(--lava-2);animation:glitch2 5s infinite;color:var(--lava-2)}
+
+/* ── Hero Letter Animation ── */
+.hero-letter{display:inline-block;opacity:0;transform:translateY(80px) rotateX(-90deg);animation:letterDrop .8s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes letterDrop{to{opacity:1;transform:translateY(0) rotateX(0)}}
 
 /* ── 3D Tilt Cards ── */
-.tilt-card{transform-style:preserve-3d;transform:perspective(1000px) rotateX(0) rotateY(0);transition:transform .1s ease}
+.tilt-card{transform-style:preserve-3d;will-change:transform}
 
 /* ── Section Dividers ── */
-.section-divider{width:100%;height:1px;position:relative;overflow:hidden;margin:0}
-.section-divider::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--lava-1),var(--lava-2),transparent);animation:shimmer 3s infinite}
+.section-divider{width:100%;height:2px;position:relative;overflow:hidden;margin:0}
+.section-divider::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,var(--lava-1),var(--lava-2),var(--lava-3),transparent);animation:shimmer 4s infinite}
 @keyframes shimmer{0%{left:-100%}100%{left:100%}}
 
+/* ── Horizontal Scroll Cases ── */
+.cases-scroll-wrapper{position:relative}
+.cases-scroll-track{display:flex;gap:24px;transition:transform .1s linear;will-change:transform}
+.cases-scroll-track .case-card{min-width:80vw;max-width:800px;flex-shrink:0}
+@media(max-width:768px){.cases-scroll-track{flex-direction:column}.cases-scroll-track .case-card{min-width:100%}}
+
+/* ── Morphing Blobs ── */
+.blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.07;pointer-events:none;will-change:transform}
+.blob-1{width:600px;height:600px;background:var(--lava-1);top:10%;left:-10%;animation:blobFloat1 20s ease-in-out infinite}
+.blob-2{width:500px;height:500px;background:var(--lava-2);bottom:10%;right:-10%;animation:blobFloat2 25s ease-in-out infinite}
+.blob-3{width:400px;height:400px;background:var(--lava-3);top:50%;left:30%;animation:blobFloat3 18s ease-in-out infinite}
+@keyframes blobFloat1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(100px,50px) scale(1.1)}66%{transform:translate(-50px,100px) scale(.9)}}
+@keyframes blobFloat2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-80px,-60px) scale(1.15)}66%{transform:translate(60px,-30px) scale(.85)}}
+@keyframes blobFloat3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-80px) scale(1.05)}66%{transform:translate(-70px,40px) scale(.95)}}
+
+/* ── Word Reveal ── */
+.word-reveal .word{display:inline-block;opacity:0;transform:translateY(20px);transition:all .4s cubic-bezier(.16,1,.3,1)}
+.word-reveal.visible .word{opacity:1;transform:translateY(0)}
+
 /* ── Stagger Reveals ── */
-.stagger-item{opacity:0;transform:translateY(30px) scale(.95);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.stagger-item{opacity:0;transform:translateY(30px) scale(.97);transition:all .6s cubic-bezier(.16,1,.3,1)}
 .stagger-item.visible{opacity:1;transform:translateY(0) scale(1)}
 
 /* ── Text Highlight on Scroll ── */
-.highlight-text{background-size:0% 100%;background-image:linear-gradient(135deg,rgba(220,38,38,.15),rgba(245,158,11,.15));background-repeat:no-repeat;transition:background-size 1s cubic-bezier(.16,1,.3,1);padding:2px 0}
+.highlight-text{background-size:0% 100%;background-image:linear-gradient(135deg,rgba(220,38,38,.15),rgba(245,158,11,.15));background-repeat:no-repeat;transition:background-size 1.2s cubic-bezier(.16,1,.3,1);padding:4px 8px;border-radius:4px}
 .highlight-text.visible{background-size:100% 100%}
+
+/* ── Entrance Wipe ── */
+.wipe-in{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.16,1,.3,1)}
+.wipe-in.visible{clip-path:inset(0 0 0 0)}
+
+/* ── Scale Reveal ── */
+.scale-in{opacity:0;transform:scale(.8);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.scale-in.visible{opacity:1;transform:scale(1)}
 
 /* ── Scroll Progress ── */
 .scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--lava-1),var(--lava-2),var(--lava-3));z-index:10000;width:0%;transition:width .1s linear}
@@ -437,6 +470,14 @@ footer .footer-links a:hover{color:var(--lava-2)}
 </head>
 <body>
 
+<!-- LAVA CANVAS -->
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+
+<!-- MORPHING BLOBS -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
 <!-- FILM GRAIN -->
 <div class="grain"></div>
 
@@ -480,9 +521,9 @@ footer .footer-links a:hover{color:var(--lava-2)}
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="dot"></span> Now Accepting New Clients</div>
-    <h1 class="glitch-wrapper"><span class="glitch-text" data-text="LAVA">LAVA</span></h1>
+    <h1 class="glitch-wrapper" id="heroTitle"><span class="glitch-text" data-text="LAVA">LAVA</span></h1>
     <h2 class="tagline">We Don't Consult. <span class="thin">We Deploy.</span></h2>
-    <p class="subhead">20+ seasoned restaurant executives and AI engineers who embed with your operation and don't leave until it's fixed. We've opened concepts, rescued failing restaurants, and built the AI systems that run our own locations every single day.</p>
+    <p class="subhead word-reveal" id="heroSubhead">20+ seasoned restaurant executives and AI engineers who embed with your operation and don't leave until it's fixed. We've opened concepts, rescued failing restaurants, and built the AI systems that run our own locations every single day.</p>
     <div class="hero-ctas">
       <a href="#dashboard" class="btn btn-primary">See the AI Live ↓</a>
       <a href="#contact" class="btn btn-outline">Deploy Our Team →</a>
@@ -560,7 +601,7 @@ footer .footer-links a:hover{color:var(--lava-2)}
       <h2>See It In <span class="gradient-text">Action</span></h2>
       <p>90 seconds. That's all it takes to understand why operators are switching.</p>
     </div>
-    <div class="video-player reveal">
+    <div class="video-player reveal scale-in">
       <div class="video-glow"></div>
       <div class="video-frame">
         <video id="showcaseVideo" controls playsinline poster="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80">
@@ -633,7 +674,7 @@ footer .footer-links a:hover{color:var(--lava-2)}
       <h2>This Isn't a <span class="gradient-text">Mockup</span></h2>
       <p>This is what your team gets at 5am. Every. Single. Day.</p>
     </div>
-    <div class="dashboard-wrapper reveal">
+    <div class="dashboard-wrapper reveal wipe-in">
       <div class="dashboard-device" id="dashboardDevice">
         <div class="dashboard-topbar">
           <span></span><span></span><span></span>
@@ -943,6 +984,81 @@ footer .footer-links a:hover{color:var(--lava-2)}
 </footer>
 
 <script>
+// ═══ LAVA CANVAS (flowing ember particles) ═══
+const lavaCanvas=document.getElementById('lavaCanvas');
+if(lavaCanvas){
+  const ctx=lavaCanvas.getContext('2d');
+  let W,H;
+  function resizeCanvas(){W=lavaCanvas.width=window.innerWidth;H=lavaCanvas.height=window.innerHeight}
+  resizeCanvas();
+  window.addEventListener('resize',resizeCanvas);
+  const embers=[];
+  for(let i=0;i<80;i++){
+    embers.push({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-.5)*.3,vy:-(Math.random()*.5+.2),
+      size:Math.random()*3+1,
+      life:Math.random(),decay:Math.random()*.003+.001,
+      color:Math.random()>.5?'220,38,38':'245,158,11'
+    });
+  }
+  function animateEmbers(){
+    ctx.clearRect(0,0,W,H);
+    embers.forEach(e=>{
+      e.x+=e.vx+Math.sin(e.life*10)*.2;
+      e.y+=e.vy;
+      e.life-=e.decay;
+      if(e.life<=0||e.y<-10){
+        e.x=Math.random()*W;e.y=H+10;e.life=1;
+      }
+      ctx.beginPath();
+      ctx.arc(e.x,e.y,e.size*e.life,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${e.color},${e.life*.15})`;
+      ctx.fill();
+      // Glow
+      ctx.beginPath();
+      ctx.arc(e.x,e.y,e.size*e.life*3,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${e.color},${e.life*.03})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(animateEmbers);
+  }
+  animateEmbers();
+}
+
+// ═══ HERO LETTER ANIMATION ═══
+const heroTitle=document.getElementById('heroTitle');
+if(heroTitle){
+  const glitchSpan=heroTitle.querySelector('.glitch-text');
+  const text=glitchSpan.textContent;
+  glitchSpan.innerHTML='';
+  [...text].forEach((char,i)=>{
+    const span=document.createElement('span');
+    span.className='hero-letter';
+    span.style.animationDelay=(.3+i*.15)+'s';
+    span.textContent=char;
+    glitchSpan.appendChild(span);
+  });
+}
+
+// ═══ WORD REVEAL ═══
+document.querySelectorAll('.word-reveal').forEach(el=>{
+  const text=el.textContent;
+  el.innerHTML=text.split(' ').map(w=>`<span class="word">${w}</span>`).join(' ');
+  const wordObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        e.target.querySelectorAll('.word').forEach((w,i)=>{
+          w.style.transitionDelay=(i*.04)+'s';
+        });
+        wordObs.unobserve(e.target);
+      }
+    });
+  },{threshold:.3});
+  wordObs.observe(el);
+});
+
 // Particles
 const particleContainer = document.getElementById('particles');
 for(let i=0;i<30;i++){
@@ -1181,17 +1297,28 @@ window.addEventListener('scroll',()=>{
 const ticker=document.getElementById('ticker');
 if(ticker){ticker.innerHTML+=ticker.innerHTML}
 
-// Custom cursor
+// Wipe-in and Scale-in observers
+document.querySelectorAll('.wipe-in,.scale-in').forEach(el=>{
+  const wObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');wObs.unobserve(e.target)}});
+  },{threshold:.15});
+  wObs.observe(el);
+});
+
+// Custom cursor with smooth lerp
 const cursorDot=document.getElementById('cursorDot');
 const cursorRing=document.getElementById('cursorRing');
 if(cursorDot&&cursorRing&&window.innerWidth>768){
+  let mx=0,my=0,rx=0,ry=0;
   cursorDot.classList.add('active');
-  document.addEventListener('mousemove',e=>{
-    cursorDot.style.left=e.clientX-4+'px';
-    cursorDot.style.top=e.clientY-4+'px';
-    cursorRing.style.left=e.clientX+'px';
-    cursorRing.style.top=e.clientY+'px';
-  });
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  function animCursor(){
+    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+    cursorDot.style.transform=`translate(${mx-4}px,${my-4}px)`;
+    cursorRing.style.transform=`translate(${rx-20}px,${ry-20}px)`;
+    requestAnimationFrame(animCursor);
+  }
+  animCursor();
   document.querySelectorAll('a,.btn,button,.service-card,.price-card,.scenario-card,.case-card,.testimonial-card').forEach(el=>{
     el.addEventListener('mouseenter',()=>cursorRing.classList.add('hover'));
     el.addEventListener('mouseleave',()=>cursorRing.classList.remove('hover'));
