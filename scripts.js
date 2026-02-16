@@ -1,35 +1,6 @@
 /* ═══════════════════════════════════════════════════════
-   LAVA — Shared Scripts
+   LAVA — Single-Page Scripts
    ═══════════════════════════════════════════════════════ */
-
-// ── Page Transition ──
-(function(){
-  const overlay=document.querySelector('.page-transition');
-  if(!overlay)return;
-  // On page load, wipe exit
-  overlay.classList.add('wipe-exit');
-  overlay.addEventListener('animationend',function handler(){
-    overlay.classList.remove('wipe-exit');
-    overlay.removeEventListener('animationend',handler);
-  });
-  // Intercept internal links
-  document.addEventListener('click',function(e){
-    const a=e.target.closest('a');
-    if(!a)return;
-    const href=a.getAttribute('href');
-    if(!href)return;
-    // Skip external, anchors-only, mailto, tel
-    if(href.startsWith('http')||href.startsWith('mailto:')||href.startsWith('tel:')||href==='#')return;
-    // If it's a hash link on the same page
-    if(href.startsWith('#'))return;
-    // If it has a hash but different page
-    const isInternal=href.endsWith('.html')||href.includes('.html#')||href==='index.html';
-    if(!isInternal)return;
-    e.preventDefault();
-    overlay.classList.add('wipe-enter');
-    setTimeout(()=>{window.location.href=href},420);
-  });
-})();
 
 // ── Lava Canvas Embers ──
 const lavaCanvas=document.getElementById('lavaCanvas');
@@ -117,7 +88,41 @@ function closeMenu(){
   if(hamburger)hamburger.classList.remove('active');
   if(mobileMenu)mobileMenu.classList.remove('open');
 }
-window.closeMenu=closeMenu;
+
+// ── Smooth Scroll Nav + Close Mobile Menu ──
+document.querySelectorAll('nav a[href^="#"], .mobile-menu a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const href=this.getAttribute('href');
+    if(href&&href.startsWith('#')){
+      e.preventDefault();
+      const target=document.querySelector(href);
+      if(target){
+        const offset=72; // nav height
+        const top=target.getBoundingClientRect().top+window.scrollY-offset;
+        window.scrollTo({top,behavior:'smooth'});
+      }
+      closeMenu();
+    }
+  });
+});
+
+// ── Active Section Highlighting ──
+(function(){
+  const sections=document.querySelectorAll('section[id]');
+  const navLinks=document.querySelectorAll('.nav-links a[data-section]');
+  if(!sections.length||!navLinks.length)return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const id=e.target.id;
+        navLinks.forEach(l=>{
+          l.classList.toggle('active',l.dataset.section===id);
+        });
+      }
+    });
+  },{threshold:.15,rootMargin:'-72px 0px -50% 0px'});
+  sections.forEach(s=>obs.observe(s));
+})();
 
 // ── Reveal Observer ──
 const revealObs=new IntersectionObserver(entries=>{
@@ -426,7 +431,7 @@ document.querySelectorAll('.service-card[data-expandable]').forEach(card=>{
   });
 })();
 
-// ── Lava Notification Toasts (home page only) ──
+// ── Lava Notification Toasts ──
 (function(){
   const container=document.getElementById('lavaNotifications');
   if(!container)return;
@@ -447,7 +452,6 @@ document.querySelectorAll('.service-card[data-expandable]').forEach(card=>{
       requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('show')));
       setTimeout(()=>{el.classList.remove('show');el.classList.add('hide');setTimeout(()=>el.remove(),500)},4000);
       topOffset+=80;
-      // Reset offset after each notification leaves
       setTimeout(()=>{topOffset-=80},4500);
     },n.delay);
   });

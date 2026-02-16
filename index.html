@@ -11,7 +11,6 @@
 </head>
 <body>
 
-<div class="page-transition"></div>
 <canvas class="lava-canvas" id="lavaCanvas"></canvas>
 <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
 <div class="grain"></div>
@@ -22,26 +21,27 @@
 <!-- NOTIFICATION TOASTS -->
 <div id="lavaNotifications"></div>
 
+<!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <a href="#hero" class="nav-logo"><span>LAVA</span></a>
     <div class="nav-links">
-      <a href="index.html#reality" class="active">About</a>
-      <a href="services.html">Services</a>
-      <a href="intelligence.html">Intelligence</a>
-      <a href="cases.html">Case Studies</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact.html" class="nav-cta">Deploy Our Team</a>
+      <a href="#reality" data-section="reality">About</a>
+      <a href="#services" data-section="services">Services</a>
+      <a href="#intelligence" data-section="intelligence">Intelligence</a>
+      <a href="#cases" data-section="cases">Case Studies</a>
+      <a href="#pricing" data-section="pricing">Pricing</a>
+      <a href="#contact" class="nav-cta" data-section="contact">Deploy Our Team</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#reality" onclick="closeMenu()">About</a>
-    <a href="services.html" onclick="closeMenu()">Services</a>
-    <a href="intelligence.html" onclick="closeMenu()">Intelligence</a>
-    <a href="cases.html" onclick="closeMenu()">Case Studies</a>
-    <a href="pricing.html" onclick="closeMenu()">Pricing</a>
-    <a href="contact.html" onclick="closeMenu()">Deploy Our Team</a>
+    <a href="#reality">About</a>
+    <a href="#services">Services</a>
+    <a href="#intelligence">Intelligence</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Deploy Our Team</a>
   </div>
 </nav>
 
@@ -58,8 +58,8 @@
     <h2 class="tagline">Your restaurant lost money last night.<br><span class="thin">We know exactly where.</span></h2>
     <p class="subhead word-reveal" id="heroSubhead">20+ seasoned restaurant executives and AI engineers who embed with your operation and don't leave until it's fixed. We've opened concepts, rescued failing restaurants, and built the AI systems that run our own locations every single day.</p>
     <div class="hero-ctas">
-      <a href="intelligence.html" class="btn btn-primary">See the AI Live →</a>
-      <a href="contact.html" class="btn btn-outline">Deploy Our Team →</a>
+      <a href="#intelligence" class="btn btn-primary">See the AI Live →</a>
+      <a href="#contact" class="btn btn-outline">Deploy Our Team →</a>
     </div>
     <div class="hero-proof">
       <div class="hero-proof-item"><span class="num">4</span> Live Locations</div>
@@ -144,24 +144,516 @@
   </div>
 </section>
 
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What 20+ Operators Can Do for <span class="gradient-text">Your Restaurant</span></h2>
+      <p>Click any card to see more details.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" data-expandable>
+        <div class="icon">🤖</div><h3>AI Daily Intelligence</h3>
+        <p>Every morning at 5am, your inbox gets a full breakdown of last night. Sales, labor, reviews, voids, manager logs — with charts and action items.</p>
+        <p class="real-talk">Imagine knowing your bartender comped 14 drinks before you even wake up.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Our AI pulls from Toast, 7shifts, R365, OpenTable, and Google Reviews simultaneously. It cross-references data points humans miss — like correlating high void counts with specific server shifts, or spotting labor creep before it hits payroll. Each report is customized to your concept and KPIs. No generic dashboards. Real intelligence, delivered before your first coffee.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1" data-expandable>
+        <div class="icon">🍽️</div><h3>Menu Engineering</h3>
+        <p>Item-level profitability, food cost analysis, recipe costing, and new dishes from a Culinary Director who's developed menus for 4+ concepts.</p>
+        <p class="real-talk">That appetizer you love? It's losing you $3 every time someone orders it.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We analyze every item on your menu by contribution margin, popularity, and strategic value. Our Culinary Director develops new dishes that hit your food cost targets while elevating the guest experience. We build full recipe cards with portioning, plate costs, and suggested pricing — then train your kitchen to execute consistently.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2" data-expandable>
+        <div class="icon">🍸</div><h3>Bar Program Overhaul</h3>
+        <p>Pour costs, cocktail development, inventory systems, bartender training, vendor renegotiation. Built by operators, not mixology students.</p>
+        <p class="real-talk">We've turned bar programs from 28% pour cost to 19%. That's real money.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Full beverage audit: every bottle, every pour, every waste point. We redesign cocktail menus for profitability without sacrificing creativity. Implement inventory systems that catch shrinkage. Renegotiate vendor contracts. Train bartenders on proper portioning and upselling. Then our AI monitors pour cost daily so it never creeps back.</p></div>
+      </div>
+      <div class="service-card reveal" data-expandable>
+        <div class="icon">📚</div><h3>Training From Scratch</h3>
+        <p>Complete FOH/BOH training programs, service standards, monthly testing, upsell coaching from a Director who's trained 500+ staff.</p>
+        <p class="real-talk">Your servers shouldn't be guessing. They should be selling.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We build complete training manuals, onboarding flows, certification tests, and ongoing education programs. Our Training Director has built programs for fine dining, high-volume, and everything in between. Includes menu knowledge testing, wine/cocktail education, upsell scripting, and monthly refresher modules.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1" data-expandable>
+        <div class="icon">💰</div><h3>Back-Office & Accounting</h3>
+        <p>R365 implementation, payroll, tip reconciliation, cash controls, invoice management, HR compliance. The boring stuff that bankrupts restaurants.</p>
+        <p class="real-talk">If you don't know your exact labor cost by location by daypart, we need to talk.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We set up R365 from scratch or fix your existing implementation. Build proper GL structures, automate invoice processing, implement cash handling procedures, and create financial reporting that actually tells you what's happening. Most restaurants we audit have at least 3 critical accounting gaps. We find them all.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2" data-expandable>
+        <div class="icon">📦</div><h3>Purchasing & Inventory</h3>
+        <p>Vendor negotiations, purchasing guides, item mapping, waste tracking, COGS optimization. Every dollar overpaid is off your bottom line.</p>
+        <p class="real-talk">We've saved single locations tens of thousands annually — often hundreds — just by fixing purchasing.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Complete vendor audit and renegotiation. We build purchasing guides with par levels, approved substitutions, and price ceilings. Implement inventory counting systems and waste logs. Map every item to your POS for real-time COGS tracking. The savings usually pay for our entire engagement within the first month.</p></div>
+      </div>
+      <div class="service-card reveal" data-expandable>
+        <div class="icon">📈</div><h3>Sales & Events Strategy</h3>
+        <p>Large party playbooks, event frameworks, marketing restructure, content strategy. Fill seats Monday through Thursday.</p>
+        <p class="real-talk">Your private dining room shouldn't sit empty 4 nights a week.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We build complete event sales programs: pricing packages, BEO templates, outreach systems, and follow-up automation. Create content calendars and marketing strategies that drive traffic on slow nights. Develop partnerships and corporate accounts. Track ROI on every marketing dollar so you know exactly what works.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1" data-expandable>
+        <div class="icon">🏗️</div><h3>Operational Restructuring</h3>
+        <p>Org charts, accountability systems, KPI dashboards, manager scorecards, multi-unit oversight. The skeleton that lets you scale.</p>
+        <p class="real-talk">You can't run 5 locations the same way you ran 1.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We redesign your organizational structure for where you're going, not where you are. Clear reporting lines, defined KPIs for every role, weekly/monthly review cadences, and the systems to track it all. This is the infrastructure that lets you step out of the kitchen and into the boardroom.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2" data-expandable>
+        <div class="icon">🎯</div><h3>Accountability & Compliance</h3>
+        <p>Automated tracking of manager responses, action items, health compliance, daily checklists. AI that never forgets.</p>
+        <p class="real-talk">When your GM says 'I didn't see the email' — we know exactly when they opened it.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Our accountability system tracks every manager log submission, email open, action item completion, and compliance check. Daily scorecards show you who's performing and who's coasting. Health department readiness checklists run automatically. Nothing falls through the cracks because AI doesn't forget, doesn't get tired, and doesn't make excuses.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section class="scenarios-section" id="scenarios">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Sound <span class="gradient-text">Familiar?</span></h2>
+      <p>Your problem. Our playbook.</p>
+    </div>
+    <div class="scenario-grid">
+      <div class="scenario-card reveal"><p class="problem">🔴 "Food cost jumped 3 points and you don't know why"</p><p class="solution">Our Culinary Director is on-site this week. Recipes audited, vendors renegotiated, kitchen retrained. AI monitors it daily going forward.</p></div>
+      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟡 "Opening a new location in 90 days and panicking"</p><p class="solution">We've opened multiple concepts. Org chart, SOPs, R365, training, AI — all live before you open the doors.</p></div>
+      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "Managers aren't accountable and you're tired of babysitting"</p><p class="solution">We build the framework, set expectations, and our AI tracks compliance daily. You see who's performing.</p></div>
+      <div class="scenario-card reveal"><p class="problem">🟢 "Want to scale from 3 to 10 but everything breaks at 4"</p><p class="solution">Because you're running a multi-unit group with single-unit systems. We rebuild the infrastructure for scale.</p></div>
+      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟣 "Bar program is bleeding money"</p><p class="solution">Beverage Director audits top to bottom. New cocktails, better vendors, tighter pours, trained staff. AI tracks it forever.</p></div>
+      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "Have 4 locations and can't see what's happening"</p><p class="solution">Portfolio-level intelligence. One dashboard across all your restaurants. See everything. Miss nothing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELLIGENCE -->
+<section class="dashboard-section" id="intelligence">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Your 5am <span class="gradient-text">Command Center</span></h2>
+      <p>This isn't a mockup. This is what your team gets every single day.</p>
+    </div>
+    <div class="dashboard-wrapper reveal wipe-in">
+      <div class="dashboard-device" id="dashboardDevice">
+        <div class="dashboard-topbar">
+          <span></span><span></span><span></span>
+          <span class="tab-label">Lava Intelligence Platform</span>
+        </div>
+        <div class="dashboard-header">
+          <h3>🌋 Daily Intelligence — Sample Location</h3>
+          <div class="date">Saturday, February 15, 2026 — Generated 5:00 AM</div>
+        </div>
+        <div class="dashboard-tabs">
+          <div class="dashboard-tab active" data-tab="overview">Overview</div>
+          <div class="dashboard-tab" data-tab="labor">Labor</div>
+          <div class="dashboard-tab" data-tab="reviews">Reviews</div>
+          <div class="dashboard-tab" data-tab="alerts">Alerts</div>
+        </div>
+        <div class="dashboard-body" id="dashboardBody">
+          <!-- Overview Tab -->
+          <div class="dashboard-tab-content active" id="tab-overview">
+            <div class="kpi-row">
+              <div class="kpi-card"><div class="label">Net Sales</div><div class="value" id="kpi-sales">$0</div><div class="change up">↑ 12.4% vs last Sat</div></div>
+              <div class="kpi-card"><div class="label">Guests</div><div class="value" id="kpi-guests">0</div><div class="change up">↑ 8.2%</div></div>
+              <div class="kpi-card"><div class="label">Labor</div><div class="value" id="kpi-labor">0%</div><div class="change down">↓ 1.3pp</div></div>
+              <div class="kpi-card"><div class="label">Avg Check</div><div class="value" id="kpi-check">$0</div><div class="change up">↑ $3.80</div></div>
+            </div>
+            <div class="chart-section" id="chartSection">
+              <div class="chart-title">Sales by Daypart</div>
+              <div class="chart-bar-row"><span class="bar-label">Lunch</span><div class="bar-track"><div class="bar-fill" style="--target-width:28%">$8,120</div></div></div>
+              <div class="chart-bar-row"><span class="bar-label">Happy Hr</span><div class="bar-track"><div class="bar-fill" style="--target-width:20%">$5,890</div></div></div>
+              <div class="chart-bar-row"><span class="bar-label">Dinner</span><div class="bar-track"><div class="bar-fill" style="--target-width:72%">$21,340</div></div></div>
+              <div class="chart-bar-row"><span class="bar-label">Late</span><div class="bar-track"><div class="bar-fill" style="--target-width:14%">$3,860</div></div></div>
+            </div>
+            <div class="dashboard-alerts">
+              <div class="alert-item"><span class="alert-dot green"></span>All 5 manager logs submitted on time</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span>3 voids on Station 2 — training follow-up needed</div>
+              <div class="alert-item"><span class="alert-dot red"></span>2 BOH staff approaching 40hrs — schedule adjustment recommended</div>
+            </div>
+          </div>
+          <!-- Labor Tab -->
+          <div class="dashboard-tab-content" id="tab-labor">
+            <div class="kpi-row">
+              <div class="kpi-card"><div class="label">Total Hours</div><div class="value">847</div><div class="change down">↓ 3.2% vs budget</div></div>
+              <div class="kpi-card"><div class="label">Labor Cost</div><div class="value">$14,209</div><div class="change up">↑ On target</div></div>
+              <div class="kpi-card"><div class="label">Labor %</div><div class="value">26.8%</div><div class="change down">↓ 1.3pp</div></div>
+              <div class="kpi-card"><div class="label">OT Hours</div><div class="value">12.5</div><div class="change up" style="color:#f59e0b">⚠ Watch</div></div>
+            </div>
+            <div class="dashboard-alerts">
+              <div class="alert-item"><span class="alert-dot red"></span>Marcus T. — 38.5 hours. Will hit OT if scheduled Friday PM.</div>
+              <div class="alert-item"><span class="alert-dot red"></span>Sarah K. — 39.2 hours. Remove from Saturday schedule.</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span>BOH overtime trending 12% above weekly target</div>
+              <div class="alert-item"><span class="alert-dot green"></span>FOH labor 2.1% under budget — strong scheduling week</div>
+            </div>
+          </div>
+          <!-- Reviews Tab -->
+          <div class="dashboard-tab-content" id="tab-reviews">
+            <div class="kpi-row">
+              <div class="kpi-card"><div class="label">New Reviews</div><div class="value">8</div><div class="change up">↑ vs 5 avg</div></div>
+              <div class="kpi-card"><div class="label">Avg Rating</div><div class="value">4.3★</div><div class="change up">↑ 0.2</div></div>
+              <div class="kpi-card"><div class="label">Response Rate</div><div class="value">100%</div><div class="change up">✓</div></div>
+              <div class="kpi-card"><div class="label">Flagged</div><div class="value">2</div><div class="change up" style="color:#ef4444">Action needed</div></div>
+            </div>
+            <div class="dashboard-alerts">
+              <div class="alert-item"><span class="alert-dot red"></span>1-star Google: "Waited 45 min for entrees" — Friday 8:30 PM seating</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span>2-star Yelp: "Server was rude and inattentive" — investigate Server #14</div>
+              <div class="alert-item"><span class="alert-dot green"></span>5-star OpenTable: "Best meal in Scottsdale. The tasting menu was incredible."</div>
+              <div class="alert-item"><span class="alert-dot green"></span>5-star Google: "Perfect date night spot. Ambiance and cocktails on point."</div>
+            </div>
+          </div>
+          <!-- Alerts Tab -->
+          <div class="dashboard-tab-content" id="tab-alerts">
+            <div class="dashboard-alerts">
+              <div class="alert-item"><span class="alert-dot red"></span><strong>CRITICAL:</strong> BOH overtime trending 12% above target — immediate schedule review needed</div>
+              <div class="alert-item"><span class="alert-dot red"></span><strong>CRITICAL:</strong> 2 negative reviews require manager response within 24 hours</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span><strong>WARNING:</strong> 3 voids on Station 2 during dinner service — possible training gap</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span><strong>WARNING:</strong> Liquor inventory variance of 4.2% on premium spirits — audit recommended</div>
+              <div class="alert-item"><span class="alert-dot green"></span><strong>RESOLVED:</strong> Food cost normalized to 28.4% after vendor renegotiation (was 31.7%)</div>
+              <div class="alert-item"><span class="alert-dot green"></span><strong>POSITIVE:</strong> Server upsell rate up 18% since training program rollout</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="dashboard-caption reveal">Your 5am command center.<span>Charts, alerts, accountability — no login required. Just open your inbox.</span></p>
+  </div>
+</section>
+
+<!-- LIVE TERMINAL -->
+<section class="terminal-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Watch It <span class="gradient-text">Work</span></h2>
+      <p>Real-time data pipeline. Every morning before you wake up.</p>
+    </div>
+    <div class="terminal reveal" id="terminal">
+      <div class="terminal-header">
+        <span></span><span></span><span></span>
+        <span class="title">Lava Real-Time Alerts</span>
+      </div>
+      <div class="terminal-body" id="terminalBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="calculator-section" id="calculator">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's Your Operation <span class="gradient-text">Leaking?</span></h2>
+      <p>Drag the slider. See what Lava could save you.</p>
+    </div>
+    <div class="calc-card reveal">
+      <h3>ROI Calculator</h3>
+      <p class="calc-sub">Based on industry averages for restaurants our size</p>
+      <div class="calc-input-group">
+        <label>Monthly Revenue Per Location</label>
+        <input type="range" id="revenueSlider" min="100000" max="1000000" step="10000" value="400000">
+        <div class="calc-value" id="revenueDisplay">$400,000</div>
+      </div>
+      <div class="calc-input-group">
+        <label>Number of Locations</label>
+        <input type="range" id="locationSlider" min="1" max="20" step="1" value="3">
+        <div class="calc-value" id="locationDisplay">3</div>
+      </div>
+      <div class="calc-results">
+        <div class="calc-result"><div class="result-label">Annual Savings</div><div class="result-value savings" id="savingsDisplay">$0</div></div>
+        <div class="calc-result"><div class="result-label">Revenue Uplift</div><div class="result-value revenue" id="revenueUplift">$0</div></div>
+        <div class="calc-result"><div class="result-label">Estimated ROI</div><div class="result-value roi" id="roiDisplay">0x</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS INDICATOR -->
+<section style="padding:0 0 80px">
+  <div class="container">
+    <div class="funnel-progress reveal">
+      <div class="progress-label">What you're seeing</div>
+      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:20%"></div></div>
+      <p>You're viewing <strong style="color:#fff">20%</strong> of what Lava sees every morning. The full intelligence briefing includes vendor analysis, server performance rankings, predictive scheduling, and 40+ custom KPIs.</p>
+      <a href="#contact" class="btn btn-primary" style="margin-top:16px">Want the Full Picture? →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="cases-section" id="cases">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Built Inside <span class="gradient-text">Real Restaurants</span></h2>
+      <p>These are our restaurants. Every system we sell, we run ourselves first.</p>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80')"></div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content">
+        <h3>Cala Scottsdale</h3>
+        <p class="concept">Fine dining inside a luxury Scottsdale hotel. Complex banquet operations, premium wine program, and 200+ cover nights.</p>
+        <ul>
+          <li>AI daily recaps with full sales/labor/review analysis</li>
+          <li>Automated manager accountability tracking</li>
+          <li>Banquet revenue optimization and event forecasting</li>
+          <li>Custom menu engineering across seasonal rotations</li>
+        </ul>
+        <div style="margin:16px 0"><span class="result-badge">Report time: 2hrs → 0</span><span class="result-badge">5am daily briefings</span><span class="result-badge">100% log compliance</span></div>
+        <p class="impact">"From inconsistent reporting to a fully automated operations command center."</p>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1400&q=80')"></div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content">
+        <h3>The Americano</h3>
+        <p class="concept">High-energy Italian-American dining in North Scottsdale. Late-night service, dynamic bar program, and event-driven revenue.</p>
+        <ul>
+          <li>Real-time labor monitoring with overtime prevention alerts</li>
+          <li>Bar program restructuring with pour cost optimization</li>
+          <li>Event sales strategy and large party management</li>
+          <li>Discount and void pattern detection with automated flagging</li>
+        </ul>
+        <div style="margin:16px 0"><span class="result-badge">OT caught before payroll</span><span class="result-badge">Void patterns flagged daily</span><span class="result-badge">Pour cost optimized</span></div>
+        <p class="impact">"A restaurant that was flying blind on labor costs now catches overtime before it happens."</p>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1400&q=80')"></div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content">
+        <h3>Tell Your Friends</h3>
+        <p class="concept">Scottsdale's worst-kept-secret cocktail bar. DJ nights, creative cocktails, and a cult following built through word of mouth.</p>
+        <ul>
+          <li>Beverage-focused analytics and cocktail profitability tracking</li>
+          <li>Late-night labor optimization</li>
+          <li>Social media-driven event ROI tracking</li>
+          <li>Streamlined BOH operations for a bar-forward concept</li>
+        </ul>
+        <div style="margin:16px 0"><span class="result-badge">Cocktail profitability tracked</span><span class="result-badge">Event ROI measured</span></div>
+        <p class="impact">"Proof that even a buzzy cocktail bar needs operational backbone."</p>
+      </div>
+    </div>
+
+    <div class="case-card reveal">
+      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1400&q=80')"></div>
+      <div class="case-card-overlay"></div>
+      <div class="case-card-content">
+        <h3>Neon Spur</h3>
+        <p class="concept">A dive bar and live music venue on Tempe's Mill Avenue. High-volume drinks, entertainment, and a young demographic.</p>
+        <ul>
+          <li>High-volume bar operations monitoring</li>
+          <li>Entertainment cost vs. revenue analysis</li>
+          <li>Simplified reporting for lean management</li>
+          <li>Staffing optimization for peak music nights</li>
+        </ul>
+        <div style="margin:16px 0"><span class="result-badge">Entertainment ROI tracked</span><span class="result-badge">Peak night staffing optimized</span></div>
+        <p class="impact">"Different concept, different demo, same AI. From fine dining to dive bars — it works everywhere."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Simple <span class="gradient-text">Pricing</span></h2>
+      <p>Month-to-month. No contracts. We earn it every day.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <h3>Recon</h3>
+        <div class="price">$1,500<span>/mo per location</span></div>
+        <p class="price-desc">See what you've been missing.</p>
+        <ul><li>AI daily intelligence recaps</li><li>Labor alerts & monitoring</li><li>Review monitoring & analysis</li><li>Weekly summary reports</li></ul>
+        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.15)">Get Started</a>
+      </div>
+      <div class="price-card popular reveal reveal-delay-1">
+        <div class="popular-badge">Most Popular</div>
+        <h3>Strike Team</h3>
+        <div class="price">$3,000<span>/mo per location</span></div>
+        <p class="price-desc">For operators who are serious.</p>
+        <ul><li>Everything in Recon</li><li>Accountability systems</li><li>Manager scorecards</li><li>Training consultation</li><li>Menu review & engineering</li></ul>
+        <a href="#contact" class="btn btn-primary">Deploy Now</a>
+      </div>
+      <div class="price-card reveal reveal-delay-2">
+        <h3>Full Deployment</h3>
+        <div class="price">$5,000+<span>/mo per location</span></div>
+        <p class="price-desc">Your entire operation, handled.</p>
+        <ul><li>Everything in Strike Team</li><li>Dedicated executive team</li><li>Full operational restructuring</li><li>Purchasing optimization</li><li>Accounting & R365 setup</li><li>Custom AI solutions</li></ul>
+        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.15)">Let's Talk</a>
+      </div>
+    </div>
+    <div class="pricing-notes reveal">
+      <div class="urgency-badge">🔥 Only 3 of 5 pilot spots remaining</div>
+      <p class="fire">First 5 clients: 50% off for 3 months.</p>
+      <p>No contracts. Month-to-month. Cancel anytime. We're building our roster and we want operators who are hungry.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>From the <span class="gradient-text">Trenches</span></h2>
+      <p>What operators say after deploying Lava.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="msg-bubble">"I used to spend 2 hours every morning pulling reports. Now I wake up to a complete briefing at 5am. It's like having an ops partner that never sleeps."</div>
+        <div class="msg-sender"><div class="avatar">JB</div><div class="sender-info"><div class="name">GM, Fine Dining</div><div class="role">Scottsdale, AZ — 800+ covers/night</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="msg-bubble">"The accountability system changed everything. My managers went from 60% log compliance to 98% in two weeks. They knew someone was watching."</div>
+        <div class="msg-sender"><div class="avatar">KW</div><div class="sender-info"><div class="name">GM, Italian-American</div><div class="role">North Scottsdale — Multi-concept</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="msg-bubble">"We caught tens of thousands in purchasing waste in the first month. Lava paid for itself before the second invoice."</div>
+        <div class="msg-sender"><div class="avatar">FB</div><div class="sender-info"><div class="name">Director of Operations</div><div class="role">4-location restaurant group</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER -->
+<section class="ba-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Difference</span></h2>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card before reveal">
+        <h3>Before Lava</h3>
+        <ul>
+          <li>Manual reports at midnight</li>
+          <li>7 systems that don't talk</li>
+          <li>Managers who "didn't see the email"</li>
+          <li>Gut feelings instead of data</li>
+          <li>Surprises on every P&L</li>
+          <li>Overtime you don't catch until payroll</li>
+        </ul>
+      </div>
+      <div class="ba-arrow reveal">→</div>
+      <div class="ba-card after reveal">
+        <h3>After Lava</h3>
+        <ul>
+          <li>5am intelligence briefing in your inbox</li>
+          <li>One unified command center</li>
+          <li>Automated accountability — AI tracks opens</li>
+          <li>Decisions backed by real-time data</li>
+          <li>P&L you can predict to the dollar</li>
+          <li>Overtime alerts before shifts are scheduled</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="container">
+    <div class="philosophy-quote reveal">
+      <blockquote>Restaurants don't fail because of bad food. They fail because nobody's watching the numbers, nobody's training the team, and nobody built a system that works when the owner isn't standing in the kitchen.</blockquote>
+      <cite>— The Lava Philosophy</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Let's <span class="gradient-text">Talk</span></h2>
+      <p>One conversation. No pitch deck. Just real talk about your operation.</p>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-info-row reveal">
+        <div class="contact-info-item">
+          <span class="info-icon">📞</span>
+          <a href="tel:6026334571">(602) 633-4571</a>
+        </div>
+        <div class="contact-info-item">
+          <span class="info-icon">✉️</span>
+          <a href="mailto:info@ai-lava.com">info@ai-lava.com</a>
+        </div>
+      </div>
+      <form class="contact-form reveal" action="https://formsubmit.co/info@ai-lava.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Lead from ai-lava.com">
+        <input type="hidden" name="_next" value="https://ai-lava.com">
+        <input type="text" name="_honey" style="display:none">
+        <input type="text" name="Name" placeholder="Your name" required>
+        <input type="email" name="Email" placeholder="Your email" required>
+        <select name="Locations">
+          <option value="" disabled selected>Number of locations</option>
+          <option>1</option>
+          <option>2-5</option>
+          <option>6-10</option>
+          <option>10+</option>
+        </select>
+        <textarea name="Challenge" placeholder="What's your biggest challenge right now?"></textarea>
+        <button type="submit" class="btn btn-primary">Let's Talk 🚀</button>
+      </form>
+      <div class="next-steps reveal">
+        <h3 style="font-size:1.4rem;font-weight:900;color:#fff;margin-bottom:8px;text-align:center">What Happens Next?</h3>
+        <div class="next-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>We talk for 30 minutes</h4>
+            <p>No pitch deck. We ask about your operation, your pain points, and what keeps you up at night.</p>
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>We audit your operation (free)</h4>
+            <p>Our team reviews your systems, data, and processes. We tell you exactly where money is leaking — no strings attached.</p>
+          </div>
+        </div>
+        <div class="next-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>You decide</h4>
+            <p>If it makes sense, we deploy. Month-to-month. No contracts. If it doesn't, you walk away with a free audit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container">
     <h2 class="reveal">Stop Surviving.<br><span class="gradient-text">Start Dominating.</span></h2>
     <p class="reveal">Your competitors are guessing. Your staff is winging it. Your money is leaking. We fix all of it — with 20+ operators who've been exactly where you are.</p>
-    <a href="intelligence.html" class="btn btn-primary reveal" style="margin-right:12px">See the AI Live →</a>
-    <a href="contact.html" class="btn btn-outline reveal">Deploy Our Team 🚀</a>
+    <a href="#intelligence" class="btn btn-primary reveal" style="margin-right:12px">See the AI Live →</a>
+    <a href="#contact" class="btn btn-outline reveal">Deploy Our Team 🚀</a>
   </div>
 </section>
 
 <!-- FLOATING CTA -->
-<a href="contact.html" class="floating-cta-btn">Deploy Our Team 🚀</a>
+<a href="#contact" class="floating-cta-btn">Deploy Our Team 🚀</a>
 
 <!-- MOBILE STICKY BAR -->
 <div class="mobile-sticky-bar">
   <a href="tel:6026334571"><span class="sticky-icon">📞</span>Call</a>
   <a href="mailto:info@ai-lava.com"><span class="sticky-icon">✉️</span>Email</a>
-  <a href="contact.html" class="sticky-cta">Deploy Our Team 🚀</a>
+  <a href="#contact" class="sticky-cta">Deploy Our Team 🚀</a>
 </div>
 
 <!-- FOOTER -->
@@ -172,12 +664,12 @@
     <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
     <p>© 2026 Lava. All rights reserved.</p>
     <div class="footer-links">
-      <a href="index.html#reality">About</a>
-      <a href="services.html">Services</a>
-      <a href="intelligence.html">Intelligence</a>
-      <a href="cases.html">Case Studies</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="contact.html">Contact</a>
+      <a href="#reality">About</a>
+      <a href="#services">Services</a>
+      <a href="#intelligence">Intelligence</a>
+      <a href="#cases">Case Studies</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </footer>

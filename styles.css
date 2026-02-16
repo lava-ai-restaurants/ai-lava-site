@@ -136,17 +136,9 @@ nav.scrolled{background:rgba(10,10,26,.95);box-shadow:0 2px 30px rgba(0,0,0,.5)}
 /* ── Mouse Glow ── */
 .mouse-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(220,38,38,.06),transparent 70%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:left .3s ease,top .3s ease}
 
-/* ── Page Transition Overlay ── */
-.page-transition{position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));transform:translateX(-100%);pointer-events:none}
-.page-transition.wipe-enter{animation:wipeEnter .45s cubic-bezier(.77,0,.175,1) forwards}
-.page-transition.wipe-exit{animation:wipeExit .45s cubic-bezier(.77,0,.175,1) forwards}
-@keyframes wipeEnter{from{transform:translateX(-100%)}to{transform:translateX(0%)}}
-@keyframes wipeExit{from{transform:translateX(0%)}to{transform:translateX(100%)}}
+/* (page transitions removed — single page) */
 
-/* ── Page Intro ── */
-.page-intro{padding:160px 0 80px;text-align:center;position:relative}
-.page-intro h1{font-size:clamp(3rem,8vw,6rem);font-weight:900;letter-spacing:4px;line-height:.9;margin-bottom:20px;background:linear-gradient(135deg,var(--lava-1),var(--lava-2),var(--lava-3));background-size:200% 200%;animation:gradientShift 4s ease infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.page-intro p{font-size:1.15rem;color:var(--text-light);max-width:600px;margin:0 auto;line-height:1.8}
+/* (page-intro removed — single page) */
 
 /* ── Hero ── */
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
