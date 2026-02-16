@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies — LAVA</title>
+<meta name="description" content="Built inside real restaurants. Battle-tested every night. 4 live locations running Lava AI.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition"></div>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="services.html">Services</a>
+      <a href="intelligence.html">Intelligence</a>
+      <a href="cases.html" class="active">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality" onclick="closeMenu()">About</a>
+    <a href="services.html" onclick="closeMenu()">Services</a>
+    <a href="intelligence.html" onclick="closeMenu()">Intelligence</a>
+    <a href="cases.html" onclick="closeMenu()">Case Studies</a>
+    <a href="pricing.html" onclick="closeMenu()">Pricing</a>
+    <a href="contact.html" onclick="closeMenu()">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="page-intro">
+  <div class="container">
+    <h1 class="reveal">Case Studies</h1>
+    <p class="reveal">These are our restaurants. Every system we sell, we run ourselves first.</p>
+  </div>
+</section>
+
+<!-- IMMERSIVE CASE STUDIES -->
+<section class="cases-section" id="cases">
+  <div class="case-card case-fullscreen reveal">
+    <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80')"></div>
+    <div class="case-card-overlay"></div>
+    <div class="case-card-content">
+      <h3>Cala Scottsdale</h3>
+      <p class="concept">Fine dining inside a luxury Scottsdale hotel. Complex banquet operations, premium wine program, and 200+ cover nights.</p>
+      <ul>
+        <li>AI daily recaps with full sales/labor/review analysis</li>
+        <li>Automated manager accountability tracking</li>
+        <li>Banquet revenue optimization and event forecasting</li>
+        <li>Custom menu engineering across seasonal rotations</li>
+      </ul>
+      <p class="impact">"From inconsistent reporting to a fully automated operations command center."</p>
+    </div>
+  </div>
+
+  <div class="case-card case-fullscreen reveal">
+    <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1400&q=80')"></div>
+    <div class="case-card-overlay"></div>
+    <div class="case-card-content">
+      <h3>The Americano</h3>
+      <p class="concept">High-energy Italian-American dining in North Scottsdale. Late-night service, dynamic bar program, and event-driven revenue.</p>
+      <ul>
+        <li>Real-time labor monitoring with overtime prevention alerts</li>
+        <li>Bar program restructuring with pour cost optimization</li>
+        <li>Event sales strategy and large party management</li>
+        <li>Discount and void pattern detection with automated flagging</li>
+      </ul>
+      <p class="impact">"A restaurant that was flying blind on labor costs now catches overtime before it happens."</p>
+    </div>
+  </div>
+
+  <div class="case-card case-fullscreen reveal">
+    <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1400&q=80')"></div>
+    <div class="case-card-overlay"></div>
+    <div class="case-card-content">
+      <h3>Tell Your Friends</h3>
+      <p class="concept">Scottsdale's worst-kept-secret cocktail bar. DJ nights, creative cocktails, and a cult following built through word of mouth.</p>
+      <ul>
+        <li>Beverage-focused analytics and cocktail profitability tracking</li>
+        <li>Late-night labor optimization</li>
+        <li>Social media-driven event ROI tracking</li>
+        <li>Streamlined BOH operations for a bar-forward concept</li>
+      </ul>
+      <p class="impact">"Proof that even a buzzy cocktail bar needs operational backbone."</p>
+    </div>
+  </div>
+
+  <div class="case-card case-fullscreen reveal">
+    <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1400&q=80')"></div>
+    <div class="case-card-overlay"></div>
+    <div class="case-card-content">
+      <h3>Neon Spur</h3>
+      <p class="concept">A dive bar and live music venue on Tempe's Mill Avenue. High-volume drinks, entertainment, and a young demographic.</p>
+      <ul>
+        <li>High-volume bar operations monitoring</li>
+        <li>Entertainment cost vs. revenue analysis</li>
+        <li>Simplified reporting for lean management</li>
+        <li>Staffing optimization for peak music nights</li>
+      </ul>
+      <p class="impact">"Different concept, different demo, same AI. From fine dining to dive bars — it works everywhere."</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2 class="reveal">Your Restaurant. <span class="gradient-text">Our Playbook.</span></h2>
+    <p class="reveal">From fine dining to dive bars — the AI works everywhere. Let's prove it on yours.</p>
+    <a href="contact.html" class="btn btn-primary reveal">Deploy Our Team 🚀</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="services.html">Services</a>
+      <a href="intelligence.html">Intelligence</a>
+      <a href="cases.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

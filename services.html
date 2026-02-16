@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — LAVA</title>
+<meta name="description" content="Everything below exists because we needed it ourselves. Then we built it. 9 core services for restaurant operators.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition"></div>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="services.html" class="active">Services</a>
+      <a href="intelligence.html">Intelligence</a>
+      <a href="cases.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality" onclick="closeMenu()">About</a>
+    <a href="services.html" onclick="closeMenu()">Services</a>
+    <a href="intelligence.html" onclick="closeMenu()">Intelligence</a>
+    <a href="cases.html" onclick="closeMenu()">Case Studies</a>
+    <a href="pricing.html" onclick="closeMenu()">Pricing</a>
+    <a href="contact.html" onclick="closeMenu()">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="page-intro">
+  <div class="container">
+    <h1 class="reveal">Services</h1>
+    <p class="reveal">Everything below exists because we needed it ourselves. Then we built it.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What 20+ Operators Can Do for <span class="gradient-text">Your Restaurant</span></h2>
+      <p>Click any card to see more details.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" data-expandable>
+        <div class="icon">🤖</div><h3>AI Daily Intelligence</h3>
+        <p>Every morning at 5am, your inbox gets a full breakdown of last night. Sales, labor, reviews, voids, manager logs — with charts and action items.</p>
+        <p class="real-talk">Imagine knowing your bartender comped 14 drinks before you even wake up.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Our AI pulls from Toast, 7shifts, R365, OpenTable, and Google Reviews simultaneously. It cross-references data points humans miss — like correlating high void counts with specific server shifts, or spotting labor creep before it hits payroll. Each report is customized to your concept and KPIs. No generic dashboards. Real intelligence, delivered before your first coffee.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1" data-expandable>
+        <div class="icon">🍽️</div><h3>Menu Engineering</h3>
+        <p>Item-level profitability, food cost analysis, recipe costing, and new dishes from a Culinary Director who's developed menus for 4+ concepts.</p>
+        <p class="real-talk">That appetizer you love? It's losing you $3 every time someone orders it.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We analyze every item on your menu by contribution margin, popularity, and strategic value. Our Culinary Director develops new dishes that hit your food cost targets while elevating the guest experience. We build full recipe cards with portioning, plate costs, and suggested pricing — then train your kitchen to execute consistently.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2" data-expandable>
+        <div class="icon">🍸</div><h3>Bar Program Overhaul</h3>
+        <p>Pour costs, cocktail development, inventory systems, bartender training, vendor renegotiation. Built by operators, not mixology students.</p>
+        <p class="real-talk">We've turned bar programs from 28% pour cost to 19%. That's real money.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Full beverage audit: every bottle, every pour, every waste point. We redesign cocktail menus for profitability without sacrificing creativity. Implement inventory systems that catch shrinkage. Renegotiate vendor contracts. Train bartenders on proper portioning and upselling. Then our AI monitors pour cost daily so it never creeps back.</p></div>
+      </div>
+      <div class="service-card reveal" data-expandable>
+        <div class="icon">📚</div><h3>Training From Scratch</h3>
+        <p>Complete FOH/BOH training programs, service standards, monthly testing, upsell coaching from a Director who's trained 500+ staff.</p>
+        <p class="real-talk">Your servers shouldn't be guessing. They should be selling.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We build complete training manuals, onboarding flows, certification tests, and ongoing education programs. Our Training Director has built programs for fine dining, high-volume, and everything in between. Includes menu knowledge testing, wine/cocktail education, upsell scripting, and monthly refresher modules.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1" data-expandable>
+        <div class="icon">💰</div><h3>Back-Office & Accounting</h3>
+        <p>R365 implementation, payroll, tip reconciliation, cash controls, invoice management, HR compliance. The boring stuff that bankrupts restaurants.</p>
+        <p class="real-talk">If you don't know your exact labor cost by location by daypart, we need to talk.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We set up R365 from scratch or fix your existing implementation. Build proper GL structures, automate invoice processing, implement cash handling procedures, and create financial reporting that actually tells you what's happening. Most restaurants we audit have at least 3 critical accounting gaps. We find them all.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2" data-expandable>
+        <div class="icon">📦</div><h3>Purchasing & Inventory</h3>
+        <p>Vendor negotiations, purchasing guides, item mapping, waste tracking, COGS optimization. Every dollar overpaid is off your bottom line.</p>
+        <p class="real-talk">We've saved single locations tens of thousands annually — often hundreds — just by fixing purchasing.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Complete vendor audit and renegotiation. We build purchasing guides with par levels, approved substitutions, and price ceilings. Implement inventory counting systems and waste logs. Map every item to your POS for real-time COGS tracking. The savings usually pay for our entire engagement within the first month.</p></div>
+      </div>
+      <div class="service-card reveal" data-expandable>
+        <div class="icon">📈</div><h3>Sales & Events Strategy</h3>
+        <p>Large party playbooks, event frameworks, marketing restructure, content strategy. Fill seats Monday through Thursday.</p>
+        <p class="real-talk">Your private dining room shouldn't sit empty 4 nights a week.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We build complete event sales programs: pricing packages, BEO templates, outreach systems, and follow-up automation. Create content calendars and marketing strategies that drive traffic on slow nights. Develop partnerships and corporate accounts. Track ROI on every marketing dollar so you know exactly what works.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-1" data-expandable>
+        <div class="icon">🏗️</div><h3>Operational Restructuring</h3>
+        <p>Org charts, accountability systems, KPI dashboards, manager scorecards, multi-unit oversight. The skeleton that lets you scale.</p>
+        <p class="real-talk">You can't run 5 locations the same way you ran 1.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>We redesign your organizational structure for where you're going, not where you are. Clear reporting lines, defined KPIs for every role, weekly/monthly review cadences, and the systems to track it all. This is the infrastructure that lets you step out of the kitchen and into the boardroom.</p></div>
+      </div>
+      <div class="service-card reveal reveal-delay-2" data-expandable>
+        <div class="icon">🎯</div><h3>Accountability & Compliance</h3>
+        <p>Automated tracking of manager responses, action items, health compliance, daily checklists. AI that never forgets.</p>
+        <p class="real-talk">When your GM says 'I didn't see the email' — we know exactly when they opened it.</p>
+        <div class="expand-hint">Click to expand ↓</div>
+        <div class="service-detail"><p>Our accountability system tracks every manager log submission, email open, action item completion, and compliance check. Daily scorecards show you who's performing and who's coasting. Health department readiness checklists run automatically. Nothing falls through the cracks because AI doesn't forget, doesn't get tired, and doesn't make excuses.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section class="scenarios-section" id="scenarios">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Sound <span class="gradient-text">Familiar?</span></h2>
+      <p>Your problem. Our playbook.</p>
+    </div>
+    <div class="scenario-grid">
+      <div class="scenario-card reveal"><p class="problem">🔴 "Food cost jumped 3 points and you don't know why"</p><p class="solution">Our Culinary Director is on-site this week. Recipes audited, vendors renegotiated, kitchen retrained. AI monitors it daily going forward.</p></div>
+      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟡 "Opening a new location in 90 days and panicking"</p><p class="solution">We've opened multiple concepts. Org chart, SOPs, R365, training, AI — all live before you open the doors.</p></div>
+      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "Managers aren't accountable and you're tired of babysitting"</p><p class="solution">We build the framework, set expectations, and our AI tracks compliance daily. You see who's performing.</p></div>
+      <div class="scenario-card reveal"><p class="problem">🟢 "Want to scale from 3 to 10 but everything breaks at 4"</p><p class="solution">Because you're running a multi-unit group with single-unit systems. We rebuild the infrastructure for scale.</p></div>
+      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟣 "Bar program is bleeding money"</p><p class="solution">Beverage Director audits top to bottom. New cocktails, better vendors, tighter pours, trained staff. AI tracks it forever.</p></div>
+      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "Have 4 locations and can't see what's happening"</p><p class="solution">Portfolio-level intelligence. One dashboard across all your restaurants. See everything. Miss nothing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2 class="reveal">Ready to <span class="gradient-text">Fix It?</span></h2>
+    <p class="reveal">One conversation. No pitch deck. Just real talk about your operation.</p>
+    <a href="contact.html" class="btn btn-primary reveal">Deploy Our Team 🚀</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="services.html">Services</a>
+      <a href="intelligence.html">Intelligence</a>
+      <a href="cases.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

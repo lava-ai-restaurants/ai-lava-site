@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — LAVA</title>
+<meta name="description" content="One conversation. No pitch deck. Just real talk about your operation.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page-transition"></div>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="services.html">Services</a>
+      <a href="intelligence.html">Intelligence</a>
+      <a href="cases.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html" class="nav-cta active">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality" onclick="closeMenu()">About</a>
+    <a href="services.html" onclick="closeMenu()">Services</a>
+    <a href="intelligence.html" onclick="closeMenu()">Intelligence</a>
+    <a href="cases.html" onclick="closeMenu()">Case Studies</a>
+    <a href="pricing.html" onclick="closeMenu()">Pricing</a>
+    <a href="contact.html" onclick="closeMenu()">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="page-intro">
+  <div class="container">
+    <h1 class="reveal">Let's Talk</h1>
+    <p class="reveal">One conversation. No pitch deck. Just real talk about your operation.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-email reveal"><a href="mailto:info@ai-lava.com">info@ai-lava.com</a></div>
+      <form class="contact-form reveal" action="https://formsubmit.co/info@ai-lava.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New Lead from ai-lava.com">
+        <input type="hidden" name="_next" value="https://ai-lava.com">
+        <input type="text" name="_honey" style="display:none">
+        <input type="text" name="Name" placeholder="Your name" required>
+        <input type="email" name="Email" placeholder="Your email" required>
+        <select name="Locations">
+          <option value="" disabled selected>Number of locations</option>
+          <option>1</option>
+          <option>2-5</option>
+          <option>6-10</option>
+          <option>10+</option>
+        </select>
+        <textarea name="Challenge" placeholder="What's your biggest challenge right now?"></textarea>
+        <button type="submit" class="btn btn-primary">Let's Talk 🚀</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="container">
+    <h2 class="reveal">Stop Surviving.<br><span class="gradient-text">Start Dominating.</span></h2>
+    <p class="reveal">Your competitors are guessing. Your staff is winging it. Your money is leaking. We fix all of it — with 20+ operators who've been exactly where you are.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="services.html">Services</a>
+      <a href="intelligence.html">Intelligence</a>
+      <a href="cases.html">Case Studies</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
