@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="F&B Development & Menu Engineering — item-level profitability audits, recipe card rebuilds, and seasonal menu planning by LAVA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>F&B Development & Menu Engineering — LAVA</title>
+</head>
+<body>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services" class="active">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#intelligence">Intelligence</a>
+    <a href="index.html#cases">Case Studies</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="service-hero">
+  <div class="container">
+    <a href="index.html#services" class="back-link">← Back to Services</a>
+    <div class="service-icon">🍽️</div>
+    <h1>F&B Development &<br><span class="gradient-text">Menu Engineering</span></h1>
+    <p class="service-tagline">Your menu is your money printer — or your biggest leak. We rebuild it from the plate up.</p>
+    <p class="service-price-hero">Starting at $2,500/month per location</p>
+  </div>
+</section>
+
+<section class="problem-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Problem</span></h2>
+    </div>
+    <div class="problem-quote reveal">Your chicken piccata costs $6.80 to plate but you're selling it at $18. Your food cost is 37% and climbing. Your menu hasn't been re-engineered in 14 months.</div>
+    <ul class="pain-list reveal">
+      <li>You don't know the actual plate cost of half your menu items</li>
+      <li>Your best-selling dish might be your least profitable one</li>
+      <li>Seasonal ingredients are eating your margins and nobody's adjusting</li>
+      <li>Your kitchen is plating by feel, not by spec — portions drift every week</li>
+    </ul>
+  </div>
+</section>
+
+<section class="solution-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>How We <span class="gradient-text">Fix It</span></h2>
+    </div>
+    <div class="solution-content reveal">
+      <p>We deploy a Culinary Director on-site who runs a full item-level profitability audit on every single thing you sell. Every plate cost, every ingredient, every portion. No guessing. No spreadsheets from 2022.</p>
+      <p>From there, we rebuild your recipe cards from scratch — standardized portioning, documented specs, and pricing that actually makes sense. Your kitchen gets trained on the new standards so nothing drifts.</p>
+      <p>Then we plan forward. Seasonal menu rotations that keep guests excited and keep your food cost locked. Vendor-matched ingredient sourcing that squeezes every penny without sacrificing quality.</p>
+      <div class="differentiator">We're not food stylists or Instagram consultants. We're operators who've developed menus for 4+ concepts and know how to make a dish that guests love AND that makes you money.</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What This <span class="gradient-text">Looks Like</span></h2>
+      <p>Sample scenarios based on typical engagements.</p>
+    </div>
+    <div class="example-cards">
+      <div class="example-card reveal">
+        <div class="example-scenario">Menu Audit</div>
+        <div class="example-finding">We found 6 menu items running above 40% food cost. Three of them were in the top 10 sellers — bleeding money every night they were ordered.</div>
+        <div class="example-result">After re-engineering, average plate cost dropped $1.40 without guests noticing a difference. Food cost normalized within 30 days.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-scenario">Recipe Reformulation</div>
+        <div class="example-finding">A $22 pasta dish was costing $9.10 to make. The sauce had 3 premium ingredients that could be substituted, and the protein portion was 2oz over spec.</div>
+        <div class="example-result">Reformulated the sauce, switched protein portioning, and got it to $6.20. Same guest satisfaction scores on comment cards.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-2">
+        <div class="example-scenario">Seasonal Rotation</div>
+        <div class="example-finding">Menu hadn't changed in 11 months. Regulars were bored, and the kitchen was stuck buying out-of-season ingredients at premium prices.</div>
+        <div class="example-result">Seasonal menu rotation increased average check by $4.80 per guest over 90 days. Food cost dropped 2.1 points from smarter sourcing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="included-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's <span class="gradient-text">Included</span></h2>
+    </div>
+    <div class="included-grid reveal">
+      <div class="included-item">Full menu audit with item-level profitability analysis</div>
+      <div class="included-item">Recipe card development with standardized portioning</div>
+      <div class="included-item">Food cost analysis per item with contribution margin ranking</div>
+      <div class="included-item">Seasonal menu planning and rotation calendar</div>
+      <div class="included-item">Vendor sourcing recommendations matched to your specs</div>
+      <div class="included-item">Kitchen training on new specs and portion standards</div>
+    </div>
+    <div class="price-display reveal">
+      <div class="price-amount">$2,500<span style="font-size:1rem;font-weight:400;color:var(--text-light)">/month per location</span></div>
+      <div class="price-unit">A la carte — no contract required</div>
+      <a href="index.html#pricing" class="bundle-cta">Or bundle it with other services and save →</a>
+    </div>
+  </div>
+</section>
+
+<section class="service-cta-section">
+  <div class="container reveal">
+    <h2>Ready to Fix Your <span class="gradient-text">Menu?</span></h2>
+    <p>One conversation. We'll tell you exactly where your menu is leaking money.</p>
+    <a href="index.html#contact" class="btn btn-primary">Let's Talk →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>

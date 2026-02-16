@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Automations & AI Audits — daily intelligence briefings, automated data pipelines, and predictive analytics for restaurants by LAVA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Automations & AI Audits — LAVA</title>
+</head>
+<body>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services" class="active">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#intelligence">Intelligence</a>
+    <a href="index.html#cases">Case Studies</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="service-hero">
+  <div class="container">
+    <a href="index.html#services" class="back-link">← Back to Services</a>
+    <div class="service-icon">🤖</div>
+    <h1>Automations &<br><span class="gradient-text">AI Audits</span></h1>
+    <p class="service-tagline">Your AI never sleeps, never forgets, and catches what humans miss — every single day at 5am.</p>
+    <p class="service-price-hero">Starting at $1,500/month per location</p>
+  </div>
+</section>
+
+<section class="problem-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Problem</span></h2>
+    </div>
+    <div class="problem-quote reveal">You're pulling reports manually at midnight. Your "system" is a spreadsheet someone made in 2021. You have 7 software subscriptions and none of them talk to each other.</div>
+    <ul class="pain-list reveal">
+      <li>Reports are manual, inconsistent, and nobody reads them anyway</li>
+      <li>Overtime hits payroll before anyone notices the hours creeping up</li>
+      <li>Discount and void patterns go unchecked — theft hides in the noise</li>
+      <li>Your data lives in 7 different systems that have never been connected</li>
+    </ul>
+  </div>
+</section>
+
+<section class="solution-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>How We <span class="gradient-text">Fix It</span></h2>
+    </div>
+    <div class="solution-content reveal">
+      <p>We build automated data pipelines that connect Toast, 7shifts, R365, OpenTable, Google Reviews, and every other system you use. Data flows in. Intelligence flows out. Every morning at 5am, your inbox gets a complete briefing with charts, alerts, and action items.</p>
+      <p>Our AI doesn't just aggregate — it analyzes. It cross-references void patterns with server schedules. It catches overtime trends by Wednesday before they hit Friday payroll. It spots discount abuse patterns that humans would never notice in raw data.</p>
+      <p>Custom alerts fire when something needs attention. Not 50 notifications a day — just the ones that matter. Labor trending hot? You know. Unusual void pattern? Flagged. Negative review that needs a response? In your inbox before the GM wakes up.</p>
+      <div class="differentiator">This isn't a generic dashboard you log into. This is intelligence delivered to you — built by engineers who run restaurants and know what matters at 5am.</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What This <span class="gradient-text">Looks Like</span></h2>
+      <p>Sample scenarios based on typical engagements.</p>
+    </div>
+    <div class="example-cards">
+      <div class="example-card reveal">
+        <div class="example-scenario">Comp Detection</div>
+        <div class="example-finding">AI caught 14 untracked bartender comps on a Tuesday night — total value $347. No manager approval on any of them. Pattern matched to one bartender.</div>
+        <div class="example-result">Flagged before the GM even woke up. Investigation revealed systematic unauthorized comps. Addressed immediately — saving thousands monthly.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-scenario">Labor Monitoring</div>
+        <div class="example-finding">Automated daily labor monitoring caught 3 BOH staff trending toward overtime by Wednesday. At current pace, Friday payroll would have included 18 hours of OT.</div>
+        <div class="example-result">Schedule adjusted before it hit payroll. Saved the cost of 18 hours at time-and-a-half. This happens automatically, every week, without anyone pulling a report.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-2">
+        <div class="example-scenario">Void Pattern Analysis</div>
+        <div class="example-finding">Cross-referenced void patterns with server schedules. One server had 4x the void rate of peers. All voids were "wrong item" on high-cost entrees.</div>
+        <div class="example-result">Investigation revealed consistent "wrong item" voids on high-cost entrees that were being consumed, not remade. Pattern invisible in raw data — obvious to AI.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="included-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's <span class="gradient-text">Included</span></h2>
+    </div>
+    <div class="included-grid reveal">
+      <div class="included-item">AI daily intelligence briefings at 5am</div>
+      <div class="included-item">Automated data pipelines across all your systems</div>
+      <div class="included-item">Custom alert configuration for your KPIs</div>
+      <div class="included-item">Real-time labor monitoring and OT prevention</div>
+      <div class="included-item">Discount and void pattern analysis</div>
+      <div class="included-item">Review aggregation across all platforms</div>
+      <div class="included-item">Manager log tracking and compliance monitoring</div>
+      <div class="included-item">Weekly and monthly automated summary reports</div>
+    </div>
+    <div class="price-display reveal">
+      <div class="price-amount">$1,500<span style="font-size:1rem;font-weight:400;color:var(--text-light)">/month per location</span></div>
+      <div class="price-unit">A la carte — no contract required</div>
+      <a href="index.html#pricing" class="bundle-cta">Or bundle it with other services and save →</a>
+    </div>
+  </div>
+</section>
+
+<section class="service-cta-section">
+  <div class="container reveal">
+    <h2>Ready to See What Your <span class="gradient-text">Data Knows?</span></h2>
+    <p>One conversation. We'll show you what your systems are already telling you — if you connect them.</p>
+    <a href="index.html#contact" class="btn btn-primary">Let's Talk →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>

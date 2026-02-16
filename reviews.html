@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Review Management — AI-powered review monitoring, sentiment analysis, and response management for restaurants by LAVA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Review Management — LAVA</title>
+</head>
+<body>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services" class="active">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#intelligence">Intelligence</a>
+    <a href="index.html#cases">Case Studies</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="service-hero">
+  <div class="container">
+    <a href="index.html#services" class="back-link">← Back to Services</a>
+    <div class="service-icon">⭐</div>
+    <h1>Review<br><span class="gradient-text">Management</span></h1>
+    <p class="service-tagline">You shouldn't find out about problems from Yelp. Your AI catches them first.</p>
+    <p class="service-price-hero">Starting at $800/month per location</p>
+  </div>
+</section>
+
+<section class="problem-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Problem</span></h2>
+    </div>
+    <div class="problem-quote reveal">You have a 1-star review from last week you haven't responded to. You don't know your average rating trend. A guest complained about cold food and you found out on Yelp instead of from your manager.</div>
+    <ul class="pain-list reveal">
+      <li>Reviews sit unanswered for days — or forever</li>
+      <li>You check Google sometimes, Yelp occasionally, and forget OpenTable exists</li>
+      <li>No system to identify patterns — the same complaint repeats for months</li>
+      <li>Great staff mentions in reviews go unnoticed and unrecognized</li>
+    </ul>
+  </div>
+</section>
+
+<section class="solution-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>How We <span class="gradient-text">Fix It</span></h2>
+    </div>
+    <div class="solution-content reveal">
+      <p>Our AI monitors every review platform — Google, Yelp, OpenTable, TripAdvisor — and aggregates them into one daily digest. Every morning, you know exactly what guests said about you last night. Response time drops from days to hours.</p>
+      <p>Sentiment analysis identifies patterns humans miss. If 6 reviews in 30 days mention "long wait for drinks," we don't just tell you — we correlate it with staffing data to find the root cause. Negative reviews trigger escalation alerts so they're addressed immediately.</p>
+      <p>We also extract the good stuff. Staff name mentions from positive reviews get pulled automatically for recognition programs. Monthly review reports show trends, improvement areas, and wins — all in one place.</p>
+      <div class="differentiator">This is the lowest-cost service we offer because it delivers the highest ROI per dollar. One bad review handled well is worth more than any ad campaign.</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What This <span class="gradient-text">Looks Like</span></h2>
+      <p>Sample scenarios based on typical engagements.</p>
+    </div>
+    <div class="example-cards">
+      <div class="example-card reveal">
+        <div class="example-scenario">Review Aggregation</div>
+        <div class="example-finding">Reviews were scattered across Google, Yelp, OpenTable, and TripAdvisor. Nobody was responsible for monitoring all of them. Average response time: 4 days.</div>
+        <div class="example-result">Aggregated all platforms into one daily digest. Average response time went from 4 days to 4 hours. No review goes unread or unanswered.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-scenario">Pattern Detection</div>
+        <div class="example-finding">Identified a pattern: 6 reviews in 30 days mentioned "long wait for drinks." Correlated with staffing data from 7shifts.</div>
+        <div class="example-result">Investigation revealed the bar was understaffed Friday/Saturday 7-9pm. Added one bartender to peak hours. Drink wait complaints dropped to zero within 2 weeks.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-2">
+        <div class="example-scenario">Staff Recognition</div>
+        <div class="example-finding">Extracted 23 staff name mentions from positive reviews in one month. Most managers had no idea which employees were being praised by guests.</div>
+        <div class="example-result">Used for a recognition program that highlighted top performers monthly. Staff morale improved visibly and turnover reduced 15% over the following quarter.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="included-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's <span class="gradient-text">Included</span></h2>
+    </div>
+    <div class="included-grid reveal">
+      <div class="included-item">Multi-platform review monitoring (Google, Yelp, OpenTable, TripAdvisor)</div>
+      <div class="included-item">Daily review digest delivered to your inbox</div>
+      <div class="included-item">AI-powered sentiment analysis and trend detection</div>
+      <div class="included-item">Response management with templates and guidance</div>
+      <div class="included-item">Pattern identification across all review sources</div>
+      <div class="included-item">Staff name mention extraction from positive reviews</div>
+      <div class="included-item">Monthly review report with trends and recommendations</div>
+      <div class="included-item">Escalation system for negative reviews requiring immediate action</div>
+    </div>
+    <div class="price-display reveal">
+      <div class="price-amount">$800<span style="font-size:1rem;font-weight:400;color:var(--text-light)">/month per location</span></div>
+      <div class="price-unit">A la carte — no contract required</div>
+      <a href="index.html#pricing" class="bundle-cta">Or bundle it with other services and save →</a>
+    </div>
+  </div>
+</section>
+
+<section class="service-cta-section">
+  <div class="container reveal">
+    <h2>Ready to Own Your <span class="gradient-text">Reputation?</span></h2>
+    <p>One conversation. We'll show you what your guests are saying — and what you're missing.</p>
+    <a href="index.html#contact" class="btn btn-primary">Let's Talk →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Purchasing & COGS Optimization — vendor audits, bid processes, inventory systems, and real-time COGS monitoring by LAVA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Purchasing & COGS Optimization — LAVA</title>
+</head>
+<body>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services" class="active">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#intelligence">Intelligence</a>
+    <a href="index.html#cases">Case Studies</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="service-hero">
+  <div class="container">
+    <a href="index.html#services" class="back-link">← Back to Services</a>
+    <div class="service-icon">📦</div>
+    <h1>Purchasing &<br><span class="gradient-text">COGS Optimization</span></h1>
+    <p class="service-tagline">Every dollar you overpay a vendor is a dollar off your bottom line. We find every single one.</p>
+    <p class="service-price-hero">Starting at $2,000/month per location</p>
+  </div>
+</section>
+
+<section class="problem-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Problem</span></h2>
+    </div>
+    <div class="problem-quote reveal">You're paying 3 different prices for the same chicken from the same distributor across your locations. Your produce guy hasn't been bid out in 2 years. Nobody knows your actual COGS until the P&L hits 3 weeks late.</div>
+    <ul class="pain-list reveal">
+      <li>No purchasing guides — every manager orders whatever they want from whoever picks up the phone</li>
+      <li>Vendor contracts haven't been renegotiated since you signed them</li>
+      <li>Waste is happening daily and nobody's tracking it</li>
+      <li>You find out about COGS problems weeks after they've already cost you</li>
+    </ul>
+  </div>
+</section>
+
+<section class="solution-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>How We <span class="gradient-text">Fix It</span></h2>
+    </div>
+    <div class="solution-content reveal">
+      <p>We start with a complete vendor audit. Every invoice, every line item, every location. We cross-reference pricing across your entire operation and find every inconsistency — and there are always inconsistencies.</p>
+      <p>Then we run a formal bid process. Your current vendors compete against alternatives. We build purchasing guides with par levels, approved items, price ceilings, and approved substitutions. Your managers know exactly what to order, how much, and what it should cost.</p>
+      <p>We implement inventory counting systems and waste logs so you catch problems in real time — not on the P&L three weeks later. Our AI monitors COGS daily and flags anomalies before they become trends.</p>
+      <div class="differentiator">The savings from purchasing optimization alone typically pay for our entire engagement within the first month. This isn't theory — we've done it across our own locations first.</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What This <span class="gradient-text">Looks Like</span></h2>
+      <p>Sample scenarios based on typical engagements.</p>
+    </div>
+    <div class="example-cards">
+      <div class="example-card reveal">
+        <div class="example-scenario">Price Consolidation</div>
+        <div class="example-finding">Cross-referenced 3 locations' invoices and found the same 10oz NY Strip priced at $14.20, $15.80, and $16.50 — from the same distributor.</div>
+        <div class="example-result">Consolidated to $13.90 across all locations. One phone call, one contract, tens of thousands in annual savings on proteins alone.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-scenario">Waste Tracking</div>
+        <div class="example-finding">Implemented weekly inventory counts and installed waste logs at every station. One prep cook's station was consistently over-prepping proteins.</div>
+        <div class="example-result">Caught $800/week in untracked waste from one station alone. Annual impact: over $40,000 recovered.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-2">
+        <div class="example-scenario">Vendor Renegotiation</div>
+        <div class="example-finding">Produce contract hadn't been bid out in 2+ years. Ran a competitive bid with 3 regional suppliers including a co-op.</div>
+        <div class="example-result">Renegotiated produce contract: saved tens of thousands annually by switching to a regional co-op with better quality and reliability.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="included-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's <span class="gradient-text">Included</span></h2>
+    </div>
+    <div class="included-grid reveal">
+      <div class="included-item">Complete vendor audit & competitive bid process</div>
+      <div class="included-item">Purchasing guide development with approved items and specs</div>
+      <div class="included-item">Par level setting by item, day, and season</div>
+      <div class="included-item">Price ceiling enforcement and monitoring</div>
+      <div class="included-item">Inventory counting systems and schedule</div>
+      <div class="included-item">Waste log implementation and tracking</div>
+      <div class="included-item">Real-time COGS tracking dashboard</div>
+    </div>
+    <div class="price-display reveal">
+      <div class="price-amount">$2,000<span style="font-size:1rem;font-weight:400;color:var(--text-light)">/month per location</span></div>
+      <div class="price-unit">A la carte — no contract required</div>
+      <a href="index.html#pricing" class="bundle-cta">Or bundle it with other services and save →</a>
+    </div>
+  </div>
+</section>
+
+<section class="service-cta-section">
+  <div class="container reveal">
+    <h2>Ready to Fix Your <span class="gradient-text">Purchasing?</span></h2>
+    <p>One conversation. We'll tell you exactly where your vendors are overcharging you.</p>
+    <a href="index.html#contact" class="btn btn-primary">Let's Talk →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Accounting & Back Office — R365 implementation, GL structure, invoice automation, and real-time financial reporting by LAVA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Accounting & Back Office — LAVA</title>
+</head>
+<body>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services" class="active">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#intelligence">Intelligence</a>
+    <a href="index.html#cases">Case Studies</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="service-hero">
+  <div class="container">
+    <a href="index.html#services" class="back-link">← Back to Services</a>
+    <div class="service-icon">💰</div>
+    <h1>Accounting &<br><span class="gradient-text">Back Office</span></h1>
+    <p class="service-tagline">The boring stuff that bankrupts restaurants. We make it bulletproof.</p>
+    <p class="service-price-hero">Starting at $2,500/month per location</p>
+  </div>
+</section>
+
+<section class="problem-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Problem</span></h2>
+    </div>
+    <div class="problem-quote reveal">Your P&L is 3 weeks old by the time you see it. Tip reconciliation is a nightmare. You found out about a $4,000 invoice discrepancy when your accountant called — not when it happened.</div>
+    <ul class="pain-list reveal">
+      <li>Financial reporting is so delayed it's useless for decision-making</li>
+      <li>Duplicate payments, missed credits, and invoice errors go unnoticed for months</li>
+      <li>Cash handling procedures are inconsistent — or nonexistent</li>
+      <li>Tip compliance is a ticking time bomb nobody wants to think about</li>
+    </ul>
+  </div>
+</section>
+
+<section class="solution-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>How We <span class="gradient-text">Fix It</span></h2>
+    </div>
+    <div class="solution-content reveal">
+      <p>We implement Restaurant365 from scratch — or clean up your existing mess. Proper GL structure, automated invoice processing, and cash handling procedures that actually work. Your P&L goes from 3-week-old history to real-time intelligence.</p>
+      <p>We build payroll and tip compliance systems that keep you out of trouble. Daily cash reconciliation that catches discrepancies in hours, not weeks. AP/AR management that ensures every dollar in and out is tracked.</p>
+      <p>Most restaurants we audit have at least 3 critical accounting gaps. We find them all, fix them all, and build the systems so they never come back.</p>
+      <div class="differentiator">We've implemented R365 for multi-location groups from scratch. We know every integration, every workaround, and every trap — because we run it ourselves across 4 locations.</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What This <span class="gradient-text">Looks Like</span></h2>
+      <p>Sample scenarios based on typical engagements.</p>
+    </div>
+    <div class="example-cards">
+      <div class="example-card reveal">
+        <div class="example-scenario">R365 Implementation</div>
+        <div class="example-finding">A 3-location group had no centralized accounting system. P&Ls were assembled manually from spreadsheets and took 21 days to produce.</div>
+        <div class="example-result">Set up R365 from scratch in 6 weeks. P&L turnaround went from 21 days to 3 days. Ownership saw real numbers for the first time.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-scenario">Invoice Audit</div>
+        <div class="example-finding">During initial audit, cross-referenced AP records with vendor invoices across all locations. Found systematic duplicate payments that had been happening for months.</div>
+        <div class="example-result">Found $12,000 in duplicate invoice payments over 4 months. Recovered the overpayments and implemented controls to prevent recurrence.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-2">
+        <div class="example-scenario">Cash Controls</div>
+        <div class="example-finding">No formal cash reconciliation process. Managers counted when they remembered. Weekly discrepancies averaged $200+ with no investigation.</div>
+        <div class="example-result">Implemented daily cash reconciliation with documented procedures. Discrepancies dropped from $200+/week to under $15.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="included-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's <span class="gradient-text">Included</span></h2>
+    </div>
+    <div class="included-grid reveal">
+      <div class="included-item">R365 setup from scratch or existing cleanup</div>
+      <div class="included-item">GL structure design for restaurant operations</div>
+      <div class="included-item">Automated invoice processing and AP management</div>
+      <div class="included-item">Cash handling controls and daily reconciliation</div>
+      <div class="included-item">Tip reconciliation and payroll compliance</div>
+      <div class="included-item">Financial reporting — P&L, balance sheet, cash flow</div>
+      <div class="included-item">AP/AR management and vendor payment scheduling</div>
+    </div>
+    <div class="price-display reveal">
+      <div class="price-amount">$2,500<span style="font-size:1rem;font-weight:400;color:var(--text-light)">/month per location</span></div>
+      <div class="price-unit">A la carte — no contract required</div>
+      <a href="index.html#pricing" class="bundle-cta">Or bundle it with other services and save →</a>
+    </div>
+  </div>
+</section>
+
+<section class="service-cta-section">
+  <div class="container reveal">
+    <h2>Ready to Fix Your <span class="gradient-text">Back Office?</span></h2>
+    <p>One conversation. We'll tell you exactly where your accounting has gaps.</p>
+    <a href="index.html#contact" class="btn btn-primary">Let's Talk →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>

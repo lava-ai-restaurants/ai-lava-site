@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Operations & Accountability — org charts, KPI dashboards, manager scorecards, and AI-powered accountability tracking by LAVA.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<title>Operations & Accountability — LAVA</title>
+</head>
+<body>
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services" class="active">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#reality">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#intelligence">Intelligence</a>
+    <a href="index.html#cases">Case Studies</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Deploy Our Team</a>
+  </div>
+</nav>
+
+<section class="service-hero">
+  <div class="container">
+    <a href="index.html#services" class="back-link">← Back to Services</a>
+    <div class="service-icon">📈</div>
+    <h1>Operations &<br><span class="gradient-text">Accountability</span></h1>
+    <p class="service-tagline">When your GM says everything's fine but your numbers say otherwise — that's where we come in.</p>
+    <p class="service-price-hero">Starting at $2,000/month per location</p>
+  </div>
+</section>
+
+<section class="problem-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>The <span class="gradient-text">Problem</span></h2>
+    </div>
+    <div class="problem-quote reveal">Your GM says everything's fine. Your numbers say otherwise. Manager logs are inconsistent, daily checklists aren't getting done, and nobody knows who owns what.</div>
+    <ul class="pain-list reveal">
+      <li>No clear org chart — everyone reports to you, about everything, all the time</li>
+      <li>Manager performance is based on vibes, not metrics</li>
+      <li>Daily checklists exist somewhere but nobody fills them out consistently</li>
+      <li>You can't step away for a week without everything falling apart</li>
+    </ul>
+  </div>
+</section>
+
+<section class="solution-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>How We <span class="gradient-text">Fix It</span></h2>
+    </div>
+    <div class="solution-content reveal">
+      <p>We restructure your organization for where you're going, not where you are. Clear reporting lines, defined roles, and KPIs for every position. Your managers know exactly what they own and how they're measured.</p>
+      <p>We build manager scorecards that track the 12 metrics that actually matter — not 50 data points nobody looks at. Weekly and monthly review cadences so performance conversations happen before problems become crises.</p>
+      <p>Our AI-powered accountability system tracks every manager log submission, every checklist completion, every action item. Nothing falls through the cracks because the system doesn't forget, doesn't get tired, and doesn't accept excuses.</p>
+      <div class="differentiator">This is the infrastructure that lets you stop being the GM of every location and start being the owner. We've restructured 4-location groups where the owner went from 40 daily texts to a weekly review meeting.</div>
+    </div>
+  </div>
+</section>
+
+<section class="examples-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What This <span class="gradient-text">Looks Like</span></h2>
+      <p>Sample scenarios based on typical engagements.</p>
+    </div>
+    <div class="example-cards">
+      <div class="example-card reveal">
+        <div class="example-scenario">Manager Accountability</div>
+        <div class="example-finding">Installed daily manager log requirement with AI tracking. Before: logs were submitted "whenever they felt like it" — maybe 3 out of 7 days.</div>
+        <div class="example-result">Compliance went from sporadic to 98% within 2 weeks. Managers knew the system was watching — and it changed behavior overnight.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-1">
+        <div class="example-scenario">GM Scorecard</div>
+        <div class="example-finding">Built GM scorecard tracking 12 KPIs: labor %, food cost, guest satisfaction, training completion, log compliance, and more. One GM was consistently missing 4 metrics.</div>
+        <div class="example-result">Led to a coaching conversation that turned their location around. Within 60 days, that GM hit all 12 KPIs for the first time. Data made the conversation objective.</div>
+      </div>
+      <div class="example-card reveal reveal-delay-2">
+        <div class="example-scenario">Org Restructuring</div>
+        <div class="example-finding">4-location group with no clear hierarchy. Every manager texted the owner directly. No weekly meetings. No defined roles beyond "make it work."</div>
+        <div class="example-result">Restructured org chart: clear reporting lines, defined roles, weekly L10 meetings. Owner stopped getting 40 texts a day and started running the business.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="included-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>What's <span class="gradient-text">Included</span></h2>
+    </div>
+    <div class="included-grid reveal">
+      <div class="included-item">Org chart design with clear reporting lines</div>
+      <div class="included-item">KPI dashboard for every location and role</div>
+      <div class="included-item">Manager scorecards with monthly tracking</div>
+      <div class="included-item">AI-powered accountability tracking system</div>
+      <div class="included-item">Daily and weekly operational checklists</div>
+      <div class="included-item">Compliance monitoring and automated alerts</div>
+      <div class="included-item">Meeting cadence setup — weekly, monthly, quarterly</div>
+      <div class="included-item">Escalation frameworks for operational issues</div>
+    </div>
+    <div class="price-display reveal">
+      <div class="price-amount">$2,000<span style="font-size:1rem;font-weight:400;color:var(--text-light)">/month per location</span></div>
+      <div class="price-unit">A la carte — no contract required</div>
+      <a href="index.html#pricing" class="bundle-cta">Or bundle it with other services and save →</a>
+    </div>
+  </div>
+</section>
+
+<section class="service-cta-section">
+  <div class="container reveal">
+    <h2>Ready to Fix Your <span class="gradient-text">Operations?</span></h2>
+    <p>One conversation. We'll tell you exactly where accountability is breaking down.</p>
+    <a href="index.html#contact" class="btn btn-primary">Let's Talk →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo"><span>LAVA</span></div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <p>Powered by the team behind Clive Collective — Scottsdale, AZ</p>
+    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="index.html#cases">Case Studies</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+<script src="scripts.js"></script>
+</body>
+</html>
