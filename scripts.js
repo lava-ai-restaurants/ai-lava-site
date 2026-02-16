@@ -82,11 +82,12 @@ if(nav)window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',wind
 // ── Hamburger ──
 const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
 if(hamburger&&mobileMenu){
-  hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('open')});
+  hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('open');document.body.classList.toggle('menu-open')});
 }
 function closeMenu(){
   if(hamburger)hamburger.classList.remove('active');
   if(mobileMenu)mobileMenu.classList.remove('open');
+  document.body.classList.remove('menu-open');
 }
 
 // ── Smooth Scroll Nav + Close Mobile Menu ──
