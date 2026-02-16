@@ -79,16 +79,15 @@ if(particleContainer){
 const nav=document.getElementById('nav');
 if(nav)window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>50));
 
-// ── Hamburger ──
-const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');
-if(hamburger&&mobileMenu){
-  hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('open');document.body.classList.toggle('menu-open')});
-}
-function closeMenu(){
-  if(hamburger)hamburger.classList.remove('active');
-  if(mobileMenu)mobileMenu.classList.remove('open');
-  document.body.classList.remove('menu-open');
-}
+// ── Mobile Menu (slide-in drawer) ──
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu'),mobileOverlay=document.getElementById('mobileOverlay'),menuClose=document.getElementById('menuClose');
+function openMobileMenu(){hamburger&&hamburger.classList.add('active');mobileMenu&&mobileMenu.classList.add('open');mobileOverlay&&mobileOverlay.classList.add('open');document.body.classList.add('menu-open')}
+function closeMobileMenu(){hamburger&&hamburger.classList.remove('active');mobileMenu&&mobileMenu.classList.remove('open');mobileOverlay&&mobileOverlay.classList.remove('open');document.body.classList.remove('menu-open')}
+window.closeMobileMenu=closeMobileMenu;
+if(hamburger)hamburger.addEventListener('click',()=>{mobileMenu&&mobileMenu.classList.contains('open')?closeMobileMenu():openMobileMenu()});
+if(menuClose)menuClose.addEventListener('click',closeMobileMenu);
+if(mobileOverlay)mobileOverlay.addEventListener('click',closeMobileMenu);
+function closeMenu(){closeMobileMenu()}
 
 // ── Smooth Scroll Nav + Close Mobile Menu ──
 document.querySelectorAll('nav a[href^="#"], .mobile-menu a[href^="#"]').forEach(a=>{

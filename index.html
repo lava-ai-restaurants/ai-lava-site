@@ -47,25 +47,39 @@
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#reality">About</a>
-    <a href="#services">Services</a>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="menu-logo">LAVA</span>
+    <button class="mobile-menu-close" id="menuClose">✕</button>
+  </div>
+  <div class="mobile-menu-nav">
+    <a href="#reality" onclick="closeMobileMenu()">About</a>
+    <span class="menu-section-label">Services</span>
     <div class="mobile-sub">
       <a href="fb-development.html">F&B Development</a>
-      <a href="purchasing.html">Purchasing</a>
-      <a href="accounting.html">Accounting</a>
-      <a href="training.html">Training</a>
-      <a href="operations.html">Operations</a>
-      <a href="automations.html">Automations</a>
-      <a href="branding.html">Branding</a>
-      <a href="reviews.html">Reviews</a>
+      <a href="purchasing.html">Purchasing & COGS</a>
+      <a href="accounting.html">Accounting & Back Office</a>
+      <a href="training.html">Training & HR</a>
+      <a href="operations.html">Operations & Accountability</a>
+      <a href="automations.html">Automations & AI</a>
+      <a href="branding.html">Branding & Marketing</a>
+      <a href="reviews.html">Review Management</a>
     </div>
-    <a href="#intelligence">Intelligence</a>
-    <a href="#cases">Case Studies</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Deploy Our Team</a>
+    <a href="#intelligence" onclick="closeMobileMenu()">Intelligence</a>
+    <a href="#cases" onclick="closeMobileMenu()">Case Studies</a>
+    <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </div>
-</nav>
+  <div class="mobile-menu-footer">
+    <a href="#contact" onclick="closeMobileMenu()">Deploy Our Team 🚀</a>
+    <div class="menu-contact">
+      <a href="tel:6026334571">📞 (602) 633-4571</a>
+      <a href="mailto:info@ai-lava.com">✉️ info@ai-lava.com</a>
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
