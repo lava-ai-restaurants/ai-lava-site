@@ -411,8 +411,44 @@ document.querySelectorAll('.hero-proof-item .num').forEach(el=>{
 document.querySelectorAll('.service-card[data-expandable]').forEach(card=>{
   card.addEventListener('click',()=>{
     const wasExpanded=card.classList.contains('expanded');
-    // Close all others
     document.querySelectorAll('.service-card.expanded').forEach(c=>c.classList.remove('expanded'));
     if(!wasExpanded)card.classList.add('expanded');
   });
 });
+
+// ── Floating CTA Button (appears after 50% scroll) ──
+(function(){
+  const btn=document.querySelector('.floating-cta-btn');
+  if(!btn)return;
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement.scrollHeight-window.innerHeight;
+    btn.classList.toggle('visible',h>0&&window.scrollY/h>.5);
+  });
+})();
+
+// ── Lava Notification Toasts (home page only) ──
+(function(){
+  const container=document.getElementById('lavaNotifications');
+  if(!container)return;
+  const notifications=[
+    {icon:'🔴',text:'<strong>3 voids</strong> on Station 2 — $847 in potential loss',bar:'red',delay:3000},
+    {icon:'✅',text:'All <strong>5 manager logs</strong> submitted on time',bar:'green',delay:8000},
+    {icon:'⚡',text:'<strong>BOH overtime alert:</strong> 2 cooks approaching 40hrs',bar:'yellow',delay:13000},
+    {icon:'📊',text:'Daily intelligence report sent to <strong>6 team members</strong>',bar:'blue',delay:18000},
+  ];
+  let topOffset=100;
+  notifications.forEach((n,i)=>{
+    setTimeout(()=>{
+      const el=document.createElement('div');
+      el.className='lava-notification';
+      el.style.top=topOffset+'px';
+      el.innerHTML=`<div class="notif-bar ${n.bar}"></div><span class="notif-icon">${n.icon}</span><div class="notif-text">${n.text}<span class="notif-time">Just now — Lava Intelligence</span></div>`;
+      container.appendChild(el);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('show')));
+      setTimeout(()=>{el.classList.remove('show');el.classList.add('hide');setTimeout(()=>el.remove(),500)},4000);
+      topOffset+=80;
+      // Reset offset after each notification leaves
+      setTimeout(()=>{topOffset-=80},4500);
+    },n.delay);
+  });
+})();

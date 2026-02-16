@@ -471,4 +471,63 @@ footer .footer-links a:hover{color:var(--lava-2)}
   .calc-card{padding:40px 24px}
   .dashboard-tabs{overflow-x:auto}
   .page-intro h1{letter-spacing:2px}
+  .floating-cta-btn{bottom:80px!important;right:16px!important}
+  .mobile-sticky-bar{display:flex}
+  .lava-notification{max-width:calc(100vw - 32px);right:16px}
 }
+
+/* ── Lava Notification Toasts ── */
+.lava-notification{position:fixed;right:24px;z-index:9990;background:rgba(17,17,39,.95);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 20px 16px 16px;display:flex;align-items:center;gap:14px;max-width:380px;box-shadow:0 12px 40px rgba(0,0,0,.5);transform:translateX(120%);transition:transform .5s cubic-bezier(.16,1,.3,1),opacity .4s;opacity:0;backdrop-filter:blur(12px)}
+.lava-notification.show{transform:translateX(0);opacity:1}
+.lava-notification.hide{transform:translateX(120%);opacity:0}
+.lava-notification .notif-bar{position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:14px 0 0 14px}
+.lava-notification .notif-bar.red{background:var(--lava-1)}
+.lava-notification .notif-bar.green{background:#22c55e}
+.lava-notification .notif-bar.yellow{background:var(--lava-2)}
+.lava-notification .notif-bar.blue{background:#3b82f6}
+.lava-notification .notif-icon{font-size:1.3rem;flex-shrink:0}
+.lava-notification .notif-text{font-size:.85rem;color:rgba(255,255,255,.8);line-height:1.5;font-weight:500}
+.lava-notification .notif-text strong{color:#fff;font-weight:700}
+.lava-notification .notif-time{font-size:.65rem;color:rgba(255,255,255,.25);margin-top:4px;display:block}
+
+/* ── Floating CTA Button ── */
+.floating-cta-btn{position:fixed;bottom:32px;right:32px;z-index:9980;background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.9rem;box-shadow:0 4px 30px rgba(220,38,38,.4);cursor:pointer;text-decoration:none;opacity:0;transform:translateY(20px);transition:all .4s cubic-bezier(.16,1,.3,1);pointer-events:none;display:flex;align-items:center;gap:8px}
+.floating-cta-btn.visible{opacity:1;transform:translateY(0);pointer-events:auto;animation:floatPulse 3s ease-in-out infinite}
+.floating-cta-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 40px rgba(220,38,38,.6)}
+@keyframes floatPulse{0%,100%{box-shadow:0 4px 30px rgba(220,38,38,.4)}50%{box-shadow:0 4px 40px rgba(220,38,38,.6)}}
+
+/* ── Mobile Sticky Bar ── */
+.mobile-sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9985;background:rgba(10,10,26,.97);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.08);padding:10px 16px;gap:8px;align-items:center;justify-content:center}
+.mobile-sticky-bar a{flex:1;text-align:center;padding:10px 8px;border-radius:10px;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.7);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px}
+.mobile-sticky-bar a .sticky-icon{font-size:1.2rem}
+.mobile-sticky-bar a.sticky-cta{background:linear-gradient(135deg,var(--lava-1),var(--lava-2));color:#fff;border-radius:50px;flex-direction:row;gap:6px;font-size:.85rem;padding:12px 16px}
+
+/* ── Progress Indicator ── */
+.funnel-progress{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:40px;text-align:center;max-width:700px;margin:60px auto 0}
+.funnel-progress .progress-bar-track{width:100%;height:6px;background:rgba(255,255,255,.06);border-radius:3px;margin:20px 0;overflow:hidden}
+.funnel-progress .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--lava-1),var(--lava-2));border-radius:3px;transition:width 1.5s cubic-bezier(.16,1,.3,1)}
+.funnel-progress p{font-size:1rem;color:rgba(255,255,255,.5);margin-bottom:16px;line-height:1.7}
+.funnel-progress .progress-label{font-size:.8rem;font-weight:700;color:var(--lava-2);text-transform:uppercase;letter-spacing:1px}
+
+/* ── What Happens Next ── */
+.next-steps{max-width:600px;margin:60px auto 0}
+.next-step{display:flex;align-items:flex-start;gap:20px;padding:24px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.next-step:last-child{border-bottom:none}
+.next-step .step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--lava-1),var(--lava-2));display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#fff;flex-shrink:0}
+.next-step .step-content h4{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:4px}
+.next-step .step-content p{font-size:.9rem;color:var(--text-light);line-height:1.6}
+
+/* ── Contact Info Row ── */
+.contact-info-row{display:flex;gap:24px;justify-content:center;margin-bottom:48px;flex-wrap:wrap}
+.contact-info-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px 24px;transition:all .3s}
+.contact-info-item:hover{border-color:rgba(220,38,38,.3);background:rgba(220,38,38,.03)}
+.contact-info-item .info-icon{font-size:1.3rem}
+.contact-info-item a{font-size:1rem;font-weight:700;color:var(--lava-2)}
+
+/* ── Case study result badges ── */
+.result-badge{display:inline-block;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);color:#22c55e;font-size:.8rem;font-weight:700;padding:4px 12px;border-radius:50px;margin-right:8px;margin-bottom:8px}
+.case-cta-line{margin-top:20px;font-size:.95rem;font-weight:600;color:rgba(255,255,255,.4);font-style:italic}
+
+/* ── Urgency badge ── */
+.urgency-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.25);padding:10px 24px;border-radius:50px;font-size:.9rem;font-weight:700;color:var(--lava-2);margin-bottom:16px;animation:urgencyPulse 2s ease infinite}
+@keyframes urgencyPulse{0%,100%{border-color:rgba(220,38,38,.25)}50%{border-color:rgba(220,38,38,.5)}}

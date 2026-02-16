@@ -4,35 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LAVA — Artificial Intelligence Solutions for Restaurants</title>
-<meta name="description" content="We don't consult. We deploy. 20+ seasoned restaurant operators and AI engineers who embed with your operation and don't leave until it's fixed.">
+<meta name="description" content="Your restaurant lost money last night. We know exactly where. 20+ operators and AI engineers who embed with your operation.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- PAGE TRANSITION -->
 <div class="page-transition"></div>
-
-<!-- LAVA CANVAS -->
 <canvas class="lava-canvas" id="lavaCanvas"></canvas>
-
-<!-- BLOBS -->
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-
-<!-- FILM GRAIN -->
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
 <div class="grain"></div>
-
-<!-- CUSTOM CURSOR -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
-<!-- PARTICLES -->
 <div class="particles" id="particles"></div>
 
-<!-- NAV -->
+<!-- NOTIFICATION TOASTS -->
+<div id="lavaNotifications"></div>
+
 <nav id="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><span>LAVA</span></a>
@@ -66,7 +55,7 @@
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="dot"></span> Now Accepting New Clients</div>
     <h1 class="glitch-wrapper" id="heroTitle"><span class="glitch-text" data-text="LAVA">LAVA</span></h1>
-    <h2 class="tagline">We Don't Consult. <span class="thin">We Deploy.</span></h2>
+    <h2 class="tagline">Your restaurant lost money last night.<br><span class="thin">We know exactly where.</span></h2>
     <p class="subhead word-reveal" id="heroSubhead">20+ seasoned restaurant executives and AI engineers who embed with your operation and don't leave until it's fixed. We've opened concepts, rescued failing restaurants, and built the AI systems that run our own locations every single day.</p>
     <div class="hero-ctas">
       <a href="intelligence.html" class="btn btn-primary">See the AI Live →</a>
@@ -160,10 +149,20 @@
   <div class="container">
     <h2 class="reveal">Stop Surviving.<br><span class="gradient-text">Start Dominating.</span></h2>
     <p class="reveal">Your competitors are guessing. Your staff is winging it. Your money is leaking. We fix all of it — with 20+ operators who've been exactly where you are.</p>
-    <p class="reveal" style="font-weight:700;color:rgba(255,255,255,.7)">One conversation. That's all it takes.</p>
-    <a href="contact.html" class="btn btn-primary reveal">Deploy Our Team 🚀</a>
+    <a href="intelligence.html" class="btn btn-primary reveal" style="margin-right:12px">See the AI Live →</a>
+    <a href="contact.html" class="btn btn-outline reveal">Deploy Our Team 🚀</a>
   </div>
 </section>
+
+<!-- FLOATING CTA -->
+<a href="contact.html" class="floating-cta-btn">Deploy Our Team 🚀</a>
+
+<!-- MOBILE STICKY BAR -->
+<div class="mobile-sticky-bar">
+  <a href="tel:6026334571"><span class="sticky-icon">📞</span>Call</a>
+  <a href="mailto:info@ai-lava.com"><span class="sticky-icon">✉️</span>Email</a>
+  <a href="contact.html" class="sticky-cta">Deploy Our Team 🚀</a>
+</div>
 
 <!-- FOOTER -->
 <footer>
