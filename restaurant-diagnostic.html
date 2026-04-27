@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAVA Restaurant Diagnostic — Find Where Your Restaurant Is Leaking Money</title>
+<title>LAVA Restaurant Diagnostic — Run the Restaurant Leak Audit</title>
 <meta name="description" content="A 4-minute restaurant diagnostic from LAVA. Find your biggest operational leaks across labor, COGS, reviews, accountability, systems, and growth.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -66,13 +66,13 @@
 
 <main class="diagnostic-shell">
   <section class="diagnostic-hero">
-    <div class="hero-eyebrow"><span class="dot"></span> 4-minute operator diagnostic</div>
-    <h1>Find Where Your Restaurant Is Leaking Money</h1>
-    <p>Answer a few sharp questions. Lava turns your pain points, tech stack, and goals into a clean first-read on where AI + operator support can create the fastest ROI.</p>
+    <div class="hero-eyebrow"><span class="dot"></span> Private operator diagnostic</div>
+    <h1>Run the Restaurant Leak Audit</h1>
+    <p>Answer a few sharp questions. Lava maps likely margin leaks, system gaps, accountability issues, and the fastest operator path to ROI.</p>
     <div class="diagnostic-meta">
       <span id="stepMeta">Step 1 of 4</span>
       <span>⏱ Takes 4 minutes</span>
-      <span>📬 Sent to Francesco</span>
+      <span>🔒 Reviewed by an operator</span>
     </div>
   </section>
 
@@ -90,14 +90,14 @@
     <input type="hidden" name="_next" value="https://ai-lava.com/restaurant-diagnostic.html?submitted=true">
     <input type="text" name="company_website" class="diagnostic-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <input type="hidden" name="Diagnostic Summary" id="diagnosticSummary">
-    <input type="hidden" name="Suggested Package" id="suggestedPackage">
+    <input type="hidden" name="Recommended first move" id="suggestedPackage">
     <input type="hidden" name="Lava Fit Score" id="fitScoreField">
 
     <div class="diagnostic-card">
       <div class="diagnostic-step-panel active" data-step="0">
         <div class="step-kicker">Step 1</div>
-        <h2>What do you want Lava to fix first?</h2>
-        <p class="step-copy">Pick the operating headaches that are actually costing money, time, or sleep.</p>
+        <h2>Where is the operation bleeding first?</h2>
+        <p class="step-copy">Pick the headaches that are costing money, time, or trust with the team.</p>
 
         <div class="question-block required" data-name="Role">
           <label>Which best describes your role?</label>
@@ -160,8 +160,8 @@
 
       <div class="diagnostic-step-panel" data-step="1">
         <div class="step-kicker">Step 2</div>
-        <h2>What systems are you already using?</h2>
-        <p class="step-copy">Most operators do not need another login. They need the systems they already have turned into one command center.</p>
+        <h2>What systems are already in the stack?</h2>
+        <p class="step-copy">Most operators do not need another login. They need the tools they already pay for turned into one command center.</p>
 
         <div class="question-block" data-name="POS">
           <label>Which POS do you use?</label>
@@ -237,8 +237,8 @@
 
       <div class="diagnostic-step-panel" data-step="2">
         <div class="step-kicker">Step 3</div>
-        <h2>Where should Lava create ROI?</h2>
-        <p class="step-copy">This is where the diagnostic starts matching you to Essentials, Growth, Full Partnership, or a custom build.</p>
+        <h2>Where should Lava create ROI first?</h2>
+        <p class="step-copy">This is where the audit matches your leaks to daily intelligence, margin controls, operator support, or a custom build.</p>
 
         <div class="question-block multi" data-name="Relevant Lava Services">
           <label>Which Lava services are most relevant?</label>
@@ -317,8 +317,8 @@
 
       <div class="diagnostic-step-panel" data-step="3">
         <div class="step-kicker">Step 4</div>
-        <h2>Tell us what is happening inside the business.</h2>
-        <p class="step-copy">No fluff. Give us the ugly thing you are tired of babysitting.</p>
+        <h2>Tell us what is really happening inside the business.</h2>
+        <p class="step-copy">No fluff. Give us the ugly thing ownership keeps having to babysit.</p>
 
         <div class="form-row">
           <label>Restaurant / group name *</label>
@@ -372,22 +372,24 @@
           <input type="hidden" name="Urgency">
         </div>
 
-        <label class="field-label">What is the one problem you are tired of babysitting?</label>
+        <label class="field-label">What is the one problem ownership is tired of babysitting?</label>
         <textarea name="Problem They Are Tired Of Babysitting" rows="3" maxlength="700" placeholder="Example: I have to personally check labor, comps, and manager logs every morning or it falls apart."></textarea>
 
-        <label class="field-label">If Lava worked perfectly, what would you wake up knowing every morning?</label>
+        <label class="field-label">If Lava worked perfectly, what would ownership wake up knowing every morning?</label>
         <textarea name="Perfect Morning Read" rows="3" maxlength="700" placeholder="Example: exactly who missed expectations, where margin moved, and what needs action today."></textarea>
+
+        <p class="diagnostic-trust-note">No spam. No software demo trap. If we can’t help, we’ll say so.</p>
 
         <label class="consent-row">
           <input type="checkbox" name="Consent" value="Yes" required>
-          <span>I’m okay with Lava contacting me about this restaurant diagnostic.</span>
+          <span>I’m okay with Lava contacting me about this private operator diagnostic.</span>
         </label>
       </div>
 
       <div class="diagnostic-actions">
         <button type="button" class="btn btn-outline" id="diagBack">← Back</button>
         <button type="button" class="btn btn-primary" id="diagNext">Continue →</button>
-        <button type="submit" class="btn btn-primary" id="diagSubmit">Send My Restaurant Diagnostic →</button>
+        <button type="submit" class="btn btn-primary" id="diagSubmit">Send My Leak Audit →</button>
       </div>
     </div>
 
@@ -399,18 +401,18 @@
       </div>
 
       <div class="rail-card live-score-card">
-        <h3>Your Live Read</h3>
+        <h3>Live Operator Read</h3>
         <div class="score-ring" id="scoreRing" style="--score:12"><span id="scoreValue">12</span><small>/100</small></div>
-        <p id="scoreLabel">Select a few answers and we’ll start building your operator profile.</p>
+        <p id="scoreLabel">Select a few answers and we’ll start building your leak profile.</p>
         <div class="tag-cloud" id="tagCloud">
           <span>AI Daily Intel</span><span>Labor</span><span>COGS</span><span>Accountability</span>
         </div>
       </div>
 
       <div class="rail-card preview-card">
-        <h3>What Francesco gets</h3>
+        <h3>What the operator reviews</h3>
         <ul id="previewList">
-          <li>Top pain points</li>
+          <li>Likely leak areas</li>
           <li>Systems stack</li>
           <li>Biggest financial leak</li>
           <li>Recommended Lava path</li>
@@ -529,7 +531,7 @@
     const pkg = computePackage(score);
     scoreValue.textContent = score;
     scoreRing.style.setProperty('--score', score);
-    scoreLabel.textContent = pkg === 'Needs discovery' ? 'Select a few answers and we’ll start building your operator profile.' : `Likely path: ${pkg}.`;
+    scoreLabel.textContent = pkg === 'Needs discovery' ? 'Select a few answers and we’ll start building your leak profile.' : `Likely path: ${pkg}.`;
     const tags = [...new Set([...values('Top Problems'), ...values('Relevant Lava Services'), ...values('Biggest Financial Leak')])].slice(0,7);
     tagCloud.innerHTML = (tags.length ? tags : ['AI Daily Intel','Labor','COGS','Accountability']).map(t=>`<span>${t}</span>`).join('');
     packageField.value = pkg;
@@ -549,7 +551,7 @@
       `Accountability Gap: ${values('Accountability Gap').join(', ') || 'n/a'}`,
       `Support Level: ${values('Support Level').join(', ') || 'n/a'}`,
       `Timeline: ${values('Impact Timeline').join(', ') || 'n/a'}`,
-      `Suggested Package: ${pkg}`,
+      `Recommended first move: ${pkg}`,
       `Fit Score: ${score}/100`
     ].join('\n');
     summaryField.value = summary;
