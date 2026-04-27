@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LAVA Restaurant Diagnostic — Find Where Your Restaurant Is Leaking Money</title>
+<meta name="description" content="A 4-minute restaurant diagnostic from LAVA. Find your biggest operational leaks across labor, COGS, reviews, accountability, systems, and growth.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="diagnostic-page">
+<div class="site-wrap">
+<canvas class="lava-canvas" id="lavaCanvas"></canvas>
+<div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+<div class="grain"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="particles" id="particles"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html#hero" class="nav-logo"><span>LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">About</a>
+      <div class="nav-dropdown">
+        <a href="index.html#services">Services</a>
+        <div class="nav-dropdown-menu">
+          <a href="fb-development.html">F&B Development</a>
+          <a href="purchasing.html">Purchasing</a>
+          <a href="accounting.html">Accounting</a>
+          <a href="training.html">Training</a>
+          <a href="operations.html">Operations</a>
+          <a href="automations.html">Automations</a>
+          <a href="branding.html">Branding</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="sales-events.html">Sales &amp; Events</a>
+        </div>
+      </div>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="restaurant-diagnostic.html" class="active">Diagnostic</a>
+      <a href="index.html#contact" class="nav-cta">Deploy Our Team</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="menu-logo">LAVA</span>
+    <button class="mobile-menu-close" id="menuClose">✕</button>
+  </div>
+  <div class="mobile-menu-nav">
+    <a href="index.html#reality" onclick="closeMobileMenu()">About</a>
+    <a href="index.html#services" onclick="closeMobileMenu()">Services</a>
+    <a href="index.html#intelligence" onclick="closeMobileMenu()">Intelligence</a>
+    <a href="restaurant-diagnostic.html" onclick="closeMobileMenu()">Restaurant Diagnostic</a>
+    <a href="index.html#contact" onclick="closeMobileMenu()">Contact</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <a href="restaurant-diagnostic.html" onclick="closeMobileMenu()">Run the Diagnostic 🌋</a>
+    <div class="menu-contact"><a href="mailto:info@ai-lava.com">✉️ info@ai-lava.com</a></div>
+  </div>
+</div>
+
+<main class="diagnostic-shell">
+  <section class="diagnostic-hero">
+    <div class="hero-eyebrow"><span class="dot"></span> 4-minute operator diagnostic</div>
+    <h1>Find Where Your Restaurant Is Leaking Money</h1>
+    <p>Answer a few sharp questions. Lava turns your pain points, tech stack, and goals into a clean first-read on where AI + operator support can create the fastest ROI.</p>
+    <div class="diagnostic-meta">
+      <span id="stepMeta">Step 1 of 4</span>
+      <span>⏱ Takes 4 minutes</span>
+      <span>📬 Sent to Francesco</span>
+    </div>
+  </section>
+
+  <section class="diagnostic-progress" aria-label="Diagnostic progress">
+    <button class="progress-step active" data-jump="0"><span>1</span><small>Leaks</small></button>
+    <button class="progress-step" data-jump="1"><span>2</span><small>Systems</small></button>
+    <button class="progress-step" data-jump="2"><span>3</span><small>ROI</small></button>
+    <button class="progress-step" data-jump="3"><span>4</span><small>Details</small></button>
+  </section>
+
+  <form id="diagnosticForm" class="diagnostic-grid" action="https://formsubmit.co/francesco@weareclive.com" method="POST">
+    <input type="hidden" name="_subject" value="New Lava Restaurant Diagnostic">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://ai-lava.com/restaurant-diagnostic.html?submitted=true">
+    <input type="text" name="company_website" class="diagnostic-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="hidden" name="Diagnostic Summary" id="diagnosticSummary">
+    <input type="hidden" name="Suggested Package" id="suggestedPackage">
+    <input type="hidden" name="Lava Fit Score" id="fitScoreField">
+
+    <div class="diagnostic-card">
+      <div class="diagnostic-step-panel active" data-step="0">
+        <div class="step-kicker">Step 1</div>
+        <h2>What do you want Lava to fix first?</h2>
+        <p class="step-copy">Pick the operating headaches that are actually costing money, time, or sleep.</p>
+
+        <div class="question-block required" data-name="Role">
+          <label>Which best describes your role?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="Owner / Founder">Owner / Founder</button>
+            <button type="button" class="choice" data-value="Operating Partner">Operating Partner</button>
+            <button type="button" class="choice" data-value="Director of Operations">Director of Ops</button>
+            <button type="button" class="choice" data-value="General Manager">GM</button>
+            <button type="button" class="choice" data-value="Chef / Culinary Lead">Chef</button>
+            <button type="button" class="choice" data-value="CFO / Controller">CFO / Controller</button>
+            <button type="button" class="choice" data-value="Marketing / Events Lead">Marketing / Events</button>
+            <button type="button" class="choice" data-value="Other">Other</button>
+          </div>
+          <input type="hidden" name="Role">
+        </div>
+
+        <div class="question-block required" data-name="Operation Type">
+          <label>What type of operation are you running?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="Independent restaurant">Independent restaurant</button>
+            <button type="button" class="choice" data-value="Restaurant group">Restaurant group</button>
+            <button type="button" class="choice" data-value="Hotel / resort restaurant">Hotel / resort</button>
+            <button type="button" class="choice" data-value="Bar / nightlife venue">Bar / nightlife</button>
+            <button type="button" class="choice" data-value="Catering / events business">Catering / events</button>
+            <button type="button" class="choice" data-value="New concept / pre-opening">Pre-opening</button>
+          </div>
+          <input type="hidden" name="Operation Type">
+        </div>
+
+        <div class="question-block required" data-name="Location Count">
+          <label>How many locations do you operate?</label>
+          <div class="segmented-choice">
+            <button type="button" class="choice" data-value="1">1</button>
+            <button type="button" class="choice" data-value="2-3">2–3</button>
+            <button type="button" class="choice" data-value="4-9">4–9</button>
+            <button type="button" class="choice" data-value="10+">10+</button>
+            <button type="button" class="choice" data-value="Opening first location">Opening first</button>
+          </div>
+          <input type="hidden" name="Location Count">
+        </div>
+
+        <div class="question-block required multi" data-name="Top Problems" data-max="5">
+          <label>What are the biggest problems right now? <span>Select up to 5</span></label>
+          <div class="choice-grid problem-grid">
+            <button type="button" class="choice hot" data-value="Daily reporting takes too long">Daily reporting</button>
+            <button type="button" class="choice hot" data-value="Labor cost / overtime">Labor / OT</button>
+            <button type="button" class="choice hot" data-value="Food cost / COGS">Food cost</button>
+            <button type="button" class="choice" data-value="Bar pour cost / liquor variance">Bar variance</button>
+            <button type="button" class="choice" data-value="Manager accountability">Manager accountability</button>
+            <button type="button" class="choice" data-value="Reviews / reputation">Reviews</button>
+            <button type="button" class="choice" data-value="Training consistency">Training</button>
+            <button type="button" class="choice" data-value="Private dining / event sales">Private dining</button>
+            <button type="button" class="choice" data-value="Purchasing / vendor pricing">Purchasing</button>
+            <button type="button" class="choice" data-value="Systems do not talk to each other">Systems don't talk</button>
+            <button type="button" class="choice hot" data-value="I do not know where the money is leaking">Unknown leak</button>
+          </div>
+          <input type="hidden" name="Top Problems">
+        </div>
+      </div>
+
+      <div class="diagnostic-step-panel" data-step="1">
+        <div class="step-kicker">Step 2</div>
+        <h2>What systems are you already using?</h2>
+        <p class="step-copy">Most operators do not need another login. They need the systems they already have turned into one command center.</p>
+
+        <div class="question-block" data-name="POS">
+          <label>Which POS do you use?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="Toast">Toast</button>
+            <button type="button" class="choice" data-value="Square">Square</button>
+            <button type="button" class="choice" data-value="Clover">Clover</button>
+            <button type="button" class="choice" data-value="Aloha / NCR">Aloha / NCR</button>
+            <button type="button" class="choice" data-value="Micros / Oracle">Micros / Oracle</button>
+            <button type="button" class="choice" data-value="SpotOn">SpotOn</button>
+            <button type="button" class="choice" data-value="Other / not sure">Other / not sure</button>
+          </div>
+          <input type="hidden" name="POS">
+        </div>
+
+        <div class="question-block multi" data-name="Labor Tools">
+          <label>Scheduling / labor tools?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="7shifts">7shifts</button>
+            <button type="button" class="choice" data-value="Homebase">Homebase</button>
+            <button type="button" class="choice" data-value="HotSchedules">HotSchedules</button>
+            <button type="button" class="choice" data-value="Restaurant365 Scheduling">R365 Scheduling</button>
+            <button type="button" class="choice" data-value="Toast Payroll / Scheduling">Toast Payroll</button>
+            <button type="button" class="choice" data-value="Manual spreadsheets">Spreadsheets</button>
+          </div>
+          <input type="hidden" name="Labor Tools">
+        </div>
+
+        <div class="question-block multi" data-name="Back Office Tools">
+          <label>Accounting / back office?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="Restaurant365">Restaurant365</button>
+            <button type="button" class="choice" data-value="QuickBooks">QuickBooks</button>
+            <button type="button" class="choice" data-value="Xero">Xero</button>
+            <button type="button" class="choice" data-value="MarginEdge">MarginEdge</button>
+            <button type="button" class="choice" data-value="Plate IQ / Ottimate">Plate IQ / Ottimate</button>
+            <button type="button" class="choice" data-value="Manual / outsourced bookkeeper">Manual / outsourced</button>
+          </div>
+          <input type="hidden" name="Back Office Tools">
+        </div>
+
+        <div class="question-block multi" data-name="Guest Revenue Tools">
+          <label>Guest / revenue tools?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="OpenTable">OpenTable</button>
+            <button type="button" class="choice" data-value="Resy">Resy</button>
+            <button type="button" class="choice" data-value="SevenRooms">SevenRooms</button>
+            <button type="button" class="choice" data-value="TripleSeat">TripleSeat</button>
+            <button type="button" class="choice" data-value="Toast Online Ordering">Toast Online Ordering</button>
+            <button type="button" class="choice" data-value="Delivery apps">Delivery apps</button>
+            <button type="button" class="choice" data-value="Google/Yelp reviews">Google/Yelp reviews</button>
+            <button type="button" class="choice" data-value="Email marketing / CRM">Email / CRM</button>
+          </div>
+          <input type="hidden" name="Guest Revenue Tools">
+        </div>
+
+        <div class="question-block" data-name="Current Reporting Rhythm">
+          <label>How are you reviewing performance today?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="Daily email from managers">Manager emails</button>
+            <button type="button" class="choice" data-value="Spreadsheet dashboard">Spreadsheet</button>
+            <button type="button" class="choice" data-value="POS reports only">POS reports only</button>
+            <button type="button" class="choice" data-value="Weekly P&L review">Weekly P&amp;L</button>
+            <button type="button" class="choice" data-value="We look when something goes wrong">Only when broken</button>
+            <button type="button" class="choice hot" data-value="No consistent rhythm">No rhythm</button>
+          </div>
+          <input type="hidden" name="Current Reporting Rhythm">
+        </div>
+
+        <label class="field-label">What report do you wish you had every morning?</label>
+        <textarea name="Dream Morning Report" rows="3" placeholder="Example: labor by daypart, voids/comps by manager, late reviews, vendor price changes..."></textarea>
+      </div>
+
+      <div class="diagnostic-step-panel" data-step="2">
+        <div class="step-kicker">Step 3</div>
+        <h2>Where should Lava create ROI?</h2>
+        <p class="step-copy">This is where the diagnostic starts matching you to Essentials, Growth, Full Partnership, or a custom build.</p>
+
+        <div class="question-block multi" data-name="Relevant Lava Services">
+          <label>Which Lava services are most relevant?</label>
+          <div class="choice-grid service-grid">
+            <button type="button" class="choice" data-value="AI Daily Intelligence briefings">AI Daily Intelligence</button>
+            <button type="button" class="choice" data-value="KPI dashboards / reporting">KPI Dashboards</button>
+            <button type="button" class="choice" data-value="Labor optimization">Labor Optimization</button>
+            <button type="button" class="choice" data-value="Manager accountability systems">Accountability</button>
+            <button type="button" class="choice" data-value="Menu engineering">Menu Engineering</button>
+            <button type="button" class="choice" data-value="Bar program overhaul">Bar Program</button>
+            <button type="button" class="choice" data-value="Purchasing / COGS controls">Purchasing / COGS</button>
+            <button type="button" class="choice" data-value="Training / HR systems">Training / HR</button>
+            <button type="button" class="choice" data-value="Accounting / back office">Back Office</button>
+            <button type="button" class="choice" data-value="Review management">Reviews</button>
+            <button type="button" class="choice" data-value="Sales & events growth">Sales & Events</button>
+            <button type="button" class="choice" data-value="Branding / marketing">Marketing</button>
+            <button type="button" class="choice" data-value="New concept development">New Opening</button>
+            <button type="button" class="choice" data-value="Custom AI automations">Custom AI</button>
+          </div>
+          <input type="hidden" name="Relevant Lava Services">
+        </div>
+
+        <div class="question-block" data-name="Biggest Financial Leak">
+          <label>What is your biggest financial leak?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice hot" data-value="Labor">Labor</button>
+            <button type="button" class="choice hot" data-value="Food cost">Food cost</button>
+            <button type="button" class="choice" data-value="Liquor / beverage cost">Beverage cost</button>
+            <button type="button" class="choice" data-value="Discounts / comps / voids">Comps / voids</button>
+            <button type="button" class="choice" data-value="Slow periods / empty seats">Empty seats</button>
+            <button type="button" class="choice" data-value="Private dining not converting">Private dining</button>
+            <button type="button" class="choice" data-value="Purchasing controls">Purchasing</button>
+            <button type="button" class="choice hot" data-value="I do not know">I don't know</button>
+          </div>
+          <input type="hidden" name="Biggest Financial Leak">
+        </div>
+
+        <div class="question-block" data-name="Accountability Gap">
+          <label>What accountability gap hurts the most?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="Manager logs not submitted">Manager logs</button>
+            <button type="button" class="choice" data-value="No one owns follow-up">No follow-up owner</button>
+            <button type="button" class="choice" data-value="Labor schedules not tied to sales">Labor vs sales</button>
+            <button type="button" class="choice" data-value="Reviews are ignored">Reviews ignored</button>
+            <button type="button" class="choice" data-value="Voids/comps not investigated">Voids/comps</button>
+            <button type="button" class="choice" data-value="Training is inconsistent">Training</button>
+            <button type="button" class="choice" data-value="No one checks KPIs daily">No daily KPI owner</button>
+          </div>
+          <input type="hidden" name="Accountability Gap">
+        </div>
+
+        <div class="question-block required" data-name="Support Level">
+          <label>How hands-on do you want Lava to be?</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="AI/reporting only">AI/reporting only</button>
+            <button type="button" class="choice" data-value="AI + weekly guidance">AI + weekly guidance</button>
+            <button type="button" class="choice hot" data-value="AI + hands-on ops support">Hands-on ops support</button>
+            <button type="button" class="choice hot" data-value="Full partnership / embedded team">Full partnership</button>
+            <button type="button" class="choice" data-value="Not sure yet">Not sure yet</button>
+          </div>
+          <input type="hidden" name="Support Level">
+        </div>
+
+        <div class="question-block" data-name="Impact Timeline">
+          <label>What speed of impact do you need?</label>
+          <div class="segmented-choice">
+            <button type="button" class="choice hot" data-value="ASAP / something is broken now">ASAP</button>
+            <button type="button" class="choice" data-value="30 days">30 days</button>
+            <button type="button" class="choice" data-value="60–90 days">60–90 days</button>
+            <button type="button" class="choice" data-value="Pre-opening timeline">Pre-opening</button>
+            <button type="button" class="choice" data-value="Exploring for later">Later</button>
+          </div>
+          <input type="hidden" name="Impact Timeline">
+        </div>
+      </div>
+
+      <div class="diagnostic-step-panel" data-step="3">
+        <div class="step-kicker">Step 4</div>
+        <h2>Tell us what is happening inside the business.</h2>
+        <p class="step-copy">No fluff. Give us the ugly thing you are tired of babysitting.</p>
+
+        <div class="form-row">
+          <label>Restaurant / group name *</label>
+          <input type="text" name="Restaurant / Group" required placeholder="Example: Desert Hospitality Group">
+        </div>
+        <div class="form-row two">
+          <div>
+            <label>Your name *</label>
+            <input type="text" name="Name" required placeholder="Your name">
+          </div>
+          <div>
+            <label>Email *</label>
+            <input type="email" name="Email" required placeholder="you@restaurant.com">
+          </div>
+        </div>
+        <div class="form-row two">
+          <div>
+            <label>Phone</label>
+            <input type="tel" name="Phone" placeholder="(555) 555-5555">
+          </div>
+          <div>
+            <label>City / state</label>
+            <input type="text" name="City / State" placeholder="Scottsdale, AZ">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>Website or Instagram</label>
+          <input type="text" name="Website or Instagram" placeholder="https://... or @handle">
+        </div>
+
+        <div class="question-block" data-name="Monthly Revenue Range">
+          <label>Approx monthly revenue per location</label>
+          <div class="choice-grid">
+            <button type="button" class="choice" data-value="Under $250k">Under $250k</button>
+            <button type="button" class="choice" data-value="$250k–$500k">$250k–$500k</button>
+            <button type="button" class="choice" data-value="$500k–$1M">$500k–$1M</button>
+            <button type="button" class="choice" data-value="$1M+">$1M+</button>
+            <button type="button" class="choice" data-value="Prefer not to say">Prefer not to say</button>
+          </div>
+          <input type="hidden" name="Monthly Revenue Range">
+        </div>
+
+        <div class="question-block" data-name="Urgency">
+          <label>How urgent is this?</label>
+          <div class="segmented-choice">
+            <button type="button" class="choice hot" data-value="This week">This week</button>
+            <button type="button" class="choice" data-value="This month">This month</button>
+            <button type="button" class="choice" data-value="This quarter">This quarter</button>
+            <button type="button" class="choice" data-value="Just researching">Researching</button>
+          </div>
+          <input type="hidden" name="Urgency">
+        </div>
+
+        <label class="field-label">What is the one problem you are tired of babysitting?</label>
+        <textarea name="Problem They Are Tired Of Babysitting" rows="3" maxlength="700" placeholder="Example: I have to personally check labor, comps, and manager logs every morning or it falls apart."></textarea>
+
+        <label class="field-label">If Lava worked perfectly, what would you wake up knowing every morning?</label>
+        <textarea name="Perfect Morning Read" rows="3" maxlength="700" placeholder="Example: exactly who missed expectations, where margin moved, and what needs action today."></textarea>
+
+        <label class="consent-row">
+          <input type="checkbox" name="Consent" value="Yes" required>
+          <span>I’m okay with Lava contacting me about this restaurant diagnostic.</span>
+        </label>
+      </div>
+
+      <div class="diagnostic-actions">
+        <button type="button" class="btn btn-outline" id="diagBack">← Back</button>
+        <button type="button" class="btn btn-primary" id="diagNext">Continue →</button>
+        <button type="submit" class="btn btn-primary" id="diagSubmit">Send My Restaurant Diagnostic →</button>
+      </div>
+    </div>
+
+    <aside class="diagnostic-rail">
+      <div class="rail-card diagnosis-card">
+        <div class="rail-art">🌋</div>
+        <h3 id="railTitle">Why we ask</h3>
+        <p id="railCopy">Lava is not generic AI software. We diagnose the operating system: sales, labor, reviews, manager logs, COGS, purchasing, training, and accountability.</p>
+      </div>
+
+      <div class="rail-card live-score-card">
+        <h3>Your Live Read</h3>
+        <div class="score-ring" id="scoreRing" style="--score:12"><span id="scoreValue">12</span><small>/100</small></div>
+        <p id="scoreLabel">Select a few answers and we’ll start building your operator profile.</p>
+        <div class="tag-cloud" id="tagCloud">
+          <span>AI Daily Intel</span><span>Labor</span><span>COGS</span><span>Accountability</span>
+        </div>
+      </div>
+
+      <div class="rail-card preview-card">
+        <h3>What Francesco gets</h3>
+        <ul id="previewList">
+          <li>Top pain points</li>
+          <li>Systems stack</li>
+          <li>Biggest financial leak</li>
+          <li>Recommended Lava path</li>
+        </ul>
+      </div>
+    </aside>
+  </form>
+</main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">LAVA</div>
+    <p>Artificial Intelligence Solutions for Restaurants</p>
+    <div class="footer-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#intelligence">Intelligence</a>
+      <a href="restaurant-diagnostic.html">Diagnostic</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 LAVA. Built by restaurant operators, for restaurant operators.</p>
+  </div>
+</footer>
+</div>
+
+<div class="lava-toast" id="diagnosticToast">Saved to your diagnostic profile.</div>
+<script src="scripts.js"></script>
+<script>
+(function(){
+  const form = document.getElementById('diagnosticForm');
+  const panels = [...document.querySelectorAll('.diagnostic-step-panel')];
+  const progress = [...document.querySelectorAll('.progress-step')];
+  const back = document.getElementById('diagBack');
+  const next = document.getElementById('diagNext');
+  const submit = document.getElementById('diagSubmit');
+  const stepMeta = document.getElementById('stepMeta');
+  const toast = document.getElementById('diagnosticToast');
+  const railTitle = document.getElementById('railTitle');
+  const railCopy = document.getElementById('railCopy');
+  const scoreValue = document.getElementById('scoreValue');
+  const scoreRing = document.getElementById('scoreRing');
+  const scoreLabel = document.getElementById('scoreLabel');
+  const tagCloud = document.getElementById('tagCloud');
+  const summaryField = document.getElementById('diagnosticSummary');
+  const packageField = document.getElementById('suggestedPackage');
+  const fitScoreField = document.getElementById('fitScoreField');
+  let step = 0;
+
+  const rail = [
+    ['Why we ask','Lava starts with pain, not buzzwords. Your answers tell us whether the leak is labor, COGS, manager accountability, reviews, or disconnected systems.'],
+    ['Systems tell the truth','If your POS, labor, accounting, reservations, reviews, and manager logs do not talk, you are running blind. Lava turns that stack into a morning command center.'],
+    ['ROI path, not feature list','We map your selected problems to the right service path: Essentials, Growth, Full Partnership, or a custom AI automation build.'],
+    ['The operator read','Francesco gets a structured lead summary: who you are, what is broken, what you use, urgency, and the smartest first move.']
+  ];
+
+  function values(name){
+    const input = form.querySelector(`[name="${CSS.escape(name)}"]`);
+    return input && input.value ? input.value.split(', ').filter(Boolean) : [];
+  }
+  function setValue(block){
+    const name = block.dataset.name;
+    const selected = [...block.querySelectorAll('.choice.selected')].map(b=>b.dataset.value);
+    const input = block.querySelector(`input[name="${CSS.escape(name)}"]`);
+    if(input) input.value = selected.join(', ');
+  }
+  function showToast(text){
+    toast.textContent = text;
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'), 1200);
+  }
+  function validateStep(){
+    const current = panels[step];
+    let ok = true;
+    current.querySelectorAll('.question-block.required').forEach(block=>{
+      setValue(block);
+      const input = block.querySelector('input[type="hidden"]');
+      const empty = !input || !input.value;
+      block.classList.toggle('needs-answer', empty);
+      if(empty) ok = false;
+    });
+    current.querySelectorAll('input[required], textarea[required]').forEach(input=>{
+      if(!input.checkValidity()) ok = false;
+    });
+    if(!ok) showToast('Hit the highlighted questions first.');
+    return ok;
+  }
+  function updateStep(){
+    panels.forEach((p,i)=>p.classList.toggle('active', i===step));
+    progress.forEach((p,i)=>{
+      p.classList.toggle('active', i===step);
+      p.classList.toggle('done', i<step);
+    });
+    back.style.visibility = step === 0 ? 'hidden' : 'visible';
+    next.style.display = step === panels.length-1 ? 'none' : 'inline-flex';
+    submit.style.display = step === panels.length-1 ? 'inline-flex' : 'none';
+    stepMeta.textContent = `Step ${step+1} of 4`;
+    railTitle.textContent = rail[step][0];
+    railCopy.textContent = rail[step][1];
+    updateProfile();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function computePackage(score){
+    const support = values('Support Level').join(' ');
+    const locations = values('Location Count').join(' ');
+    const problems = values('Top Problems');
+    if(/Full partnership|embedded/.test(support) || /4-9|10\+/.test(locations) || score > 72) return 'Full Partnership';
+    if(/hands-on|weekly guidance/.test(support) || problems.length >= 4 || score > 45) return 'Growth';
+    if(score > 20) return 'Essentials';
+    return 'Needs discovery';
+  }
+  function updateProfile(){
+    document.querySelectorAll('.question-block').forEach(setValue);
+    const selected = [...form.querySelectorAll('.choice.selected')];
+    const hot = selected.filter(b=>b.classList.contains('hot')).length;
+    const filledText = [...form.querySelectorAll('input:not([type=hidden]):not(.diagnostic-hp), textarea')].filter(i=>i.value.trim()).length;
+    const score = Math.min(100, 12 + selected.length*4 + hot*6 + filledText*3);
+    const pkg = computePackage(score);
+    scoreValue.textContent = score;
+    scoreRing.style.setProperty('--score', score);
+    scoreLabel.textContent = pkg === 'Needs discovery' ? 'Select a few answers and we’ll start building your operator profile.' : `Likely path: ${pkg}.`;
+    const tags = [...new Set([...values('Top Problems'), ...values('Relevant Lava Services'), ...values('Biggest Financial Leak')])].slice(0,7);
+    tagCloud.innerHTML = (tags.length ? tags : ['AI Daily Intel','Labor','COGS','Accountability']).map(t=>`<span>${t}</span>`).join('');
+    packageField.value = pkg;
+    fitScoreField.value = String(score);
+    const summary = [
+      `Role: ${values('Role').join(', ') || 'n/a'}`,
+      `Operation: ${values('Operation Type').join(', ') || 'n/a'}`,
+      `Locations: ${values('Location Count').join(', ') || 'n/a'}`,
+      `Top Problems: ${values('Top Problems').join(', ') || 'n/a'}`,
+      `POS: ${values('POS').join(', ') || 'n/a'}`,
+      `Labor Tools: ${values('Labor Tools').join(', ') || 'n/a'}`,
+      `Back Office: ${values('Back Office Tools').join(', ') || 'n/a'}`,
+      `Guest/Revenue Tools: ${values('Guest Revenue Tools').join(', ') || 'n/a'}`,
+      `Reporting Rhythm: ${values('Current Reporting Rhythm').join(', ') || 'n/a'}`,
+      `Relevant Services: ${values('Relevant Lava Services').join(', ') || 'n/a'}`,
+      `Biggest Leak: ${values('Biggest Financial Leak').join(', ') || 'n/a'}`,
+      `Accountability Gap: ${values('Accountability Gap').join(', ') || 'n/a'}`,
+      `Support Level: ${values('Support Level').join(', ') || 'n/a'}`,
+      `Timeline: ${values('Impact Timeline').join(', ') || 'n/a'}`,
+      `Suggested Package: ${pkg}`,
+      `Fit Score: ${score}/100`
+    ].join('\n');
+    summaryField.value = summary;
+  }
+
+  document.addEventListener('click', e=>{
+    const choice = e.target.closest('.choice');
+    if(choice){
+      const block = choice.closest('.question-block');
+      const isMulti = block.classList.contains('multi');
+      if(isMulti){
+        const max = Number(block.dataset.max || 99);
+        if(!choice.classList.contains('selected') && block.querySelectorAll('.choice.selected').length >= max){
+          showToast(`Keep it sharp — max ${max}.`);
+          return;
+        }
+        choice.classList.toggle('selected');
+      } else {
+        block.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));
+        choice.classList.add('selected');
+      }
+      block.classList.remove('needs-answer');
+      setValue(block);
+      updateProfile();
+      showToast(choice.classList.contains('selected') ? 'Added to your diagnostic.' : 'Removed.');
+    }
+  });
+
+  next.addEventListener('click', ()=>{ if(validateStep()){ step = Math.min(step+1, panels.length-1); updateStep(); } });
+  back.addEventListener('click', ()=>{ step = Math.max(step-1, 0); updateStep(); });
+  progress.forEach(btn=>btn.addEventListener('click', ()=>{
+    const target = Number(btn.dataset.jump);
+    if(target <= step || validateStep()){ step = target; updateStep(); }
+  }));
+  form.addEventListener('input', updateProfile);
+  form.addEventListener('submit', e=>{
+    if(form.querySelector('.diagnostic-hp').value){ e.preventDefault(); return; }
+    if(!validateStep()){ e.preventDefault(); return; }
+    updateProfile();
+  });
+
+  if(new URLSearchParams(location.search).get('submitted') === 'true'){
+    document.querySelector('.diagnostic-card').innerHTML = '<div class="diagnostic-success"><div class="success-badge">🌋</div><h2>Diagnostic sent.</h2><p>Lava has your answers. Francesco will get the structured restaurant read and follow up with the clearest next move.</p><a class="btn btn-primary" href="index.html">Back to Lava →</a></div>';
+  }
+  updateStep();
+})();
+</script>
+</body>
+</html>
