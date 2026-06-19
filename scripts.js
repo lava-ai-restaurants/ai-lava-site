@@ -171,14 +171,14 @@ function animateKPI(id,start,end,prefix,suffix,decimals){
 }
 const dashboardBody=document.getElementById('dashboardBody');
 if(dashboardBody){
-  const kpiTargets={sales:39210,guests:647,labor:26.8,check:60.60};
+  const kpiTargets={sales:184000,guests:17,labor:31,check:4};
   const dashObs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
         animateKPI('kpi-sales',0,kpiTargets.sales,'$','',0);
         animateKPI('kpi-guests',0,kpiTargets.guests,'','',0);
         animateKPI('kpi-labor',0,kpiTargets.labor,'','%',1);
-        animateKPI('kpi-check',0,kpiTargets.check,'$','',2);
+        animateKPI('kpi-check',0,kpiTargets.check,'','',0);
         dashObs.unobserve(e.target);
       }
     });
@@ -200,19 +200,19 @@ document.querySelectorAll('.dashboard-tab').forEach(tab=>{
 
 // ── Terminal Typing ──
 const terminalLines=[
-  {prompt:'lava',cmd:' scan --location "all" --date yesterday',delay:0},
-  {text:'Connecting to Toast POS... ',cls:'cmd',delay:800},
-  {text:'✓ Sales data pulled (3 locations)',cls:'success',delay:1500},
-  {text:'Connecting to 7shifts... ',cls:'cmd',delay:2200},
-  {text:'✓ Labor data: 847 hours, $14,209 wages',cls:'success',delay:2900},
-  {text:'Scanning R365 manager logs... ',cls:'cmd',delay:3500},
-  {text:'✓ 12 entries found (Cala: 5, Americano: 5, Neon Spur: 2)',cls:'success',delay:4200},
-  {text:'Analyzing OpenTable reviews... ',cls:'cmd',delay:4800},
-  {text:'✓ 8 new reviews — 2 require attention',cls:'warning',delay:5500},
-  {text:'⚡ ALERT: BOH overtime trending 12% above target at Location B',cls:'error',delay:6200},
-  {text:'Generating daily intelligence reports...',cls:'cmd',delay:7000},
-  {text:'✓ 5 emails sent to leadership team at 5:00 AM',cls:'success',delay:7800},
-  {text:'✓ All locations reporting. Zero data gaps.',cls:'data',delay:8500},
+  {prompt:'lava',cmd:' scan --business "owner-led-company" --date yesterday',delay:0},
+  {text:'Connecting to inbox, calendar, CRM, accounting, and task systems... ',cls:'cmd',delay:800},
+  {text:'✓ 184 new signals normalized across 6 tools',cls:'success',delay:1500},
+  {text:'Finding stale decisions and open loops... ',cls:'cmd',delay:2200},
+  {text:'✓ 17 open loops found; 4 require owner judgment',cls:'success',delay:2900},
+  {text:'Scanning revenue pipeline... ',cls:'cmd',delay:3500},
+  {text:'✓ 5 warm opportunities missing next step',cls:'warning',delay:4200},
+  {text:'Reviewing finance and back-office exceptions... ',cls:'cmd',delay:4800},
+  {text:'✓ 3 approvals packaged; 1 vendor variance flagged',cls:'warning',delay:5500},
+  {text:'ALERT: contract renewal decision due before auto-renewal window',cls:'error',delay:6200},
+  {text:'Drafting owner brief and team follow-up...',cls:'cmd',delay:7000},
+  {text:'✓ Daily command brief sent at 5:00 AM',cls:'success',delay:7800},
+  {text:'✓ Business support layer active. No dashboard habit required.',cls:'data',delay:8500},
 ];
 let terminalStarted=false;
 const terminalEl=document.getElementById('terminal');
@@ -435,24 +435,5 @@ document.querySelectorAll('.service-card[data-expandable]').forEach(card=>{
 (function(){
   const container=document.getElementById('lavaNotifications');
   if(!container)return;
-  const notifications=[
-    {icon:'🔴',text:'<strong>3 voids</strong> on Station 2 — $847 in potential loss',bar:'red',delay:3000},
-    {icon:'✅',text:'All <strong>5 manager logs</strong> submitted on time',bar:'green',delay:8000},
-    {icon:'⚡',text:'<strong>BOH overtime alert:</strong> 2 cooks approaching 40hrs',bar:'yellow',delay:13000},
-    {icon:'📊',text:'Daily intelligence report sent to <strong>6 team members</strong>',bar:'blue',delay:18000},
-  ];
-  let topOffset=100;
-  notifications.forEach((n,i)=>{
-    setTimeout(()=>{
-      const el=document.createElement('div');
-      el.className='lava-notification';
-      el.style.top=topOffset+'px';
-      el.innerHTML=`<div class="notif-bar ${n.bar}"></div><span class="notif-icon">${n.icon}</span><div class="notif-text">${n.text}<span class="notif-time">Just now — Lava Intelligence</span></div>`;
-      container.appendChild(el);
-      requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('show')));
-      setTimeout(()=>{el.classList.remove('show');el.classList.add('hide');setTimeout(()=>el.remove(),500)},4000);
-      topOffset+=80;
-      setTimeout(()=>{topOffset-=80},4500);
-    },n.delay);
-  });
+  container.setAttribute('aria-hidden','true');
 })();
