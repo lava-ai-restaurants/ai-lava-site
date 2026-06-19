@@ -30,14 +30,14 @@
       <div class="nav-dropdown">
         <a href="#services" data-section="services">Services</a>
         <div class="nav-dropdown-menu">
-          <a href="fb-development.html">F&B Development</a>
-          <a href="purchasing.html">Purchasing</a>
-          <a href="accounting.html">Accounting</a>
-          <a href="training.html">Training</a>
-          <a href="operations.html">Operations</a>
-          <a href="automations.html">Automations</a>
-          <a href="branding.html">Branding</a>
-          <a href="reviews.html">Reviews</a>
+          <a href="automations.html">AI Executive Support</a>
+          <a href="fb-development.html">Sales & Revenue</a>
+          <a href="purchasing.html">Back Office Watchtower</a>
+          <a href="accounting.html">Financial Controls</a>
+          <a href="training.html">Training & SOPs</a>
+          <a href="operations.html">Operations & Accountability</a>
+          <a href="branding.html">Marketing Signals</a>
+          <a href="reviews.html">Reviews & Reputation</a>
         </div>
       </div>
       <a href="#intelligence" data-section="intelligence">Intelligence</a>
@@ -59,14 +59,14 @@
     <a href="#reality" onclick="closeMobileMenu()">About</a>
     <span class="menu-section-label">Services</span>
     <div class="mobile-sub">
-      <a href="fb-development.html">F&B Development</a>
-      <a href="purchasing.html">Purchasing & COGS</a>
-      <a href="accounting.html">Accounting & Back Office</a>
+      <a href="automations.html">AI Executive Support</a>
+      <a href="fb-development.html">Sales & Revenue</a>
+      <a href="purchasing.html">Back Office Watchtower</a>
+      <a href="accounting.html">Financial Controls</a>
       <a href="training.html">Training & HR</a>
       <a href="operations.html">Operations & Accountability</a>
-      <a href="automations.html">Automations & AI</a>
-      <a href="branding.html">Branding & Marketing</a>
-      <a href="reviews.html">Review Management</a>
+      <a href="branding.html">Marketing Signals</a>
+      <a href="reviews.html">Reviews & Reputation</a>
       <a href="sales-events.html">Sales &amp; Events</a>
     </div>
     <a href="#intelligence" onclick="closeMobileMenu()">Intelligence</a>
@@ -192,7 +192,7 @@
         <h2>You Became the <span class="gradient-text">Bottleneck</span></h2>
         <p>Every decision runs through you. Every approval waits on you. Every missed follow-up, stale lead, late report, and half-owned project eventually lands back on your desk.</p>
         <p>You have software. Too much of it. What you don't have is an operating layer that watches the systems, reads the signals, drafts the next move, and tells the team what needs to happen today.</p>
-        <p class="accent">We built Lava inside real businesses first. Restaurants are our proving ground. The product is bigger: AI business support for companies that need more execution, not more dashboards.</p>
+        <p class="accent">We built Lava inside messy real operations first. The product is bigger than any one industry: AI business support for companies that need more execution, not more dashboards.</p>
       </div>
       <div class="reality-visual">
         <div class="reality-cards" id="painCards">
@@ -308,40 +308,47 @@
 <section class="industries-section" id="industries">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Who Lava <span class="gradient-text">Fits</span></h2>
-      <p>Best for owner-led companies where growth depends on follow-up, daily control, and fewer decisions getting stuck at the top.</p>
+      <h2>Pick Your <span class="gradient-text">Business Type</span></h2>
+      <p>Lava changes shape around the industry. Same operating brain, different pain points, workflows, alerts, and first install sprint.</p>
     </div>
-    <div class="industries-grid">
-      <article class="industry-card reveal">
-        <span>01</span>
-        <h3>Hospitality & Restaurants</h3>
-        <p>Our proving ground: POS, labor, reviews, reservations, purchasing, manager logs, and daily operating briefs.</p>
-      </article>
-      <article class="industry-card reveal reveal-delay-1">
-        <span>02</span>
-        <h3>Home Services & Trades</h3>
-        <p>Lead response, job follow-up, estimate tracking, technician accountability, review recovery, and owner dashboards.</p>
-      </article>
-      <article class="industry-card reveal reveal-delay-2">
-        <span>03</span>
-        <h3>Real Estate & Construction</h3>
-        <p>Project status, vendor follow-up, bid comparison, document review, client updates, and deadline pressure.</p>
-      </article>
-      <article class="industry-card reveal">
-        <span>04</span>
-        <h3>Professional Services</h3>
-        <p>Client intake, proposal follow-up, meeting notes, task routing, billing reminders, and knowledge-base cleanup.</p>
-      </article>
-      <article class="industry-card reveal reveal-delay-1">
-        <span>05</span>
-        <h3>Medical, Wellness & Fitness</h3>
-        <p>Inbound lead triage, retention signals, reviews, staff scheduling, patient/client follow-up, and daily exception reports.</p>
-      </article>
-      <article class="industry-card reveal reveal-delay-2">
-        <span>06</span>
-        <h3>Multi-Location Operators</h3>
-        <p>One owner view across locations, managers, systems, customer signals, and recurring accountability rhythms.</p>
-      </article>
+    <div class="industry-personalizer reveal" data-active-industry="home">
+      <div class="industry-picker" role="tablist" aria-label="Choose your industry">
+        <button class="industry-pill active" type="button" data-industry="home" role="tab" aria-selected="true">Home Services</button>
+        <button class="industry-pill" type="button" data-industry="realestate" role="tab" aria-selected="false">Real Estate / Construction</button>
+        <button class="industry-pill" type="button" data-industry="professional" role="tab" aria-selected="false">Professional Services</button>
+        <button class="industry-pill" type="button" data-industry="wellness" role="tab" aria-selected="false">Wellness / Fitness</button>
+        <button class="industry-pill" type="button" data-industry="multi" role="tab" aria-selected="false">Multi-Location</button>
+        <button class="industry-pill" type="button" data-industry="hospitality" role="tab" aria-selected="false">Hospitality</button>
+      </div>
+      <div class="industry-mold">
+        <div class="industry-copy">
+          <div class="industry-kicker" id="industryKicker">Home services / trades</div>
+          <h3 id="industryTitle">Your leads, estimates, jobs, technicians, reviews, and owner follow-up in one command layer.</h3>
+          <p id="industryBody">Lava watches the work between the call, the quote, the job, the invoice, and the review so good revenue does not die in the gaps.</p>
+          <div class="industry-outcome-row">
+            <div><span id="industrySignalOne">Lead response</span><strong id="industrySignalOneValue">Under 2-hour SLA</strong></div>
+            <div><span id="industrySignalTwo">Owner risk</span><strong id="industrySignalTwoValue">Stale estimates surfaced</strong></div>
+          </div>
+        </div>
+        <div class="industry-playbook" aria-live="polite">
+          <div class="playbook-column">
+            <span>Pain points</span>
+            <ul id="industryPainList"></ul>
+          </div>
+          <div class="playbook-column">
+            <span>Lava installs</span>
+            <ul id="industryInstallList"></ul>
+          </div>
+          <div class="playbook-column">
+            <span>First 14 days</span>
+            <ul id="industrySprintList"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="industry-proof-line">
+        <span>Not a template.</span>
+        <p id="industryProofLine">The homepage, diagnostic, and first call now adapt around the business model you choose.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -502,7 +509,7 @@
   <div class="container">
     <div class="section-header reveal">
       <h2>Proof From <span class="gradient-text">Real Operations</span></h2>
-      <p>Restaurants are the hardest proving ground: low margins, high volume, messy systems, and daily pressure. If it works there, it can travel.</p>
+      <p>These are field examples from high-pressure operating environments. They sit below the industry picker because the offer is broader than restaurants.</p>
     </div>
 
     <div class="case-card reveal">
@@ -763,7 +770,7 @@
   <div class="container">
     <div class="footer-logo"><span>LAVA</span></div>
     <p>AI business support for owner-led companies</p>
-    <p>Proven inside restaurant operations. Built to travel across service businesses.</p>
+    <p>Proven inside high-pressure operations. Built to travel across service businesses.</p>
     <p>© 2026 Lava. All rights reserved.</p>
     <div class="footer-links">
       <a href="#reality">About</a>

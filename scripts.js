@@ -379,6 +379,107 @@ const staggerObs=new IntersectionObserver(entries=>{
 },{threshold:.1});
 document.querySelectorAll('.services-grid,.scenario-grid,.testimonial-grid,.pricing-grid').forEach(g=>staggerObs.observe(g));
 
+// ── Industry Personalizer ──
+(function(){
+  const shell=document.querySelector('.industry-personalizer');
+  if(!shell)return;
+
+  const industries={
+    home:{
+      kicker:'Home services / trades',
+      title:'Your leads, estimates, jobs, technicians, reviews, and owner follow-up in one command layer.',
+      body:'Lava watches the work between the call, the quote, the job, the invoice, and the review so good revenue does not die in the gaps.',
+      signals:['Lead response','Under 2-hour SLA','Owner risk','Stale estimates surfaced'],
+      pain:['Missed calls become lost jobs','Estimates sit without follow-up','Technician notes never become owner insight','Bad reviews arrive before leadership sees the service issue'],
+      install:['Inbox and call-lead triage','Estimate follow-up watchlist','Job closeout and invoice exception alerts','Review recovery and referral prompts'],
+      sprint:['Map lead sources and quote stages','Build daily revenue and open-estimate read','Create technician accountability loop','Launch review and referral recovery workflow'],
+      proof:'Good fit for HVAC, plumbing, electrical, roofing, cleaning, landscaping, pool service, and other appointment-driven operators.'
+    },
+    realestate:{
+      kicker:'Real estate / construction',
+      title:'Your projects, bids, deadlines, vendors, docs, and client updates stop living in scattered threads.',
+      body:'Lava turns project noise into a daily read: what moved, what stalled, who owes an answer, and what needs owner judgment.',
+      signals:['Project status','Owner-ready by morning','Vendor risk','Late bids isolated'],
+      pain:['Bids and change orders drift','Client updates depend on memory','Vendor follow-up is inconsistent','Documents get reviewed too late'],
+      install:['Bid and vendor follow-up tracker','Permit/document review queue','Client update drafts','Deadline and change-order alerts'],
+      sprint:['Map active projects and critical dates','Connect inbox, calendar, files, and CRM','Build vendor/bid status board','Draft recurring client update rhythm'],
+      proof:'Good fit for broker teams, developers, GCs, remodelers, builders, architects, and property groups.'
+    },
+    professional:{
+      kicker:'Professional services',
+      title:'Your intake, proposals, meetings, billing reminders, and client commitments become visible before they slip.',
+      body:'Lava sits between the client relationship and the admin drag: every next step, draft, reminder, and risk packaged for the owner.',
+      signals:['Pipeline watch','Open proposals ranked','Client risk','Commitments tracked'],
+      pain:['New inquiries wait too long','Proposals go quiet','Meeting notes never become action','Billing and renewal reminders are inconsistent'],
+      install:['Client intake and proposal follow-up','Meeting-to-task conversion','Billing and renewal exception alerts','Knowledge-base and SOP cleanup'],
+      sprint:['Map intake and proposal stages','Build owner pipeline brief','Create client commitment tracker','Launch weekly renewal and billing watch'],
+      proof:'Good fit for agencies, consultants, attorneys, accountants, fractional executives, and boutique advisory firms.'
+    },
+    wellness:{
+      kicker:'Wellness / fitness',
+      title:'Your leads, member retention, staff execution, reviews, and daily exceptions become one operating read.',
+      body:'Lava tracks the signals owners normally feel too late: missed inquiries, churn risk, inconsistent follow-up, and front-desk execution gaps.',
+      signals:['Retention risk','Member signals flagged','Lead follow-up','Trial users tracked'],
+      pain:['New trials do not convert','At-risk members are noticed too late','Staff follow-up is uneven','Reviews and complaints lack a recovery loop'],
+      install:['Lead and trial conversion watch','Retention and churn signal alerts','Staff accountability checklist','Review response and recovery queue'],
+      sprint:['Map lead and member lifecycle','Build daily front-desk exception read','Create churn-risk follow-up list','Launch review and referral prompt system'],
+      proof:'Good fit for gyms, studios, med spas, clinics, wellness centers, and membership-based service companies.'
+    },
+    multi:{
+      kicker:'Multi-location operators',
+      title:'Every location, manager, metric, and open loop rolls into one owner command layer.',
+      body:'Lava gives leadership the daily cross-location read: where performance moved, where standards slipped, and which owners owe proof.',
+      signals:['Location risk','Ranked by urgency','Manager proof','Open loops visible'],
+      pain:['Each location reports differently','Managers say done without proof','Owners lack a single morning truth','Small issues turn into multi-location drift'],
+      install:['Cross-location daily brief','Manager accountability tracker','KPI exception ranking','Standard operating rhythm across teams'],
+      sprint:['Map locations, managers, systems, and KPIs','Build daily exception scorecard','Create owner/manager proof loop','Launch weekly pattern review'],
+      proof:'Good fit for groups with several stores, territories, departments, or operating teams reporting to one leadership layer.'
+    },
+    hospitality:{
+      kicker:'Hospitality / restaurants',
+      title:'High-pressure hospitality remains our proof lab, not the whole business.',
+      body:'Lava can still track sales, staffing, reviews, reservations, purchasing, manager logs, and daily operating briefs for restaurants and venues.',
+      signals:['Daily ops read','Sent before service','Cost risk','Staffing and margin flagged'],
+      pain:['Reports arrive late or incomplete','Staffing and cost issues show up after service','Reviews and guest recovery lack ownership','Manager logs are inconsistent'],
+      install:['Daily operating recap','Staffing and cost exception alerts','Manager log and proof tracking','Guest/review recovery workflow'],
+      sprint:['Connect POS, people tools, reservations, reviews, and accounting','Build morning recap and pre-shift read','Create manager compliance loop','Launch cost and revenue exception alerts'],
+      proof:'Restaurants prove Lava under pressure; the same operating layer travels to other owner-led service businesses.'
+    }
+  };
+
+  const els={
+    kicker:document.getElementById('industryKicker'),
+    title:document.getElementById('industryTitle'),
+    body:document.getElementById('industryBody'),
+    s1:document.getElementById('industrySignalOne'),
+    s1v:document.getElementById('industrySignalOneValue'),
+    s2:document.getElementById('industrySignalTwo'),
+    s2v:document.getElementById('industrySignalTwoValue'),
+    pain:document.getElementById('industryPainList'),
+    install:document.getElementById('industryInstallList'),
+    sprint:document.getElementById('industrySprintList'),
+    proof:document.getElementById('industryProofLine')
+  };
+  function list(el,items){el.innerHTML=items.map(item=>`<li>${item}</li>`).join('')}
+  function render(key){
+    const data=industries[key]||industries.home;
+    shell.dataset.activeIndustry=key;
+    els.kicker.textContent=data.kicker;
+    els.title.textContent=data.title;
+    els.body.textContent=data.body;
+    [els.s1.textContent,els.s1v.textContent,els.s2.textContent,els.s2v.textContent]=data.signals;
+    list(els.pain,data.pain);list(els.install,data.install);list(els.sprint,data.sprint);
+    els.proof.textContent=data.proof;
+    document.querySelectorAll('.industry-pill').forEach(btn=>{
+      const active=btn.dataset.industry===key;
+      btn.classList.toggle('active',active);
+      btn.setAttribute('aria-selected',String(active));
+    });
+  }
+  document.querySelectorAll('.industry-pill').forEach(btn=>btn.addEventListener('click',()=>render(btn.dataset.industry)));
+  render('home');
+})();
+
 // ── Highlight Text on Scroll ──
 document.querySelectorAll('.reality-text .accent,.philosophy-quote blockquote,.impact').forEach(el=>{
   el.classList.add('highlight-text');
