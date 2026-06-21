@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>7-Day Revenue Leak Screen | LAVA</title>
+  <meta name="description" content="LAVA finds missed calls, slow follow-up, unbooked estimates, and owner-routed decisions before they turn into lost revenue.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23111318'/><path d='M49 12 15 86h70L49 12Z' fill='%23f25f3a'/><path d='M50 32 35 72h30L50 32Z' fill='%23ffbd59'/></svg>">
+  <style>
+    :root{color-scheme:dark;--bg:#0b0d10;--ink:#f8f1e9;--muted:#b8aea2;--line:#303641;--panel:#151922;--panel2:#202734;--lava:#f25f3a;--gold:#ffbd59;--green:#68d391;--blue:#8ab4ff;--red:#ff7474}
+    *{box-sizing:border-box}body{margin:0;background:#0b0d10;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:0}a{color:inherit}.wrap{max-width:1180px;margin:0 auto;padding:0 22px}.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}.logo{font-weight:950;font-size:20px;letter-spacing:.08em}.nav a{font-size:14px;color:var(--muted);text-decoration:none}.hero{min-height:84vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(380px,.88fr);gap:42px;align-items:center;padding:32px 0 56px}.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-weight:950}.dot{width:8px;height:8px;border-radius:99px;background:var(--lava);box-shadow:0 0 22px var(--lava)}h1{font-size:clamp(44px,6.2vw,78px);line-height:.94;letter-spacing:0;margin:20px 0}.lead{font-size:21px;line-height:1.55;color:var(--muted);max-width:740px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:8px;text-decoration:none;font-weight:950}.primary{background:linear-gradient(135deg,var(--lava),var(--gold));color:#111318}.secondary{border:1px solid var(--line);background:rgba(255,255,255,.04)}.math{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}.math div{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:8px;padding:14px}.math b{display:block;font-size:23px}.math span{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.scorecard{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.32)}.score-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}.score-title{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--green);font-weight:950}.score-num{font-size:44px;font-weight:950;color:var(--lava)}.rows{padding:6px 20px 18px}.row{display:grid;grid-template-columns:112px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}.row:last-child{border-bottom:0}.tag{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:950;color:#111;border-radius:6px;background:var(--gold);padding:7px 8px;text-align:center;height:max-content}.tag.blue{background:var(--blue)}.tag.red{background:var(--red)}.tag.green{background:var(--green)}.row strong{display:block;margin-bottom:4px}.row small{color:var(--muted);line-height:1.45}.band{border-top:1px solid var(--line);padding:54px 0}.band h2{font-size:34px;line-height:1.1;margin:0 0 14px}.band p{font-size:18px;line-height:1.6;color:var(--muted);margin:0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}.card{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:8px;padding:18px}.card h3{font-size:17px;margin:0 0 8px}.card p{font-size:14px;line-height:1.48}.calc{margin-top:24px;border:1px solid var(--line);border-radius:10px;background:#11151d;padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.calc label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800}.calc input{margin-top:7px;width:100%;height:42px;border-radius:8px;border:1px solid var(--line);background:#0d1016;color:var(--ink);padding:0 10px;font-size:16px}.result{display:flex;align-items:center;justify-content:center;border-radius:8px;background:#201814;color:var(--gold);font-size:26px;font-weight:950;min-height:64px}.footer{padding:40px 0;color:var(--muted);font-size:13px}.tiny{font-size:12px;color:#8c8378;margin-top:16px}@media(max-width:920px){.hero{grid-template-columns:1fr;min-height:auto}.math,.grid,.calc{grid-template-columns:1fr}h1{font-size:47px}.lead{font-size:18px}.row{grid-template-columns:1fr}.score-num{font-size:38px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav">
+      <div class="logo">LAVA</div>
+      <a href="https://ai-lava.com">ai-lava.com</a>
+    </nav>
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> 7-day revenue leak screen</div>
+        <h1>What if one booked job per weekday is already leaking?</h1>
+        <p class="lead">LAVA finds missed calls, slow follow-up, unbooked estimates, and owner-routed decisions before they disappear into normal business noise.</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:customerservice@ai-lava.com?subject=Run%20the%207-day%20revenue%20leak%20screen">Run the 7-day screen</a>
+          <a class="btn secondary" href="#calculator">Estimate the leak</a>
+        </div>
+        <div class="math">
+          <div><b>1/day</b><span>extra booked job target</span></div>
+          <div><b>7 days</b><span>signal review</span></div>
+          <div><b>14 days</b><span>first recovery install</span></div>
+        </div>
+      </div>
+      <aside class="scorecard" aria-label="Example revenue leak scorecard">
+        <div class="score-head">
+          <div class="score-title">Sample scorecard</div>
+          <div class="score-num">$42k</div>
+        </div>
+        <div class="rows">
+          <div class="row">
+            <div class="tag">Calls</div>
+            <div><strong>17 high-intent calls had no verified booking outcome.</strong><small>LAVA asks: booked, lost, quoted, or still open?</small></div>
+          </div>
+          <div class="row">
+            <div class="tag blue">Quotes</div>
+            <div><strong>9 estimates aged past 72 hours without the next touch.</strong><small>Recovery workflow drafts the follow-up and flags owner exceptions.</small></div>
+          </div>
+          <div class="row">
+            <div class="tag red">Ops</div>
+            <div><strong>4 issues repeated in notes but never became accountable work.</strong><small>Pattern becomes owner, due date, and verification.</small></div>
+          </div>
+          <div class="row">
+            <div class="tag green">Install</div>
+            <div><strong>First AI workflow: recover open money daily.</strong><small>Proof metric: booked jobs recovered, dollars protected, owner touches removed.</small></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <section class="band" id="calculator">
+    <div class="wrap">
+      <h2>The math gets ugly fast</h2>
+      <p>Change the assumptions. Even a small leak is worth seeing if the company already paid to create the demand.</p>
+      <div class="calc">
+        <div><label>Open leads / week<input id="leads" type="number" value="12" min="0"></label></div>
+        <div><label>Recoverable %<input id="rate" type="number" value="25" min="0" max="100"></label></div>
+        <div><label>Avg job value<input id="value" type="number" value="1200" min="0"></label></div>
+        <div class="result" id="result">$14,400/mo</div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Missed Demand</h3><p>Calls, forms, DMs, emails, reviews, and quote requests with unclear final outcome.</p></div>
+        <div class="card"><h3>Slow Follow-Up</h3><p>Open estimates or customer issues aging past the point where speed still wins.</p></div>
+        <div class="card"><h3>Decision Drag</h3><p>Work that waits for an owner because the team has context but no clear next decision.</p></div>
+        <div class="card"><h3>Recovery Install</h3><p>The first workflow LAVA can install to catch the leak every day without a software migration.</p></div>
+      </div>
+    </div>
+  </section>
+  <footer class="wrap footer">
+    LAVA turns the signals your business already creates into follow-up, decisions, and proof.
+    <div class="tiny">Tracking note: campaign links may record open, click, and page-visit events so LAVA can measure whether the message is working.</div>
+  </footer>
+  <script>
+    function money(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
+    function update(){
+      var leads = Number(document.getElementById('leads').value || 0);
+      var rate = Number(document.getElementById('rate').value || 0) / 100;
+      var value = Number(document.getElementById('value').value || 0);
+      document.getElementById('result').textContent = money(leads * rate * value * 4);
+    }
+    ['leads','rate','value'].forEach(function(id){document.getElementById(id).addEventListener('input',update);});
+    update();
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const campaign = params.get('c') || 'direct';
+      const recipient = params.get('r') || 'unknown';
+      const beacon = 'https://track.ai-lava.com/v?c=' + encodeURIComponent(campaign) + '&r=' + encodeURIComponent(recipient) + '&p=' + encodeURIComponent(location.pathname);
+      if (navigator.sendBeacon) navigator.sendBeacon(beacon);
+      else fetch(beacon, { mode: 'no-cors', keepalive: true }).catch(function(){});
+    })();
+  </script>
+</body>
+</html>
