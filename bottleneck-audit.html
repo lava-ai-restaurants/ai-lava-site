@@ -3,13 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Business Bottleneck Audit | LAVA</title>
-  <meta name="description" content="A 7-day AI Business Bottleneck Audit for owner-led companies. Find the top three leaks in follow-up, admin, sales, and operating accountability.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+  <title>Hidden Leak Map | LAVA</title>
+  <meta name="description" content="LAVA finds the hidden work tax inside owner-led companies: stale follow-up, unowned manager notes, labor drift, invoice exceptions, and decision loops.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23111318'/><path d='M49 12 15 86h70L49 12Z' fill='%23f25f3a'/><path d='M50 32 35 72h30L50 32Z' fill='%23ffbd59'/></svg>">
   <style>
-    :root{color-scheme:dark;--bg:#0d0e10;--panel:#17191d;--panel2:#20242b;--text:#f5f1ea;--muted:#b8aea2;--line:#333844;--lava:#f25f3a;--gold:#ffbd59;--green:#66d19e;--blue:#8ab4ff}
-    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 18% 8%,rgba(242,95,58,.22),transparent 30%),radial-gradient(circle at 78% 16%,rgba(138,180,255,.18),transparent 28%),linear-gradient(135deg,#0d0e10,#151215 46%,#0d0e10);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:0}
-    a{color:inherit}.wrap{max-width:1180px;margin:0 auto;padding:0 22px}.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}.logo{font-weight:950;font-size:20px;letter-spacing:.08em}.nav a{font-size:14px;color:var(--muted);text-decoration:none}.hero{min-height:86vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);gap:42px;align-items:center;padding:38px 0 56px}.eyebrow{display:inline-flex;gap:10px;align-items:center;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:900}.dot{width:8px;height:8px;background:var(--lava);border-radius:99px;box-shadow:0 0 22px var(--lava)}h1{font-size:clamp(44px,6.6vw,82px);line-height:.92;margin:22px 0 20px;letter-spacing:0}p{font-size:18px;line-height:1.62;color:var(--muted);margin:0}.lead{font-size:21px;max-width:720px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:8px;padding:0 18px;text-decoration:none;font-weight:900}.primary{background:linear-gradient(135deg,var(--lava),var(--gold));color:#111}.secondary{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text)}.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}.proof div{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:8px;padding:14px}.proof b{display:block;font-size:24px;color:var(--text)}.proof span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.panel{background:linear-gradient(180deg,rgba(32,36,43,.94),rgba(18,20,24,.94));border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.28)}.scan-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:16px}.live{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.11em}.score{font-size:52px;font-weight:950;color:var(--lava);line-height:1}.issue{display:grid;grid-template-columns:88px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}.issue:last-child{border-bottom:0}.tag{font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.09em;color:#111;background:var(--gold);border-radius:6px;padding:7px 8px;text-align:center;height:max-content}.tag.blue{background:var(--blue)}.tag.green{background:var(--green)}.issue strong{display:block;margin-bottom:5px}.issue small{color:var(--muted);line-height:1.45}.band{border-top:1px solid var(--line);padding:54px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:8px;padding:22px}.card h3{margin:0 0 10px;font-size:18px}.card p{font-size:15px}.footer{padding:40px 0;color:var(--muted);font-size:13px}.tiny{font-size:12px;color:#8c8378;margin-top:16px}@media(max-width:880px){.hero{grid-template-columns:1fr;min-height:auto}.proof,.grid{grid-template-columns:1fr}h1{font-size:48px}.lead{font-size:18px}.panel{padding:18px}.issue{grid-template-columns:1fr}.score{font-size:42px}}
+    :root{color-scheme:dark;--bg:#0c0d10;--ink:#f7f1e8;--muted:#b8aea2;--line:#30343d;--panel:#15171d;--panel2:#1f232c;--lava:#f25f3a;--gold:#ffbd59;--green:#66d19e;--blue:#8ab4ff;--rose:#ff8b8b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#0c0d10;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:0}a{color:inherit}.wrap{max-width:1160px;margin:0 auto;padding:0 22px}.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}.logo{font-weight:950;font-size:20px;letter-spacing:.08em}.nav a{font-size:14px;color:var(--muted);text-decoration:none}.hero{min-height:84vh;display:grid;grid-template-columns:minmax(0,1fr) minmax(370px,.86fr);gap:42px;align-items:center;padding:34px 0 58px}.eyebrow{display:inline-flex;gap:10px;align-items:center;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:900}.dot{width:8px;height:8px;background:var(--lava);border-radius:99px;box-shadow:0 0 22px var(--lava)}h1{font-size:clamp(44px,6vw,78px);line-height:.94;margin:20px 0 20px;letter-spacing:0;max-width:760px}p{font-size:18px;line-height:1.62;color:var(--muted);margin:0}.lead{font-size:21px;max-width:720px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:8px;padding:0 18px;text-decoration:none;font-weight:950}.primary{background:linear-gradient(135deg,var(--lava),var(--gold));color:#111318}.secondary{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--ink)}.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}.proof div{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:8px;padding:14px}.proof b{display:block;font-size:24px;color:var(--ink)}.proof span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.map{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.32)}.map-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:18px 20px}.live{display:inline-flex;align-items:center;gap:8px;color:var(--green);font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.11em}.score{font-size:46px;font-weight:950;color:var(--lava);line-height:1}.scan{padding:8px 20px 18px}.issue{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)}.issue:last-child{border-bottom:0}.tag{font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.08em;color:#111;background:var(--gold);border-radius:6px;padding:7px 8px;text-align:center;height:max-content}.tag.blue{background:var(--blue)}.tag.green{background:var(--green)}.tag.rose{background:var(--rose)}.issue strong{display:block;margin-bottom:5px}.issue small{color:var(--muted);line-height:1.45}.band{border-top:1px solid var(--line);padding:54px 0}.band h2{font-size:34px;line-height:1.1;margin:0 0 16px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.card{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:8px;padding:18px}.card h3{margin:0 0 10px;font-size:17px}.card p{font-size:14px;line-height:1.5}.before-after{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}.box{border:1px solid var(--line);border-radius:8px;padding:18px;background:rgba(255,255,255,.04)}.box strong{display:block;margin-bottom:8px}.box ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.55}.footer{padding:40px 0;color:var(--muted);font-size:13px}.tiny{font-size:12px;color:#8c8378;margin-top:16px}@media(max-width:900px){.hero{grid-template-columns:1fr;min-height:auto}.proof,.grid,.before-after{grid-template-columns:1fr}h1{font-size:47px}.lead{font-size:18px}.issue{grid-template-columns:1fr}.score{font-size:40px}}
   </style>
 </head>
 <body>
@@ -20,49 +19,78 @@
     </nav>
     <section class="hero">
       <div>
-        <div class="eyebrow"><span class="dot"></span> 7-day owner-led business audit</div>
-        <h1>Find the leaks your team has learned to work around.</h1>
-        <p class="lead">Lava reviews the operating layer under the business: missed follow-up, stale estimates, inbox drag, admin loops, disconnected systems, and owner decisions that should have become delegated workflows.</p>
+        <div class="eyebrow"><span class="dot"></span> 7-day hidden leak map</div>
+        <h1>Your company is probably paying a hidden work tax.</h1>
+        <p class="lead">LAVA finds the exact moments where a system creates work, but nobody owns the next move fast enough. Then it installs the first AI workflow that catches the leak before the owner has to.</p>
         <div class="actions">
-          <a class="btn primary" id="primaryCta" href="mailto:customerservice@ai-lava.com?subject=AI%20Business%20Bottleneck%20Audit">Start the audit</a>
-          <a class="btn secondary" href="#scope">See what gets inspected</a>
+          <a class="btn primary" id="primaryCta" href="mailto:customerservice@ai-lava.com?subject=Show%20me%20the%20hidden%20leak%20map">Show me the leak map</a>
+          <a class="btn secondary" href="#examples">See what gets caught</a>
         </div>
         <div class="proof">
-          <div><b>7d</b><span>audit window</span></div>
-          <div><b>3</b><span>highest-value leaks</span></div>
+          <div><b>7d</b><span>diagnostic window</span></div>
+          <div><b>3</b><span>ranked leaks</span></div>
           <div><b>14d</b><span>first install sprint</span></div>
         </div>
       </div>
-      <aside class="panel" aria-label="Example bottleneck scan">
-        <div class="scan-top">
-          <div class="live"><span class="dot"></span> Example scan</div>
-          <div class="score">87</div>
+      <aside class="map" aria-label="Example hidden leak map">
+        <div class="map-head">
+          <div class="live"><span class="dot"></span> Example leak map</div>
+          <div class="score">92</div>
         </div>
-        <div class="issue">
-          <div class="tag">Follow-up</div>
-          <div><strong>Warm demand is leaking between systems.</strong><small>Calls, forms, reviews, estimates, and calendar notes create work, but no one owns the next action fast enough.</small></div>
-        </div>
-        <div class="issue">
-          <div class="tag blue">Owner Time</div>
-          <div><strong>The owner is still the router.</strong><small>Simple approvals, reminders, and draft responses keep returning to the top instead of becoming a repeatable operating lane.</small></div>
-        </div>
-        <div class="issue">
-          <div class="tag green">Install Plan</div>
-          <div><strong>First sprint starts where ROI is obvious.</strong><small>The audit ends with the first AI workflow to install, the proof metric, and the team behavior it replaces.</small></div>
+        <div class="scan">
+          <div class="issue">
+            <div class="tag">Revenue</div>
+            <div><strong>Warm demand is aging without ownership.</strong><small>High-intent inquiry detected at 4:18 PM. No reply owner or follow-up draft by next business morning.</small></div>
+          </div>
+          <div class="issue">
+            <div class="tag blue">Ops</div>
+            <div><strong>Manager note did not become work.</strong><small>Recurring supply issue mentioned twice. No named owner, due date, vendor message, or verification loop created.</small></div>
+          </div>
+          <div class="issue">
+            <div class="tag rose">Labor</div>
+            <div><strong>Schedule drift showed up before payroll pain.</strong><small>Projected labor crossed target while sales softened. LAVA isolates the role, shift, and decision window.</small></div>
+          </div>
+          <div class="issue">
+            <div class="tag green">Install</div>
+            <div><strong>First workflow is obvious.</strong><small>Start where the leak has a dollar value, a repeat pattern, and a human currently acting as the router.</small></div>
+          </div>
         </div>
       </aside>
     </section>
   </main>
-  <section class="band" id="scope">
-    <div class="wrap grid">
-      <div class="card"><h3>Sales Follow-Up</h3><p>Where leads, estimates, reviews, and inbound requests stop moving or depend on memory.</p></div>
-      <div class="card"><h3>Operating Accountability</h3><p>Where recurring tasks, handoffs, approvals, and owner decisions lack a reliable loop.</p></div>
-      <div class="card"><h3>Back Office Drag</h3><p>Where invoices, payroll, reports, vendor issues, or admin checks are late, manual, or invisible.</p></div>
+  <section class="band" id="examples">
+    <div class="wrap">
+      <h2>What the audit catches</h2>
+      <p>Not "AI ideas." Actual operating misses that already exist inside the tools the company uses every day.</p>
+      <div class="grid" style="margin-top:22px">
+        <div class="card"><h3>Stale Money</h3><p>Leads, quotes, event inquiries, missed calls, reviews, and guest notes that age without a next step.</p></div>
+        <div class="card"><h3>Unowned Work</h3><p>Manager notes, passdowns, complaints, repairs, or handoffs that never become owner plus date plus verification.</p></div>
+        <div class="card"><h3>Margin Drift</h3><p>Labor, invoice, vendor, payroll, POS, and report exceptions that show up too late or in too much noise.</p></div>
+        <div class="card"><h3>Owner Drag</h3><p>The repeated decisions, reminders, approvals, and draft responses that keep climbing back to the top.</p></div>
+      </div>
+      <div class="before-after">
+        <div class="box">
+          <strong>Before LAVA</strong>
+          <ul>
+            <li>Humans notice problems late.</li>
+            <li>The owner is the router.</li>
+            <li>Tools create more tabs, not more closure.</li>
+          </ul>
+        </div>
+        <div class="box">
+          <strong>After the first install</strong>
+          <ul>
+            <li>The leak is detected automatically.</li>
+            <li>The next move is drafted or assigned.</li>
+            <li>Only the real decision reaches the owner.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
   <footer class="wrap footer">
-    Lava installs an AI command layer around the tools a company already uses. No heavy software migration required.
-    <div class="tiny">Tracking note: campaign links may record open, click, and page-visit events so Lava can measure whether the message is working.</div>
+    LAVA installs an AI command layer around the systems a company already uses. No heavy software migration required.
+    <div class="tiny">Tracking note: campaign links may record open, click, and page-visit events so LAVA can measure whether the message is working.</div>
   </footer>
   <script>
     (function(){
