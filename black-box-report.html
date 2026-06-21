@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LAVA Black Box Report</title>
+  <meta name="description" content="A sample LAVA Black Box report: the business flight recorder for missed demand, owner drag, stale follow-up, and lost operating proof.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23111318'/><path d='M49 12 15 86h70L49 12Z' fill='%23f25f3a'/><path d='M50 32 35 72h30L50 32Z' fill='%23ffbd59'/></svg>">
+  <style>
+    :root{color-scheme:dark;--bg:#090a0d;--panel:#12151b;--panel2:#1b2029;--ink:#f8f1e9;--muted:#aca59b;--line:#313843;--lava:#f25f3a;--gold:#ffbd59;--green:#69d391;--blue:#8ab4ff;--red:#ff7474}
+    *{box-sizing:border-box}body{margin:0;background:#090a0d;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;letter-spacing:0}a{color:inherit}.wrap{max-width:1180px;margin:0 auto;padding:0 22px}.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}.logo{font-weight:950;font-size:20px;letter-spacing:.08em}.nav a{font-size:14px;text-decoration:none;color:var(--muted)}.hero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(420px,1.1fr);gap:38px;align-items:center;min-height:86vh;padding:34px 0 58px}.eyebrow{display:inline-flex;gap:10px;align-items:center;color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:950}.dot{width:8px;height:8px;border-radius:99px;background:var(--lava);box-shadow:0 0 22px var(--lava)}h1{font-size:clamp(44px,6vw,76px);line-height:.94;margin:20px 0;letter-spacing:0}.lead{font-size:21px;line-height:1.55;color:var(--muted);max-width:720px;margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;border-radius:8px;text-decoration:none;font-weight:950;padding:0 18px}.primary{background:linear-gradient(135deg,var(--lava),var(--gold));color:#111318}.secondary{border:1px solid var(--line);background:rgba(255,255,255,.04)}.report{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel2),var(--panel));border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.34)}.report-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:18px 20px}.report-title{font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:var(--gold);font-weight:950}.stamp{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:7px 10px;color:var(--green);font-weight:900}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--line)}.kpi{padding:16px;border-right:1px solid var(--line)}.kpi:last-child{border-right:0}.kpi b{display:block;font-size:27px;color:var(--ink)}.kpi span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.chart{padding:20px}.bar{display:grid;grid-template-columns:130px 1fr 48px;gap:10px;align-items:center;margin:12px 0}.bar label{font-size:13px;color:var(--muted)}.track{height:14px;border-radius:99px;background:#0b0d12;overflow:hidden;border:1px solid var(--line)}.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--lava),var(--gold))}.bar strong{font-size:13px;text-align:right}.rows{border-top:1px solid var(--line);padding:4px 20px 18px}.row{display:grid;grid-template-columns:100px 1fr 90px;gap:12px;align-items:start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}.row:last-child{border-bottom:0}.tag{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:950;color:#111;background:var(--gold);border-radius:6px;padding:7px 8px;text-align:center}.tag.red{background:var(--red)}.tag.blue{background:var(--blue)}.tag.green{background:var(--green)}.row strong{display:block;margin-bottom:4px}.row small{display:block;color:var(--muted);line-height:1.45}.money{font-size:15px;font-weight:950;text-align:right;color:var(--gold)}.band{border-top:1px solid var(--line);padding:54px 0}.band h2{font-size:34px;line-height:1.1;margin:0 0 14px}.band p{font-size:18px;color:var(--muted);line-height:1.6;margin:0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}.card{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:8px;padding:18px}.card h3{font-size:17px;margin:0 0 8px}.card p{font-size:14px;line-height:1.48}.footer{padding:40px 0;color:var(--muted);font-size:13px}.tiny{font-size:12px;color:#8c8378;margin-top:16px}@media(max-width:930px){.hero{grid-template-columns:1fr;min-height:auto}.kpis,.grid{grid-template-columns:1fr}.kpi{border-right:0;border-bottom:1px solid var(--line)}.row{grid-template-columns:1fr}.money{text-align:left}.bar{grid-template-columns:1fr}.bar strong{text-align:left}h1{font-size:47px}.lead{font-size:18px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav">
+      <div class="logo">LAVA</div>
+      <a href="https://ai-lava.com">ai-lava.com</a>
+    </nav>
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Business flight recorder</div>
+        <h1>Your systems already know what leaked last week.</h1>
+        <p class="lead">LAVA Black Box assembles the autopsy: missed demand, stale follow-up, owner-routed decisions, and the first workflow that should catch the leak tomorrow.</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:customerservice@ai-lava.com?subject=Send%20me%20a%20LAVA%20Black%20Box%20report">Send me a Black Box report</a>
+          <a class="btn secondary" href="#inside">See what is inside</a>
+        </div>
+      </div>
+      <aside class="report" aria-label="Sample LAVA Black Box report">
+        <div class="report-head">
+          <div class="report-title">LAVA Black Box // sample 7-day autopsy</div>
+          <div class="stamp">Model</div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><b>143</b><span>demand signals</span></div>
+          <div class="kpi"><b>38</b><span>no clean outcome</span></div>
+          <div class="kpi"><b>$47.2k</b><span>open revenue model</span></div>
+          <div class="kpi"><b>11</b><span>owner decisions</span></div>
+        </div>
+        <div class="chart">
+          <div class="bar"><label>Missed / unclear calls</label><div class="track"><div class="fill" style="width:72%"></div></div><strong>18</strong></div>
+          <div class="bar"><label>Stale estimates</label><div class="track"><div class="fill" style="width:56%"></div></div><strong>14</strong></div>
+          <div class="bar"><label>Recovery gaps</label><div class="track"><div class="fill" style="width:31%"></div></div><strong>8</strong></div>
+          <div class="bar"><label>Owner-routed work</label><div class="track"><div class="fill" style="width:44%"></div></div><strong>11</strong></div>
+        </div>
+        <div class="rows">
+          <div class="row"><div class="tag">Revenue</div><div><strong>18 calls had no verified booking outcome.</strong><small>First install: same-day outcome check + drafted recovery queue.</small></div><div class="money">$21.6k</div></div>
+          <div class="row"><div class="tag blue">Sales</div><div><strong>14 estimates aged past 72 hours.</strong><small>First install: follow-up draft + owner exception only after threshold.</small></div><div class="money">$16.8k</div></div>
+          <div class="row"><div class="tag red">Ops</div><div><strong>11 decisions climbed back to ownership.</strong><small>First install: decision brief with options, deadline, and proof trail.</small></div><div class="money">11h</div></div>
+          <div class="row"><div class="tag green">Next</div><div><strong>Build the daily recovery queue first.</strong><small>Proof metric: recovered bookings, dollars protected, owner touches removed.</small></div><div class="money">14d</div></div>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <section class="band" id="inside">
+    <div class="wrap">
+      <h2>Not another AI pitch. A report worth opening.</h2>
+      <p>The first product is the autopsy. If the Black Box cannot show a real leak with a dollar value, there is nothing to install.</p>
+      <div class="grid">
+        <div class="card"><h3>Data First</h3><p>Every report starts with counts, dollars, age, and ownership. No vague "AI transformation" language.</p></div>
+        <div class="card"><h3>Visual Proof</h3><p>The buyer sees a scorecard, chart, and ranked issues before being asked for a call.</p></div>
+        <div class="card"><h3>Install Path</h3><p>Each leak maps to the first workflow LAVA can install, with the metric that proves it worked.</p></div>
+      </div>
+    </div>
+  </section>
+  <footer class="wrap footer">
+    LAVA Black Box is a sample report format. Client numbers require approved access to source systems or exports.
+    <div class="tiny">Tracking note: campaign links may record open, click, and page-visit events so LAVA can measure whether the message is working.</div>
+  </footer>
+  <script>
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const campaign = params.get('c') || 'direct';
+      const recipient = params.get('r') || 'unknown';
+      const beacon = 'https://track.ai-lava.com/v?c=' + encodeURIComponent(campaign) + '&r=' + encodeURIComponent(recipient) + '&p=' + encodeURIComponent(location.pathname);
+      if (navigator.sendBeacon) navigator.sendBeacon(beacon);
+      else fetch(beacon, { mode: 'no-cors', keepalive: true }).catch(function(){});
+    })();
+  </script>
+</body>
+</html>
