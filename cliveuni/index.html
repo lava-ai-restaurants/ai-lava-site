@@ -3,20 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clive University — Source-Backed Restaurant Management Learning</title>
-<meta name="description" content="Source-backed learning for Clive restaurant managers, GMs, chefs, and owners. Food cost, labor, inventory, accountability, delegation, and leadership.">
+<title>Clive University — Restaurant Leadership Academy</title>
+<meta name="description" content="The shared operating school for Clive restaurant managers. Source-backed learning in food cost, labor, inventory, accountability, and leadership.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F393;</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="cliveuni.css">
 </head>
 <body>
 <a href="#learn" class="skip-link">Skip to content</a>
 
-<nav>
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">LAVA</a>
-    <span class="nav-title">Clive University</span>
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <a href="/cliveuni/" class="header-brand" aria-label="Clive University home">
+      <img src="assets/clive-collective-logo.webp" alt="Clive Collective" class="header-logo" width="48" height="48">
+      <span class="header-title">University</span>
+    </a>
     <button type="button" class="nav-progress-btn" aria-controls="progress-panel" aria-expanded="false">Progress</button>
+  </div>
+</header>
+
+<nav class="site-nav" aria-label="Primary navigation">
+  <div class="container">
+    <a href="#learn" class="nav-link">Learn</a>
+    <a href="#curriculum" class="nav-link">Curriculum</a>
+    <a href="#this-week" class="nav-link">This Week</a>
+    <a href="#case-studies" class="nav-link">Case Studies</a>
+    <a href="#operating-library" class="nav-link">Library</a>
   </div>
 </nav>
 
@@ -24,19 +36,64 @@
 
 <!-- HERO -->
 <section class="hero" id="learn">
+  <div class="container hero-layout">
+    <div class="hero-text">
+      <h1>Hospitality is learned in the work.</h1>
+      <p class="hero-sub">Clive University is the shared operating school for Clive restaurant managers. Every lesson is backed by a cited source. Every assignment translates to the floor. The work is real.</p>
+      <p class="disclaimer">Source-backed learning and advisory decision support. This is not Clive policy until adopted by an authorized operator. Progress is stored locally in your browser only.</p>
+    </div>
+    <div class="hero-image">
+      <img src="assets/cala.jpg" alt="Interior of Cala restaurant, Scottsdale" loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- THREE-STAGE CURRICULUM -->
+<section class="curriculum-section" id="curriculum">
   <div class="container">
-    <h1>Clive University</h1>
-    <p class="hero-sub">Source-backed learning for restaurant managers, GMs, chefs, and owners. Every lesson links to its source. Every quiz tests understanding, not memory. Every assignment translates to shift-level action.</p>
-    <p class="disclaimer">Source-backed learning and advisory decision support. This is not Clive policy until adopted by an authorized operator. Progress is stored locally in your browser only.</p>
+    <p class="section-label">The Path</p>
+    <h2>Start here. Build the system. Lead the shift.</h2>
+    <div class="curriculum-stages">
+      <div class="stage">
+        <span class="stage-number">1</span>
+        <h3>Foundations</h3>
+        <p>Food cost, labor, inventory. The operating numbers every manager must own before anything else works.</p>
+        <ul class="stage-courses" data-stage="foundations">
+          <li>Weekly Food Cost Control</li>
+          <li>Labor Cost and Scheduling</li>
+          <li>Inventory and Recipe Costing</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <span class="stage-number">2</span>
+        <h3>Leadership</h3>
+        <p>Accountability, delegation, culture. The systems that turn a competent manager into someone who builds other managers.</p>
+        <ul class="stage-courses" data-stage="leadership">
+          <li>Accountability Systems</li>
+          <li>Delegation and Trust</li>
+          <li>Leadership and Culture</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <span class="stage-number">3</span>
+        <h3>In the Field</h3>
+        <p>Clive case studies and location opportunity labs. Where the system meets the shift.</p>
+        <ul class="stage-courses" data-stage="field">
+          <li>Case studies from Clive operations</li>
+          <li>Location-specific manager labs</li>
+          <li>Operating tools and templates</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ROLE FILTERS -->
 <section class="role-section" id="paths">
   <div class="container">
-    <h2>Choose Your Path</h2>
+    <p class="section-label">Filter by Role</p>
     <div class="role-filters" role="tablist" aria-label="Filter courses by role">
-      <button type="button" class="role-btn active" data-role="all" role="tab" aria-selected="true">All</button>
+      <button type="button" class="role-btn active" data-role="all" role="tab" aria-selected="true">All Courses</button>
       <button type="button" class="role-btn" data-role="manager" role="tab" aria-selected="false">Manager</button>
       <button type="button" class="role-btn" data-role="general-manager" role="tab" aria-selected="false">General Manager</button>
       <button type="button" class="role-btn" data-role="chef" role="tab" aria-selected="false">Chef</button>
@@ -66,11 +123,54 @@
   </div>
 </section>
 
+<!-- THIS WEEK AT CLIVE -->
+<section class="articles-section" id="this-week">
+  <div class="container">
+    <p class="section-label">This Week at Clive</p>
+    <h2>Reading for the working manager</h2>
+    <div id="articles-shelf" class="articles-shelf"></div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="case-studies-section" id="case-studies">
+  <div class="container">
+    <p class="section-label">How Clive Solves Problems</p>
+    <h2>Challenge. Move. Operating lesson.</h2>
+    <div id="case-studies-list" class="case-studies-list"></div>
+  </div>
+</section>
+
+<!-- LOCATION LABS -->
+<section class="location-labs-section" id="location-labs">
+  <div class="container">
+    <p class="section-label">Opportunities by Location</p>
+    <h2>Manager labs for each Clive restaurant</h2>
+    <div id="location-labs-grid" class="location-labs-grid"></div>
+  </div>
+</section>
+
+<!-- OPERATING LIBRARY -->
+<section class="library-section" id="operating-library">
+  <div class="container">
+    <p class="section-label">Operating Library</p>
+    <h2>Tools, templates, and reference</h2>
+    <div class="library-nav" role="tablist" aria-label="Library sections">
+      <button type="button" class="library-tab active" data-lib="courses-lib" role="tab" aria-selected="true">Courses</button>
+      <button type="button" class="library-tab" data-lib="articles-lib" role="tab" aria-selected="false">Articles</button>
+      <button type="button" class="library-tab" data-lib="tools-lib" role="tab" aria-selected="false">Tools &amp; Templates</button>
+      <button type="button" class="library-tab" data-lib="assignments-lib" role="tab" aria-selected="false">Assignments</button>
+    </div>
+    <div id="library-content" class="library-content" aria-live="polite"></div>
+  </div>
+</section>
+
 <!-- FIELDWORK -->
 <section class="fieldwork-section" id="fieldwork">
   <div class="container">
-    <h2>Fieldwork</h2>
-    <p class="fieldwork-intro">Learning finishes on the floor, not on the screen. Each course includes an operating assignment designed to translate the lesson into a concrete shift-level action. Complete the coursework, then execute the assignment during your next working week.</p>
+    <p class="section-label">Fieldwork</p>
+    <h2>Learning finishes on the floor</h2>
+    <p class="fieldwork-intro">Each course includes an operating assignment designed to translate the lesson into a concrete shift-level action. Complete the coursework, then execute the assignment during your next working week.</p>
     <div id="fieldwork-list" class="fieldwork-grid" aria-live="polite"></div>
   </div>
 </section>
@@ -101,10 +201,48 @@
   </div>
 </dialog>
 
+<!-- ARTICLE DIALOG -->
+<dialog id="article-dialog" class="article-dialog" aria-modal="true">
+  <div class="dialog-inner">
+    <header class="dialog-header">
+      <h2 id="article-dialog-title"></h2>
+      <button type="button" class="article-dialog-close dialog-close" aria-label="Close article">&times;</button>
+    </header>
+    <div class="dialog-body">
+      <div id="article-dialog-meta" class="article-dialog-meta"></div>
+      <article id="article-dialog-body" class="article-dialog-body"></article>
+      <div id="article-dialog-takeaways" class="article-dialog-takeaways"></div>
+      <div id="article-dialog-provenance" class="article-dialog-provenance"></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- TOOL DIALOG -->
+<dialog id="tool-dialog" class="tool-dialog" aria-modal="true">
+  <div class="dialog-inner">
+    <header class="dialog-header">
+      <button type="button" class="tool-dialog-close dialog-close" aria-label="Close tool">&times;</button>
+    </header>
+    <div class="dialog-body">
+      <article id="tool-dialog-body" class="tool-dialog-body"></article>
+    </div>
+  </div>
+</dialog>
+
 <footer>
   <div class="container">
-    <p class="footer-brand">LAVA &middot; Clive University</p>
-    <p class="footer-disclaimer">Source-backed learning and advisory decision support. This content is not Clive policy until adopted by an authorized operator. No employee data is collected or transmitted.</p>
+    <div class="footer-inner">
+      <div class="footer-brand-block">
+        <img src="assets/clive-collective-logo.webp" alt="Clive Collective" class="footer-logo" width="32" height="32">
+        <span class="footer-brand-name">Clive University</span>
+      </div>
+      <p class="footer-disclaimer">Source-backed learning and advisory decision support. This content is not Clive policy until adopted by an authorized operator. No employee data is collected or transmitted.</p>
+      <div class="footer-links">
+        <a href="https://weareclive.com" target="_blank" rel="noopener">weareclive.com</a>
+        <span class="footer-sep">&middot;</span>
+        <span class="footer-built">Built with LAVA</span>
+      </div>
+    </div>
   </div>
 </footer>
 

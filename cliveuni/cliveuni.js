@@ -2,16 +2,19 @@
   'use strict';
 
   /* ── State ── */
-  const STORAGE_KEY = 'cliveUniversityProgress';
-  let coursesData = null;
-  let currentCourseId = null;
-  let currentView = 'lesson-0';
+  var STORAGE_KEY = 'cliveUniversityProgress';
+  var coursesData = null;
+  var articlesData = null;
+  var caseStudiesData = null;
+  var fieldGuideData = null;
+  var currentCourseId = null;
+  var currentView = 'lesson-0';
 
   /* ── Progress helpers ── */
   function loadProgress() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    } catch {
+    } catch (e) {
       return {};
     }
   }
@@ -21,7 +24,7 @@
   }
 
   function markLessonComplete(courseId, lessonId) {
-    const p = loadProgress();
+    var p = loadProgress();
     if (!p[courseId]) p[courseId] = { lessons: [], quizScore: null };
     if (!p[courseId].lessons.includes(lessonId)) {
       p[courseId].lessons.push(lessonId);
@@ -30,67 +33,94 @@
   }
 
   function markQuizScore(courseId, score, total) {
-    const p = loadProgress();
+    var p = loadProgress();
     if (!p[courseId]) p[courseId] = { lessons: [], quizScore: null };
-    p[courseId].quizScore = { score, total };
+    p[courseId].quizScore = { score: score, total: total };
     saveProgress(p);
   }
 
   function getCourseProgress(courseId, course) {
-    const p = loadProgress();
-    const cp = p[courseId] || { lessons: [], quizScore: null };
-    const totalSteps = course.lessons.length + 1; // lessons + quiz
-    let completed = cp.lessons.length;
+    var p = loadProgress();
+    var cp = p[courseId] || { lessons: [], quizScore: null };
+    var totalSteps = course.lessons.length + 1;
+    var completed = cp.lessons.length;
     if (cp.quizScore) completed += 1;
-    return { completed, total: totalSteps, pct: Math.round((completed / totalSteps) * 100), raw: cp };
+    return { completed: completed, total: totalSteps, pct: Math.round((completed / totalSteps) * 100), raw: cp };
   }
 
   /* ── Data fetch ── */
-  async function loadCourses() {
+  function resolveUrl(filename) {
+    var base = document.querySelector('script[src*="cliveuni.js"]');
+    if (base) {
+      var src = base.getAttribute('src');
+      var dir = src.substring(0, src.lastIndexOf('/') + 1);
+      return dir + filename;
+    }
+    return filename;
+  }
+
+  async function loadAllData() {
     try {
-      const base = document.querySelector('script[src*="cliveuni.js"]');
-      let jsonUrl = 'courses.json';
-      if (base) {
-        const src = base.getAttribute('src');
-        const dir = src.substring(0, src.lastIndexOf('/') + 1);
-        jsonUrl = dir + 'courses.json';
-      }
-      const resp = await fetch(jsonUrl);
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      coursesData = await resp.json();
+      var results = await Promise.all([
+        fetch(resolveUrl('courses.json')).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+        fetch(resolveUrl('articles.json')).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+        fetch(resolveUrl('case-studies.json')).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+        fetch(resolveUrl('field-guide.json')).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      ]);
+      coursesData = results[0];
+      articlesData = results[1];
+      caseStudiesData = results[2];
+      fieldGuideData = results[3];
+
       renderCourses('all');
       renderFieldwork();
       renderProgressPanel();
+      renderArticles();
+      renderCaseStudies();
+      renderLocationLabs();
+      renderLibrary('courses-lib');
       resumeLearning();
     } catch (e) {
-      document.getElementById('courses-error').hidden = false;
-      document.getElementById('course-grid').innerHTML = '';
+      var errorEl = document.getElementById('courses-error');
+      if (errorEl) errorEl.hidden = false;
+      var gridEl = document.getElementById('course-grid');
+      if (gridEl) gridEl.innerHTML = '';
     }
   }
 
+  /* ── Stage mapping ── */
+  var stageMap = {
+    'food-cost': 'Foundations',
+    'labor': 'Foundations',
+    'inventory': 'Foundations',
+    'accountability': 'Leadership',
+    'delegation': 'Leadership',
+    'leadership': 'Leadership'
+  };
+
   /* ── Render courses ── */
   function renderCourses(role) {
-    const grid = document.getElementById('course-grid');
+    var grid = document.getElementById('course-grid');
     if (!coursesData) return;
-    const courses = coursesData.courses.filter(function (c) {
+    var courses = coursesData.courses.filter(function (c) {
       if (role === 'all') return true;
       return c.roles.includes(role);
     });
 
     grid.innerHTML = courses.map(function (c) {
-      const prog = getCourseProgress(c.id, c);
-      const progressBadge = prog.pct > 0
+      var prog = getCourseProgress(c.id, c);
+      var progressBadge = prog.pct > 0
         ? '<span class="course-card-progress">' + prog.pct + '% complete</span>'
         : '';
+      var stage = stageMap[c.domain] || '';
       return '<div class="course-card" tabindex="0" role="button" aria-label="Open ' + escapeHtml(c.title) + '" data-course-id="' + c.id + '">' +
         progressBadge +
-        '<div class="course-card-icon">' + escapeHtml(c.icon) + '</div>' +
+        '<span class="course-card-stage">' + escapeHtml(stage) + '</span>' +
         '<h3>' + escapeHtml(c.title) + '</h3>' +
         '<p>' + escapeHtml(c.subtitle) + '</p>' +
         '<div class="course-card-meta">' +
           '<span>' + c.lessons.length + ' lessons</span>' +
           '<span>' + c.quiz.length + ' quiz questions</span>' +
-          '<span>' + c.roles.map(function(r) { return r.replace('-', ' '); }).join(', ') + '</span>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -103,9 +133,180 @@
     });
   }
 
+  /* ── Render articles ── */
+  function renderArticles() {
+    var shelf = document.getElementById('articles-shelf');
+    if (!articlesData) return;
+    shelf.innerHTML = articlesData.articles.map(function (a) {
+      return '<div class="article-item" tabindex="0" role="button" aria-label="Read ' + escapeHtml(a.title) + '" data-article-id="' + a.id + '">' +
+        '<div>' +
+          '<div class="article-title">' + escapeHtml(a.title) + '</div>' +
+          '<div class="article-dek">' + escapeHtml(a.dek) + '</div>' +
+        '</div>' +
+        '<div class="article-meta">' +
+          escapeHtml(a.category) +
+          '<span class="article-meta-time">' + escapeHtml(a.readingTime) + '</span>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    shelf.querySelectorAll('.article-item').forEach(function (item) {
+      item.addEventListener('click', function () { openArticle(item.dataset.articleId); });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openArticle(item.dataset.articleId); }
+      });
+    });
+  }
+
+  /* ── Open article dialog ── */
+  function openArticle(articleId) {
+    var article = articlesData.articles.find(function (a) { return a.id === articleId; });
+    if (!article) return;
+
+    var dialog = document.getElementById('article-dialog');
+    document.getElementById('article-dialog-title').textContent = article.title;
+    document.getElementById('article-dialog-meta').textContent = article.category + ' \u00B7 ' + article.readingTime;
+    document.getElementById('article-dialog-body').textContent = article.body;
+
+    var takeawaysHtml = '<h4>Takeaways</h4><ul>' +
+      article.takeaways.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
+      '</ul>';
+    document.getElementById('article-dialog-takeaways').innerHTML = takeawaysHtml;
+    var provenance = document.getElementById('article-dialog-provenance');
+    provenance.textContent = article.provenance + (article.sourceNote ? ' \u2014 ' + article.sourceNote : '');
+    if (article.sourceUrl) {
+      var sourceLink = document.createElement('a');
+      sourceLink.href = article.sourceUrl;
+      sourceLink.target = '_blank';
+      sourceLink.rel = 'noopener noreferrer';
+      sourceLink.textContent = 'Watch source segment';
+      provenance.appendChild(document.createTextNode(' · '));
+      provenance.appendChild(sourceLink);
+    }
+
+    dialog.showModal();
+    dialog.scrollTop = 0;
+    dialog.querySelector('.article-dialog-close').focus();
+  }
+
+  /* ── Render case studies ── */
+  function renderCaseStudies() {
+    var list = document.getElementById('case-studies-list');
+    if (!caseStudiesData) return;
+    list.innerHTML = caseStudiesData.caseStudies.map(function (cs) {
+      var hasImage = cs.image && cs.image.length > 0;
+      var imageHtml = hasImage
+        ? '<div class="case-study-image"><img src="assets/' + escapeAttr(cs.image) + '" alt="' + escapeAttr(cs.location) + ' restaurant" loading="lazy"></div>'
+        : '';
+      return '<div class="case-study' + (hasImage ? ' case-study-with-image' : '') + '">' +
+        '<div class="case-study-content">' +
+          '<div class="case-study-location">' + escapeHtml(cs.location) + '</div>' +
+          '<h3>' + escapeHtml(cs.title) + '</h3>' +
+          '<p class="case-study-label">Challenge</p>' +
+          '<p>' + escapeHtml(cs.challenge) + '</p>' +
+          '<p class="case-study-label">Move</p>' +
+          '<p>' + escapeHtml(cs.move) + '</p>' +
+          '<p class="case-study-label">Operating Lesson</p>' +
+          '<p>' + escapeHtml(cs.lesson) + '</p>' +
+          '<p class="case-study-provenance">' + escapeHtml(cs.provenance) + '</p>' +
+        '</div>' +
+        imageHtml +
+      '</div>';
+    }).join('');
+  }
+
+  /* ── Render location labs ── */
+  function renderLocationLabs() {
+    var grid = document.getElementById('location-labs-grid');
+    if (!fieldGuideData) return;
+    grid.innerHTML = fieldGuideData.locationLabs.map(function (lab) {
+      return '<div class="location-lab">' +
+        '<div class="location-lab-name">' + escapeHtml(lab.location) + '</div>' +
+        '<span class="location-lab-label">' + escapeHtml(lab.label) + '</span>' +
+        '<div class="location-lab-focus">' + escapeHtml(lab.focus) + '</div>' +
+        '<p class="location-lab-prompt">' + escapeHtml(lab.prompt) + '</p>' +
+        '<div class="location-lab-deliverable"><strong>Deliverable</strong>' + escapeHtml(lab.deliverable) + '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* ── Render operating library ── */
+  function renderLibrary(section) {
+    var content = document.getElementById('library-content');
+    if (!coursesData) return;
+    var html = '';
+
+    if (section === 'courses-lib') {
+      html = coursesData.courses.map(function (c) {
+        var stage = stageMap[c.domain] || '';
+        return '<div class="library-item" tabindex="0" role="button" data-course-id="' + c.id + '">' +
+          '<span class="library-item-category">' + escapeHtml(stage) + '</span>' +
+          '<div class="library-item-title">' + escapeHtml(c.title) + '</div>' +
+          '<div class="library-item-meta">' + c.lessons.length + ' lessons \u00B7 ' + c.quiz.length + ' questions</div>' +
+        '</div>';
+      }).join('');
+    } else if (section === 'articles-lib' && articlesData) {
+      html = articlesData.articles.map(function (a) {
+        return '<div class="library-item" tabindex="0" role="button" data-article-id="' + a.id + '">' +
+          '<span class="library-item-category">' + escapeHtml(a.category) + '</span>' +
+          '<div class="library-item-title">' + escapeHtml(a.title) + '</div>' +
+          '<div class="library-item-meta">' + escapeHtml(a.readingTime) + '</div>' +
+        '</div>';
+      }).join('');
+    } else if (section === 'tools-lib' && fieldGuideData) {
+      html = fieldGuideData.tools.map(function (t) {
+        return '<div class="library-item" tabindex="0" role="button" data-tool-id="' + t.id + '">' +
+          '<span class="library-item-category">' + escapeHtml(t.category) + '</span>' +
+          '<div class="library-item-title">' + escapeHtml(t.title) + '</div>' +
+          '<div class="library-item-meta">Printable template</div>' +
+        '</div>';
+      }).join('');
+    } else if (section === 'assignments-lib') {
+      html = coursesData.courses.map(function (c) {
+        return '<div class="library-item">' +
+          '<div class="library-item-title">' + escapeHtml(c.title) + '</div>' +
+          '<div class="library-item-meta">' + escapeHtml(c.operatingAssignment) + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    content.innerHTML = html;
+
+    content.querySelectorAll('[data-course-id]').forEach(function (item) {
+      item.addEventListener('click', function () { openCourse(item.dataset.courseId); });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCourse(item.dataset.courseId); }
+      });
+    });
+    content.querySelectorAll('[data-article-id]').forEach(function (item) {
+      item.addEventListener('click', function () { openArticle(item.dataset.articleId); });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openArticle(item.dataset.articleId); }
+      });
+    });
+    content.querySelectorAll('[data-tool-id]').forEach(function (item) {
+      item.addEventListener('click', function () { openTool(item.dataset.toolId); });
+      item.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openTool(item.dataset.toolId); }
+      });
+    });
+  }
+
+  /* ── Open tool dialog ── */
+  function openTool(toolId) {
+    var tool = fieldGuideData.tools.find(function (t) { return t.id === toolId; });
+    if (!tool) return;
+
+    var dialog = document.getElementById('tool-dialog');
+    document.getElementById('tool-dialog-body').innerHTML = tool.content;
+    dialog.showModal();
+    dialog.scrollTop = 0;
+    dialog.querySelector('.tool-dialog-close').focus();
+  }
+
   /* ── Render fieldwork ── */
   function renderFieldwork() {
-    const list = document.getElementById('fieldwork-list');
+    var list = document.getElementById('fieldwork-list');
     if (!coursesData) return;
     list.innerHTML = coursesData.courses.map(function (c) {
       return '<div class="fieldwork-card">' +
@@ -117,15 +318,15 @@
 
   /* ── Render progress panel ── */
   function renderProgressPanel() {
-    const body = document.getElementById('progress-body');
+    var body = document.getElementById('progress-body');
     if (!coursesData) return;
     body.innerHTML = coursesData.courses.map(function (c) {
-      const prog = getCourseProgress(c.id, c);
+      var prog = getCourseProgress(c.id, c);
       return '<div class="progress-course">' +
         '<div class="progress-course-title">' + escapeHtml(c.title) + '</div>' +
         '<div class="progress-bar-track"><div class="progress-bar-fill" style="width:' + prog.pct + '%"></div></div>' +
         '<div class="progress-label">' + prog.completed + ' of ' + prog.total + ' steps' +
-          (prog.raw.quizScore ? ' &middot; Quiz: ' + prog.raw.quizScore.score + '/' + prog.raw.quizScore.total : '') +
+          (prog.raw.quizScore ? ' \u00B7 Quiz: ' + prog.raw.quizScore.score + '/' + prog.raw.quizScore.total : '') +
         '</div>' +
       '</div>';
     }).join('');
@@ -133,15 +334,13 @@
 
   /* ── Resume learning ── */
   function resumeLearning() {
-    const p = loadProgress();
-    const keys = Object.keys(p);
+    var p = loadProgress();
+    var keys = Object.keys(p);
     if (keys.length === 0) return;
-    // Find first incomplete course
-    for (let i = 0; i < coursesData.courses.length; i++) {
-      const c = coursesData.courses[i];
-      const prog = getCourseProgress(c.id, c);
+    for (var i = 0; i < coursesData.courses.length; i++) {
+      var c = coursesData.courses[i];
+      var prog = getCourseProgress(c.id, c);
       if (prog.pct > 0 && prog.pct < 100) {
-        // Auto-scroll to courses section
         document.getElementById('courses').scrollIntoView({ behavior: 'smooth', block: 'start' });
         return;
       }
@@ -150,12 +349,12 @@
 
   /* ── Open course dialog ── */
   function openCourse(courseId) {
-    const course = coursesData.courses.find(function (c) { return c.id === courseId; });
+    var course = coursesData.courses.find(function (c) { return c.id === courseId; });
     if (!course) return;
     currentCourseId = courseId;
     currentView = 'lesson-0';
 
-    const dialog = document.getElementById('course-dialog');
+    var dialog = document.getElementById('course-dialog');
     document.getElementById('dialog-title').textContent = course.title;
     document.getElementById('assignment-text').textContent = course.operatingAssignment;
 
@@ -170,8 +369,8 @@
 
   /* ── Lesson navigation ── */
   function buildLessonNav(course) {
-    const nav = document.getElementById('lesson-nav');
-    let html = '';
+    var nav = document.getElementById('lesson-nav');
+    var html = '';
     course.lessons.forEach(function (l, i) {
       html += '<button type="button" class="lesson-tab' + (i === 0 ? ' active' : '') + '" data-index="' + i + '">Lesson ' + (i + 1) + '</button>';
     });
@@ -180,7 +379,7 @@
 
     nav.querySelectorAll('.lesson-tab').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        const idx = parseInt(btn.dataset.index);
+        var idx = parseInt(btn.dataset.index, 10);
         currentView = 'lesson-' + idx;
         setActiveTab(nav, btn);
         showLesson(course, idx);
@@ -203,19 +402,19 @@
   }
 
   function showLesson(course, index) {
-    const lesson = course.lessons[index];
+    var lesson = course.lessons[index];
     if (!lesson) return;
 
     document.getElementById('lesson-content').innerHTML =
       '<h3>' + escapeHtml(lesson.title) + '</h3>' +
       '<p>' + escapeHtml(lesson.summary) + '</p>';
 
-    const src = lesson.source;
-    const provenanceLabel = src.provenance === 'publisher_captions' ? 'Publisher captions' : 'Local speech-to-text';
+    var src = lesson.source;
+    var provenanceLabel = src.provenance === 'publisher_captions' ? 'Publisher captions' : 'Local speech-to-text';
     document.getElementById('source-citation').innerHTML =
       '<span class="cite-label">Source</span>' +
       '<a href="' + escapeAttr(src.url) + '" target="_blank" rel="noopener">' + escapeHtml(src.title) + '</a>' +
-      ' (' + src.startSeconds + 's &ndash; ' + src.endSeconds + 's)' +
+      ' (' + src.startSeconds + 's \u2013 ' + src.endSeconds + 's)' +
       '<span class="cite-provenance">Provenance: ' + provenanceLabel + '</span>';
 
     markLessonComplete(course.id, lesson.id);
@@ -225,10 +424,10 @@
 
   /* ── Quiz ── */
   function buildQuiz(course) {
-    const form = document.getElementById('quiz-form');
-    const feedback = document.getElementById('quiz-feedback');
+    var form = document.getElementById('quiz-form');
+    var feedback = document.getElementById('quiz-feedback');
     feedback.innerHTML = '';
-    let html = '';
+    var html = '';
 
     course.quiz.forEach(function (q, qi) {
       html += '<div class="quiz-question" data-qi="' + qi + '">';
@@ -242,14 +441,14 @@
     html += '<button type="button" class="quiz-submit" id="quiz-submit-btn" disabled>Check Answers</button>';
     form.innerHTML = html;
 
-    const selections = {};
+    var selections = {};
     form.querySelectorAll('.quiz-choice').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        const qi = btn.dataset.qi;
-        selections[qi] = parseInt(btn.dataset.ci);
+        var qi = btn.dataset.qi;
+        selections[qi] = parseInt(btn.dataset.ci, 10);
         form.querySelectorAll('.quiz-choice[data-qi="' + qi + '"]').forEach(function (b) { b.classList.remove('selected'); });
         btn.classList.add('selected');
-        const allAnswered = Object.keys(selections).length === course.quiz.length;
+        var allAnswered = Object.keys(selections).length === course.quiz.length;
         document.getElementById('quiz-submit-btn').disabled = !allAnswered;
       });
     });
@@ -260,18 +459,18 @@
   }
 
   function submitQuiz(course, selections) {
-    const feedback = document.getElementById('quiz-feedback');
-    let score = 0;
-    let html = '';
+    var feedback = document.getElementById('quiz-feedback');
+    var score = 0;
+    var html = '';
 
     course.quiz.forEach(function (q, qi) {
-      const selected = selections[qi];
-      const isCorrect = selected === q.correctIndex;
+      var selected = selections[qi];
+      var isCorrect = selected === q.correctIndex;
       if (isCorrect) score++;
 
-      const form = document.getElementById('quiz-form');
+      var form = document.getElementById('quiz-form');
       form.querySelectorAll('.quiz-choice[data-qi="' + qi + '"]').forEach(function (btn) {
-        const ci = parseInt(btn.dataset.ci);
+        var ci = parseInt(btn.dataset.ci, 10);
         if (ci === q.correctIndex) btn.classList.add('correct');
         else if (ci === selected && !isCorrect) btn.classList.add('incorrect');
         btn.disabled = true;
@@ -294,7 +493,7 @@
 
   /* ── Role filter ── */
   function getActiveRole() {
-    const active = document.querySelector('.role-btn.active');
+    var active = document.querySelector('.role-btn.active');
     return active ? active.dataset.role : 'all';
   }
 
@@ -311,7 +510,7 @@
 
   /* ── Events ── */
   document.addEventListener('DOMContentLoaded', function () {
-    loadCourses();
+    loadAllData();
 
     // Role filter
     document.querySelectorAll('.role-btn').forEach(function (btn) {
@@ -323,6 +522,19 @@
         btn.classList.add('active');
         btn.setAttribute('aria-selected', 'true');
         renderCourses(btn.dataset.role);
+      });
+    });
+
+    // Library tabs
+    document.querySelectorAll('.library-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        document.querySelectorAll('.library-tab').forEach(function (t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        renderLibrary(tab.dataset.lib);
       });
     });
 
@@ -344,21 +556,35 @@
       progressBtn.focus();
     });
 
-    // Dialog close
-    var dialog = document.getElementById('course-dialog');
-    dialog.querySelector('.dialog-close').addEventListener('click', function () {
-      dialog.close();
+    // Course dialog close
+    var courseDialog = document.getElementById('course-dialog');
+    courseDialog.querySelector('.dialog-close').addEventListener('click', function () {
+      courseDialog.close();
     });
-
-    dialog.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        dialog.close();
-      }
+    courseDialog.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { courseDialog.close(); }
     });
-
-    dialog.addEventListener('close', function () {
+    courseDialog.addEventListener('close', function () {
       currentCourseId = null;
       currentView = 'lesson-0';
+    });
+
+    // Article dialog close
+    var articleDialog = document.getElementById('article-dialog');
+    articleDialog.querySelector('.article-dialog-close').addEventListener('click', function () {
+      articleDialog.close();
+    });
+    articleDialog.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { articleDialog.close(); }
+    });
+
+    // Tool dialog close
+    var toolDialog = document.getElementById('tool-dialog');
+    toolDialog.querySelector('.tool-dialog-close').addEventListener('click', function () {
+      toolDialog.close();
+    });
+    toolDialog.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { toolDialog.close(); }
     });
 
     // Close progress panel on Escape
