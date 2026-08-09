@@ -77,6 +77,8 @@ class CliveUniversityAcceptance(unittest.TestCase):
         self.assertIn("aria-live", self.html)
         self.assertIn("prefers-reduced-motion", self.css)
         self.assertRegex(self.css, r"@media\s*\([^)]*max-width:\s*640px")
+        self.assertRegex(self.css, r"\.course-dialog\s*\{[^}]*margin:\s*0", "full-screen dialog must opt out of native auto margins")
+        self.assertIn("dialog.scrollTop = 0", self.js, "course dialog must reset retained scroll position")
         for button in self.parser.buttons:
             self.assertTrue(button.get("type"), button)
 

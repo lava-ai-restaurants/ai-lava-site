@@ -164,6 +164,7 @@
     buildQuiz(course);
 
     dialog.showModal();
+    dialog.scrollTop = 0;
     dialog.querySelector('.dialog-close').focus();
   }
 
