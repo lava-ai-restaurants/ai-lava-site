@@ -2,96 +2,136 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Clive University — Restaurant Leadership Academy</title>
 <meta name="description" content="The shared operating school for Clive restaurant managers. Source-backed learning in food cost, labor, inventory, accountability, and leadership.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1F393;</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="cliveuni.css">
 </head>
 <body>
-<a href="#learn" class="skip-link">Skip to content</a>
+<a href="#main-content" class="skip-link">Skip to content</a>
 
+<!-- ═══ HEADER ═══ -->
 <header class="site-header" role="banner">
   <div class="header-inner">
-    <a href="/cliveuni/" class="header-brand" aria-label="Clive University home">
-      <img src="assets/clive-collective-logo.webp" alt="Clive Collective" class="header-logo" width="48" height="48">
+    <a href="index.html" class="header-brand" aria-label="Clive University home">
+      <img src="assets/clive-collective-logo.webp" alt="Clive Collective" class="header-logo" width="40" height="40">
       <span class="header-title">University</span>
     </a>
-    <button type="button" class="nav-progress-btn" aria-controls="progress-panel" aria-expanded="false">Progress</button>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="index.html" class="nav-link active" aria-current="page">Today</a>
+      <a href="learn/index.html" class="nav-link">Learn</a>
+      <a href="stories/index.html" class="nav-link">Stories</a>
+      <a href="field/index.html" class="nav-link">Field</a>
+      <a href="library/index.html" class="nav-link">Library</a>
+    </nav>
   </div>
 </header>
 
-<nav class="site-nav" aria-label="Primary navigation">
-  <div class="container">
-    <a href="#learn" class="nav-link">Learn</a>
-    <a href="#curriculum" class="nav-link">Curriculum</a>
-    <a href="#this-week" class="nav-link">This Week</a>
-    <a href="#case-studies" class="nav-link">Case Studies</a>
-    <a href="#operating-library" class="nav-link">Library</a>
-  </div>
-</nav>
+<!-- ═══ MAIN ═══ -->
+<main id="main-content">
 
-<main>
-
-<!-- HERO -->
-<section class="hero" id="learn">
-  <div class="container hero-layout">
-    <div class="hero-text">
-      <h1>Hospitality is learned in the work.</h1>
-      <p class="hero-sub">Clive University is the shared operating school for Clive restaurant managers. Every lesson is backed by a cited source. Every assignment translates to the floor. The work is real.</p>
-      <p class="disclaimer">Source-backed learning and advisory decision support. This is not Clive policy until adopted by an authorized operator. Progress is stored locally in your browser only.</p>
-    </div>
-    <div class="hero-image">
+<!-- ─── TODAY ─── -->
+<section id="view-today" class="view view-active" aria-label="Today's mission">
+  <div class="today-hero">
+    <div class="today-hero-image">
       <img src="assets/cala.jpg" alt="Interior of Cala restaurant, Scottsdale" loading="eager">
     </div>
+    <div class="today-hero-overlay">
+      <div class="container">
+        <p class="today-kicker">Clive Shiftbook</p>
+        <h1>Hospitality is learned in the work.</h1>
+        <p class="today-date" id="today-date"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="mission-block">
+      <div class="dna-principle" id="dna-principle">
+        <span class="dna-label">Clive DNA</span>
+        <blockquote>The manager arrives with the number, the cause, and the fix.</blockquote>
+      </div>
+
+      <div class="mission-steps" id="mission-steps">
+        <div class="mission-step" data-step="learn">
+          <button type="button" class="step-toggle" aria-expanded="false" aria-controls="step-learn-content">
+            <span class="step-marker" aria-hidden="true">I</span>
+            <span class="step-phase">Learn It</span>
+            <span class="step-time">5 min</span>
+            <span class="step-check" aria-label="Not completed"></span>
+          </button>
+          <div class="step-content" id="step-learn-content" hidden>
+            <div class="step-body" id="step-learn-body">
+              <p class="step-loading">Loading today's lesson...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mission-step" data-step="see">
+          <button type="button" class="step-toggle" aria-expanded="false" aria-controls="step-see-content">
+            <span class="step-marker" aria-hidden="true">II</span>
+            <span class="step-phase">See It at Clive</span>
+            <span class="step-time">3 min</span>
+            <span class="step-check" aria-label="Not completed"></span>
+          </button>
+          <div class="step-content" id="step-see-content" hidden>
+            <div class="step-body" id="step-see-body">
+              <p class="step-loading">Loading case study...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mission-step" data-step="run">
+          <button type="button" class="step-toggle" aria-expanded="false" aria-controls="step-run-content">
+            <span class="step-marker" aria-hidden="true">III</span>
+            <span class="step-phase">Run It Tonight</span>
+            <span class="step-time">On shift</span>
+            <span class="step-check" aria-label="Not completed"></span>
+          </button>
+          <div class="step-content" id="step-run-content" hidden>
+            <div class="step-body" id="step-run-body">
+              <p class="step-loading">Loading field mission...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-footer">
+        <button type="button" class="reset-btn" id="reset-progress-btn">Reset today's progress</button>
+        <a href="learn/index.html" class="continue-link">Continue learning &rarr;</a>
+      </div>
+    </div>
+
+    <p class="disclaimer">Source-backed learning and advisory decision support. This is not Clive policy until adopted by an authorized operator. Progress is stored locally in your browser only.</p>
   </div>
 </section>
 
-<!-- THREE-STAGE CURRICULUM -->
-<section class="curriculum-section" id="curriculum">
+<!-- ─── LEARN ─── -->
+<section id="view-learn" class="view" hidden aria-label="Curriculum">
   <div class="container">
     <p class="section-label">The Path</p>
-    <h2>Start here. Build the system. Lead the shift.</h2>
+    <h1 class="view-title">Start here. Build the system. Lead the shift.</h1>
+
     <div class="curriculum-stages">
       <div class="stage">
         <span class="stage-number">1</span>
-        <h3>Foundations</h3>
+        <h2 class="stage-heading">Foundations</h2>
         <p>Food cost, labor, inventory. The operating numbers every manager must own before anything else works.</p>
-        <ul class="stage-courses" data-stage="foundations">
-          <li>Weekly Food Cost Control</li>
-          <li>Labor Cost and Scheduling</li>
-          <li>Inventory and Recipe Costing</li>
-        </ul>
       </div>
       <div class="stage">
         <span class="stage-number">2</span>
-        <h3>Leadership</h3>
+        <h2 class="stage-heading">Leadership</h2>
         <p>Accountability, delegation, culture. The systems that turn a competent manager into someone who builds other managers.</p>
-        <ul class="stage-courses" data-stage="leadership">
-          <li>Accountability Systems</li>
-          <li>Delegation and Trust</li>
-          <li>Leadership and Culture</li>
-        </ul>
       </div>
       <div class="stage">
         <span class="stage-number">3</span>
-        <h3>In the Field</h3>
+        <h2 class="stage-heading">In the Field</h2>
         <p>Clive case studies and location opportunity labs. Where the system meets the shift.</p>
-        <ul class="stage-courses" data-stage="field">
-          <li>Case studies from Clive operations</li>
-          <li>Location-specific manager labs</li>
-          <li>Operating tools and templates</li>
-        </ul>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ROLE FILTERS -->
-<section class="role-section" id="paths">
-  <div class="container">
-    <p class="section-label">Filter by Role</p>
     <div class="role-filters" role="tablist" aria-label="Filter courses by role">
       <button type="button" class="role-btn active" data-role="all" role="tab" aria-selected="true">All Courses</button>
       <button type="button" class="role-btn" data-role="manager" role="tab" aria-selected="false">Manager</button>
@@ -99,23 +139,7 @@
       <button type="button" class="role-btn" data-role="chef" role="tab" aria-selected="false">Chef</button>
       <button type="button" class="role-btn" data-role="owner" role="tab" aria-selected="false">Owner</button>
     </div>
-  </div>
-</section>
 
-<!-- PROGRESS PANEL -->
-<aside id="progress-panel" class="progress-panel" aria-label="Learning progress" hidden>
-  <div class="progress-panel-inner">
-    <div class="progress-header">
-      <h3>Your Progress</h3>
-      <button type="button" class="progress-close" aria-label="Close progress panel">&times;</button>
-    </div>
-    <div id="progress-body" aria-live="polite"></div>
-  </div>
-</aside>
-
-<!-- COURSE CARDS -->
-<section class="courses-section" id="courses">
-  <div class="container">
     <div id="course-grid" class="course-grid" aria-live="polite"></div>
     <div id="courses-error" class="error-state" hidden>
       <p>Unable to load courses. Please refresh the page.</p>
@@ -123,61 +147,53 @@
   </div>
 </section>
 
-<!-- THIS WEEK AT CLIVE -->
-<section class="articles-section" id="this-week">
-  <div class="container">
-    <p class="section-label">This Week at Clive</p>
-    <h2>Reading for the working manager</h2>
-    <div id="articles-shelf" class="articles-shelf"></div>
-  </div>
-</section>
-
-<!-- CASE STUDIES -->
-<section class="case-studies-section" id="case-studies">
+<!-- ─── STORIES ─── -->
+<section id="view-stories" class="view" hidden aria-label="Operating stories">
   <div class="container">
     <p class="section-label">How Clive Solves Problems</p>
-    <h2>Challenge. Move. Operating lesson.</h2>
-    <div id="case-studies-list" class="case-studies-list"></div>
+    <h1 class="view-title">Challenge. Move. Operating lesson.</h1>
+
+    <div class="stories-layout">
+      <div class="story-index" id="story-index" aria-label="Case study index"></div>
+      <div class="story-reader" id="story-reader">
+        <p class="reader-empty">Select a story to read.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- LOCATION LABS -->
-<section class="location-labs-section" id="location-labs">
+<!-- ─── FIELD ─── -->
+<section id="view-field" class="view" hidden aria-label="Field guide">
   <div class="container">
     <p class="section-label">Opportunities by Location</p>
-    <h2>Manager labs for each Clive restaurant</h2>
-    <div id="location-labs-grid" class="location-labs-grid"></div>
+    <h1 class="view-title">Manager labs for each Clive restaurant</h1>
+
+    <div class="location-selector" id="location-selector" role="tablist" aria-label="Select a location"></div>
+    <div class="location-detail" id="location-detail" aria-live="polite">
+      <p class="reader-empty">Select a location above.</p>
+    </div>
   </div>
 </section>
 
-<!-- OPERATING LIBRARY -->
-<section class="library-section" id="operating-library">
+<!-- ─── LIBRARY ─── -->
+<section id="view-library" class="view" hidden aria-label="Operating library">
   <div class="container">
     <p class="section-label">Operating Library</p>
-    <h2>Tools, templates, and reference</h2>
+    <h1 class="view-title">Tools, templates, and reference</h1>
+
     <div class="library-nav" role="tablist" aria-label="Library sections">
-      <button type="button" class="library-tab active" data-lib="courses-lib" role="tab" aria-selected="true">Courses</button>
-      <button type="button" class="library-tab" data-lib="articles-lib" role="tab" aria-selected="false">Articles</button>
+      <button type="button" class="library-tab active" data-lib="articles-lib" role="tab" aria-selected="true">Articles</button>
       <button type="button" class="library-tab" data-lib="tools-lib" role="tab" aria-selected="false">Tools &amp; Templates</button>
+      <button type="button" class="library-tab" data-lib="courses-lib" role="tab" aria-selected="false">Courses</button>
       <button type="button" class="library-tab" data-lib="assignments-lib" role="tab" aria-selected="false">Assignments</button>
     </div>
     <div id="library-content" class="library-content" aria-live="polite"></div>
   </div>
 </section>
 
-<!-- FIELDWORK -->
-<section class="fieldwork-section" id="fieldwork">
-  <div class="container">
-    <p class="section-label">Fieldwork</p>
-    <h2>Learning finishes on the floor</h2>
-    <p class="fieldwork-intro">Each course includes an operating assignment designed to translate the lesson into a concrete shift-level action. Complete the coursework, then execute the assignment during your next working week.</p>
-    <div id="fieldwork-list" class="fieldwork-grid" aria-live="polite"></div>
-  </div>
-</section>
-
 </main>
 
-<!-- COURSE DIALOG -->
+<!-- ═══ COURSE DIALOG ═══ -->
 <dialog id="course-dialog" class="course-dialog" aria-modal="true">
   <div class="dialog-inner">
     <header class="dialog-header">
@@ -201,7 +217,7 @@
   </div>
 </dialog>
 
-<!-- ARTICLE DIALOG -->
+<!-- ═══ ARTICLE DIALOG ═══ -->
 <dialog id="article-dialog" class="article-dialog" aria-modal="true">
   <div class="dialog-inner">
     <header class="dialog-header">
@@ -217,7 +233,7 @@
   </div>
 </dialog>
 
-<!-- TOOL DIALOG -->
+<!-- ═══ TOOL DIALOG ═══ -->
 <dialog id="tool-dialog" class="tool-dialog" aria-modal="true">
   <div class="dialog-inner">
     <header class="dialog-header">
@@ -229,6 +245,18 @@
   </div>
 </dialog>
 
+<!-- ═══ STORY DIALOG (mobile) ═══ -->
+<dialog id="story-dialog" class="story-dialog" aria-modal="true">
+  <div class="dialog-inner">
+    <header class="dialog-header">
+      <h2 id="story-dialog-title"></h2>
+      <button type="button" class="story-dialog-close dialog-close" aria-label="Close story">&times;</button>
+    </header>
+    <div class="dialog-body" id="story-dialog-body"></div>
+  </div>
+</dialog>
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -245,6 +273,30 @@
     </div>
   </div>
 </footer>
+
+<!-- ═══ MOBILE BOTTOM NAV ═══ -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <a href="index.html" class="bottom-nav-item active" aria-current="page">
+    <span class="bottom-nav-icon bottom-nav-icon--today" aria-hidden="true"></span>
+    <span class="bottom-nav-label">Today</span>
+  </a>
+  <a href="learn/index.html" class="bottom-nav-item">
+    <span class="bottom-nav-icon bottom-nav-icon--learn" aria-hidden="true"></span>
+    <span class="bottom-nav-label">Learn</span>
+  </a>
+  <a href="stories/index.html" class="bottom-nav-item">
+    <span class="bottom-nav-icon bottom-nav-icon--stories" aria-hidden="true"></span>
+    <span class="bottom-nav-label">Stories</span>
+  </a>
+  <a href="field/index.html" class="bottom-nav-item">
+    <span class="bottom-nav-icon bottom-nav-icon--field" aria-hidden="true"></span>
+    <span class="bottom-nav-label">Field</span>
+  </a>
+  <a href="library/index.html" class="bottom-nav-item">
+    <span class="bottom-nav-icon bottom-nav-icon--library" aria-hidden="true"></span>
+    <span class="bottom-nav-label">Library</span>
+  </a>
+</nav>
 
 <script src="cliveuni.js"></script>
 </body>

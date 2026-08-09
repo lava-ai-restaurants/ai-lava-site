@@ -1,0 +1,55 @@
+{
+  "contract": "CLIVEUNI-CLOSED-WORLD-001",
+  "generatedAtUtc": "2026-08-09T16:13:20Z",
+  "reviewedBaseRevision": "6d263429f7f8ce70bec1ac14d8448982f2c03e9a",
+  "architecture": "Closed-world deterministic. No provider API, backend, free-text coach input, coach persistence, or network AI calls. Button-only coach with embedded active-module data. Substantive responses resolve to approved evidence IDs from committed public-safe source bundles.",
+  "counts": {
+    "modules": 24,
+    "categories": 8,
+    "sectionPages": 4,
+    "categoryPages": 8,
+    "coachModes": 6,
+    "localRoutesChecked": 37
+  },
+  "commands": {
+    "generate": "node scripts/generate-topics.mjs",
+    "testPython": "python3 -m unittest tests/test_cliveuni.py -q",
+    "testNode": "node --test tests/test_cliveuni_closed_world.mjs",
+    "syntaxCheck": "node --check scripts/generate-topics.mjs && node --check cliveuni/study-panel.js && node --check cliveuni/cliveuni.js",
+    "whitespaceCheck": "git diff --check"
+  },
+  "results": {
+    "generate": "24 modules across 8 categories; source bundle and structured tool schema validation passed",
+    "testPython": "76 tests, 76 pass, 0 fail",
+    "testNode": "138 tests, 138 pass, 0 fail",
+    "adversarialQuizSchema": "Negative, out-of-range, fractional, empty-choice, and malformed-choice variants all rejected",
+    "citations": "Every topic visibly cites every evidence block; every Sources mode is non-empty",
+    "evidenceBindings": "Teach greetings/steps, quiz questions/answers/feedback, scenario prompts/choices, apply assignments/steps, checklists, and sources carry active-module evidence IDs",
+    "syntaxCheck": "All JavaScript syntax checks passed",
+    "whitespaceCheck": "Clean"
+  },
+  "browserQa": {
+    "desktop": "Learn page and topic coach verified at 1280x720; category hierarchy, module navigation, Teach and Quiz flows passed; zero console errors and no horizontal overflow.",
+    "mobile": "Topic and full-screen coach verified at 390x844; zero horizontal overflow; focus moved to close; Tab/Shift+Tab stayed trapped; body scroll locked; bottom nav and FAB hidden; Escape closed coach and restored focus.",
+    "coachEvidence": "Teach greeting/step, quiz question/answer/feedback, scenario prompt, apply assignment and steps rendered with active-topic data-evidence-id values.",
+    "libraryTools": "Weekly Variance user flow rendered one table with six body rows, one ordered list, and structured headings; no literal markup and zero console errors.",
+    "network": "All Clive University page resources loaded from the same local origin; zero third-party resource requests.",
+    "production": "Pending deployment and live readback."
+  },
+  "contentHashesSha256": {
+    "scripts/generate-topics.mjs": "876cd4726e1362daf9fac941877ccdb78fcbd58f457b0ef01da2717eec31d15b",
+    "cliveuni/study-panel.js": "4f28f3bf6f7db16a54345c69c9dde623578cfe3b2656c557a69dfe8d58923d3d",
+    "cliveuni/study-panel.css": "c5a5ad049c5b04e5f906b4a44a1f3268abb5260f09e6d3002023091b6ae7dff4",
+    "cliveuni/cliveuni.js": "c922b2432b091445b321014450166c3ee71d885ae1761d9ac3c09359900e9fe3",
+    "cliveuni/courses.json": "6cf097fe2322bf420cb92e300542f5993e5a32ccbb9158915647ab2207c6bdde",
+    "cliveuni/articles.json": "ce39805f0463d044c4a7a6f11435f61c71bb8774196de02b6a9f1a71e89df0a5",
+    "cliveuni/case-studies.json": "ea9e9dee25d434f0707a9cb6de0e8fe9244581ff8476fd4787f2233e5c39b0a0",
+    "cliveuni/field-guide.json": "954b0f796874e8f584371b056d6429f97a486a6bade1391f9f16ecc963d4f9d8",
+    "tests/test_cliveuni.py": "f0927d22b1dae6fc906ea081e3fb03a0910431d589fc082a9f8fff5e599981fc",
+    "tests/test_cliveuni_closed_world.mjs": "3c8131c51569a27f0629c133d44da0a4651820d44c6c9a81240eab759c1ba569"
+  },
+  "knownQaArtifacts": [
+    "Clive University pages use local/system font stacks and make no third-party font requests.",
+    "Legacy static-bundle rendering remains escaped; Library tools now use a validated structured schema and explicit DOM construction with no raw tool HTML sink."
+  ]
+}

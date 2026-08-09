@@ -50,25 +50,57 @@
       "id": "weekly-variance-template",
       "title": "Weekly Variance Conversation Template",
       "category": "Food Cost",
-      "content": "<h3>Weekly Variance Conversation</h3><p class='tool-instruction'>Use this template to structure your weekly food cost review meeting.</p><table class='tool-table'><thead><tr><th>Item</th><th>This Week</th><th>Notes</th></tr></thead><tbody><tr><td>Beginning Inventory</td><td></td><td></td></tr><tr><td>Purchases</td><td></td><td></td></tr><tr><td>Ending Inventory</td><td></td><td></td></tr><tr><td>Actual Food Cost %</td><td></td><td></td></tr><tr><td>Budget Target %</td><td></td><td></td></tr><tr><td>Variance</td><td></td><td></td></tr></tbody></table><h4>Top 3 Dollar Variances</h4><ol><li>Item: _____ | Variance: _____ | Cause: _____ | Corrective action: _____</li><li>Item: _____ | Variance: _____ | Cause: _____ | Corrective action: _____</li><li>Item: _____ | Variance: _____ | Cause: _____ | Corrective action: _____</li></ol><h4>Manager Presented By: _______________</h4><p class='tool-footer'>Adapted from David Scott Peters weekly food cost methodology.</p>"
+      "blocks": [
+        {"type": "paragraph", "style": "instruction", "text": "Use this template to structure your weekly food cost review meeting."},
+        {"type": "table", "headers": ["Item", "This Week", "Notes"], "rows": [["Beginning Inventory", "", ""], ["Purchases", "", ""], ["Ending Inventory", "", ""], ["Actual Food Cost %", "", ""], ["Budget Target %", "", ""], ["Variance", "", ""]]},
+        {"type": "heading", "text": "Top 3 Dollar Variances"},
+        {"type": "list", "ordered": true, "items": ["Item: _____ | Variance: _____ | Cause: _____ | Corrective action: _____", "Item: _____ | Variance: _____ | Cause: _____ | Corrective action: _____", "Item: _____ | Variance: _____ | Cause: _____ | Corrective action: _____"]},
+        {"type": "field", "label": "Manager Presented By", "value": "_______________"},
+        {"type": "paragraph", "style": "footer", "text": "Adapted from David Scott Peters weekly food cost methodology."}
+      ]
     },
     {
       "id": "shift-handoff-template",
       "title": "Shift Handoff Template",
       "category": "Operations",
-      "content": "<h3>Shift Handoff</h3><p class='tool-instruction'>Complete before leaving the floor. Incoming manager reads and acknowledges.</p><h4>Date: _____ Shift: _____ Outgoing Manager: _____</h4><h4>What is working</h4><p class='tool-field'>_________________________________________________</p><h4>What needs attention</h4><p class='tool-field'>_________________________________________________</p><h4>Guest or staff issues in progress</h4><p class='tool-field'>_________________________________________________</p><h4>Equipment or facility notes</h4><p class='tool-field'>_________________________________________________</p><h4>Incoming Manager Acknowledged: _____ Time: _____</h4>"
+      "blocks": [
+        {"type": "paragraph", "style": "instruction", "text": "Complete before leaving the floor. Incoming manager reads and acknowledges."},
+        {"type": "field", "label": "Date / Shift / Outgoing Manager", "value": "_____ / _____ / _____"},
+        {"type": "field", "label": "What is working", "value": "_________________________________________________"},
+        {"type": "field", "label": "What needs attention", "value": "_________________________________________________"},
+        {"type": "field", "label": "Guest or staff issues in progress", "value": "_________________________________________________"},
+        {"type": "field", "label": "Equipment or facility notes", "value": "_________________________________________________"},
+        {"type": "field", "label": "Incoming Manager Acknowledged / Time", "value": "_____ / _____"}
+      ]
     },
     {
       "id": "seven-day-reset",
       "title": "7-Day System Reset",
       "category": "Leadership",
-      "content": "<h3>7-Day System Reset</h3><p class='tool-instruction'>Use this when operating discipline has drifted. Pick one week. Recommit to the fundamentals.</p><h4>Day 1-2: Audit</h4><ul><li>Are manager logs being written daily?</li><li>Is inventory being counted on schedule?</li><li>Are shift handoffs happening?</li><li>Is the weekly variance conversation scheduled?</li></ul><h4>Day 3-4: Correct</h4><ul><li>Restart any lapsed system with a brief re-training</li><li>Write the standard on one page and post it</li><li>Verify completion for two consecutive shifts</li></ul><h4>Day 5-7: Sustain</h4><ul><li>Check that each system ran without prompting</li><li>Recognize the team member who executed best</li><li>Schedule the next reset check for 30 days out</li></ul><p class='tool-footer'>The goal is not perfection. The goal is restarting the rhythm.</p>"
+      "blocks": [
+        {"type": "paragraph", "style": "instruction", "text": "Use this when operating discipline has drifted. Pick one week. Recommit to the fundamentals."},
+        {"type": "heading", "text": "Day 1–2: Audit"},
+        {"type": "list", "ordered": false, "items": ["Are manager logs being written daily?", "Is inventory being counted on schedule?", "Are shift handoffs happening?", "Is the weekly variance conversation scheduled?"]},
+        {"type": "heading", "text": "Day 3–4: Correct"},
+        {"type": "list", "ordered": false, "items": ["Restart any lapsed system with a brief re-training", "Write the standard on one page and post it", "Verify completion for two consecutive shifts"]},
+        {"type": "heading", "text": "Day 5–7: Sustain"},
+        {"type": "list", "ordered": false, "items": ["Check that each system ran without prompting", "Recognize the team member who executed best", "Schedule the next reset check for 30 days out"]},
+        {"type": "paragraph", "style": "footer", "text": "The goal is not perfection. The goal is restarting the rhythm."}
+      ]
     },
     {
       "id": "problem-solving-brief",
       "title": "Manager Problem-Solving Brief",
       "category": "Accountability",
-      "content": "<h3>Manager Problem-Solving Brief</h3><p class='tool-instruction'>Use this format when presenting a problem to leadership. Arrive with the problem, the cause, and your proposed fix.</p><h4>Problem</h4><p class='tool-field'>What happened? State the specific issue in one sentence. _____</p><h4>Cause</h4><p class='tool-field'>Why did it happen? Identify the root cause, not the symptom. _____</p><h4>Impact</h4><p class='tool-field'>What was the operational impact? Be specific. _____</p><h4>Proposed Fix</h4><p class='tool-field'>What is your recommended corrective action? _____</p><h4>Verification</h4><p class='tool-field'>How will you confirm the fix is working? When will you check? _____</p><p class='tool-footer'>The discipline is presenting with a solution, not just surfacing problems.</p>"
+      "blocks": [
+        {"type": "paragraph", "style": "instruction", "text": "Use this format when presenting a problem to leadership. Arrive with the problem, the cause, and your proposed fix."},
+        {"type": "field", "label": "Problem", "value": "What happened? State the specific issue in one sentence. _____"},
+        {"type": "field", "label": "Cause", "value": "Why did it happen? Identify the root cause, not the symptom. _____"},
+        {"type": "field", "label": "Impact", "value": "What was the operational impact? Be specific. _____"},
+        {"type": "field", "label": "Proposed Fix", "value": "What is your recommended corrective action? _____"},
+        {"type": "field", "label": "Verification", "value": "How will you confirm the fix is working? When will you check? _____"},
+        {"type": "paragraph", "style": "footer", "text": "The discipline is presenting with a solution, not just surfacing problems."}
+      ]
     }
   ]
 }

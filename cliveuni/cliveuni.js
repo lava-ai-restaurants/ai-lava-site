@@ -1,16 +1,50 @@
 (function () {
   'use strict';
 
-  /* ── State ── */
+  /* ── Constants ── */
   var STORAGE_KEY = 'cliveUniversityProgress';
+  var MISSION_KEY = 'cliveShiftbookMission';
+  var VIEWS = ['today', 'learn', 'stories', 'field', 'library'];
+  var VIEW_TITLES = {
+    today: 'Today — Clive University',
+    learn: 'Learn — Clive University',
+    stories: 'Stories — Clive University',
+    field: 'Field — Clive University',
+    library: 'Library — Clive University'
+  };
+
+  /* ── DNA Principles ── */
+  var DNA_PRINCIPLES = [
+    'The manager arrives with the number, the cause, and the fix.',
+    'Unknown stays unknown until the data exists.',
+    'Accountability requires structure, not just expectation.',
+    'A report that looks complete but cannot be verified is worse than no report at all.',
+    'Process corrections are not about blame; they are about finding a repeatable procedure.',
+    'When foundational systems are in place, it changes your world.'
+  ];
+
+  /* ── State ── */
   var coursesData = null;
   var articlesData = null;
   var caseStudiesData = null;
   var fieldGuideData = null;
   var currentCourseId = null;
   var currentView = 'lesson-0';
+  var activeView = 'today';
 
-  /* ── Progress helpers ── */
+  /* ── Stage mapping ── */
+  var stageMap = {
+    'food-cost': 'Foundations',
+    'labor': 'Foundations',
+    'inventory': 'Foundations',
+    'accountability': 'Leadership',
+    'delegation': 'Leadership',
+    'leadership': 'Leadership'
+  };
+
+  /* ═══════════════════════════════════════
+     PROGRESS HELPERS
+     ═══════════════════════════════════════ */
   function loadProgress() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -48,7 +82,96 @@
     return { completed: completed, total: totalSteps, pct: Math.round((completed / totalSteps) * 100), raw: cp };
   }
 
-  /* ── Data fetch ── */
+  /* ═══════════════════════════════════════
+     MISSION PROGRESS (Today view)
+     ═══════════════════════════════════════ */
+  function loadMissionProgress() {
+    try {
+      return JSON.parse(localStorage.getItem(MISSION_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveMissionStep(step) {
+    var m = loadMissionProgress();
+    m[step] = true;
+    localStorage.setItem(MISSION_KEY, JSON.stringify(m));
+  }
+
+  function clearMissionProgress() {
+    localStorage.removeItem(MISSION_KEY);
+  }
+
+  function resetTodayUI() {
+    clearMissionProgress();
+    var steps = document.querySelectorAll('.mission-step');
+    steps.forEach(function (el) {
+      el.classList.remove('completed');
+      var toggle = el.querySelector('.step-toggle');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        var checkEl = el.querySelector('.step-check');
+        if (checkEl) checkEl.setAttribute('aria-label', 'Not completed');
+      }
+      var content = el.querySelector('.step-content');
+      if (content) content.hidden = true;
+    });
+  }
+
+  /* ═══════════════════════════════════════
+     VIEW NAVIGATION
+     ═══════════════════════════════════════ */
+  function switchView(viewName) {
+    if (VIEWS.indexOf(viewName) === -1) viewName = 'today';
+    activeView = viewName;
+
+    VIEWS.forEach(function (v) {
+      var el = document.getElementById('view-' + v);
+      if (el) {
+        if (v === viewName) {
+          el.hidden = false;
+          el.classList.add('view-active');
+        } else {
+          el.hidden = true;
+          el.classList.remove('view-active');
+        }
+      }
+    });
+
+    // Update document title
+    document.title = VIEW_TITLES[viewName] || 'Clive University';
+
+    // Update nav active states
+    document.querySelectorAll('[data-view]').forEach(function (link) {
+      if (link.dataset.view === viewName) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      }
+    });
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+
+    // Focus management
+    var viewEl = document.getElementById('view-' + viewName);
+    if (viewEl) {
+      var heading = viewEl.querySelector('h1');
+      if (heading) heading.setAttribute('tabindex', '-1');
+    }
+  }
+
+  function handleHash() {
+    var hash = location.hash.replace('#', '') || 'today';
+    switchView(hash);
+  }
+
+  /* ═══════════════════════════════════════
+     DATA FETCH
+     ═══════════════════════════════════════ */
   function resolveUrl(filename) {
     var base = document.querySelector('script[src*="cliveuni.js"]');
     if (base) {
@@ -72,36 +195,153 @@
       caseStudiesData = results[2];
       fieldGuideData = results[3];
 
+      renderToday();
       renderCourses('all');
-      renderFieldwork();
-      renderProgressPanel();
-      renderArticles();
-      renderCaseStudies();
-      renderLocationLabs();
-      renderLibrary('courses-lib');
-      resumeLearning();
+      renderStoryIndex();
+      renderLocationSelector();
+      renderLibrary('articles-lib');
     } catch (e) {
       var errorEl = document.getElementById('courses-error');
       if (errorEl) errorEl.hidden = false;
-      var gridEl = document.getElementById('course-grid');
-      if (gridEl) gridEl.innerHTML = '';
     }
   }
 
-  /* ── Stage mapping ── */
-  var stageMap = {
-    'food-cost': 'Foundations',
-    'labor': 'Foundations',
-    'inventory': 'Foundations',
-    'accountability': 'Leadership',
-    'delegation': 'Leadership',
-    'leadership': 'Leadership'
-  };
+  /* ═══════════════════════════════════════
+     TODAY VIEW
+     ═══════════════════════════════════════ */
+  function renderToday() {
+    // Set date
+    var dateEl = document.getElementById('today-date');
+    if (dateEl) {
+      var now = new Date();
+      var opts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      dateEl.textContent = now.toLocaleDateString('en-US', opts);
+    }
 
-  /* ── Render courses ── */
+    // Set DNA principle (rotate by day of year)
+    var dnaEl = document.getElementById('dna-principle');
+    if (dnaEl) {
+      var dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+      var principle = DNA_PRINCIPLES[dayOfYear % DNA_PRINCIPLES.length];
+      var bq = dnaEl.querySelector('blockquote');
+      if (bq) bq.textContent = principle;
+    }
+
+    // Populate step content
+    if (coursesData && coursesData.courses.length > 0) {
+      renderLearnStep();
+    }
+    if (caseStudiesData && caseStudiesData.caseStudies.length > 0) {
+      renderSeeStep();
+    }
+    if (fieldGuideData && fieldGuideData.locationLabs.length > 0) {
+      renderRunStep();
+    }
+
+    // Restore completed state
+    var mission = loadMissionProgress();
+    ['learn', 'see', 'run'].forEach(function (step) {
+      if (mission[step]) {
+        var stepEl = document.querySelector('.mission-step[data-step="' + step + '"]');
+        if (stepEl) {
+          stepEl.classList.add('completed');
+          var checkEl = stepEl.querySelector('.step-check');
+          if (checkEl) checkEl.setAttribute('aria-label', 'Completed');
+        }
+      }
+    });
+    openFirstIncompleteMissionStep(mission);
+  }
+
+  function openFirstIncompleteMissionStep(mission) {
+    var stepOrder = ['learn', 'see', 'run'];
+    var nextStep = stepOrder.find(function (step) { return !mission[step]; }) || 'learn';
+    var stepEl = document.querySelector('.mission-step[data-step="' + nextStep + '"]');
+    if (!stepEl) return;
+    var toggle = stepEl.querySelector('.step-toggle');
+    var content = stepEl.querySelector('.step-content');
+    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    if (content) content.hidden = false;
+  }
+
+  function renderLearnStep() {
+    var body = document.getElementById('step-learn-body');
+    if (!body || !coursesData) return;
+    // Pick first course, first lesson as today's lesson
+    var course = coursesData.courses[0];
+    var lesson = course.lessons[0];
+    var src = lesson.source;
+    var provenanceLabel = src.provenance === 'publisher_captions' ? 'Publisher captions' : 'Local speech-to-text';
+
+    body.innerHTML =
+      '<h4>' + escapeHtml(lesson.title) + '</h4>' +
+      '<p>' + escapeHtml(lesson.summary) + '</p>' +
+      '<div class="step-citation">' +
+        '<a href="' + escapeAttr(src.url) + '" target="_blank" rel="noopener">' + escapeHtml(src.title) + '</a>' +
+        ' (' + src.startSeconds + 's\u2013' + src.endSeconds + 's)' +
+        '<br><small>Provenance: ' + provenanceLabel + '</small>' +
+      '</div>' +
+      '<button type="button" class="step-complete-btn" data-step="learn">Mark complete</button>';
+
+    body.querySelector('.step-complete-btn').addEventListener('click', function () {
+      completeStep('learn');
+    });
+  }
+
+  function renderSeeStep() {
+    var body = document.getElementById('step-see-body');
+    if (!body || !caseStudiesData) return;
+    var cs = caseStudiesData.caseStudies[0];
+
+    body.innerHTML =
+      '<p class="step-case-label">Situation</p>' +
+      '<p>' + escapeHtml(cs.challenge) + '</p>' +
+      '<p class="step-case-label">Move</p>' +
+      '<p>' + escapeHtml(cs.move) + '</p>' +
+      '<p class="step-case-label">DNA</p>' +
+      '<p>' + escapeHtml(cs.lesson) + '</p>' +
+      '<p class="step-provenance">' + escapeHtml(cs.provenance) + '</p>' +
+      '<button type="button" class="step-complete-btn" data-step="see">Mark complete</button>';
+
+    body.querySelector('.step-complete-btn').addEventListener('click', function () {
+      completeStep('see');
+    });
+  }
+
+  function renderRunStep() {
+    var body = document.getElementById('step-run-body');
+    if (!body || !fieldGuideData) return;
+    var lab = fieldGuideData.locationLabs[0];
+
+    body.innerHTML =
+      '<h4>' + escapeHtml(lab.location) + '</h4>' +
+      '<p>' + escapeHtml(lab.prompt) + '</p>' +
+      '<div class="step-deliverable">' +
+        '<strong>Deliverable</strong>' + escapeHtml(lab.deliverable) +
+      '</div>' +
+      '<button type="button" class="step-complete-btn" data-step="run">Mark complete</button>';
+
+    body.querySelector('.step-complete-btn').addEventListener('click', function () {
+      completeStep('run');
+    });
+  }
+
+  function completeStep(step) {
+    saveMissionStep(step);
+    var stepEl = document.querySelector('.mission-step[data-step="' + step + '"]');
+    if (stepEl) {
+      stepEl.classList.add('completed');
+      var checkEl = stepEl.querySelector('.step-check');
+      if (checkEl) checkEl.setAttribute('aria-label', 'Completed');
+    }
+  }
+
+  /* ═══════════════════════════════════════
+     LEARN VIEW — Courses
+     ═══════════════════════════════════════ */
   function renderCourses(role) {
     var grid = document.getElementById('course-grid');
-    if (!coursesData) return;
+    if (!coursesData || !grid) return;
     var courses = coursesData.courses.filter(function (c) {
       if (role === 'all') return true;
       return c.roles.includes(role);
@@ -133,119 +373,197 @@
     });
   }
 
-  /* ── Render articles ── */
-  function renderArticles() {
-    var shelf = document.getElementById('articles-shelf');
-    if (!articlesData) return;
-    shelf.innerHTML = articlesData.articles.map(function (a) {
-      return '<div class="article-item" tabindex="0" role="button" aria-label="Read ' + escapeHtml(a.title) + '" data-article-id="' + a.id + '">' +
-        '<div>' +
-          '<div class="article-title">' + escapeHtml(a.title) + '</div>' +
-          '<div class="article-dek">' + escapeHtml(a.dek) + '</div>' +
-        '</div>' +
-        '<div class="article-meta">' +
-          escapeHtml(a.category) +
-          '<span class="article-meta-time">' + escapeHtml(a.readingTime) + '</span>' +
-        '</div>' +
+  /* ═══════════════════════════════════════
+     STORIES VIEW — Index + Reader
+     ═══════════════════════════════════════ */
+  function renderStoryIndex() {
+    var index = document.getElementById('story-index');
+    if (!caseStudiesData || !index) return;
+
+    index.innerHTML = caseStudiesData.caseStudies.map(function (cs, i) {
+      return '<div class="story-index-item" tabindex="0" role="button" aria-label="Read ' + escapeHtml(cs.title) + '" data-story-index="' + i + '">' +
+        '<div class="story-index-location">' + escapeHtml(cs.location) + '</div>' +
+        '<div class="story-index-title">' + escapeHtml(cs.title) + '</div>' +
       '</div>';
     }).join('');
 
-    shelf.querySelectorAll('.article-item').forEach(function (item) {
-      item.addEventListener('click', function () { openArticle(item.dataset.articleId); });
+    index.querySelectorAll('.story-index-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var idx = parseInt(item.dataset.storyIndex, 10);
+        selectStory(idx);
+      });
       item.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openArticle(item.dataset.articleId); }
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          var idx = parseInt(item.dataset.storyIndex, 10);
+          selectStory(idx);
+        }
       });
     });
   }
 
-  /* ── Open article dialog ── */
-  function openArticle(articleId) {
-    var article = articlesData.articles.find(function (a) { return a.id === articleId; });
-    if (!article) return;
+  function selectStory(idx) {
+    var cs = caseStudiesData.caseStudies[idx];
+    if (!cs) return;
 
-    var dialog = document.getElementById('article-dialog');
-    document.getElementById('article-dialog-title').textContent = article.title;
-    document.getElementById('article-dialog-meta').textContent = article.category + ' \u00B7 ' + article.readingTime;
-    document.getElementById('article-dialog-body').textContent = article.body;
-
-    var takeawaysHtml = '<h4>Takeaways</h4><ul>' +
-      article.takeaways.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
-      '</ul>';
-    document.getElementById('article-dialog-takeaways').innerHTML = takeawaysHtml;
-    var provenance = document.getElementById('article-dialog-provenance');
-    provenance.textContent = article.provenance + (article.sourceNote ? ' \u2014 ' + article.sourceNote : '');
-    if (article.sourceUrl) {
-      var sourceLink = document.createElement('a');
-      sourceLink.href = article.sourceUrl;
-      sourceLink.target = '_blank';
-      sourceLink.rel = 'noopener noreferrer';
-      sourceLink.textContent = 'Watch source segment';
-      provenance.appendChild(document.createTextNode(' · '));
-      provenance.appendChild(sourceLink);
+    // On mobile, open dialog
+    if (window.innerWidth <= 760) {
+      openStoryDialog(cs);
+      return;
     }
+
+    // On desktop, show in reader panel
+    var reader = document.getElementById('story-reader');
+    var imageHtml = '';
+    if (cs.image) {
+      imageHtml = '<div class="story-image"><img src="assets/' + escapeAttr(cs.image) + '" alt="' + escapeAttr(cs.location) + ' restaurant" loading="lazy"></div>';
+    }
+
+    var foodSafetyHtml = '';
+    if (cs.id === 'americano-meatball-method') {
+      foodSafetyHtml = '<div class="story-food-safety">Approved time-and-temperature and food-safety standards govern all preparation procedures.</div>';
+    }
+
+    reader.innerHTML =
+      '<div class="story-reader-active">' +
+        imageHtml +
+        '<div class="story-location-label">' + escapeHtml(cs.location) + '</div>' +
+        '<h3>' + escapeHtml(cs.title) + '</h3>' +
+        '<p class="story-beat-label">Situation</p>' +
+        '<p class="story-beat">' + escapeHtml(cs.challenge) + '</p>' +
+        '<p class="story-beat-label">Move</p>' +
+        '<p class="story-beat">' + escapeHtml(cs.move) + '</p>' +
+        '<p class="story-beat-label dna-beat">DNA</p>' +
+        '<p class="story-beat">' + escapeHtml(cs.lesson) + '</p>' +
+        foodSafetyHtml +
+        '<div class="story-take">Take it to your shift: ' + escapeHtml(cs.lesson) + '</div>' +
+        '<p class="story-provenance">' + escapeHtml(cs.provenance) + '</p>' +
+      '</div>';
+
+    // Update active state in index
+    document.querySelectorAll('.story-index-item').forEach(function (item, i) {
+      if (i === idx) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+
+  function openStoryDialog(cs) {
+    var dialog = document.getElementById('story-dialog');
+    if (!dialog) return;
+
+    document.getElementById('story-dialog-title').textContent = cs.title;
+
+    var imageHtml = '';
+    if (cs.image) {
+      imageHtml = '<div class="story-image"><img src="assets/' + escapeAttr(cs.image) + '" alt="' + escapeAttr(cs.location) + '" loading="lazy" style="width:100%;height:200px;object-fit:cover;border-radius:4px;margin-bottom:20px;"></div>';
+    }
+
+    var foodSafetyHtml = '';
+    if (cs.id === 'americano-meatball-method') {
+      foodSafetyHtml = '<div class="story-food-safety">Approved time-and-temperature and food-safety standards govern all preparation procedures.</div>';
+    }
+
+    document.getElementById('story-dialog-body').innerHTML =
+      imageHtml +
+      '<p class="story-beat-label" style="margin-top:0;">' + escapeHtml(cs.location) + '</p>' +
+      '<p class="story-beat-label">Situation</p>' +
+      '<p class="story-beat">' + escapeHtml(cs.challenge) + '</p>' +
+      '<p class="story-beat-label">Move</p>' +
+      '<p class="story-beat">' + escapeHtml(cs.move) + '</p>' +
+      '<p class="story-beat-label dna-beat">DNA</p>' +
+      '<p class="story-beat">' + escapeHtml(cs.lesson) + '</p>' +
+      foodSafetyHtml +
+      '<p class="story-provenance">' + escapeHtml(cs.provenance) + '</p>';
 
     dialog.showModal();
     dialog.scrollTop = 0;
-    dialog.querySelector('.article-dialog-close').focus();
+    dialog.querySelector('.story-dialog-close').focus();
   }
 
-  /* ── Render case studies ── */
-  function renderCaseStudies() {
-    var list = document.getElementById('case-studies-list');
-    if (!caseStudiesData) return;
-    list.innerHTML = caseStudiesData.caseStudies.map(function (cs) {
-      var hasImage = cs.image && cs.image.length > 0;
-      var imageHtml = hasImage
-        ? '<div class="case-study-image"><img src="assets/' + escapeAttr(cs.image) + '" alt="' + escapeAttr(cs.location) + ' restaurant" loading="lazy"></div>'
-        : '';
-      return '<div class="case-study' + (hasImage ? ' case-study-with-image' : '') + '">' +
-        '<div class="case-study-content">' +
-          '<div class="case-study-location">' + escapeHtml(cs.location) + '</div>' +
-          '<h3>' + escapeHtml(cs.title) + '</h3>' +
-          '<p class="case-study-label">Challenge</p>' +
-          '<p>' + escapeHtml(cs.challenge) + '</p>' +
-          '<p class="case-study-label">Move</p>' +
-          '<p>' + escapeHtml(cs.move) + '</p>' +
-          '<p class="case-study-label">Operating Lesson</p>' +
-          '<p>' + escapeHtml(cs.lesson) + '</p>' +
-          '<p class="case-study-provenance">' + escapeHtml(cs.provenance) + '</p>' +
-        '</div>' +
-        imageHtml +
-      '</div>';
+  /* ═══════════════════════════════════════
+     FIELD VIEW — Location Selector + Detail
+     ═══════════════════════════════════════ */
+  function renderLocationSelector() {
+    var selector = document.getElementById('location-selector');
+    if (!fieldGuideData || !selector) return;
+
+    selector.innerHTML = fieldGuideData.locationLabs.map(function (lab, i) {
+      return '<button type="button" class="location-tab" role="tab" aria-selected="false" data-loc-index="' + i + '">' +
+        escapeHtml(lab.location) +
+      '</button>';
     }).join('');
+
+    selector.querySelectorAll('.location-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var idx = parseInt(tab.dataset.locIndex, 10);
+        selectLocation(idx);
+      });
+    });
+    selectLocation(0);
   }
 
-  /* ── Render location labs ── */
-  function renderLocationLabs() {
-    var grid = document.getElementById('location-labs-grid');
-    if (!fieldGuideData) return;
-    grid.innerHTML = fieldGuideData.locationLabs.map(function (lab) {
-      return '<div class="location-lab">' +
-        '<div class="location-lab-name">' + escapeHtml(lab.location) + '</div>' +
-        '<span class="location-lab-label">' + escapeHtml(lab.label) + '</span>' +
-        '<div class="location-lab-focus">' + escapeHtml(lab.focus) + '</div>' +
-        '<p class="location-lab-prompt">' + escapeHtml(lab.prompt) + '</p>' +
-        '<div class="location-lab-deliverable"><strong>Deliverable</strong>' + escapeHtml(lab.deliverable) + '</div>' +
+  function selectLocation(idx) {
+    var lab = fieldGuideData.locationLabs[idx];
+    if (!lab) return;
+
+    var detail = document.getElementById('location-detail');
+
+    // Find related course if any
+    var courseLink = '';
+    if (coursesData) {
+      var relatedDomain = lab.focus.toLowerCase().indexOf('food cost') !== -1 ? 'food-cost' :
+        lab.focus.toLowerCase().indexOf('labor') !== -1 ? 'labor' :
+        lab.focus.toLowerCase().indexOf('inventory') !== -1 ? 'inventory' :
+        lab.focus.toLowerCase().indexOf('accountability') !== -1 ? 'accountability' :
+        lab.focus.toLowerCase().indexOf('delegation') !== -1 ? 'delegation' : '';
+      if (relatedDomain) {
+        var rc = coursesData.courses.find(function (c) { return c.domain === relatedDomain; });
+        if (rc) {
+          courseLink = '<div class="lab-detail-links"><a href="#learn" data-view="learn">Related course: ' + escapeHtml(rc.title) + ' &rarr;</a></div>';
+        }
+      }
+    }
+
+    detail.innerHTML =
+      '<div class="lab-detail">' +
+        '<div class="lab-detail-name">' + escapeHtml(lab.location) + '</div>' +
+        '<span class="lab-detail-label">' + escapeHtml(lab.label) + '</span>' +
+        '<div class="lab-detail-focus">' + escapeHtml(lab.focus) + '</div>' +
+        '<p class="lab-detail-prompt">' + escapeHtml(lab.prompt) + '</p>' +
+        '<div class="lab-detail-deliverable"><strong>Deliverable</strong>' + escapeHtml(lab.deliverable) + '</div>' +
+        courseLink +
       '</div>';
-    }).join('');
+
+    // Update selector active state
+    document.querySelectorAll('.location-tab').forEach(function (tab, i) {
+      if (i === idx) {
+        tab.setAttribute('aria-selected', 'true');
+      } else {
+        tab.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    // Bind course links
+    detail.querySelectorAll('[data-view]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        location.hash = link.dataset.view;
+      });
+    });
   }
 
-  /* ── Render operating library ── */
+  /* ═══════════════════════════════════════
+     LIBRARY VIEW
+     ═══════════════════════════════════════ */
   function renderLibrary(section) {
     var content = document.getElementById('library-content');
-    if (!coursesData) return;
+    if (!content) return;
     var html = '';
 
-    if (section === 'courses-lib') {
-      html = coursesData.courses.map(function (c) {
-        var stage = stageMap[c.domain] || '';
-        return '<div class="library-item" tabindex="0" role="button" data-course-id="' + c.id + '">' +
-          '<span class="library-item-category">' + escapeHtml(stage) + '</span>' +
-          '<div class="library-item-title">' + escapeHtml(c.title) + '</div>' +
-          '<div class="library-item-meta">' + c.lessons.length + ' lessons \u00B7 ' + c.quiz.length + ' questions</div>' +
-        '</div>';
-      }).join('');
-    } else if (section === 'articles-lib' && articlesData) {
+    if (section === 'articles-lib' && articlesData) {
       html = articlesData.articles.map(function (a) {
         return '<div class="library-item" tabindex="0" role="button" data-article-id="' + a.id + '">' +
           '<span class="library-item-category">' + escapeHtml(a.category) + '</span>' +
@@ -261,7 +579,16 @@
           '<div class="library-item-meta">Printable template</div>' +
         '</div>';
       }).join('');
-    } else if (section === 'assignments-lib') {
+    } else if (section === 'courses-lib' && coursesData) {
+      html = coursesData.courses.map(function (c) {
+        var stage = stageMap[c.domain] || '';
+        return '<div class="library-item" tabindex="0" role="button" data-course-id="' + c.id + '">' +
+          '<span class="library-item-category">' + escapeHtml(stage) + '</span>' +
+          '<div class="library-item-title">' + escapeHtml(c.title) + '</div>' +
+          '<div class="library-item-meta">' + c.lessons.length + ' lessons \u00B7 ' + c.quiz.length + ' questions</div>' +
+        '</div>';
+      }).join('');
+    } else if (section === 'assignments-lib' && coursesData) {
       html = coursesData.courses.map(function (c) {
         return '<div class="library-item">' +
           '<div class="library-item-title">' + escapeHtml(c.title) + '</div>' +
@@ -272,6 +599,7 @@
 
     content.innerHTML = html;
 
+    // Bind clicks
     content.querySelectorAll('[data-course-id]').forEach(function (item) {
       item.addEventListener('click', function () { openCourse(item.dataset.courseId); });
       item.addEventListener('keydown', function (e) {
@@ -292,62 +620,9 @@
     });
   }
 
-  /* ── Open tool dialog ── */
-  function openTool(toolId) {
-    var tool = fieldGuideData.tools.find(function (t) { return t.id === toolId; });
-    if (!tool) return;
-
-    var dialog = document.getElementById('tool-dialog');
-    document.getElementById('tool-dialog-body').innerHTML = tool.content;
-    dialog.showModal();
-    dialog.scrollTop = 0;
-    dialog.querySelector('.tool-dialog-close').focus();
-  }
-
-  /* ── Render fieldwork ── */
-  function renderFieldwork() {
-    var list = document.getElementById('fieldwork-list');
-    if (!coursesData) return;
-    list.innerHTML = coursesData.courses.map(function (c) {
-      return '<div class="fieldwork-card">' +
-        '<h4>' + escapeHtml(c.title) + '</h4>' +
-        '<p>' + escapeHtml(c.operatingAssignment) + '</p>' +
-      '</div>';
-    }).join('');
-  }
-
-  /* ── Render progress panel ── */
-  function renderProgressPanel() {
-    var body = document.getElementById('progress-body');
-    if (!coursesData) return;
-    body.innerHTML = coursesData.courses.map(function (c) {
-      var prog = getCourseProgress(c.id, c);
-      return '<div class="progress-course">' +
-        '<div class="progress-course-title">' + escapeHtml(c.title) + '</div>' +
-        '<div class="progress-bar-track"><div class="progress-bar-fill" style="width:' + prog.pct + '%"></div></div>' +
-        '<div class="progress-label">' + prog.completed + ' of ' + prog.total + ' steps' +
-          (prog.raw.quizScore ? ' \u00B7 Quiz: ' + prog.raw.quizScore.score + '/' + prog.raw.quizScore.total : '') +
-        '</div>' +
-      '</div>';
-    }).join('');
-  }
-
-  /* ── Resume learning ── */
-  function resumeLearning() {
-    var p = loadProgress();
-    var keys = Object.keys(p);
-    if (keys.length === 0) return;
-    for (var i = 0; i < coursesData.courses.length; i++) {
-      var c = coursesData.courses[i];
-      var prog = getCourseProgress(c.id, c);
-      if (prog.pct > 0 && prog.pct < 100) {
-        document.getElementById('courses').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
-      }
-    }
-  }
-
-  /* ── Open course dialog ── */
+  /* ═══════════════════════════════════════
+     COURSE DIALOG
+     ═══════════════════════════════════════ */
   function openCourse(courseId) {
     var course = coursesData.courses.find(function (c) { return c.id === courseId; });
     if (!course) return;
@@ -367,7 +642,6 @@
     dialog.querySelector('.dialog-close').focus();
   }
 
-  /* ── Lesson navigation ── */
   function buildLessonNav(course) {
     var nav = document.getElementById('lesson-nav');
     var html = '';
@@ -418,7 +692,6 @@
       '<span class="cite-provenance">Provenance: ' + provenanceLabel + '</span>';
 
     markLessonComplete(course.id, lesson.id);
-    renderProgressPanel();
     renderCourses(getActiveRole());
   }
 
@@ -487,17 +760,130 @@
 
     document.getElementById('quiz-submit-btn').disabled = true;
     markQuizScore(course.id, score, course.quiz.length);
-    renderProgressPanel();
     renderCourses(getActiveRole());
   }
 
-  /* ── Role filter ── */
+  /* ═══════════════════════════════════════
+     ARTICLE DIALOG
+     ═══════════════════════════════════════ */
+  function openArticle(articleId) {
+    var article = articlesData.articles.find(function (a) { return a.id === articleId; });
+    if (!article) return;
+
+    var dialog = document.getElementById('article-dialog');
+    document.getElementById('article-dialog-title').textContent = article.title;
+    document.getElementById('article-dialog-meta').textContent = article.category + ' \u00B7 ' + article.readingTime;
+    document.getElementById('article-dialog-body').textContent = article.body;
+
+    var takeawaysHtml = '<h4>Takeaways</h4><ul>' +
+      article.takeaways.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
+      '</ul>';
+    document.getElementById('article-dialog-takeaways').innerHTML = takeawaysHtml;
+
+    var provenance = document.getElementById('article-dialog-provenance');
+    provenance.textContent = article.provenance + (article.sourceNote ? ' \u2014 ' + article.sourceNote : '');
+    if (article.sourceUrl) {
+      var sourceLink = document.createElement('a');
+      sourceLink.href = article.sourceUrl;
+      sourceLink.target = '_blank';
+      sourceLink.rel = 'noopener noreferrer';
+      sourceLink.textContent = 'Watch source segment';
+      provenance.appendChild(document.createTextNode(' \u00B7 '));
+      provenance.appendChild(sourceLink);
+    }
+
+    dialog.showModal();
+    dialog.scrollTop = 0;
+    dialog.querySelector('.article-dialog-close').focus();
+  }
+
+  /* ═══════════════════════════════════════
+     TOOL DIALOG
+     ═══════════════════════════════════════ */
+  function openTool(toolId) {
+    var tool = fieldGuideData.tools.find(function (t) { return t.id === toolId; });
+    if (!tool) return;
+
+    var dialog = document.getElementById('tool-dialog');
+    var body = document.getElementById('tool-dialog-body');
+    // Clear previous content safely
+    while (body.firstChild) body.removeChild(body.firstChild);
+    // Render tool content via textContent to avoid innerHTML XSS
+    var title = document.createElement('h3');
+    title.textContent = tool.title;
+    body.appendChild(title);
+    var cat = document.createElement('p');
+    cat.textContent = tool.category;
+    cat.className = 'tool-instruction';
+    body.appendChild(cat);
+    // Render the reviewed structured schema with explicit DOM APIs only.
+    (tool.blocks || []).forEach(function (block) {
+      var element;
+      if (block.type === 'paragraph') {
+        element = document.createElement('p');
+        element.className = block.style === 'footer' ? 'tool-footer' : 'tool-instruction';
+        element.textContent = block.text;
+      } else if (block.type === 'heading') {
+        element = document.createElement('h4');
+        element.textContent = block.text;
+      } else if (block.type === 'field') {
+        element = document.createElement('div');
+        var label = document.createElement('h4');
+        label.textContent = block.label;
+        var value = document.createElement('p');
+        value.className = 'tool-field';
+        value.textContent = block.value;
+        element.appendChild(label);
+        element.appendChild(value);
+      } else if (block.type === 'list') {
+        element = document.createElement(block.ordered ? 'ol' : 'ul');
+        (block.items || []).forEach(function (item) {
+          var li = document.createElement('li');
+          li.textContent = item;
+          element.appendChild(li);
+        });
+      } else if (block.type === 'table') {
+        element = document.createElement('table');
+        element.className = 'tool-table';
+        var thead = document.createElement('thead');
+        var headerRow = document.createElement('tr');
+        (block.headers || []).forEach(function (heading) {
+          var th = document.createElement('th');
+          th.textContent = heading;
+          headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        element.appendChild(thead);
+        var tbody = document.createElement('tbody');
+        (block.rows || []).forEach(function (row) {
+          var tr = document.createElement('tr');
+          row.forEach(function (cell) {
+            var td = document.createElement('td');
+            td.textContent = cell;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+        element.appendChild(tbody);
+      }
+      if (element) body.appendChild(element);
+    });
+    dialog.showModal();
+    dialog.scrollTop = 0;
+    dialog.querySelector('.tool-dialog-close').focus();
+  }
+
+  /* ═══════════════════════════════════════
+     ROLE FILTER
+     ═══════════════════════════════════════ */
   function getActiveRole() {
     var active = document.querySelector('.role-btn.active');
     return active ? active.dataset.role : 'all';
   }
 
-  /* ── Helpers ── */
+  /* ═══════════════════════════════════════
+     HELPERS
+     ═══════════════════════════════════════ */
   function escapeHtml(str) {
     var div = document.createElement('div');
     div.textContent = str;
@@ -508,9 +894,43 @@
     return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  /* ── Events ── */
+  /* ═══════════════════════════════════════
+     EVENT SETUP
+     ═══════════════════════════════════════ */
   document.addEventListener('DOMContentLoaded', function () {
-    loadAllData();
+    // Hash navigation
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+
+    // Nav link clicks
+    document.querySelectorAll('[data-view]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (link.tagName === 'A' && link.getAttribute('href').charAt(0) === '#') {
+          e.preventDefault();
+          var view = link.dataset.view;
+          location.hash = view;
+        }
+      });
+    });
+
+    // Mission step toggles
+    document.querySelectorAll('.step-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var content = document.getElementById(btn.getAttribute('aria-controls'));
+        if (!content) return;
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+        content.hidden = isExpanded;
+      });
+    });
+
+    // Reset button
+    var resetBtn = document.getElementById('reset-progress-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        resetTodayUI();
+      });
+    }
 
     // Role filter
     document.querySelectorAll('.role-btn').forEach(function (btn) {
@@ -538,62 +958,36 @@
       });
     });
 
-    // Progress panel toggle
-    var progressBtn = document.querySelector('.nav-progress-btn');
-    var progressPanel = document.getElementById('progress-panel');
-    var progressClose = progressPanel.querySelector('.progress-close');
+    // Dialog close handlers
+    setupDialogClose('course-dialog', '.dialog-close');
+    setupDialogClose('article-dialog', '.article-dialog-close');
+    setupDialogClose('tool-dialog', '.tool-dialog-close');
+    setupDialogClose('story-dialog', '.story-dialog-close');
 
-    progressBtn.addEventListener('click', function () {
-      var isHidden = progressPanel.hidden;
-      progressPanel.hidden = !isHidden;
-      progressBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
-      if (isHidden) progressClose.focus();
-    });
-
-    progressClose.addEventListener('click', function () {
-      progressPanel.hidden = true;
-      progressBtn.setAttribute('aria-expanded', 'false');
-      progressBtn.focus();
-    });
-
-    // Course dialog close
-    var courseDialog = document.getElementById('course-dialog');
-    courseDialog.querySelector('.dialog-close').addEventListener('click', function () {
-      courseDialog.close();
-    });
-    courseDialog.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { courseDialog.close(); }
-    });
-    courseDialog.addEventListener('close', function () {
-      currentCourseId = null;
-      currentView = 'lesson-0';
-    });
-
-    // Article dialog close
-    var articleDialog = document.getElementById('article-dialog');
-    articleDialog.querySelector('.article-dialog-close').addEventListener('click', function () {
-      articleDialog.close();
-    });
-    articleDialog.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { articleDialog.close(); }
-    });
-
-    // Tool dialog close
-    var toolDialog = document.getElementById('tool-dialog');
-    toolDialog.querySelector('.tool-dialog-close').addEventListener('click', function () {
-      toolDialog.close();
-    });
-    toolDialog.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { toolDialog.close(); }
-    });
-
-    // Close progress panel on Escape
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !progressPanel.hidden) {
-        progressPanel.hidden = true;
-        progressBtn.setAttribute('aria-expanded', 'false');
-        progressBtn.focus();
-      }
-    });
+    // Load data
+    loadAllData();
   });
+
+  function setupDialogClose(dialogId, closeSelector) {
+    var dialog = document.getElementById(dialogId);
+    if (!dialog) return;
+
+    var closeBtn = dialog.querySelector(closeSelector);
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function () {
+        dialog.close();
+      });
+    }
+
+    dialog.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { dialog.close(); }
+    });
+
+    if (dialogId === 'course-dialog') {
+      dialog.addEventListener('close', function () {
+        currentCourseId = null;
+        currentView = 'lesson-0';
+      });
+    }
+  }
 })();
