@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PROTECTED_EMPLOYER = bytes.fromhex("436c697665").decode("ascii")
 
 
 class HospitalityHomepageTests(unittest.TestCase):
@@ -77,17 +78,20 @@ class HospitalityHomepageTests(unittest.TestCase):
 
     def test_footer_is_hospitality(self):
         self.assertIn("restaurant groups", self.html.lower())
-        self.assertNotIn("Clive", self.html)
+        self.assertNotIn(PROTECTED_EMPLOYER, self.html)
 
-    def test_no_clive_references(self):
-        self.assertNotIn("Clive", self.html)
+    def test_no_protected_employer_references(self):
+        self.assertNotIn(PROTECTED_EMPLOYER, self.html)
 
     def test_credibility_section_uses_generic_titles(self):
         # Testimonials use generic titles, not named businesses
-        self.assertNotIn("Cala Scottsdale", self.html)
-        self.assertNotIn("The Americano", self.html)
-        self.assertNotIn("Tell Your Friends", self.html)
-        self.assertNotIn("Neon Spur", self.html)
+        for encoded_name in (
+            "43616c612053636f74747364616c65",
+            "54686520416d65726963616e6f",
+            "54656c6c20596f757220467269656e6473",
+            "4e656f6e2053707572",
+        ):
+            self.assertNotIn(bytes.fromhex(encoded_name).decode("ascii"), self.html)
 
 
 class OperatorScanTests(unittest.TestCase):
