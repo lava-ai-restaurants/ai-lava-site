@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A short, adaptive opportunity scan for hospitality operators. Name the recurring pressure, protect what works, and identify one small first move.">
+  <title>Operator Opportunity Scan &middot; AI Lava</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
+  <link rel="stylesheet" href="scan-styles.css">
+</head>
+<body class="scan-page">
+  <a class="skip-link" href="#app">Skip to the scan</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="scan-header">
+    <a class="brand" href="index.html" aria-label="AI Lava home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><b>AI LAVA</b><small>OPERATOR OPPORTUNITY SCAN</small></span>
+    </a>
+    <span id="testBadge" class="test-badge" hidden>TEST &middot; NO REAL CHANGE REQUESTED</span>
+    <button id="restartTop" class="text-button" type="button" hidden>Start over</button>
+  </header>
+
+  <main id="app" class="scan-main" tabindex="-1">
+    <section id="welcome" class="welcome panel" aria-labelledby="welcomeTitle">
+      <div class="eyebrow">A thoughtful 5-7 minute reflection</div>
+      <h1 id="welcomeTitle">What deserves your attention <em>right now?</em></h1>
+      <p class="lede">Name the recurring pressure your restaurant group keeps discussing but has not permanently fixed. We will reflect the pattern, protect what already works, and suggest one small question worth testing.</p>
+      <div class="promise-grid" aria-label="What to expect">
+        <div><span>01</span><strong>One step at a time</strong><small>No giant intake form</small></div>
+        <div><span>02</span><strong>Your context leads</strong><small>No grading or diagnosis</small></div>
+        <div><span>03</span><strong>A useful snapshot</strong><small>No uploads or credentials</small></div>
+      </div>
+      <button id="beginButton" class="primary-button" type="button">Begin the scan <span aria-hidden="true">&rarr;</span></button>
+      <p class="fine-print">This is a hypothesis-building tool, not legal, HR, safety, financial, or compliance advice. Your answers stay in this browser tab and disappear when the session ends.</p>
+      <div id="fixturePanel" class="fixture-panel" hidden>
+        <p><strong>TEST journeys</strong> &mdash; populate a synthetic path:</p>
+        <div id="fixtureButtons" class="fixture-buttons"></div>
+      </div>
+    </section>
+
+    <section id="scan" class="scan" hidden aria-live="polite">
+      <div class="journey-header">
+        <div>
+          <span id="stageKicker" class="eyebrow">Stage 1 of 5</span>
+          <h2 id="stageName">You</h2>
+        </div>
+        <div id="stageDots" class="stage-dots" aria-label="Scan progress"></div>
+      </div>
+      <div id="questionCard" class="question-card panel"></div>
+      <nav class="scan-nav" aria-label="Question navigation">
+        <button id="backButton" class="secondary-button" type="button">&larr; Back</button>
+        <span id="questionCount" aria-live="polite"></span>
+        <button id="nextButton" class="primary-button" type="button">Continue <span aria-hidden="true">&rarr;</span></button>
+      </nav>
+    </section>
+
+    <section id="snapshot" class="snapshot" hidden aria-labelledby="snapshotTitle">
+      <div class="snapshot-hero panel">
+        <div>
+          <span class="eyebrow">Your Opportunity Snapshot</span>
+          <h1 id="snapshotTitle" tabindex="-1">A clearer place to begin.</h1>
+          <p id="snapshotIntro" class="lede"></p>
+        </div>
+        <div class="snapshot-seal" aria-hidden="true"><span>ONE</span><b>small</b><span>MOVE</span></div>
+      </div>
+      <div id="safetyRoute" class="safety-route panel" hidden></div>
+      <div id="snapshotBlocks" class="snapshot-grid"></div>
+      <div class="snapshot-footer panel">
+        <div><span class="eyebrow">A reflection, not a verdict</span><p>This snapshot uses only the choices in this session. It does not diagnose your operation or promise an outcome.</p></div>
+        <button id="restartButton" class="secondary-button" type="button">Take it again</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="scan-footer"><span>AI Lava</span><span>Protect what works. Remove friction. Find the next move.</span></footer>
+  <script src="scan-app.js"></script>
+</body>
+</html>

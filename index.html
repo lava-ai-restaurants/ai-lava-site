@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAVA — AI Business Support for Owner-Led Companies</title>
-<meta name="description" content="A trained executive assistant and team of AI agents installed inside your business in 14 days. Daily reporting, follow-up, sales support, back office, and operating intelligence.">
+<title>AI Lava — Operator-Led AI Support for Independent Restaurant Groups</title>
+<meta name="description" content="AI Lava is an operator-led implementation and support service for independent multi-location restaurant groups. We enhance managers, return time to guests and teams, and track commitments — not people.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌋</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5963857">
+<link rel="stylesheet" href="styles.css?v=hospitality-1">
 </head>
 <body>
 <div class="site-wrap">
@@ -18,33 +18,26 @@
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="particles" id="particles"></div>
 
-<!-- NOTIFICATION TOASTS -->
-<div id="lavaNotifications"></div>
-
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
-    <a href="#hero" class="nav-logo"><span>LAVA</span></a>
+    <a href="#hero" class="nav-logo"><span>AI LAVA</span></a>
     <div class="nav-links">
-      <a href="#reality" data-section="reality">About</a>
+      <a href="#reality" data-section="reality">The Problem</a>
       <div class="nav-dropdown">
-        <a href="#services" data-section="services">Services</a>
+        <a href="#services" data-section="services">What We Do</a>
         <div class="nav-dropdown-menu">
-          <a href="automations.html">AI Executive Support</a>
-          <a href="fb-development.html">Sales & Revenue</a>
-          <a href="purchasing.html">Back Office Watchtower</a>
+          <a href="operations.html">Operations &amp; Accountability</a>
+          <a href="fb-development.html">Sales &amp; Revenue</a>
+          <a href="purchasing.html">Purchasing &amp; Cost Controls</a>
           <a href="accounting.html">Financial Controls</a>
-          <a href="training.html">Training & SOPs</a>
-          <a href="operations.html">Operations & Accountability</a>
-          <a href="branding.html">Marketing Signals</a>
-          <a href="reviews.html">Reviews & Reputation</a>
+          <a href="training.html">Training &amp; SOPs</a>
+          <a href="reviews.html">Reviews &amp; Guest Signals</a>
         </div>
       </div>
-      <a href="#intelligence" data-section="intelligence">Intelligence</a>
-      <a href="#cases" data-section="cases">Case Studies</a>
+      <a href="#how" data-section="how">How It Works</a>
       <a href="#pricing" data-section="pricing">Pricing</a>
-      <a href="restaurant-diagnostic.html">Diagnostic</a>
-      <a href="#contact" class="nav-cta" data-section="contact">Install Lava</a>
+      <a href="operator-opportunity-scan.html" class="nav-cta" data-section="scan">Start the Scan</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -52,33 +45,28 @@
 <div class="mobile-overlay" id="mobileOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
   <div class="mobile-menu-header">
-    <span class="menu-logo">LAVA</span>
-    <button class="mobile-menu-close" id="menuClose">✕</button>
+    <span class="menu-logo">AI LAVA</span>
+    <button class="mobile-menu-close" id="menuClose">&#x2715;</button>
   </div>
   <div class="mobile-menu-nav">
-    <a href="#reality" onclick="closeMobileMenu()">About</a>
-    <span class="menu-section-label">Services</span>
+    <a href="#reality" onclick="closeMobileMenu()">The Problem</a>
+    <span class="menu-section-label">What We Do</span>
     <div class="mobile-sub">
-      <a href="automations.html">AI Executive Support</a>
-      <a href="fb-development.html">Sales & Revenue</a>
-      <a href="purchasing.html">Back Office Watchtower</a>
+      <a href="operations.html">Operations &amp; Accountability</a>
+      <a href="fb-development.html">Sales &amp; Revenue</a>
+      <a href="purchasing.html">Purchasing &amp; Cost Controls</a>
       <a href="accounting.html">Financial Controls</a>
-      <a href="training.html">Training & HR</a>
-      <a href="operations.html">Operations & Accountability</a>
-      <a href="branding.html">Marketing Signals</a>
-      <a href="reviews.html">Reviews & Reputation</a>
-      <a href="sales-events.html">Sales &amp; Events</a>
+      <a href="training.html">Training &amp; SOPs</a>
+      <a href="reviews.html">Reviews &amp; Guest Signals</a>
     </div>
-    <a href="#intelligence" onclick="closeMobileMenu()">Intelligence</a>
-    <a href="#cases" onclick="closeMobileMenu()">Case Studies</a>
+    <a href="#how" onclick="closeMobileMenu()">How It Works</a>
     <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
-    <a href="restaurant-diagnostic.html" onclick="closeMobileMenu()">Business Diagnostic</a>
     <a href="#contact" onclick="closeMobileMenu()">Contact</a>
   </div>
   <div class="mobile-menu-footer">
-    <a href="#contact" onclick="closeMobileMenu()">Install Lava</a>
+    <a href="operator-opportunity-scan.html" onclick="closeMobileMenu()">Start the Operator Scan</a>
     <div class="menu-contact">
-      <a href="mailto:info@ai-lava.com">✉️ info@ai-lava.com</a>
+      <a href="mailto:info@ai-lava.com">info@ai-lava.com</a>
     </div>
   </div>
 </div>
@@ -92,35 +80,14 @@
   </div>
   <div class="hero-content hero-redesign">
     <div class="hero-copy-block">
-      <div class="hero-eyebrow"><span class="dot"></span> AI business support installed in 14 days</div>
-      <h1 class="glitch-wrapper" id="heroTitle"><span class="glitch-text" data-text="LAVA">LAVA</span></h1>
-      <h2 class="tagline">A trained executive assistant plus AI agents inside your business.<br><span class="thin">Reports, follow-up, sales, ops, and admin handled before you wake up.</span></h2>
-      <p class="subhead word-reveal" id="heroSubhead">Lava connects the tools your company already uses, learns your operating rhythm, and turns scattered work into a daily command layer: what happened, what matters, who owes what, and where money or time is leaking.</p>
+      <div class="hero-eyebrow"><span class="dot"></span> For independent restaurant groups</div>
+      <h1 class="glitch-wrapper" id="heroTitle"><span class="glitch-text" data-text="AI LAVA">AI LAVA</span></h1>
+      <h2 class="tagline">Operator-led AI support for restaurants.<br><span class="thin">Enhance your managers. Return time to guests and teams.</span></h2>
+      <p class="subhead word-reveal" id="heroSubhead">AI Lava is not software you install and forget. It is an implementation and support service, powered by AI, that works alongside your leadership team to strengthen daily operations across your restaurant group.</p>
       <div class="hero-ctas">
-        <a href="restaurant-diagnostic.html" class="btn btn-primary">Run the Business Diagnostic →</a>
-        <a href="#industries" class="btn btn-outline">See Who This Fits</a>
+        <a href="operator-opportunity-scan.html" class="btn btn-primary">Start the Operator Opportunity Scan</a>
+        <a href="#how" class="btn btn-outline">How the Assessment Works</a>
       </div>
-      <div class="hero-proof">
-        <div class="hero-proof-item"><span class="num">14d</span> Installed Fast</div>
-        <div class="hero-proof-item"><span class="num">24/7</span> AI Support Layer</div>
-        <div class="hero-proof-item"><span class="num">0</span> Heavy Software Migration</div>
-      </div>
-    </div>
-
-    <div class="hero-cockpit-card reveal">
-      <div class="cockpit-topline"><span class="live-dot"></span> Live Business Read</div>
-      <div class="cockpit-score-row">
-        <div>
-          <span class="cockpit-label">Bottleneck Risk</span>
-          <strong>High</strong>
-        </div>
-        <div class="cockpit-score">87</div>
-      </div>
-      <div class="cockpit-alert critical"><span>Follow-up</span><strong>17 stale decisions waiting on owner</strong><small>Three can be delegated today with drafted replies.</small></div>
-      <div class="cockpit-alert warning"><span>Revenue</span><strong>5 warm leads have no next step</strong><small>Sales agent prepared outreach and owner summary.</small></div>
-      <div class="cockpit-alert good"><span>Back office</span><strong>Invoice and payroll exceptions isolated</strong><small>Only the true approvals reached your desk.</small></div>
-      <div class="lava-visual-strip" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-      <a href="restaurant-diagnostic.html" class="cockpit-link">Find your bottlenecks →</a>
     </div>
   </div>
 </section>
@@ -128,33 +95,33 @@
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track" id="ticker">
-    <span class="ticker-item">Executive Assistant Layer</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Daily Business Intelligence</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Sales Follow-Up</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Back Office Monitoring</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Accountability Systems</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Revenue Leak Detection</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Custom AI Agents</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Operator Workflows</span><span class="ticker-item">•</span>
-    <span class="ticker-item">Platform Integration</span><span class="ticker-item">•</span>
+    <span class="ticker-item">Restaurant Operations</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Manager Accountability</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Labor &amp; Scheduling</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Food Cost &amp; Inventory</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Guest Recovery</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Sales &amp; Events</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Financial Controls</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Training &amp; SOPs</span><span class="ticker-item">&middot;</span>
+    <span class="ticker-item">Multi-Location Consistency</span><span class="ticker-item">&middot;</span>
   </div>
 </div>
 
-<!-- RESTAURANT DIAGNOSTIC ENTRY -->
+<!-- SCAN ENTRY -->
 <section class="diagnostic-entry" id="diagnostic-entry">
   <div class="container">
     <div class="diagnostic-entry-grid">
       <div class="diagnostic-entry-copy reveal">
         <div class="hero-eyebrow"><span class="dot"></span> Start here</div>
-        <h2>Run the diagnostic before you book a call.</h2>
-        <p>Most AI vendors sell software. Lava starts with the bottleneck: the owner, the inbox, the follow-up, the reporting, the approvals, and the work that never becomes a system.</p>
-        <a href="restaurant-diagnostic.html" class="btn btn-primary">Take the 4-minute Diagnostic →</a>
+        <h2>Name the pressure before you book a call.</h2>
+        <p>Most restaurant operators already know something is off. The scan helps you name the recurring pattern, protect what already works, and identify one small first move worth testing.</p>
+        <a href="operator-opportunity-scan.html" class="btn btn-primary">Take the Operator Opportunity Scan</a>
       </div>
       <div class="diagnostic-mini-deck reveal reveal-delay-1">
-        <article><span>01</span><h3>Bottlenecks</h3><p>Where decisions, money, time, or follow-up are stuck.</p></article>
-        <article><span>02</span><h3>Systems</h3><p>Email, CRM, accounting, calendars, reviews, ticketing, sales, and ops tools.</p></article>
-        <article><span>03</span><h3>ROI Map</h3><p>Match your problems to executive support, reporting, sales, or custom agents.</p></article>
-        <article><span>04</span><h3>Install Plan</h3><p>A clear first 14 days: tools, workflows, alerts, owners, and proof.</p></article>
+        <article><span>01</span><h3>The Pressure</h3><p>Name the recurring issue your leadership team keeps discussing but has not permanently fixed.</p></article>
+        <article><span>02</span><h3>The Pattern</h3><p>Labor, food cost, accountability, guest recovery, sales follow-through, or fragmented systems.</p></article>
+        <article><span>03</span><h3>The Strength</h3><p>Identify what already works well and must be protected through any change.</p></article>
+        <article><span>04</span><h3>One Small Move</h3><p>A bounded hypothesis and a candidate first milestone — not a diagnosis or a promise.</p></article>
       </div>
     </div>
   </div>
@@ -162,81 +129,26 @@
 
 <div class="section-divider"></div>
 
-<!-- VIDEO SHOWCASE -->
-<section class="video-showcase" id="video">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>The Owner Blind Spot <span class="gradient-text">Audit</span></h2>
-      <p>A tighter NotebookLM-backed operator insight on where owner-led companies leak money, time, and follow-through before the dashboard catches it.</p>
-    </div>
-    <div class="video-player reveal scale-in">
-      <div class="video-glow"></div>
-      <div class="video-frame">
-        <video id="showcaseVideo" controls playsinline poster="lava-owner-operator-insight-poster.png?v=notebooklm-export-20260619">
-          <source src="lava-owner-operator-insight.mp4?v=notebooklm-export-20260619" type="video/mp4">
-        </video>
-        <div class="video-play-overlay" id="videoOverlay">
-          <div class="play-btn-ring"><div class="play-btn-inner">▶</div></div>
-          <p class="play-label">Watch the Operator Insight</p>
-        </div>
-      </div>
-    </div>
-    <div class="video-takeaways reveal">
-      <article>
-        <span>01</span>
-        <h3>Where Owners Leak</h3>
-        <p>Missed calls, stale quotes, late approvals, weak handoffs, and quiet margin drift wait for someone to notice.</p>
-      </article>
-      <article>
-        <span>02</span>
-        <h3>Why It Matters</h3>
-        <p>The company has signals everywhere. The expensive gap is turning those signals into action before revenue is lost.</p>
-      </article>
-      <article>
-        <span>03</span>
-        <h3>What Lava Installs</h3>
-        <p>A daily owner action layer: what changed, what matters, who owns it, what is blocked, and what proof exists.</p>
-      </article>
-    </div>
-    <div class="video-cta reveal">
-      <a href="restaurant-diagnostic.html" class="btn btn-primary">Run the Bottleneck Diagnostic →</a>
-      <a href="#industry-fit" class="btn btn-outline">Pick Your Industry</a>
-    </div>
-  </div>
-</section>
-
 <!-- REALITY -->
 <section class="reality" id="reality">
   <div class="container">
     <div class="reality-grid">
       <div class="reality-text reveal">
-        <h2>You Became the <span class="gradient-text">Bottleneck</span></h2>
-        <p>Every decision runs through you. Every approval waits on you. Every missed follow-up, stale lead, late report, and half-owned project eventually lands back on your desk.</p>
-        <p>You have software. Too much of it. What you don't have is an operating layer that watches the systems, reads the signals, drafts the next move, and tells the team what needs to happen today.</p>
-        <p class="accent">We built Lava inside messy real operations first. The product is bigger than any one industry: AI business support for companies that need more execution, not more dashboards.</p>
+        <h2>The Problem Every Restaurant Operator <span class="gradient-text">Carries Home</span></h2>
+        <p>You opened restaurants because you love hospitality. Somewhere along the way, your day became a tangle of scattered reports, stale follow-ups, inconsistent accountability, and decisions that wait on you because no one else has the full picture.</p>
+        <p>You have tools — probably too many. What you do not have is a consistent operating layer that helps managers own their numbers, follow through on commitments, and protect the guest experience without pulling you into every detail.</p>
+        <p class="accent">We built this approach through firsthand use inside a multi-location restaurant group. The problems are real. The methods have been tested in daily service, not in a demo environment.</p>
       </div>
       <div class="reality-visual">
         <div class="reality-cards" id="painCards">
-          <div class="pain-card"><span class="pain-icon">📥</span><span class="pain-text">Important emails sit unread until someone texts you</span></div>
-          <div class="pain-card"><span class="pain-icon">🤝</span><span class="pain-text">Warm leads die because nobody owns the next step</span></div>
-          <div class="pain-card"><span class="pain-icon">📊</span><span class="pain-text">Reports arrive late, incomplete, or impossible to trust</span></div>
-          <div class="pain-card"><span class="pain-icon">💸</span><span class="pain-text">Revenue and cost leaks show up after the money is gone</span></div>
-          <div class="pain-card"><span class="pain-icon">📱</span><span class="pain-text">10 tools, 12 logins, no single truth</span></div>
-          <div class="pain-card"><span class="pain-icon">📋</span><span class="pain-text">Projects stall because nobody closes the loop</span></div>
+          <div class="pain-card"><span class="pain-icon">📊</span><span class="pain-text">Daily reports arrive late, incomplete, or impossible to trust</span></div>
+          <div class="pain-card"><span class="pain-icon">👥</span><span class="pain-text">Labor surprises appear after payroll, not before the schedule</span></div>
+          <div class="pain-card"><span class="pain-icon">🍽️</span><span class="pain-text">Food cost numbers and recipe cards do not reconcile</span></div>
+          <div class="pain-card"><span class="pain-icon">📋</span><span class="pain-text">Manager accountability depends on who is asking and when</span></div>
+          <div class="pain-card"><span class="pain-icon">⭐</span><span class="pain-text">Guest complaints repeat across locations with no pattern visibility</span></div>
+          <div class="pain-card"><span class="pain-icon">📱</span><span class="pain-text">Seven systems, twelve logins, and no single operating picture</span></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item reveal"><div class="stat-number" data-target="14" data-suffix="">0</div><div class="stat-label">Day Install Sprint</div></div>
-      <div class="stat-item reveal reveal-delay-1"><div class="stat-number" data-target="24" data-suffix="/7">0</div><div class="stat-label">Monitoring Layer</div></div>
-      <div class="stat-item reveal reveal-delay-2"><div class="stat-number" data-target="40" data-suffix="+">0</div><div class="stat-label">Signals Tracked</div></div>
-      <div class="stat-item reveal reveal-delay-3"><div class="stat-number" data-target="0" data-suffix="">0</div><div class="stat-label">Heavy Migration</div></div>
     </div>
   </div>
 </section>
@@ -245,360 +157,171 @@
 <section class="services" id="services">
   <div class="container">
     <div class="section-header reveal">
-      <h2>What Lava Installs Inside <span class="gradient-text">Your Business</span></h2>
-      <p>AI agents plus trained human oversight for the work that keeps falling back on the owner.</p>
+      <h2>What AI Lava Works On Inside <span class="gradient-text">Your Restaurant Group</span></h2>
+      <p>Operator-led implementation across the areas where independent restaurant groups leak time, money, and follow-through.</p>
     </div>
     <div class="services-grid">
-      <a href="automations.html" class="service-card reveal" style="text-decoration:none;color:inherit">
-        <div class="icon">🤖</div><h3>AI Executive Assistant</h3>
-        <p>A trained assistant layer that reads the business, prepares replies, tracks commitments, builds briefs, and keeps your day from becoming a pile of loose ends.</p>
-        <p class="real-talk">You still make the judgment calls. Lava makes sure the right ones reach you.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
+      <a href="operations.html" class="service-card reveal" style="text-decoration:none;color:inherit">
+        <div class="icon">🧭</div><h3>Operations &amp; Accountability</h3>
+        <p>Manager commitments, meeting follow-through, open loops, recurring reports, project deadlines, and proof that the work actually happened.</p>
+        <p class="real-talk">Track commitments and outcomes, not people.</p>
+        <span class="learn-more">Learn More</span>
       </a>
       <a href="fb-development.html" class="service-card reveal reveal-delay-1" style="text-decoration:none;color:inherit">
-        <div class="icon">📈</div><h3>Revenue & Sales Support</h3>
-        <p>Inbound triage, outbound follow-up, CRM cleanup, proposal reminders, quote tracking, missed-lead alerts, and next-step drafting.</p>
-        <p class="real-talk">If a good lead goes quiet, Lava knows before it becomes lost revenue.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
+        <div class="icon">📈</div><h3>Sales &amp; Revenue</h3>
+        <p>Event inquiries, private dining follow-up, catering pipelines, missed-lead alerts, and next-step ownership for every qualified opportunity.</p>
+        <p class="real-talk">Protect the revenue already walking toward you.</p>
+        <span class="learn-more">Learn More</span>
       </a>
       <a href="purchasing.html" class="service-card reveal reveal-delay-2" style="text-decoration:none;color:inherit">
-        <div class="icon">📦</div><h3>Back Office Watchtower</h3>
-        <p>Invoices, approvals, payroll exceptions, vendor follow-up, accounting questions, HR paperwork, and the routine admin that clogs leadership.</p>
-        <p class="real-talk">The owner should see exceptions, not wade through every receipt.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
+        <div class="icon">📦</div><h3>Purchasing &amp; Cost Controls</h3>
+        <p>Vendor pricing, invoice accuracy, purchasing variance, recipe costing, and the margin foundation that must be trustworthy before conclusions are drawn.</p>
+        <p class="real-talk">Managers should see cost exceptions, not wade through every invoice.</p>
+        <span class="learn-more">Learn More</span>
       </a>
-      <a href="training.html" class="service-card reveal" style="text-decoration:none;color:inherit">
-        <div class="icon">📚</div><h3>Team Training & SOPs</h3>
-        <p>Turn scattered tribal knowledge into checklists, onboarding paths, playbooks, tests, and manager-ready operating standards.</p>
-        <p class="real-talk">If only one person knows how it works, the business is exposed.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
+      <a href="accounting.html" class="service-card reveal" style="text-decoration:none;color:inherit">
+        <div class="icon">💰</div><h3>Financial Controls</h3>
+        <p>Daily variance flags, approval queues, cash pressure, margin movement, and the early warnings buried in your accounting and POS systems.</p>
+        <p class="real-talk">Bad numbers are only useful if they arrive before the period is closed.</p>
+        <span class="learn-more">Learn More</span>
       </a>
-      <a href="accounting.html" class="service-card reveal reveal-delay-1" style="text-decoration:none;color:inherit">
-        <div class="icon">💰</div><h3>Financial Control Alerts</h3>
-        <p>Daily variance flags, approval queues, cash pressure, margin movement, cost changes, and the early warnings buried in accounting systems.</p>
-        <p class="real-talk">Bad numbers are useful only if they arrive before the month is over.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
+      <a href="training.html" class="service-card reveal reveal-delay-1" style="text-decoration:none;color:inherit">
+        <div class="icon">📚</div><h3>Training &amp; SOPs</h3>
+        <p>Turn scattered tribal knowledge into checklists, onboarding paths, playbooks, and manager-ready operating standards across locations.</p>
+        <p class="real-talk">If only one person knows how it works, the operation is exposed.</p>
+        <span class="learn-more">Learn More</span>
       </a>
-      <a href="operations.html" class="service-card reveal reveal-delay-2" style="text-decoration:none;color:inherit">
-        <div class="icon">🧭</div><h3>Accountability Engine</h3>
-        <p>Owner promises, manager tasks, meeting notes, open loops, recurring reports, project deadlines, and proof that the work actually happened.</p>
-        <p class="real-talk">The most expensive task is the one everyone thought someone else owned.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
-      </a>
-      <a href="branding.html" class="service-card reveal" style="text-decoration:none;color:inherit">
-        <div class="icon">🎨</div><h3>Marketing & Reputation</h3>
-        <p>Review monitoring, social/content prompts, campaign follow-up, local opportunity scouting, lead source tracking, and response drafting.</p>
-        <p class="real-talk">Lava catches the public signal and turns it into the next private action.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
-      </a>
-      <a href="reviews.html" class="service-card reveal reveal-delay-1" style="text-decoration:none;color:inherit">
-        <div class="icon">⭐</div><h3>Customer Signal Monitoring</h3>
-        <p>Reviews, support tickets, comments, survey data, calls, and customer complaints summarized into patterns the business can act on.</p>
-        <p class="real-talk">One complaint is noise. Three complaints with the same root cause is a system issue.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
-      </a>
-      <a href="sales-events.html" class="service-card reveal reveal-delay-2" style="text-decoration:none;color:inherit">
-        <div class="icon">🎯</div><h3>Custom Agent Builds</h3>
-        <p>Purpose-built agents for hiring, reporting, lead research, vendor audits, document review, scheduling, data cleanup, and executive briefs.</p>
-        <p class="real-talk">Not another chatbot. A worker assigned to a specific business process.</p>
-        <span class="learn-more">Explore This Service →</span><span class="hover-cta">Click for Details ↗</span>
+      <a href="reviews.html" class="service-card reveal reveal-delay-2" style="text-decoration:none;color:inherit">
+        <div class="icon">⭐</div><h3>Reviews &amp; Guest Signals</h3>
+        <p>Review monitoring, guest complaint patterns, recovery ownership, and the repeat themes that deserve cross-location visibility.</p>
+        <p class="real-talk">One complaint is noise. Three with the same root cause is a system issue.</p>
+        <span class="learn-more">Learn More</span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- SCENARIOS -->
-<section class="scenarios-section" id="scenarios">
+<!-- HOW IT WORKS -->
+<section class="scenarios-section" id="how">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Sound <span class="gradient-text">Familiar?</span></h2>
-      <p>Your bottleneck. Our install plan.</p>
+      <h2>How the <span class="gradient-text">Engagement Works</span></h2>
+      <p>Conversation first. Assessment second. Sprint only if justified.</p>
     </div>
     <div class="scenario-grid">
-      <div class="scenario-card reveal"><p class="problem">🔴 "I am the bottleneck for every decision"</p><p class="solution">Lava filters the noise, prepares the context, drafts the options, and only escalates what truly needs owner judgment.</p></div>
-      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟡 "Sales follow-up is inconsistent"</p><p class="solution">We connect inbox and CRM, flag stale opportunities, draft next-step outreach, and keep a daily revenue watchlist.</p></div>
-      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "The team says things are done, but proof is thin"</p><p class="solution">Lava turns meetings, messages, and systems into owner-ready accountability: who owns it, due date, proof, risk.</p></div>
-      <div class="scenario-card reveal"><p class="problem">🟢 "We have tools, but no operating system"</p><p class="solution">We connect your current stack into daily briefs, exception alerts, workflows, and repeatable management rhythms.</p></div>
-      <div class="scenario-card reveal reveal-delay-1"><p class="problem">🟣 "Admin work is eating leadership time"</p><p class="solution">Approvals, invoices, scheduling, HR, document review, and reporting get triaged before they reach the owner.</p></div>
-      <div class="scenario-card reveal reveal-delay-2"><p class="problem">🔵 "We need AI, but not another toy"</p><p class="solution">We install agents against real processes: sales, ops, accounting, customer service, hiring, reporting, and follow-up.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- INDUSTRIES -->
-<section class="industries-section" id="industries">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>Pick Your <span class="gradient-text">Business Type</span></h2>
-      <p>Lava changes shape around the industry. Same operating brain, different pain points, workflows, alerts, and first install sprint.</p>
-    </div>
-    <div class="industry-personalizer reveal" data-active-industry="home">
-      <div class="industry-picker" role="tablist" aria-label="Choose your industry">
-        <button class="industry-pill active" type="button" data-industry="home" role="tab" aria-selected="true">Home Services</button>
-        <button class="industry-pill" type="button" data-industry="realestate" role="tab" aria-selected="false">Real Estate / Construction</button>
-        <button class="industry-pill" type="button" data-industry="professional" role="tab" aria-selected="false">Professional Services</button>
-        <button class="industry-pill" type="button" data-industry="wellness" role="tab" aria-selected="false">Wellness / Fitness</button>
-        <button class="industry-pill" type="button" data-industry="multi" role="tab" aria-selected="false">Multi-Location</button>
-        <button class="industry-pill" type="button" data-industry="hospitality" role="tab" aria-selected="false">Hospitality</button>
+      <div class="scenario-card reveal">
+        <p class="problem">01 &mdash; Opportunity Conversation</p>
+        <p class="solution">A 30-minute call to understand the recurring pressure, your current systems, and whether further work is useful. No pitch deck.</p>
       </div>
-      <div class="industry-mold">
-        <div class="industry-copy">
-          <div class="industry-kicker" id="industryKicker">Home services / trades</div>
-          <h3 id="industryTitle">Your leads, estimates, jobs, technicians, reviews, and owner follow-up in one command layer.</h3>
-          <p id="industryBody">Lava watches the work between the call, the quote, the job, the invoice, and the review so good revenue does not die in the gaps.</p>
-          <div class="industry-outcome-row">
-            <div><span id="industrySignalOne">Lead response</span><strong id="industrySignalOneValue">Under 2-hour SLA</strong></div>
-            <div><span id="industrySignalTwo">Owner risk</span><strong id="industrySignalTwoValue">Stale estimates surfaced</strong></div>
-          </div>
-        </div>
-        <div class="industry-playbook" aria-live="polite">
-          <div class="playbook-column">
-            <span>Pain points</span>
-            <ul id="industryPainList"></ul>
-          </div>
-          <div class="playbook-column">
-            <span>Lava installs</span>
-            <ul id="industryInstallList"></ul>
-          </div>
-          <div class="playbook-column">
-            <span>First 14 days</span>
-            <ul id="industrySprintList"></ul>
-          </div>
-        </div>
+      <div class="scenario-card reveal reveal-delay-1">
+        <p class="problem">02 &mdash; Operational Readiness Assessment</p>
+        <p class="solution">Maturity assessment, top gaps, owner decision queue, manager action board, 30-day plan, and a 60-minute review. $500 standalone, or waived with a Sprint.</p>
       </div>
-      <div class="industry-proof-line">
-        <span>Not a template.</span>
-        <p id="industryProofLine">The homepage, diagnostic, and first call now adapt around the business model you choose.</p>
+      <div class="scenario-card reveal reveal-delay-2">
+        <p class="problem">03 &mdash; Operator Improvement Sprint</p>
+        <p class="solution">$2,500 first month. Up to three agreed priorities. We work alongside your managers to implement, not just advise. Assessment fee is waived.</p>
+      </div>
+      <div class="scenario-card reveal">
+        <p class="problem">04 &mdash; Ongoing Support Layer</p>
+        <p class="solution">Starting at $1,500/month. Continued operational support, accountability systems, reporting, and AI-assisted workflows that grow with your group.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- INTELLIGENCE -->
+<!-- DAILY INTELLIGENCE -->
 <section class="dashboard-section" id="intelligence">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Your Daily <span class="gradient-text">Command Center</span></h2>
-      <p>A short owner read every morning: what happened, what changed, what is stuck, and what needs a decision.</p>
+      <h2>What a Morning <span class="gradient-text">Could Look Like</span></h2>
+      <p>A short operator read before pre-shift: what happened, what changed, what is stuck, and what needs a decision.</p>
     </div>
     <div class="dashboard-wrapper reveal">
       <div class="dashboard-device" id="dashboardDevice">
         <div class="dashboard-topbar">
           <span></span><span></span><span></span>
-          <span class="tab-label">Lava Business Support Platform</span>
+          <span class="tab-label">AI Lava — Daily Operating View</span>
         </div>
         <div class="dashboard-header">
-          <h3>Daily Intelligence — Sample Business</h3>
+          <h3>Daily Intelligence — Sample Restaurant Group</h3>
           <div class="date">Friday, June 19, 2026 — Generated 5:00 AM</div>
         </div>
         <div class="dashboard-tabs">
           <div class="dashboard-tab active" data-tab="overview">Overview</div>
-          <div class="dashboard-tab" data-tab="labor">Team</div>
-          <div class="dashboard-tab" data-tab="reviews">Customers</div>
+          <div class="dashboard-tab" data-tab="labor">Labor</div>
+          <div class="dashboard-tab" data-tab="reviews">Guest Signals</div>
           <div class="dashboard-tab" data-tab="alerts">Alerts</div>
         </div>
         <div class="dashboard-body" id="dashboardBody">
-          <!-- Overview Tab -->
           <div class="dashboard-tab-content active" id="tab-overview">
             <div class="kpi-row">
-              <div class="kpi-card"><div class="label">Revenue Watch</div><div class="value" id="kpi-sales">$0</div><div class="change up">5 warm leads open</div></div>
-              <div class="kpi-card"><div class="label">Open Loops</div><div class="value" id="kpi-guests">0</div><div class="change down">17 need owner/team action</div></div>
-              <div class="kpi-card"><div class="label">Team Risk</div><div class="value" id="kpi-labor">0%</div><div class="change down">3 overdue owners</div></div>
-              <div class="kpi-card"><div class="label">Decision Load</div><div class="value" id="kpi-check">0</div><div class="change up">4 true owner decisions</div></div>
+              <div class="kpi-card"><div class="label">Yesterday Sales</div><div class="value" id="kpi-sales">$0</div><div class="change up">vs. forecast</div></div>
+              <div class="kpi-card"><div class="label">Open Commitments</div><div class="value" id="kpi-guests">0</div><div class="change down">7 need action</div></div>
+              <div class="kpi-card"><div class="label">Labor vs. Plan</div><div class="value" id="kpi-labor">0%</div><div class="change down">2 locations over</div></div>
+              <div class="kpi-card"><div class="label">Guest Recovery</div><div class="value" id="kpi-check">0</div><div class="change up">3 pending</div></div>
             </div>
             <div class="chart-section" id="chartSection">
-              <div class="chart-title">Attention by Workstream</div>
-              <div class="chart-bar-row"><span class="bar-label">Sales</span><div class="bar-track"><div class="bar-fill" style="--target-width:68%">5 follow-ups</div></div></div>
-              <div class="chart-bar-row"><span class="bar-label">Ops</span><div class="bar-track"><div class="bar-fill" style="--target-width:52%">9 open loops</div></div></div>
-              <div class="chart-bar-row"><span class="bar-label">Finance</span><div class="bar-track"><div class="bar-fill" style="--target-width:38%">3 approvals</div></div></div>
-              <div class="chart-bar-row"><span class="bar-label">People</span><div class="bar-track"><div class="bar-fill" style="--target-width:26%">2 blockers</div></div></div>
+              <div class="chart-title">Attention by Area</div>
+              <div class="chart-bar-row"><span class="bar-label">Labor</span><div class="bar-track"><div class="bar-fill" style="--target-width:68%">OT risk at 2 locations</div></div></div>
+              <div class="chart-bar-row"><span class="bar-label">Food Cost</span><div class="bar-track"><div class="bar-fill" style="--target-width:52%">Invoice variance flagged</div></div></div>
+              <div class="chart-bar-row"><span class="bar-label">Sales</span><div class="bar-track"><div class="bar-fill" style="--target-width:38%">3 event leads aging</div></div></div>
+              <div class="chart-bar-row"><span class="bar-label">Guest</span><div class="bar-track"><div class="bar-fill" style="--target-width:26%">Repeat theme emerging</div></div></div>
             </div>
             <div class="dashboard-alerts">
-              <div class="alert-item"><span class="alert-dot green"></span>All recurring reports verified before 5am</div>
-              <div class="alert-item"><span class="alert-dot yellow"></span>Proposal follow-up drafted for 5 warm leads</div>
-              <div class="alert-item"><span class="alert-dot red"></span>Three projects stale for more than 72 hours</div>
+              <div class="alert-item"><span class="alert-dot green"></span>Manager logs received from all locations before 5 AM</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span>Event inquiry at Location B has no follow-up in 48 hours</div>
+              <div class="alert-item"><span class="alert-dot red"></span>Two recipes have purchase-unit conflicts since last vendor invoice</div>
             </div>
           </div>
-          <!-- Labor Tab -->
           <div class="dashboard-tab-content" id="tab-labor">
             <div class="kpi-row">
-              <div class="kpi-card"><div class="label">Assigned Tasks</div><div class="value">47</div><div class="change up">32 current</div></div>
-              <div class="kpi-card"><div class="label">Overdue</div><div class="value">6</div><div class="change down">3 material</div></div>
-              <div class="kpi-card"><div class="label">Proof Rate</div><div class="value">81%</div><div class="change up">↑ 12pp</div></div>
-              <div class="kpi-card"><div class="label">Owner Escalations</div><div class="value">4</div><div class="change up" style="color:#f59e0b">Watch</div></div>
+              <div class="kpi-card"><div class="label">Scheduled Hours</div><div class="value">312</div><div class="change up">vs. 298 forecast</div></div>
+              <div class="kpi-card"><div class="label">OT Risk</div><div class="value">4</div><div class="change down">employees approaching</div></div>
+              <div class="kpi-card"><div class="label">Schedule Compliance</div><div class="value">91%</div><div class="change up">across 3 locations</div></div>
+              <div class="kpi-card"><div class="label">Manager Hours</div><div class="value">Visible</div><div class="change up">by location</div></div>
             </div>
             <div class="dashboard-alerts">
-              <div class="alert-item"><span class="alert-dot red"></span>Ops owner missed two proof checkpoints this week.</div>
-              <div class="alert-item"><span class="alert-dot red"></span>Hiring candidate needs decision before another company closes.</div>
-              <div class="alert-item"><span class="alert-dot yellow"></span>Two recurring meetings produced notes but no owners.</div>
-              <div class="alert-item"><span class="alert-dot green"></span>Finance follow-up completed without owner involvement.</div>
+              <div class="alert-item"><span class="alert-dot red"></span>Location A scheduled 14% above sales forecast for Saturday</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span>Two servers approaching 40-hour threshold by Thursday</div>
+              <div class="alert-item"><span class="alert-dot green"></span>Location C schedule matches demand within 3%</div>
             </div>
           </div>
-          <!-- Reviews Tab -->
           <div class="dashboard-tab-content" id="tab-reviews">
             <div class="kpi-row">
-              <div class="kpi-card"><div class="label">New Signals</div><div class="value">38</div><div class="change up">Reviews, email, tickets</div></div>
-              <div class="kpi-card"><div class="label">Sentiment</div><div class="value">4.3★</div><div class="change up">Stable</div></div>
-              <div class="kpi-card"><div class="label">Reply Drafts</div><div class="value">12</div><div class="change up">Ready</div></div>
-              <div class="kpi-card"><div class="label">Flagged</div><div class="value">2</div><div class="change up" style="color:#ef4444">Action needed</div></div>
+              <div class="kpi-card"><div class="label">New Reviews</div><div class="value">8</div><div class="change up">This week</div></div>
+              <div class="kpi-card"><div class="label">Avg Rating</div><div class="value">4.3</div><div class="change up">Stable</div></div>
+              <div class="kpi-card"><div class="label">Reply Drafts</div><div class="value">5</div><div class="change up">Ready</div></div>
+              <div class="kpi-card"><div class="label">Repeat Theme</div><div class="value">1</div><div class="change up" style="color:#ef4444">Needs attention</div></div>
             </div>
             <div class="dashboard-alerts">
-              <div class="alert-item"><span class="alert-dot red"></span>Customer complaint mentions delayed response twice this week.</div>
-              <div class="alert-item"><span class="alert-dot yellow"></span>Support thread needs owner-approved refund policy language.</div>
-              <div class="alert-item"><span class="alert-dot green"></span>Positive review names one team member for follow-up praise.</div>
-              <div class="alert-item"><span class="alert-dot green"></span>Client email suggests a referral opportunity.</div>
+              <div class="alert-item"><span class="alert-dot red"></span>Wait-time complaint appeared at two locations this week</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span>Guest recovery at Location B still unresolved after 72 hours</div>
+              <div class="alert-item"><span class="alert-dot green"></span>Positive review names bartender — share with manager for recognition</div>
             </div>
           </div>
-          <!-- Alerts Tab -->
           <div class="dashboard-tab-content" id="tab-alerts">
             <div class="dashboard-alerts">
-              <div class="alert-item"><span class="alert-dot red"></span><strong>CRITICAL:</strong> Owner decision needed on contract renewal before auto-renewal window.</div>
-              <div class="alert-item"><span class="alert-dot red"></span><strong>CRITICAL:</strong> Five revenue opportunities have no next step in CRM.</div>
-              <div class="alert-item"><span class="alert-dot yellow"></span><strong>WARNING:</strong> Weekly meeting notes have decisions but no assigned owners.</div>
-              <div class="alert-item"><span class="alert-dot yellow"></span><strong>WARNING:</strong> Vendor invoice increased 9% versus last comparable order.</div>
-              <div class="alert-item"><span class="alert-dot green"></span><strong>RESOLVED:</strong> Payroll exception package prepared for approval.</div>
-              <div class="alert-item"><span class="alert-dot green"></span><strong>POSITIVE:</strong> Sales agent recovered two dormant opportunities this week.</div>
+              <div class="alert-item"><span class="alert-dot red"></span><strong>ACTION:</strong> Private dining inquiry at Location A needs response today</div>
+              <div class="alert-item"><span class="alert-dot red"></span><strong>ACTION:</strong> Vendor invoice increased 11% vs. last comparable order</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span><strong>WATCH:</strong> Manager at Location B missed two accountability checkpoints</div>
+              <div class="alert-item"><span class="alert-dot yellow"></span><strong>WATCH:</strong> Recipe cost on three items needs revalidation after price change</div>
+              <div class="alert-item"><span class="alert-dot green"></span><strong>COMPLETE:</strong> Weekly P&amp;L prep finished across all locations</div>
+              <div class="alert-item"><span class="alert-dot green"></span><strong>COMPLETE:</strong> Training completion verified for new hires at Location C</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <p class="dashboard-caption reveal">Your daily command center.<span>Decisions, alerts, accountability, and drafted next moves — no new dashboard habit required.</span></p>
+    <p class="dashboard-caption reveal">An illustrative example of what a daily operating view can surface.<span>Built around your restaurant group's actual systems, definitions, and priorities.</span></p>
   </div>
 </section>
 
-<!-- LIVE TERMINAL -->
-<section class="terminal-section">
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
   <div class="container">
-    <div class="section-header reveal">
-      <h2>Watch It <span class="gradient-text">Work</span></h2>
-      <p>Real-time business monitoring. Every morning before the team starts pulling you into the weeds.</p>
-    </div>
-    <div class="terminal reveal" id="terminal">
-      <div class="terminal-header">
-        <span></span><span></span><span></span>
-        <span class="title">Lava Real-Time Alerts</span>
-      </div>
-      <div class="terminal-body" id="terminalBody"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ROI CALCULATOR -->
-<section class="calculator-section" id="calculator">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>What's Your Business <span class="gradient-text">Leaking?</span></h2>
-      <p>Drag the slider. Estimate the value of recovered time, follow-up, and operating control.</p>
-    </div>
-    <div class="calc-card reveal">
-      <h3>ROI Calculator</h3>
-      <p class="calc-sub">A directional model based on revenue, locations, and owner-time leverage</p>
-      <div class="calc-input-group">
-        <label>Monthly Revenue Per Unit / Location</label>
-        <input type="range" id="revenueSlider" min="100000" max="1000000" step="10000" value="400000">
-        <div class="calc-value" id="revenueDisplay">$400,000</div>
-      </div>
-      <div class="calc-input-group">
-        <label>Number of Units / Teams</label>
-        <input type="range" id="locationSlider" min="1" max="20" step="1" value="3">
-        <div class="calc-value" id="locationDisplay">3</div>
-      </div>
-      <div class="calc-results">
-        <div class="calc-result"><div class="result-label">Annual Savings</div><div class="result-value savings" id="savingsDisplay">$0</div></div>
-        <div class="calc-result"><div class="result-label">Revenue Uplift</div><div class="result-value revenue" id="revenueUplift">$0</div></div>
-        <div class="calc-result"><div class="result-label">Estimated ROI</div><div class="result-value roi" id="roiDisplay">0x</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROGRESS INDICATOR -->
-<section style="padding:0 0 80px">
-  <div class="container">
-    <div class="funnel-progress reveal">
-      <div class="progress-label">What you're seeing</div>
-      <div class="progress-bar-track"><div class="progress-bar-fill" style="width:20%"></div></div>
-      <p>You're viewing <strong style="color:var(--fresh-ink)">20%</strong> of what Lava can monitor every morning. The full support layer can include inbox triage, CRM follow-up, finance exceptions, customer signals, people risk, project proof, and 40+ custom KPIs.</p>
-      <a href="#contact" class="btn btn-primary" style="margin-top:16px">Want the Full Picture? →</a>
-    </div>
-  </div>
-</section>
-
-<!-- CASE STUDIES -->
-<section class="cases-section" id="cases">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>Proof From <span class="gradient-text">Real Operations</span></h2>
-      <p>These are field examples from high-pressure operating environments. They sit below the industry picker because the offer is broader than restaurants.</p>
-    </div>
-
-    <div class="case-card reveal">
-      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&q=80')"></div>
-      <div class="case-card-overlay"></div>
-      <div class="case-card-content">
-        <h3>Cala Scottsdale</h3>
-        <p class="concept">Fine dining inside a luxury Scottsdale hotel. Complex banquet operations, premium wine program, and 200+ cover nights.</p>
-        <ul>
-          <li>AI daily recaps with full sales/labor/review analysis</li>
-          <li>Automated manager accountability tracking</li>
-          <li>Banquet revenue optimization and event forecasting</li>
-          <li>Custom menu engineering across seasonal rotations</li>
-        </ul>
-        <div style="margin:16px 0"><span class="result-badge">Report time: 2hrs → 0</span><span class="result-badge">5am daily briefings</span><span class="result-badge">100% log compliance</span></div>
-        <p class="impact">"From inconsistent reporting to a fully automated operations command center."</p>
-      </div>
-    </div>
-
-    <div class="case-card reveal">
-      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=1400&q=80')"></div>
-      <div class="case-card-overlay"></div>
-      <div class="case-card-content">
-        <h3>The Americano</h3>
-        <p class="concept">High-energy Italian-American dining in North Scottsdale. Late-night service, dynamic bar program, and event-driven revenue.</p>
-        <ul>
-          <li>Real-time labor monitoring with overtime prevention alerts</li>
-          <li>Bar program restructuring with pour cost optimization</li>
-          <li>Event sales strategy and large party management</li>
-          <li>Discount and void pattern detection with automated flagging</li>
-        </ul>
-        <div style="margin:16px 0"><span class="result-badge">OT caught before payroll</span><span class="result-badge">Void patterns flagged daily</span><span class="result-badge">Pour cost optimized</span></div>
-        <p class="impact">"A restaurant that was flying blind on labor costs now catches overtime before it happens."</p>
-      </div>
-    </div>
-
-    <div class="case-card reveal">
-      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1400&q=80')"></div>
-      <div class="case-card-overlay"></div>
-      <div class="case-card-content">
-        <h3>Tell Your Friends</h3>
-        <p class="concept">Scottsdale's worst-kept-secret cocktail bar. DJ nights, creative cocktails, and a cult following built through word of mouth.</p>
-        <ul>
-          <li>Beverage-focused analytics and cocktail profitability tracking</li>
-          <li>Late-night labor optimization</li>
-          <li>Social media-driven event ROI tracking</li>
-          <li>Streamlined BOH operations for a bar-forward concept</li>
-        </ul>
-        <div style="margin:16px 0"><span class="result-badge">Cocktail profitability tracked</span><span class="result-badge">Event ROI measured</span></div>
-        <p class="impact">"Proof that even a buzzy cocktail bar needs operational backbone."</p>
-      </div>
-    </div>
-
-    <div class="case-card reveal">
-      <div class="case-card-bg" style="background-image:url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1400&q=80')"></div>
-      <div class="case-card-overlay"></div>
-      <div class="case-card-content">
-        <h3>Neon Spur</h3>
-        <p class="concept">A dive bar and live music venue on Tempe's Mill Avenue. High-volume drinks, entertainment, and a young demographic.</p>
-        <ul>
-          <li>High-volume bar operations monitoring</li>
-          <li>Entertainment cost vs. revenue analysis</li>
-          <li>Simplified reporting for lean management</li>
-          <li>Staffing optimization for peak music nights</li>
-        </ul>
-        <div style="margin:16px 0"><span class="result-badge">Entertainment ROI tracked</span><span class="result-badge">Peak night staffing optimized</span></div>
-        <p class="impact">"Different concept, different demo, same AI. From fine dining to dive bars — it works everywhere."</p>
-      </div>
+    <div class="philosophy-quote reveal">
+      <blockquote>Restaurant operators do not stall because they lack ambition. They stall because the daily weight of scattered reports, inconsistent follow-through, and decisions that wait on one person crowds out the hospitality they opened the doors to provide.</blockquote>
+      <cite>— The AI Lava Approach</cite>
     </div>
   </div>
 </section>
@@ -607,59 +330,55 @@
 <section class="pricing-section" id="pricing">
   <div class="container">
     <div class="section-header reveal">
-      <h2>Simple <span class="gradient-text">Engagements</span></h2>
-      <p>Start with the support layer, then expand into the workflows that prove ROI.</p>
+      <h2>Clear <span class="gradient-text">Pricing</span></h2>
+      <p>No hidden software fees. No long-term lock-in. Start with a conversation.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card reveal">
-        <h3>Support Layer</h3>
-        <p class="price-desc">Daily monitoring, inbox/CRM triage, and owner-ready briefs.</p>
-        <ul><li>AI daily intelligence briefings</li><li>Email and lead triage</li><li>KPI dashboards and reporting</li><li>Automated accountability tracking</li></ul>
-        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.15)">Let's Talk</a>
+        <h3>Operational Readiness Assessment</h3>
+        <p class="price-desc">A structured assessment of your restaurant group's operating maturity and immediate opportunities.</p>
+        <ul>
+          <li>Maturity assessment across key operating areas</li>
+          <li>Top gaps and friction points identified</li>
+          <li>Owner decision queue</li>
+          <li>Manager action board</li>
+          <li>30-day plan</li>
+          <li>60-minute review session</li>
+        </ul>
+        <div style="font-size:1.6rem;font-weight:900;color:var(--fresh-ink);margin:16px 0">$500</div>
+        <p style="font-size:.85rem;color:var(--muted-ink)">Waived when you begin an Operator Improvement Sprint</p>
+        <a href="operator-opportunity-scan.html" class="btn btn-outline" style="border-color:rgba(255,255,255,.15)">Start With the Scan</a>
       </div>
       <div class="price-card popular reveal reveal-delay-1">
-        <div class="popular-badge">Most Popular</div>
-        <h3>Installed Team</h3>
-        <p class="price-desc">Support Layer plus hands-on workflow buildout and weekly operator review.</p>
-        <ul><li>Everything in Support Layer</li><li>Sales follow-up and CRM hygiene</li><li>Accountability systems and scorecards</li><li>SOP and training development</li><li>Weekly strategy calls</li></ul>
-        <a href="#contact" class="btn btn-primary">Let's Talk</a>
+        <div class="popular-badge">Recommended Start</div>
+        <h3>Operator Improvement Sprint</h3>
+        <p class="price-desc">One month of hands-on implementation focused on up to three agreed priorities.</p>
+        <ul>
+          <li>Assessment included (fee waived)</li>
+          <li>Up to 3 agreed priorities</li>
+          <li>Implementation alongside your managers</li>
+          <li>Weekly operator review</li>
+          <li>Accountability systems and reporting setup</li>
+        </ul>
+        <div style="font-size:1.6rem;font-weight:900;color:var(--fresh-ink);margin:16px 0">$2,500 <span style="font-size:.85rem;font-weight:600">first month</span></div>
+        <a href="operator-opportunity-scan.html" class="btn btn-primary">Start With the Scan</a>
       </div>
       <div class="price-card reveal reveal-delay-2">
-        <h3>Full Operating System</h3>
-        <p class="price-desc">A custom AI-supported operating layer across sales, ops, finance, people, and reporting.</p>
-        <ul><li>Everything in Installed Team</li><li>Dedicated executive support pod</li><li>Full workflow restructuring</li><li>Finance and back-office controls</li><li>Custom AI agents</li><li>Your recurring command layer, managed</li></ul>
+        <h3>Ongoing Support Layer</h3>
+        <p class="price-desc">Continued operational support, AI-assisted workflows, and accountability that grows with your group.</p>
+        <ul>
+          <li>Daily operating intelligence</li>
+          <li>Accountability tracking and reporting</li>
+          <li>Manager support and coaching tools</li>
+          <li>AI-assisted workflows</li>
+          <li>Ongoing implementation of new priorities</li>
+        </ul>
+        <div style="font-size:1.6rem;font-weight:900;color:var(--fresh-ink);margin:16px 0">From $1,500<span style="font-size:.85rem;font-weight:600">/month</span></div>
         <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,.15)">Let's Talk</a>
       </div>
     </div>
     <div class="pricing-notes reveal">
-      <p style="font-size:1.05rem;color:var(--fresh-ink);font-weight:600;margin-bottom:16px">Every engagement is custom-built for your business. Pricing depends on scope, systems, urgency, and how much execution Lava owns.</p>
-      <div class="urgency-badge">Limited founding partner spots available</div>
-      <p class="fire">First outside clients get preferred founding partner pricing.</p>
-      <p>No heavy software migration. Start with the workflows that hurt now, then expand only when the proof is real.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2>From the <span class="gradient-text">Trenches</span></h2>
-      <p>What owner-led companies should feel after deploying Lava.</p>
-    </div>
-    <div class="testimonial-grid">
-      <div class="testimonial-card reveal">
-        <div class="msg-bubble">"I used to spend the first two hours of every morning finding the truth. Now I wake up to the owner read: numbers, exceptions, decisions, and who owes what."</div>
-        <div class="msg-sender"><div class="avatar">OP</div><div class="sender-info"><div class="name">Operator</div><div class="role">Multi-unit business</div></div></div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="msg-bubble">"The accountability system changed the temperature. People knew tasks had owners, due dates, and proof. Things stopped disappearing into meetings."</div>
-        <div class="msg-sender"><div class="avatar">GM</div><div class="sender-info"><div class="name">General Manager</div><div class="role">Owner-led team</div></div></div>
-      </div>
-      <div class="testimonial-card reveal reveal-delay-2">
-        <div class="msg-bubble">"The biggest shift was not the dashboard. It was having something watching the business every day and telling us what deserved attention."</div>
-        <div class="msg-sender"><div class="avatar">DO</div><div class="sender-info"><div class="name">Director of Operations</div><div class="role">4-location group</div></div></div>
-      </div>
+      <p>Founding-partner pricing is available for early restaurant groups. No countdown timers, no artificial scarcity — just preferred terms for operators who help us refine the service.</p>
     </div>
   </div>
 </section>
@@ -672,38 +391,52 @@
     </div>
     <div class="ba-grid">
       <div class="ba-card before reveal">
-        <h3>Before Lava</h3>
+        <h3>Before</h3>
         <ul>
-          <li>Owner is copied on everything</li>
-          <li>10 systems that do not talk</li>
-          <li>Follow-up depends on memory</li>
-          <li>Meetings create notes but no proof</li>
-          <li>Surprises in finance and operations</li>
-          <li>Good leads die quietly</li>
+          <li>Reports arrive late and cannot be trusted</li>
+          <li>Labor surprises show up at payroll</li>
+          <li>Food cost is a guess until month-end</li>
+          <li>Manager accountability depends on who is asking</li>
+          <li>Guest complaints repeat with no pattern visibility</li>
+          <li>Event leads die in someone's inbox</li>
         </ul>
       </div>
-      <div class="ba-arrow reveal">→</div>
+      <div class="ba-arrow reveal">&rarr;</div>
       <div class="ba-card after reveal">
-        <h3>After Lava</h3>
+        <h3>With AI Lava</h3>
         <ul>
-          <li>Daily intelligence briefing in your inbox</li>
-          <li>One unified command center</li>
-          <li>AI tracks owners, due dates, and proof</li>
-          <li>Decisions backed by current context</li>
-          <li>Finance and operating exceptions surfaced early</li>
-          <li>Sales follow-up happens on schedule</li>
+          <li>Daily operating view with trusted definitions</li>
+          <li>Labor exceptions surfaced before the schedule publishes</li>
+          <li>Cost foundation reconciled from purchase unit through recipe</li>
+          <li>Commitments tracked with owners, deadlines, and proof</li>
+          <li>Repeat guest themes visible across locations</li>
+          <li>Every qualified lead has a next step and an owner</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PHILOSOPHY -->
-<section class="philosophy-section">
+<!-- CREDIBILITY -->
+<section class="testimonials-section">
   <div class="container">
-    <div class="philosophy-quote reveal">
-      <blockquote>Businesses do not stall because owners are lazy. They stall because the owner becomes the routing system for decisions, follow-up, accountability, and truth. Lava gives that work a machine-supported operating layer.</blockquote>
-      <cite>— The Lava Philosophy</cite>
+    <div class="section-header reveal">
+      <h2>Built From <span class="gradient-text">Real Operations</span></h2>
+      <p>This approach was developed through firsthand internal use within a multi-location restaurant group — daily service, real pressure, and the practical need for clearer decisions and follow-through.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal">
+        <div class="msg-bubble"><strong>Firsthand operating context</strong><br>Designed around the real tension between financial controls, manager time, team development, and guest experience.</div>
+        <div class="msg-sender"><div class="avatar">01</div><div class="sender-info"><div class="name">Operator-led</div><div class="role">Hospitality before technology</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="msg-bubble"><strong>Transparent accountability</strong><br>Track agreed commitments, owners, deadlines, context, and proof — never covertly monitor employees.</div>
+        <div class="msg-sender"><div class="avatar">02</div><div class="sender-info"><div class="name">Manager-enhancing</div><div class="role">Autonomy with clarity</div></div></div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="msg-bubble"><strong>No black-box dependence</strong><br>Your team retains the workflows, definitions, decision rights, and operating documentation created during the engagement.</div>
+        <div class="msg-sender"><div class="avatar">03</div><div class="sender-info"><div class="name">Client-owned</div><div class="role">Continuing value, not lock-in</div></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -713,53 +446,53 @@
   <div class="container">
     <div class="section-header reveal">
       <h2>Let's <span class="gradient-text">Talk</span></h2>
-      <p>One conversation. No pitch deck. Just a blunt read on where an AI support layer would create leverage.</p>
+      <p>One conversation. No pitch deck. Just a straightforward read on whether this approach fits your restaurant group.</p>
     </div>
     <div class="contact-inner">
       <div class="contact-info-row reveal">
         <div class="contact-info-item">
-          <span class="info-icon">✉️</span>
           <a href="mailto:info@ai-lava.com">info@ai-lava.com</a>
         </div>
       </div>
       <form class="contact-form reveal" action="https://formsubmit.co/info@ai-lava.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_subject" value="New Lead from ai-lava.com">
+        <input type="hidden" name="_subject" value="Restaurant Group Inquiry from ai-lava.com">
         <input type="hidden" name="_next" value="https://ai-lava.com">
         <input type="text" name="_honey" style="display:none">
         <input type="text" name="Name" placeholder="Your name" required>
         <input type="email" name="Email" placeholder="Your email" required>
         <select name="Locations">
-          <option value="" disabled selected>Number of units / teams</option>
+          <option value="" disabled selected>Number of locations</option>
           <option>1</option>
-          <option>2-5</option>
-          <option>6-10</option>
+          <option>2-3</option>
+          <option>4-6</option>
+          <option>7-10</option>
           <option>10+</option>
         </select>
-        <textarea name="Challenge" placeholder="Where are you personally still the bottleneck?"></textarea>
-        <button type="submit" class="btn btn-primary">Let's Talk</button>
+        <textarea name="Challenge" placeholder="What recurring operating pressure does your restaurant group carry?"></textarea>
+        <button type="submit" class="btn btn-primary">Start the Conversation</button>
       </form>
       <div class="next-steps reveal">
-        <h3 style="font-size:1.4rem;font-weight:900;color:var(--fresh-ink);margin-bottom:8px;text-align:center">What Happens Next?</h3>
+        <h3 style="font-size:1.4rem;font-weight:900;color:var(--fresh-ink);margin-bottom:8px;text-align:center">What Happens Next</h3>
         <div class="next-step">
           <div class="step-num">1</div>
           <div class="step-content">
             <h4>We talk for 30 minutes</h4>
-            <p>No pitch deck. We ask where work gets stuck, what systems you use, and what still requires owner intervention.</p>
+            <p>No pitch deck. We ask where work gets stuck, what systems you use, and what still requires your personal involvement every day.</p>
           </div>
         </div>
         <div class="next-step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <h4>We map the first install sprint</h4>
-            <p>We identify the first workflows Lava should own: inbox, CRM, reporting, approvals, customer signals, team accountability, or back office.</p>
+            <h4>We assess readiness</h4>
+            <p>If it makes sense, we run the Operational Readiness Assessment: maturity mapping, gap identification, and a 30-day plan.</p>
           </div>
         </div>
         <div class="next-step">
           <div class="step-num">3</div>
           <div class="step-content">
             <h4>You decide</h4>
-            <p>If it makes sense, we deploy the first 14-day sprint. If it does not, you leave with a clear bottleneck map.</p>
+            <p>If the assessment reveals actionable opportunities, we propose a tightly bounded Sprint focused on up to three priorities. If it does not, you leave with a clear operating picture.</p>
           </div>
         </div>
       </div>
@@ -770,41 +503,40 @@
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container">
-    <h2 class="reveal">Stop Being the Routing System.<br><span class="gradient-text">Install One.</span></h2>
-    <p class="reveal">Lava gives owner-led companies a trained assistant plus AI agent team that watches the business, drafts the next move, and keeps the team moving.</p>
-    <a href="restaurant-diagnostic.html" class="btn btn-primary reveal" style="margin-right:12px">Run the Diagnostic →</a>
-    <a href="#contact" class="btn btn-outline reveal">Install Lava</a>
+    <h2 class="reveal">Return to the Hospitality<br><span class="gradient-text">You Opened For.</span></h2>
+    <p class="reveal">AI Lava helps independent restaurant groups strengthen daily operations so managers can own their work and operators can focus on guests, teams, and growth.</p>
+    <a href="operator-opportunity-scan.html" class="btn btn-primary reveal" style="margin-right:12px">Start the Operator Opportunity Scan</a>
+    <a href="#contact" class="btn btn-outline reveal">Talk to Us</a>
   </div>
 </section>
 
 <!-- FLOATING CTA -->
-<a href="restaurant-diagnostic.html" class="floating-cta-btn">Run Diagnostic</a>
+<a href="operator-opportunity-scan.html" class="floating-cta-btn">Operator Scan</a>
 
 <!-- MOBILE STICKY BAR -->
 <div class="mobile-sticky-bar">
-  <a href="mailto:info@ai-lava.com"><span class="sticky-icon">✉️</span>Email</a>
-  <a href="restaurant-diagnostic.html" class="sticky-cta">Run Diagnostic</a>
+  <a href="mailto:info@ai-lava.com"><span class="sticky-icon">&#9993;</span>Email</a>
+  <a href="operator-opportunity-scan.html" class="sticky-cta">Start the Scan</a>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-logo"><span>LAVA</span></div>
-    <p>AI business support for owner-led companies</p>
-    <p>Proven inside high-pressure operations. Built to travel across service businesses.</p>
-    <p>© 2026 Lava. All rights reserved.</p>
+    <div class="footer-logo"><span>AI LAVA</span></div>
+    <p>Operator-led AI support for independent restaurant groups</p>
+    <p>&copy; 2026 AI Lava. All rights reserved.</p>
     <div class="footer-links">
-      <a href="#reality">About</a>
-      <a href="#services">Services</a>
-      <a href="#intelligence">Intelligence</a>
-      <a href="#cases">Case Studies</a>
+      <a href="#reality">The Problem</a>
+      <a href="#services">What We Do</a>
+      <a href="#how">How It Works</a>
       <a href="#pricing">Pricing</a>
+      <a href="operator-opportunity-scan.html">Operator Scan</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
 </footer>
 
-</div><!-- .site-wrap -->
-<script src="scripts.js?v=5963857"></script>
+</div>
+<script src="scripts.js?v=hospitality-1"></script>
 </body>
 </html>
