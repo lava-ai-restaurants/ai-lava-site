@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hidden Leak Map | LAVA</title>
-  <meta name="description" content="LAVA finds the hidden work tax inside owner-led companies: stale follow-up, unowned manager notes, labor drift, invoice exceptions, and decision loops.">
+  <meta name="description" content="LAVA finds the hidden work tax inside restaurant groups: stale follow-up, unowned manager notes, labor drift, invoice exceptions, and decision loops.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23111318'/><path d='M49 12 15 86h70L49 12Z' fill='%23f25f3a'/><path d='M50 32 35 72h30L50 32Z' fill='%23ffbd59'/></svg>">
   <style>
     :root{color-scheme:dark;--bg:#0c0d10;--ink:#f7f1e8;--muted:#b8aea2;--line:#30343d;--panel:#15171d;--panel2:#1f232c;--lava:#f25f3a;--gold:#ffbd59;--green:#66d19e;--blue:#8ab4ff;--rose:#ff8b8b}
@@ -13,10 +13,57 @@
 </head>
 <body>
   <main class="wrap">
-    <nav class="nav">
-      <div class="logo">LAVA</div>
-      <a href="https://ai-lava.com">ai-lava.com</a>
-    </nav>
+    <nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>AI LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">The Problem</a>
+      <div class="nav-dropdown">
+        <a href="index.html#services" class="active">What We Do</a>
+        <div class="nav-dropdown-menu">
+          <a href="operations.html">Operations &amp; Accountability</a>
+          <a href="fb-development.html">Sales &amp; Revenue</a>
+          <a href="purchasing.html">Purchasing &amp; Cost Controls</a>
+          <a href="accounting.html">Financial Controls</a>
+          <a href="training.html">Training &amp; SOPs</a>
+          <a href="reviews.html">Reviews &amp; Guest Signals</a>
+        </div>
+      </div>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="operator-opportunity-scan.html" class="nav-cta">Start the Scan</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="menu-logo">AI LAVA</span>
+    <button class="mobile-menu-close" id="menuClose">&#x2715;</button>
+  </div>
+  <div class="mobile-menu-nav">
+    <a href="index.html#reality">The Problem</a>
+    <span class="menu-section-label">What We Do</span>
+    <div class="mobile-sub">
+      <a href="operations.html">Operations &amp; Accountability</a>
+      <a href="fb-development.html">Sales &amp; Revenue</a>
+      <a href="purchasing.html">Purchasing &amp; Cost Controls</a>
+      <a href="accounting.html">Financial Controls</a>
+      <a href="training.html">Training &amp; SOPs</a>
+      <a href="reviews.html">Reviews &amp; Guest Signals</a>
+    </div>
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <a href="operator-opportunity-scan.html">Start the Operator Scan</a>
+    <div class="menu-contact">
+      <a href="mailto:info@ai-lava.com">info@ai-lava.com</a>
+    </div>
+  </div>
+</div>
     <section class="hero">
       <div>
         <div class="eyebrow"><span class="dot"></span> 7-day hidden leak map</div>
@@ -88,10 +135,21 @@
       </div>
     </div>
   </section>
-  <footer class="wrap footer">
-    LAVA installs an AI command layer around the systems a company already uses. No heavy software migration required.
-    <div class="tiny">Tracking note: campaign links may record open, click, and page-visit events so LAVA can measure whether the message is working.</div>
-  </footer>
+  <footer>
+  <div class="container">
+    <div class="footer-logo"><span>AI LAVA</span></div>
+    <p>Operator-led AI support for independent restaurant groups</p>
+    <p>&copy; 2026 AI Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">The Problem</a>
+      <a href="index.html#services">What We Do</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="operator-opportunity-scan.html">Operator Scan</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
   <script>
     (function(){
       const params = new URLSearchParams(location.search);

@@ -13,10 +13,57 @@
 </head>
 <body>
   <main class="wrap">
-    <nav class="nav">
-      <div class="logo">LAVA</div>
-      <a href="https://ai-lava.com">ai-lava.com</a>
-    </nav>
+    <nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><span>AI LAVA</span></a>
+    <div class="nav-links">
+      <a href="index.html#reality">The Problem</a>
+      <div class="nav-dropdown">
+        <a href="index.html#services" class="active">What We Do</a>
+        <div class="nav-dropdown-menu">
+          <a href="operations.html">Operations &amp; Accountability</a>
+          <a href="fb-development.html">Sales &amp; Revenue</a>
+          <a href="purchasing.html">Purchasing &amp; Cost Controls</a>
+          <a href="accounting.html">Financial Controls</a>
+          <a href="training.html">Training &amp; SOPs</a>
+          <a href="reviews.html">Reviews &amp; Guest Signals</a>
+        </div>
+      </div>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="operator-opportunity-scan.html" class="nav-cta">Start the Scan</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span class="menu-logo">AI LAVA</span>
+    <button class="mobile-menu-close" id="menuClose">&#x2715;</button>
+  </div>
+  <div class="mobile-menu-nav">
+    <a href="index.html#reality">The Problem</a>
+    <span class="menu-section-label">What We Do</span>
+    <div class="mobile-sub">
+      <a href="operations.html">Operations &amp; Accountability</a>
+      <a href="fb-development.html">Sales &amp; Revenue</a>
+      <a href="purchasing.html">Purchasing &amp; Cost Controls</a>
+      <a href="accounting.html">Financial Controls</a>
+      <a href="training.html">Training &amp; SOPs</a>
+      <a href="reviews.html">Reviews &amp; Guest Signals</a>
+    </div>
+    <a href="index.html#how">How It Works</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <a href="operator-opportunity-scan.html">Start the Operator Scan</a>
+    <div class="menu-contact">
+      <a href="mailto:info@ai-lava.com">info@ai-lava.com</a>
+    </div>
+  </div>
+</div>
     <section class="hero">
       <div>
         <div class="eyebrow"><span class="dot"></span> 7-day revenue leak screen</div>
@@ -76,10 +123,21 @@
       </div>
     </div>
   </section>
-  <footer class="wrap footer">
-    LAVA turns the signals your business already creates into follow-up, decisions, and proof.
-    <div class="tiny">Tracking note: campaign links may record open, click, and page-visit events so LAVA can measure whether the message is working.</div>
-  </footer>
+  <footer>
+  <div class="container">
+    <div class="footer-logo"><span>AI LAVA</span></div>
+    <p>Operator-led AI support for independent restaurant groups</p>
+    <p>&copy; 2026 AI Lava. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html#reality">The Problem</a>
+      <a href="index.html#services">What We Do</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="operator-opportunity-scan.html">Operator Scan</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
   <script>
     function money(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});}
     function update(){
